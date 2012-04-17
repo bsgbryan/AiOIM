@@ -1,5 +1,5 @@
 {
-  "name"    : "twat",
+  "name"    : "loqui",
   "version" : "0.0.2",
   "author"  : "Bryan Maynard <bsgbryan@gmail.com>",
   "description": "A twitter-backed chat client",
@@ -13,10 +13,10 @@
   },
   "keywords": [
     "twitter",
-    "chatt"
+    "chat"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/nodejitsu/http-server.git"
-  },
+    "url": "https://github.com/bsgbryan/loqui.git"
+  }
 }
