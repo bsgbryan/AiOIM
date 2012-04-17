@@ -1,11 +1,22 @@
 {
-  "name": "twat",
-  "version": "0.0.1",
-  "dependencies": {
-    "express": "*"
+  "name"    : "twat",
+  "version" : "0.0.2",
+  "author"  : "Bryan Maynard <bsgbryan@gmail.com>",
+  "description": "A twitter-backed chat client",
+  "dependencies" : {
+    "express" : "*",
+    "jade"    : "*"
   },
-  "engines": {
-    "node": "0.6.x",
-    "npm":  "1.0.x"
-  }
+  "engines" : {
+    "node" : "0.6.x",
+    "npm"  :  "1.0.x"
+  },
+  "keywords": [
+    "twitter",
+    "chatt"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nodejitsu/http-server.git"
+  },
 }
