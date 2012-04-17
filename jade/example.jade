@@ -6,7 +6,7 @@ html
     h1 Twat example
     p This is an example of how loqui can be used to talk with your friends
     #loqui
-      form(method="post", action="https://api.twitter.com/oauth/request_token?oauth_callback=http://falling-samurai-7438.herokuapp.com")
+      form(method="post", action="/twitter/signin")
         input(type="submit") sign in
     script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
     script(src="javascript/twat.js")
