@@ -1,5 +1,5 @@
 var express = require('express'),
-    oauth   = require('oauth')
+    oauth   = require('node-oauth')
 
 var app = express.createServer(express.logger())
 
