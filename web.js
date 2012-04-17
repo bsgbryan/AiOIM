@@ -1,9 +1,7 @@
-var express = require('express')
+var express = require('express'),
+    oauth   = require('oauth')
 
 var app = express.createServer(express.logger())
-
-var key = "YOURTWITTERCONSUMERKEY";
-var secret = "YOURTWITTERCONSUMERSECRET";
 
 function consumer() {
   return new oauth.OAuth(
