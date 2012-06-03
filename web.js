@@ -1,6 +1,6 @@
 var express = require('express'),
     OAuth   = require('oauth').OAuth,
-    sha1    = require('sha1'),
+    sha1    = require('./app/sha1'),
     secret  = sha1.hash(new Date().getTime())
 
 var app = express.createServer(express.logger()),
