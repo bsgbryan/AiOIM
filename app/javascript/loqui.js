@@ -9,7 +9,7 @@ $(document).ready(function () {
       find('#loqui')
 
   if (location.hash.indexOf('#twitter_profile=') === 0) {
-    $.cookie('twitter_profile', JSON.parse(decodeURIComponent(location.hash.substring(17))))
+    $.cookie('twitter_profile', location.hash.substring(17))
     location.hash = ''
   }
 
