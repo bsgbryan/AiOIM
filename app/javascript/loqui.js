@@ -1,27 +1,21 @@
 (function ($) {
   function initializeChatClient() {
-    var profile = JSON.parse($.cookie('twitter_profile')),
-        search  = 'http://api.twitter.com/1/friends/ids.json?screen_name=' + profile.screen_name + '&lang=en&callback=?',
-        friends
+    var profile = JSON.parse($.cookie('twitter_profile'))
 
-    $.getJSON(search, function (data) {
-      friends = data.friends
+    $('#loqui').append(
+      '<form id="loqui-user-finder">' +
+      '<input type="text" id="loqui-twitter-user-name" placeholder="Twitter name">' +
+      '<button type="submit">find</button>' +
+      '</form>').
 
-      $('#loqui').append(
-        '<form id="loqui-user-finder">' +
-        '<input type="text" id="loqui-twitter-user-name" placeholder="Twitter name">' +
-        '<button type="submit">find</button>' +
-        '</form>').
+      on('keyup', '#loqui-twitter-user-name', function (event) {
+        var val        = $('#loqui-twitter-user-name').val(),
+            userSearch = 'http://api.twitter.com/1/users/search.json?q=' + val + '&lang=en&callback=?'
 
-        on('keyup', '#loqui-twitter-user-name', function (event) {
-          var val        = $('#loqui-twitter-user-name').val(),
-              userSearch = 'http://api.twitter.com/1/users/search.json?q=' + val + '&lang=en&callback=?'
-
-          $.getJSON(userSearch, function (users) {
-            console.log(users)
-          })
+        $.getJSON(userSearch, function (users) {
+          console.log(users)
         })
-    })
+      })
   }
 
   var signinUrl = 'http://falling-samurai-7438.herokuapp.com/twitter/signin'
