@@ -9,7 +9,7 @@ $(document).ready(function () {
       find('#loqui')
 
   if (location.hash.indexOf('#twitter_profile=') === 0) {
-    profile       = JSON.parse(decodeURIComponent(location.search.substring(17)))
+    profile       = JSON.parse(decodeURIComponent(location.hash.substring(17)))
     location.hash = ''
   }
 
