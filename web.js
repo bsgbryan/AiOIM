@@ -54,7 +54,7 @@ app.get('/twitter/callback', function(req, res) {
         } else {
           req.session.twitterScreenName = data['screen_name']
           res.send('data: ' + JSON.parse(data).screen_name)
-          console.log('response', )
+          // console.log('response', )
         }  
       });  
     }
