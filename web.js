@@ -53,7 +53,7 @@ app.get('/twitter/callback', function(req, res) {
           res.send('Error getting twitter screen name : ' + sys.inspect(error), 500)
         } else {
           req.session.twitterScreenName = data['screen_name']
-          res.send('data: ' + data)
+          res.send('data: ' + data.screen_name)
           console.log('response', response)
         }  
       });  
