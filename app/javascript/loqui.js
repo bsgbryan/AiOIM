@@ -8,8 +8,10 @@ $(document).ready(function () {
       append('<div id="loqui"></div>').
       find('#loqui')
 
-  if (location.search.indexOf('?twitter_profile=') === 0)
-    profile = JSON.parse(decodeURIComponent(location.search.substring(17)))
+  if (location.hash.indexOf('#twitter_profile=') === 0) {
+    profile       = JSON.parse(decodeURIComponent(location.search.substring(17)))
+    location.hash = ''
+  }
 
   console.log(profile)
 

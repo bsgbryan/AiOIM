@@ -59,7 +59,7 @@ app.get('/twitter/callback', function(req, res) {
       else
         oa.getProtectedResource(creds, 'GET', token, secret, function (error, data, response) {
           if (error) res.send(error, 500)
-          else res.redirect(req.session.destination + '?twitter_profile=' + data)
+          else res.redirect(req.session.destination + '#twitter_profile=' + data)
         })
   })
 })
