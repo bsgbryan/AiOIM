@@ -13,7 +13,7 @@ $(document).ready(function () {
     location.hash = ''
   }
 
-  console.log($.cookie('twitter_profile'))
+  console.log(JSON.parse($.cookie('twitter_profile')))
 
   loqui.append('<a href="' + url + '">sign in</button>')
 })
