@@ -1,6 +1,6 @@
 $(document).ready(function () {
   var loqui = $('#loqui'),
-      url   = 'http://falling-samurai-7438.herokuapp.com/twitter/signin?final_destintion=' + window.location
+      url   = 'http://falling-samurai-7438.herokuapp.com/twitter/signin?final_destination=' + window.location
 
   if (loqui.length === 0)
     loqui = $('body').
