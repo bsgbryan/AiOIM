@@ -6,7 +6,7 @@
   "dependencies" : {
     "express"    : "*",
     "jade"       : "*",
-    "node-oauth" : "*"
+    "oauth" : "*"
   },
   "engines" : {
     "node" : "0.6.x",
