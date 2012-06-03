@@ -17,7 +17,7 @@
           var val        = $('#loqui-twitter-user-name').val(),
               userSearch = 'http://api.twitter.com/1/users/search.json?q=' + val + '&lang=en&callback=?'
 
-          $.getJSON(users, function (users) {
+          $.getJSON(userSearch, function (users) {
             console.log(users)
           })
         })
