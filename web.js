@@ -4,7 +4,14 @@ var express = require('express'),
     secret  = sha1.hash(new Date().getTime())
 
 var app = express.createServer(express.logger()),
-    oa  = { }
+    oa  = new OAuth(
+      'https://api.twitter.com/oauth/request_token', 
+      'https://api.twitter.com/oauth/access_token', 
+      'myQEbQTOpgo3Ql9ylTtg', 
+      'du2TORpsR39s0ovo1q0EFmicUlIh2gseufVjnQn5o', 
+      '1.0', 
+      'http://falling-samurai-7438.herokuapp.com/twitter/callback', 
+      'HMAC-SHA1')
 
 // Twitter urls
 var creds = 'http://twitter.com/account/verify_credentials.json',
@@ -25,20 +32,12 @@ app.get('/', function(req, res) {
 })
 
 app.get('/twitter/signin', function (req, res) {
-  
-  oa = new OAuth(
-    'https://api.twitter.com/oauth/request_token', 
-    'https://api.twitter.com/oauth/access_token', 
-    'myQEbQTOpgo3Ql9ylTtg', 
-    'du2TORpsR39s0ovo1q0EFmicUlIh2gseufVjnQn5o', 
-    '1.0', 
-    req.param('final_destination'), 
-    'HMAC-SHA1')
-
   oa.getOAuthRequestToken(function(error, token, secret, results) {
 
     if (error) res.send(error, 500)
     else {
+      req.session.destination = req.param('final_destination')
+
       req.session.token  = token
       req.session.secret = secret
 
@@ -60,7 +59,7 @@ app.get('/twitter/callback', function(req, res) {
       else
         oa.getProtectedResource(creds, 'GET', token, secret, function (error, data, response) {
           if (error) res.send(error, 500)
-          else res.send(data)  
+          else res.redirect(req.session.destination + '?twitter_profile=' + data)
         })
   })
 })
