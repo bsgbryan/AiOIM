@@ -1,7 +1,8 @@
 (function ($) {
   $.loqui = function (client, element) {
-    var container = typeof element === 'undefined' ? 'loqui' : element,
-        loqui = $('#' + container)
+    var destination = typeof client === 'undefined' ? window.location : client,
+        container   = typeof element === 'undefined' ? 'loqui' : element,
+        loqui       = $('#' + container)
 
     if (loqui.length === 0)
       loqui = $('body').
@@ -9,7 +10,7 @@
         find('#' + container)
 
     if ($.cookie('twitter_profile') === null) {
-      var url = 'http://falling-samurai-7438.herokuapp.com/twitter/signin?final_destination=' + client,
+      var url = 'http://falling-samurai-7438.herokuapp.com/twitter/signin?final_destination=' + destination,
           profile
 
       if (location.hash.indexOf('#twitter_profile=') === 0) {
@@ -25,5 +26,3 @@
     }
   }
 })(jQuery)
-
-$.loqui('loqui', window.location)
