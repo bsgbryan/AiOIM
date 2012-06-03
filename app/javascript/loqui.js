@@ -22,9 +22,9 @@
     } else {
       var profile = JSON.parse($.cookie('twitter_profile'))
 
-      var friends = $.getJSON('http://api.twitter.com/1/friends/ids.json?screen_name=' + profile.screen_name + '&lang=en&callback=?')
-
-      console.log(friends)
+      $.getJSON('http://api.twitter.com/1/friends/ids.json?screen_name=' + profile.screen_name + '&lang=en&callback=?', function (data) {
+        console.log('friends', data)
+      })
 
       loqui.append(initiateChatForm())
     }
