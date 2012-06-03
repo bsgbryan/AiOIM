@@ -1,16 +1,11 @@
 $(document).ready(function () {
-  var loqui = $('#loqui')
+  var loqui = $('#loqui'),
+      url   = 'http://falling-samurai-7438.herokuapp.com/twitter/signin?final_destintion=' + window.location
 
-  if (loqui.length === 0) {
-    $(document).append('<div id="loqui"></div>')
-    loqui = $('#loqui')
-  }
-  
-  loqui.
-    append('<button class="sign in">sign in</button>').
-    on('click', '.sign.in', function (event) {
-      $.get('http://falling-samurai-7438.herokuapp.com/twitter/signin', function (data) {
-        console.log(data)
-      })
-    })
+  if (loqui.length === 0)
+    loqui = $('body').
+      append('<div id="loqui"></div>').
+      find('#loqui')
+
+  loqui.append('<a href="' + url + '">sign in</button>')
 })
