@@ -1,7 +1,8 @@
 var express = require('express'),
     OAuth   = require('oauth').OAuth,
     sha1    = require('./app/sha1'),
-    secret  = sha1.hash(new Date().getTime())
+    secret  = sha1.hash(new Date().getTime()),
+    http    = require('http')
 
 var app = express.createServer(express.logger()),
     oa  = new OAuth(
@@ -15,7 +16,8 @@ var app = express.createServer(express.logger()),
 
 // Twitter urls
 var creds = 'http://twitter.com/account/verify_credentials.json',
-    auth  = 'https://api.twitter.com/oauth/authorize?oauth_token='
+    auth  = 'https://api.twitter.com/oauth/authorize?oauth_token=',
+    users = 'http://api.twitter.com/1/users/search.json?q='
 
 app.configure(function() {
   app.use(express.static(__dirname + '/app'))
@@ -57,11 +59,26 @@ app.get('/twitter/callback', function(req, res) {
       if (error)
         res.send(error, 500)
       else
-        oa.getProtectedResource(creds, 'GET', token, secret, function (error, data, response) {
-          if (error) res.send(error, 500)
-          else res.redirect(req.session.destination + '#twitter_profile=' + data)
-        })
+        oa.getProtectedResource(creds, 'GET', 
+          token, 
+          secret, 
+          function (error, data, response) {
+            if (error) res.send(error, 500)
+            else res.redirect(req.session.destination + '#twitter_profile=' + data)
+          })
   })
+})
+
+app.get('/twitter/find', function(req, res) {
+  oa.getProtectedResource(
+    users + req.param('username'), 'GET',
+    req.session.token,
+    req.session.secret,
+
+    function (error, data, response) {
+      if (error) res.send(error, 500)
+      else res.send(data)
+    })
 })
 
 // The port number is passed in via Heroku
