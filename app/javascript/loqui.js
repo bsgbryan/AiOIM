@@ -10,7 +10,7 @@
 
       on('keyup', '#loqui-twitter-user-name', function (event) {
         var val        = $('#loqui-twitter-user-name').val(),
-            userSearch = 'http://falling-samurai-7438.herokuapp.com/twitter/find?username=' + val
+            userSearch = '/twitter/find?username=' + val
 
         $.getJSON(userSearch, function (users) {
           console.log(users)
@@ -18,7 +18,7 @@
       })
   }
 
-  var signinUrl = 'http://falling-samurai-7438.herokuapp.com/twitter/signin'
+  var signinUrl = '/twitter/signin'
 
   $.loqui = function (client, element) {
     var destination = typeof client === 'undefined' ? window.location : client,
@@ -35,7 +35,7 @@
         $.cookie('twitter_profile', location.hash.substring(17))
         location.hash = ''
       } else
-        loqui.append('<a href="' + signinUrl + '?final_destination=' + destination + '">sign in</button>')
+        loqui.append('<a href="' + signinUrl + '">sign in</button>')
     } else
       loqui.append(initializeChatClient())
   }
