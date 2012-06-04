@@ -4,8 +4,7 @@ var express = require('express'),
     secret  = sha1.hash(new Date().getTime()),
     http    = require('http')
 
-var app = express.createServer(express.logger()),
-    oa  = 
+var app = express.createServer(express.logger())
 
 function consumer() {
   return new OAuth(
