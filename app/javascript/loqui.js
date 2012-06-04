@@ -13,8 +13,6 @@
       })
 
       $('#loqui .chattable.users').html(users)
-      
-      $('#loqui').on('click', '.chattable.users .name', initializeChat)
     })
   }
 
@@ -33,26 +31,24 @@
       '</li>')
   }
 
-  function initializeLoqui() {
-    $('#loqui').append(
-      '<form class="user">' +
-      '<input type="text" class="name" placeholder="Twitter name">' +
-      '<button type="submit">find</button>' +
-      '</form>').
-      on('keyup', '.user .name', executeUserSearch)
-  }
-
   $.loqui = function () {
-    var loqui = $('#loqui')
-
-    if (loqui.length === 0)
-      loqui = $('body').
-        append('<div id="loqui"><ol class="chattable users"></ol><ul class="chatting with"></ul></div>').
-        find('#loqui')
+    $('body').
+      append('<div id="loqui">' +
+        '<a class="sign in" href="/twitter/signin">sign in</button>' +
+        '<ol class="chattable users"></ol>' +
+        '<ul class="chatting with"></ul>' +
+        '<form class="user">' +
+          '<input type="text" class="name search" placeholder="Twitter name">' +
+          '<button type="submit">find</button>' +
+        '</form>' +
+      '</div>')
 
     if ($.cookie('twitter_profile') === null)
-      loqui.append('<a href="/twitter/signin">sign in</button>')
-    else
-      initializeLoqui()
+      $('#loqui .sign.in').addClass('active')
+
+      
+    $('#loqui').
+      on('keyup', '.user .name.search', executeUserSearch)
+      on('click', '.chattable .user .name', initializeChat)
   }
 })(jQuery)
