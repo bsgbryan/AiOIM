@@ -57,6 +57,7 @@ app.get('/twitter/signin', function (req, res) {
       req.session.token  = t
       req.session.secret = s
 
+      // We can't pass token here, not sure why
       res.redirect(auth + t)    
     }
   })
@@ -72,7 +73,12 @@ app.get('/twitter/callback', function(req, res) {
     function(error, token, secret, results) {
       if (error)
         res.send(error, 500)
-      else
+      else {
+        console.log('returned token', token)
+        console.log('returned secret', secret)
+        console.log('session token', req.session.token)
+        console.log('session secret', req.session.secret)
+
         oauth.get(creds, token, secret, 
           function (error, data, response) {
             if (error) res.send(error, 500)
@@ -81,11 +87,12 @@ app.get('/twitter/callback', function(req, res) {
               res.redirect('/')
             }
           })
+      }
   })
 })
 
 app.get('/twitter/find', function(req, res) {
-  oauth.get(users + req.param('name'), token, secret,
+  oauth.get(users + req.param('name'), accessToken, accessSecret,
     function (error, data, response) {
       if (error) res.send(sys.inspect(error), 500)
       else res.send(data)
@@ -93,12 +100,12 @@ app.get('/twitter/find', function(req, res) {
 })
 
 app.post('/twitter/message', function(req, res) {
-  console.log('token', token)
-  console.log('secret', secret)
+  console.log('token', accessToken)
+  console.log('secret', accessToken)
   console.log('access token', req.session.token)
   console.log('access secret', req.session.secret)
 
-  oauth.post(message, token, secret, 'status=' + req.param('message'), function (error, data, response) {
+  oauth.post(message, accessToken, accessSecret, 'status=' + req.param('message'), function (error, data, response) {
     if (error) res.send(sys.inspect(error), 500)
     else res.send(data)
   })
