@@ -75,9 +75,7 @@ app.get('/twitter/callback', function(req, res) {
       if (error)
         res.send(error, 500)
       else
-        oauth().get(creds, 'GET', 
-          token, 
-          secret, 
+        oauth().get(creds, token, secret, 
           function (error, data, response) {
             if (error) res.send(error, 500)
             else {
@@ -89,10 +87,7 @@ app.get('/twitter/callback', function(req, res) {
 })
 
 app.get('/twitter/find', function(req, res) {
-  oauth().get(users + req.param('name'), 'GET',
-    token, // Access token
-    secret, // Access token secret
-
+  oauth().get(users + req.param('name'), token, secret,
     function (error, data, response) {
       if (error) res.send(sys.inspect(error), 500)
       else res.send(data)
