@@ -86,7 +86,7 @@ app.get('/twitter/callback', function(req, res) {
 })
 
 app.get('/twitter/find', function(req, res) {
-  oauth().getProtectedResource(users + req.param('username'), 'GET',
+  oauth().getProtectedResource(users + req.param('name'), 'GET',
     '15730716-duRZBRPjYSREfDTUYmBTwEswetUKrF2CHSSpQ0C7k', // Access token
     'yLMRJbPrFBacALxTEj9c9ZtVZFiWUjoNfleKtEsaM', // Access token secret
 

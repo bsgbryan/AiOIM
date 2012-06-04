@@ -1,52 +1,58 @@
 (function ($) {
-  function initializeChatClient() {
-    var profile = JSON.parse($.cookie('twitter_profile'))
+  var container = '#loqui'
 
+  function executeUserSearch(event) {
+    $.getJSON('/twitter/find?name=' + $(event.currentTarget).val(), function (u) {
+      var users = ''
+
+      u.forEach(function (user) {
+        users += '<li class="user">' +
+          '<a class="screen name">' + user.screen_name + '</a>' +
+          '<span class="human name">' + user.name + '</span>' +
+          '</li>'
+      })
+
+      $('#loqui .chattable.users').html(users)
+    })
+  }
+
+  function initializeChat(event) {
+    $(event.currentTarget).parent().addClass('selected')
+
+    var selected = $('#loqui .chattable.users .selected .screen.name').text()
+
+    $('#loqui .chatting.with').append(
+      '<li class="user" data-screen_name="' + selected + '">' +
+        '<ol class="messages"></ol>' +
+        '<form class="new message">' +
+          '<input type="text" name="message">' +
+          '<button type="submit">say</button>' +
+        '</form>' +
+      '</li>')
+  }
+
+  function initializeLoqui() {
     $('#loqui').append(
-      '<form id="loqui-user-finder">' +
-      '<input type="text" id="loqui-twitter-user-name" placeholder="Twitter name">' +
+      '<form class="user">' +
+      '<input type="text" class="name" placeholder="Twitter name">' +
       '<button type="submit">find</button>' +
       '</form>').
 
-      on('keyup', '#loqui-twitter-user-name', function (event) {
-        var val        = $('#loqui-twitter-user-name').val(),
-            userSearch = '/twitter/find?username=' + val
-
-        $.getJSON(userSearch, function (u) {
-          if (u.length > 0) {
-            var users = ''
-
-            u.forEach(function (user) {
-              users += '<li>' +
-                '<a class="user">' + user.screen_name + '</a><span class="name">' + user.name + '</span>'
-            })
-
-            $('#loqui-twitter-users').html(users)
-          }
-
-        })
-      })
+      on('keyup', '.user .search', executeUserSearch).
+      on('click', '.user .name', initializeChat)
   }
 
-  var signinUrl = '/twitter/signin'
-
-  $.loqui = function (client, element) {
-    var destination = typeof client === 'undefined' ? window.location : client,
-        container   = typeof element === 'undefined' ? 'loqui' : element,
-        loqui       = $('#' + container)
+  $.loqui = function () {
+    var loqui = $('#loqui')
 
     if (loqui.length === 0)
       loqui = $('body').
-        append('<div id="' + container + '"><ol id="loqui-twitter-users"></ol></div>').
-        find('#' + container)
+        append('<div id="loqui"><ol class="chattable users"></ol><ul class="chatting with"></ul></div>').
+        find('#loqui')
 
-    if ($.cookie('twitter_profile') === null) {
-      if (location.hash.indexOf('#twitter_profile=') === 0) {
-        $.cookie('twitter_profile', location.hash.substring(17))
-        location.hash = ''
-      } else
-        loqui.append('<a href="' + signinUrl + '">sign in</button>')
-    } else
-      loqui.append(initializeChatClient())
+    if ($.cookie('twitter_profile') === null)
+      loqui.append('<a href="/twitter/signin">sign in</button>')
+    else
+      initializeLoqui()
   }
 })(jQuery)
