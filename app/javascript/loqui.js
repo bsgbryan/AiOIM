@@ -12,9 +12,9 @@
           '</li>'
       })
 
-      $('#loqui .chattable.users').
-        html(users).
-        on('click', '.user .name', initializeChat)
+      $('#loqui .chattable.users').html(users)
+      
+      $('#loqui').on('click', '.chattable.users .name', initializeChat)
     })
   }
 
