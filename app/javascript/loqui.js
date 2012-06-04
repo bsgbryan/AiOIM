@@ -12,7 +12,7 @@
           '</li>'
       })
 
-      $('#loqui .chattable.users').html(users)
+      $('#loqui .chattable.users').html(users).removeClass('hidden')
     })
   }
 
@@ -28,7 +28,9 @@
           '<input type="text" name="message">' +
           '<button type="submit">say</button>' +
         '</form>' +
-      '</li>')
+      '</li>').removeClass('hidden')
+
+    $('#loqui .chattable.users').addClass('hidden')
   }
 
   $.loqui = function () {
