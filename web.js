@@ -30,7 +30,17 @@ app.configure(function() {
   app.use(express.static(__dirname + '/app'))
   app.use(express.bodyParser())
   app.use(express.cookieParser())
-  app.use(express.session({ store : new RedisStore({ client : redis }), secret : secret }))
+  app.use(express.session({, secret:'eeuqram'}))
+  app.use(express.session({ 
+    store  : new RedisStore({ client : redis }), 
+    key    : 'bryan is awesome',
+    secret : secret,
+    cookie : {
+      path     : '/', 
+      httpOnly : true, 
+      maxAge   : null 
+    }
+  }))
 
   //views
   app.set('views', __dirname + '/jade')
@@ -74,7 +84,7 @@ app.get('/twitter/callback', function(req, res) {
           function (error, data, response) {
             if (error) res.send(error, 500)
             else {
-              res.cookie('twitter_profile', JSON.parse(decodeURIComponent(data)))
+              req.sessiontwitter_profile = JSON.parse(decodeURIComponent(data))
               res.redirect('/')
             }
           })
