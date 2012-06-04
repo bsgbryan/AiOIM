@@ -16,8 +16,8 @@ var app = express.createServer(express.logger()),
     oa  = new OAuth(
       'https://api.twitter.com/oauth/request_token', 
       'https://api.twitter.com/oauth/access_token', 
-      'myQEbQTOpgo3Ql9ylTtg', 
-      'du2TORpsR39s0ovo1q0EFmicUlIh2gseufVjnQn5o', 
+      'IYIAlnMPH17qPp6gV8QcA', 
+      'pDfVmCh9J9xJ42ZlYODEUrJhplU1Rfj7YxLcXzT0', 
       '1.0', 
       'http://falling-samurai-7438.herokuapp.com/twitter/callback', 
       'HMAC-SHA1')
