@@ -73,7 +73,10 @@ app.get('/twitter/callback', function(req, res) {
           secret, 
           function (error, data, response) {
             if (error) res.send(error, 500)
-            else res.send(data)
+            else {
+              req.session.twitter_profile = JSON.parse(decodeURIComponent(data))
+              res.redirect('/')
+            }
           })
   })
 })
@@ -87,12 +90,8 @@ app.get('/twitter/find', function(req, res) {
     req.session.secret,
 
     function (error, data, response) {
-      console.log('hello!', error)
       if (error) res.send(error, 500)
-      else  {
-        req.session.twitter_profile = JSON.parse(decodeURIComponent(data))
-        res.redirect('/')
-      }
+      else res.send(data)
     })
 })
 
