@@ -3,7 +3,7 @@ var express = require('express'),
     sha1    = require('./app/sha1'),
     secret  = sha1.hash(new Date().getTime()),
     RedisStore = require('connect-redis')(express),
-    sys     = require('sys')
+    sys     = require('util')
 
 // Production
 if (process.env.REDISTOGO_URL) 
