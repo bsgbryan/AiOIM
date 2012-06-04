@@ -12,7 +12,9 @@ if (process.env.REDISTOGO_URL)
 else 
   var redis = require('redis').createClient()
 
-var app = express.createServer(express.logger())
+var app    = express.createServer(express.logger()),
+    token  = '15730716-duRZBRPjYSREfDTUYmBTwEswetUKrF2CHSSpQ0C7k',
+    secret = 'yLMRJbPrFBacALxTEj9c9ZtVZFiWUjoNfleKtEsaM'
 
 function oauth() {
   return new OAuth(
@@ -26,9 +28,10 @@ function oauth() {
 }
 
 // Twitter urls
-var creds = 'http://twitter.com/account/verify_credentials.json',
-    auth  = 'https://api.twitter.com/oauth/authorize?oauth_token=',
-    users = 'https://api.twitter.com/1/users/search.json?q='
+var creds   = 'http://twitter.com/account/verify_credentials.json',
+    auth    = 'https://api.twitter.com/oauth/authorize?oauth_token=',
+    users   = 'https://api.twitter.com/1/users/search.json?q=',
+    message = 'https://api.twitter.com/1/statuses/update.json'
 
 app.configure(function() {
   app.use(express.static(__dirname + '/app'))
@@ -87,13 +90,22 @@ app.get('/twitter/callback', function(req, res) {
 
 app.get('/twitter/find', function(req, res) {
   oauth().getProtectedResource(users + req.param('name'), 'GET',
-    '15730716-duRZBRPjYSREfDTUYmBTwEswetUKrF2CHSSpQ0C7k', // Access token
-    'yLMRJbPrFBacALxTEj9c9ZtVZFiWUjoNfleKtEsaM', // Access token secret
+    token, // Access token
+    secret, // Access token secret
 
     function (error, data, response) {
       if (error) res.send(sys.inspect(error), 500)
       else res.send(data)
     })
+})
+
+app.post('/twitter/message', function(req, res) {
+  var params = { status : req.param('message') }
+
+  oauth().post(message, token, secret, params, function (error, data, response) {
+    if (error) res.send(sys.inspect(error), 500)
+    else res.send(data)
+  })
 })
 
 // The port number is passed in via Heroku

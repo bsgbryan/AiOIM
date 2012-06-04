@@ -52,7 +52,7 @@
 
     $(event.currentTarget).parent().attr('id', Sha1.hash(message.status))
 
-    $.post('https://api.twitter.com/1/statuses/update.json', message, messageSent, 'json')
+    $.post('/twitter/message', message, messageSent, 'json')
 
     return false
   }
