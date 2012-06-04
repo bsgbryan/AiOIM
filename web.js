@@ -80,6 +80,8 @@ app.get('/twitter/callback', function(req, res) {
         console.log('session token', req.session.token)
         console.log('session secret', req.session.secret)
 
+        req.session.oauth_verifier = req.query.oauth_verifier
+
         oauth.get(creds, token, secret, 
           function (error, data, response) {
             if (error) res.send(error, 500)
@@ -101,15 +103,22 @@ app.get('/twitter/find', function(req, res) {
 })
 
 app.post('/twitter/message', function(req, res) {
-  console.log('token', accessToken)
-  console.log('secret', accessSecret)
-  console.log('access token', req.session.token)
-  console.log('access secret', req.session.secret)
+  
+  oauth.getOAuthAccessToken(
+    req.session.token, 
+    req.session.secret, 
+    req.session.oauth_verifier,
 
-  oauth.post(message, req.session.token, req.session.secret, 'status=' + req.param('message'), function (error, data, response) {
-    if (error) res.send(sys.inspect(error), 500)
-    else res.send(data)
-  })
+    function(error, token, secret, results) {
+      if (error)
+        res.send(error, 500)
+      else {
+        oauth.post(message, token, secret, 'status=' + req.param('message'), function (error, data, response) {
+          if (error) res.send(sys.inspect(error), 500)
+          else res.send(data)
+        })
+      }
+    })
 })
 
 // The port number is passed in via Heroku
