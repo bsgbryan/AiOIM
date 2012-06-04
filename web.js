@@ -62,9 +62,6 @@ app.get('/twitter/signin', function (req, res) {
 })
 
 app.get('/twitter/callback', function(req, res) {
-  
-  console.log('callback oauth token', req.session.token)
-  console.log('callback oauth secret', req.session.secret)
 
   oauth().getOAuthAccessToken(
     req.session.token, 
@@ -89,27 +86,14 @@ app.get('/twitter/callback', function(req, res) {
 })
 
 app.get('/twitter/find', function(req, res) {
-  // console.log('find oauth token', req.session.token)
-  // console.log('find oauth secret', req.session.secret)
+  oauth().getProtectedResource(users + req.param('username'), 'GET',
+    '15730716-duRZBRPjYSREfDTUYmBTwEswetUKrF2CHSSpQ0C7k', // Access token
+    'yLMRJbPrFBacALxTEj9c9ZtVZFiWUjoNfleKtEsaM', // Access token secret
 
-  // oauth().getOAuthAccessToken(
-  //   req.session.token, 
-  //   req.session.secret, 
-  //   req.query.oauth_verifier,
-
-  //   function(error, token, secret, results) {
-  //     if (error)
-  //       res.send(sys.inspect(error), 500)
-  //     else
-        oauth().getProtectedResource(users + req.param('username'), 'GET',
-          '15730716-duRZBRPjYSREfDTUYmBTwEswetUKrF2CHSSpQ0C7k', // Access token
-          'yLMRJbPrFBacALxTEj9c9ZtVZFiWUjoNfleKtEsaM', // Access token secret
-
-          function (error, data, response) {
-            if (error) res.send(sys.inspect(error), 500)
-            else res.send(data)
-          })
-    // })
+    function (error, data, response) {
+      if (error) res.send(sys.inspect(error), 500)
+      else res.send(data)
+    })
 })
 
 // The port number is passed in via Heroku

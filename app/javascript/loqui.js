@@ -12,8 +12,18 @@
         var val        = $('#loqui-twitter-user-name').val(),
             userSearch = '/twitter/find?username=' + val
 
-        $.getJSON(userSearch, function (users) {
-          console.log(users)
+        $.getJSON(userSearch, function (u) {
+          if (users.length > 0) {
+            var users = ''
+
+            u.forEach(function (user) {
+              users += '<li>' +
+                '<a class="user">' + user.screen_name + '</a><span class="name">' + user.name + '</span>'
+            })
+
+            $('#loqui-twitter-users').html(users)
+          }
+
         })
       })
   }
@@ -27,7 +37,7 @@
 
     if (loqui.length === 0)
       loqui = $('body').
-        append('<div id="' + container + '"></div>').
+        append('<div id="' + container + '"><ol id="loqui-twitter-users"></ol></div>').
         find('#' + container)
 
     if ($.cookie('twitter_profile') === null) {
