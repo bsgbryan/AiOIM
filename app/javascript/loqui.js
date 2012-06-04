@@ -39,8 +39,7 @@
       '<input type="text" class="name" placeholder="Twitter name">' +
       '<button type="submit">find</button>' +
       '</form>').
-
-      on('keyup', '.user .search', executeUserSearch)
+      on('keyup', '.user .name', executeUserSearch)
   }
 
   $.loqui = function () {
