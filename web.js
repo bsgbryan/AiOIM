@@ -2,7 +2,8 @@ var express = require('express'),
     OAuth   = require('oauth').OAuth,
     sha1    = require('./app/sha1'),
     secret  = sha1.hash(new Date().getTime()),
-    http    = require('http')
+    http    = require('http'),
+    RedisStore = require('connect-redis')(express)
 
 var app = express.createServer(express.logger()),
     oa  = new OAuth(
@@ -22,7 +23,7 @@ var creds = 'http://twitter.com/account/verify_credentials.json',
 app.configure(function() {
   app.use(express.static(__dirname + '/app'))
   app.use(express.cookieParser(secret))
-  app.use(express.session({ secret : secret }))
+  app.use(express.session({ store : new RedisStore, secret : secret }))
 
   //views
   app.set('views', __dirname + '/jade')
@@ -71,7 +72,7 @@ app.get('/twitter/callback', function(req, res) {
 
 app.get('/twitter/find', function(req, res) {
   console.log(req.session)
-  
+
   oa.getProtectedResource(users + req.param('username'), 'GET',
     req.session.token,
     req.session.secret,
