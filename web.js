@@ -74,7 +74,7 @@ app.get('/twitter/callback', function(req, res) {
           function (error, data, response) {
             if (error) res.send(error, 500)
             else {
-              req.cookies.twitter_profile = JSON.parse(decodeURIComponent(data))
+              res.cookie('twitter_profile', JSON.parse(decodeURIComponent(data)))
               res.redirect('/')
             }
           })
