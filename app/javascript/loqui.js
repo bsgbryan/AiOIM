@@ -12,7 +12,9 @@
           '</li>'
       })
 
-      $('#loqui .chattable.users').html(users)
+      $('#loqui .chattable.users').
+        html(users).
+        on('click', '.user .name', initializeChat)
     })
   }
 
@@ -38,8 +40,7 @@
       '<button type="submit">find</button>' +
       '</form>').
 
-      on('keyup', '.user .search', executeUserSearch).
-      on('click', '.user .name', initializeChat)
+      on('keyup', '.user .search', executeUserSearch)
   }
 
   $.loqui = function () {
