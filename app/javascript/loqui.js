@@ -34,7 +34,7 @@
   $.loqui = function () {
     $('body').
       append('<div id="loqui">' +
-        '<a class="sign in" href="/twitter/signin">sign in</button>' +
+        '<a class="sign in" href="/twitter/signin">sign in</a>' +
         '<ol class="chattable users"></ol>' +
         '<ul class="chatting with"></ul>' +
         '<form class="user">' +
