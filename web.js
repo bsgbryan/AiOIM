@@ -73,7 +73,7 @@ app.get('/twitter/callback', function(req, res) {
 })
 
 app.get('/twitter/find', function(req, res) {
-  oa.getOAuthAccessToken(
+  consumer().getOAuthAccessToken(
     req.session.token, 
     req.session.secret, 
     req.query.oauth_verifier,
@@ -82,7 +82,7 @@ app.get('/twitter/find', function(req, res) {
       if (error)
         res.send(error, 500)
       else
-        oa.getProtectedResource(users + req.param('username'), 'GET',
+        consumer.get(users + req.param('username'), 'GET',
           token,
           secret,
 
