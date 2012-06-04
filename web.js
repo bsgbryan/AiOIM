@@ -97,10 +97,7 @@ app.get('/twitter/find', function(req, res) {
 })
 
 app.post('/twitter/message', function(req, res) {
-  console.log('access token', req.session.accessToken)
-  console.log('access secret', req.session.accessSecret)
-
-  oauth.post(message, req.session.accessToken, req.session.accessSecret, 'status=' + req.param('message'), function (error, data, response) {
+  oauth.post(message, key, privat, 'status=' + req.param('message'), function (error, data, response) {
     if (error) res.send(sys.inspect(error), 500)
     else res.send(data)
   })
