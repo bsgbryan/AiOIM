@@ -13,7 +13,7 @@
             userSearch = '/twitter/find?username=' + val
 
         $.getJSON(userSearch, function (u) {
-          if (users.length > 0) {
+          if (u.length > 0) {
             var users = ''
 
             u.forEach(function (user) {
