@@ -70,9 +70,11 @@ app.get('/twitter/callback', function(req, res) {
 })
 
 app.get('/twitter/find', function(req, res) {
+  console.log(req.session)
+  
   oa.getProtectedResource(users + req.param('username'), 'GET',
-    token,
-    secret,
+    req.session.token,
+    req.session.secret,
 
     function (error, data, response) {
       console.log('hello!', error)
