@@ -34,10 +34,10 @@
   $.loqui = function () {
     $('body').
       append('<div id="loqui">' +
-        '<a class="sign in" href="/twitter/signin">sign in</a>' +
-        '<ol class="chattable users"></ol>' +
-        '<ul class="chatting with"></ul>' +
-        '<form class="user">' +
+        '<a class="sign in hidden" href="/twitter/signin">sign in</a>' +
+        '<ol class="chattable users hidden"></ol>' +
+        '<ul class="chatting with hidden"></ul>' +
+        '<form class="user hidden">' +
           '<input type="text" class="name search" placeholder="Twitter name">' +
           '<button type="submit">find</button>' +
         '</form>' +
@@ -45,6 +45,8 @@
 
     if ($.cookie('twitter_profile') === null)
       $('#loqui .sign.in').addClass('active')
+    else
+      $('#loqui form.user.hidden').removeClass('hidden')
 
       
     $('#loqui').
