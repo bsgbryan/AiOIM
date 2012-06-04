@@ -86,7 +86,7 @@ app.get('/twitter/callback', function(req, res) {
           function (error, data, response) {
             if (error) res.send(error, 500)
             else {
-              res.cookie('twitter_profile', data, { httpOnly: false, path: '/' })
+              // res.cookie('twitter_profile', data, { httpOnly: false, path: '/' })
               res.redirect('/')
             }
           })
@@ -102,6 +102,9 @@ app.get('/twitter/find', function(req, res) {
 })
 
 app.post('/twitter/message', function(req, res) {
+  console.log('access token', accessToken)
+  console.log('access secret', accessSecret)
+  
   oauth().post(message, accessToken, accessSecret, 'status=' + req.param('message'), function (error, data, response) {
     if (error) res.send(sys.inspect(error), 500)
     else res.send(data)
