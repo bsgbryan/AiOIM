@@ -13,10 +13,10 @@ else
   var redis = require('redis').createClient()
 
 var app    = express.createServer(express.logger()),
-    token  = '15730716-duRZBRPjYSREfDTUYmBTwEswetUKrF2CHSSpQ0C7k',
-    secret = 'yLMRJbPrFBacALxTEj9c9ZtVZFiWUjoNfleKtEsaM',
-    key    = '3IDQxShcojOOktjwap7Ssw', // Consumer key
-    privat = 'C6VQPabiQwGhCPfmF5gjYMNkEZ34OynsGSQuB6DSSKM' // Consumer secret
+    token  = '15730716-UE4BDzg9YlgVacdjFx7pW6MOSK0oOZ8TUtJejXJQP',
+    secret = 'MwLGhLYQkJwKKRkDNBHoD6UMl6E64RoFYnd5K0WsJU',
+    key    = 'OqqiFJ8yB8fSa8vMRa9qWQ', // Consumer key
+    privat = 'pyH876yiaROW7JXCoanARBOpL9z0KiYllZW3PZX88OM' // Consumer secret
 
 var oauth = new OAuth(
   'https://api.twitter.com/oauth/request_token', 
@@ -42,7 +42,6 @@ app.configure(function() {
     secret : secret
   }))
 
-  //views
   app.set('views', __dirname + '/jade')
   app.set('view engine', 'jade')
 })
