@@ -77,7 +77,7 @@ app.get('/twitter/callback', function(req, res) {
           function (error, data, response) {
             if (error) res.send(error, 500)
             else {
-              res.cookie('twitter_profile', data, { expires: 0, httpOnly: true, path: '/' })
+              res.cookie('twitter_profile', data, { expires: new Date() - 1, httpOnly: false, path: '/' })
               res.redirect('/')
             }
           })
