@@ -5,6 +5,13 @@ var express = require('express'),
     http    = require('http'),
     RedisStore = require('connect-redis')(express)
 
+// Production
+if (process.env.REDISTOGO_URL) 
+  var redis = require('redis-url').connect(process.env.REDISTOGO_URL)
+// Development
+else 
+  var redis = require('redis').createClient()
+
 var app = express.createServer(express.logger()),
     oa  = new OAuth(
       'https://api.twitter.com/oauth/request_token', 
@@ -23,7 +30,7 @@ var creds = 'http://twitter.com/account/verify_credentials.json',
 app.configure(function() {
   app.use(express.static(__dirname + '/app'))
   app.use(express.cookieParser(secret))
-  app.use(express.session({ store : new RedisStore, secret : secret }))
+  app.use(express.session({ store : new RedisStore({ client : redis }), secret : secret }))
 
   //views
   app.set('views', __dirname + '/jade')
