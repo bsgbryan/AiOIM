@@ -80,9 +80,10 @@ app.get('/twitter/find', function(req, res) {
     req.query.oauth_verifier,
 
     function(error, token, secret, results) {
-      if (error)
-        res.send(error, 500)
-      else
+      if (error) {
+        console.error('ERRRO IS', error)
+        res.send('BOOO', 500)
+      } else
         consumer.get(users + req.param('username'), 'GET',
           token,
           secret,
