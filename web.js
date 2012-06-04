@@ -18,6 +18,9 @@ var app    = express.createServer(express.logger()),
     key    = 'IYIAlnMPH17qPp6gV8QcA', // Consumer key
     privat = 'pDfVmCh9J9xJ42ZlYODEUrJhplU1Rfj7YxLcXzT0' // Consumer secret
 
+var accessToken  = '',
+    accessSecret = ''
+
 function oauth() {
   return new OAuth(
     'https://api.twitter.com/oauth/request_token', 
@@ -73,11 +76,13 @@ app.get('/twitter/callback', function(req, res) {
     req.session.secret, 
     req.query.oauth_verifier,
 
-    function(error, token, secret, results) {
+    function(error, t, s, results) {
+      accessToken  = t
+      accessSecret = s
       if (error)
         res.send(error, 500)
       else
-        oauth().get(creds, token, secret, 
+        oauth().get(creds, accessToken, accessSecret, 
           function (error, data, response) {
             if (error) res.send(error, 500)
             else {
@@ -97,7 +102,7 @@ app.get('/twitter/find', function(req, res) {
 })
 
 app.post('/twitter/message', function(req, res) {
-  oauth().post(message, key, privat, 'status=' + req.param('message'), function (error, data, response) {
+  oauth().post(message, accessToken, accessSecret, 'status=' + req.param('message'), function (error, data, response) {
     if (error) res.send(sys.inspect(error), 500)
     else res.send(data)
   })
