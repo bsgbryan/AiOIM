@@ -84,7 +84,7 @@ app.get('/twitter/find', function(req, res) {
           secret,
 
           function (error, data, response) {
-            console.error(error)
+            console.log('hello!', error)
             if (error) res.send(error, 500)
             else res.send(data)
           })
