@@ -48,7 +48,7 @@
 
       
     $('#loqui').
-      on('keyup', '.user .name.search', executeUserSearch)
+      on('keyup', '.user .name.search', executeUserSearch).
       on('click', '.chattable .user .name', initializeChat)
   }
 })(jQuery)
