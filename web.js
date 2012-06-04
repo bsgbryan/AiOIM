@@ -77,12 +77,12 @@ app.get('/twitter/callback', function(req, res) {
     req.query.oauth_verifier,
 
     function(error, t, s, results) {
-      accessToken  = t
-      accessSecret = s
+      req.session.accessToken  = t
+      req.session.accessSecret = s
       if (error)
         res.send(error, 500)
       else
-        oauth().get(creds, accessToken, accessSecret, 
+        oauth().get(creds, t, s, 
           function (error, data, response) {
             if (error) res.send(error, 500)
             else {
@@ -102,10 +102,10 @@ app.get('/twitter/find', function(req, res) {
 })
 
 app.post('/twitter/message', function(req, res) {
-  console.log('access token', accessToken)
-  console.log('access secret', accessSecret)
-  
-  oauth().post(message, accessToken, accessSecret, 'status=' + req.param('message'), function (error, data, response) {
+  console.log('access token', req.session.accessToken)
+  console.log('access secret', req.session.accessSecret)
+
+  oauth().post(message, req.session.accessToken, req.session.accessSecret, 'status=' + req.param('message'), function (error, data, response) {
     if (error) res.send(sys.inspect(error), 500)
     else res.send(data)
   })
