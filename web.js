@@ -14,14 +14,16 @@ else
 
 var app    = express.createServer(express.logger()),
     token  = '15730716-duRZBRPjYSREfDTUYmBTwEswetUKrF2CHSSpQ0C7k',
-    secret = 'yLMRJbPrFBacALxTEj9c9ZtVZFiWUjoNfleKtEsaM'
+    secret = 'yLMRJbPrFBacALxTEj9c9ZtVZFiWUjoNfleKtEsaM',
+    key    = 'IYIAlnMPH17qPp6gV8QcA', // Consumer key
+    privat = 'pDfVmCh9J9xJ42ZlYODEUrJhplU1Rfj7YxLcXzT0' // Consumer secret
 
 function oauth() {
   return new OAuth(
     'https://api.twitter.com/oauth/request_token', 
     'https://api.twitter.com/oauth/access_token', 
-    'IYIAlnMPH17qPp6gV8QcA', // Consumer key
-    'pDfVmCh9J9xJ42ZlYODEUrJhplU1Rfj7YxLcXzT0', // Consumer secret 
+    key,
+    privat,
     '1.0', 
     'http://falling-samurai-7438.herokuapp.com/twitter/callback', 
     'HMAC-SHA1')
@@ -95,7 +97,7 @@ app.get('/twitter/find', function(req, res) {
 })
 
 app.post('/twitter/message', function(req, res) {
-  oauth().post(message, token, secret, 'status=' + req.param('message'), function (error, data, response) {
+  oauth().post(message, key, privat, 'status=' + req.param('message'), function (error, data, response) {
     if (error) res.send(sys.inspect(error), 500)
     else res.send(data)
   })
