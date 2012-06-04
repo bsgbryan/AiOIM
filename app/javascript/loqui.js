@@ -53,6 +53,8 @@
     $(event.currentTarget).parent().attr('id', Sha1.hash(message.status))
 
     $.post('https://api.twitter.com/1/statuses/update.json', message, messageSent, 'json')
+
+    return false
   }
 
   $.loqui = function () {
