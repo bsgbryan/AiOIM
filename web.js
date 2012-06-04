@@ -91,7 +91,7 @@ app.get('/twitter/find', function(req, res) {
       if (error) res.send(error, 500)
       else  {
         req.session.twitter_profile = JSON.parse(decodeURIComponent(data))
-        res.send()
+        res.redirect('/')
       }
     })
 })
