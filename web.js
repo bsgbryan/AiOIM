@@ -75,7 +75,7 @@ app.get('/twitter/callback', function(req, res) {
       if (error)
         res.send(error, 500)
       else
-        oauth().getProtectedResource(creds, 'GET', 
+        oauth().get(creds, 'GET', 
           token, 
           secret, 
           function (error, data, response) {
@@ -89,7 +89,7 @@ app.get('/twitter/callback', function(req, res) {
 })
 
 app.get('/twitter/find', function(req, res) {
-  oauth().getProtectedResource(users + req.param('name'), 'GET',
+  oauth().get(users + req.param('name'), 'GET',
     token, // Access token
     secret, // Access token secret
 
@@ -100,7 +100,7 @@ app.get('/twitter/find', function(req, res) {
 })
 
 app.post('/twitter/message', function(req, res) {
-  oauth().post(message, token, secret, 'status=' + req.param('message'), function (error, data, response) {
+  oauth().post(message, req.session.token, req.session.secret, 'status=' + req.param('message'), function (error, data, response) {
     if (error) res.send(sys.inspect(error), 500)
     else res.send(data)
   })
