@@ -46,8 +46,6 @@ app.get('/twitter/signin', function (req, res) {
 
     if (error) res.send(error, 500)
     else {
-      req.session.destination = req.param('final_destination')
-
       req.session.token  = token
       req.session.secret = secret
 
@@ -75,7 +73,7 @@ app.get('/twitter/callback', function(req, res) {
           secret, 
           function (error, data, response) {
             if (error) res.send(error, 500)
-            else res.redirect(req.session.destination + '#twitter_profile=' + data)
+            else res.send(data)
           })
   })
 })
