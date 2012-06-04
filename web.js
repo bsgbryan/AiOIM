@@ -31,7 +31,9 @@ app.configure(function() {
   app.use(express.bodyParser())
   app.use(express.cookieParser())
   app.use(express.session({ 
-    store  : new RedisStore({ client : redis }),
+    store  : new RedisStore({ client : redis }), 
+    key    : 'bryan is awesome',
+    secret : secret,
     cookie : {
       path     : '/', 
       httpOnly : true, 
@@ -81,7 +83,7 @@ app.get('/twitter/callback', function(req, res) {
           function (error, data, response) {
             if (error) res.send(error, 500)
             else {
-              req.session.twitter_profile = JSON.parse(decodeURIComponent(data))
+              res.cookie('twitter_profile', JSON.parse(decodeURIComponent(data)))
               res.redirect('/')
             }
           })
