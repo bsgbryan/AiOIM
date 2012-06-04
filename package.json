@@ -7,7 +7,8 @@
     "express"    : "*",
     "jade"       : "*",
     "oauth"      : "*",
-    "connect-redis" : "*"
+    "connect-redis" : "*",
+    "redis-url"     : "*"
   },
   "engines" : {
     "node" : "0.6.x",
