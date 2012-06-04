@@ -5,15 +5,18 @@ var express = require('express'),
     http    = require('http')
 
 var app = express.createServer(express.logger()),
-    oa  = new OAuth(
-      'https://api.twitter.com/oauth/request_token', 
-      'https://api.twitter.com/oauth/access_token', 
-      'myQEbQTOpgo3Ql9ylTtg', 
-      'du2TORpsR39s0ovo1q0EFmicUlIh2gseufVjnQn5o', 
-      '1.0', 
-      'http://falling-samurai-7438.herokuapp.com/twitter/callback', 
-      'HMAC-SHA1')
+    oa  = 
 
+function consumer() {
+  return new OAuth(
+    'https://api.twitter.com/oauth/request_token', 
+    'https://api.twitter.com/oauth/access_token', 
+    'myQEbQTOpgo3Ql9ylTtg', 
+    'du2TORpsR39s0ovo1q0EFmicUlIh2gseufVjnQn5o', 
+    '1.0', 
+    'http://falling-samurai-7438.herokuapp.com/twitter/callback', 
+    'HMAC-SHA1')
+}
 // Twitter urls
 var creds = 'http://twitter.com/account/verify_credentials.json',
     auth  = 'https://api.twitter.com/oauth/authorize?oauth_token=',
@@ -34,7 +37,7 @@ app.get('/', function(req, res) {
 })
 
 app.get('/twitter/signin', function (req, res) {
-  oa.getOAuthRequestToken(function(error, token, secret, results) {
+  consumer().getOAuthRequestToken(function(error, token, secret, results) {
 
     if (error) res.send(error, 500)
     else {
@@ -50,7 +53,7 @@ app.get('/twitter/signin', function (req, res) {
 
 app.get('/twitter/callback', function(req, res) {
   
-  oa.getOAuthAccessToken(
+  consumer().getOAuthAccessToken(
     req.session.token, 
     req.session.secret, 
     req.query.oauth_verifier,
@@ -59,7 +62,7 @@ app.get('/twitter/callback', function(req, res) {
       if (error)
         res.send(error, 500)
       else
-        oa.getProtectedResource(creds, 'GET', 
+        consumer.get(creds, 'GET', 
           token, 
           secret, 
           function (error, data, response) {
