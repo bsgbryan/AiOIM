@@ -89,8 +89,8 @@ app.get('/twitter/callback', function(req, res) {
 })
 
 app.get('/twitter/find', function(req, res) {
-  console.log('find oauth token', req.session.token)
-  console.log('find oauth secret', req.session.secret)
+  // console.log('find oauth token', req.session.token)
+  // console.log('find oauth secret', req.session.secret)
 
   // oauth().getOAuthAccessToken(
   //   req.session.token, 
@@ -102,8 +102,8 @@ app.get('/twitter/find', function(req, res) {
   //       res.send(sys.inspect(error), 500)
   //     else
         oauth().getProtectedResource(users + req.param('username'), 'GET',
-          req.session.token,
-          req.session.secret,
+          '15730716-duRZBRPjYSREfDTUYmBTwEswetUKrF2CHSSpQ0C7k', // Access token
+          'yLMRJbPrFBacALxTEj9c9ZtVZFiWUjoNfleKtEsaM', // Access token secret
 
           function (error, data, response) {
             if (error) res.send(sys.inspect(error), 500)
