@@ -64,6 +64,7 @@ app.get('/twitter/signin', function (req, res) {
 })
 
 app.get('/twitter/callback', function(req, res) {
+  console.log('oauth query verifyer', req.query.oauth_verifier)
 
   oauth.getOAuthAccessToken(
     req.session.token, 
