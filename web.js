@@ -70,16 +70,24 @@ app.get('/twitter/callback', function(req, res) {
 })
 
 app.get('/twitter/find', function(req, res) {
-  oa.getProtectedResource(
-    users + req.param('username'), 'GET',
-    req.session.token,
-    req.session.secret,
+  oa.getOAuthAccessToken(
+    req.session.token, 
+    req.session.secret, 
+    req.query.oauth_verifier,
 
-    function (error, data, response) {
-      console.error(error)
-      if (error) res.send(error, 500)
-      else res.send(data)
-    })
+    function(error, token, secret, results) {
+      if (error)
+        res.send(error, 500)
+      else
+        oa.getProtectedResource(users + req.param('username'), 'GET',
+          token,
+          secret,
+
+          function (error, data, response) {
+            console.error(error)
+            if (error) res.send(error, 500)
+            else res.send(data)
+          })
 })
 
 // The port number is passed in via Heroku
