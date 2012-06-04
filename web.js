@@ -88,13 +88,23 @@ app.get('/twitter/find', function(req, res) {
   console.log('find oauth token', req.session.token)
   console.log('find oauth secret', req.session.secret)
 
-  oa.getProtectedResource(users + req.param('username'), 'GET',
-    req.session.token,
-    req.session.secret,
+  oa.getOAuthAccessToken(
+    req.session.token, 
+    req.session.secret, 
+    req.query.oauth_verifier,
 
-    function (error, data, response) {
-      if (error) res.send(error, 500)
-      else res.send(data)
+    function(error, token, secret, results) {
+      if (error)
+        res.send(error, 500)
+      else
+        oa.getProtectedResource(users + req.param('username'), 'GET',
+          req.session.token,
+          req.session.secret,
+
+          function (error, data, response) {
+            if (error) res.send(error, 500)
+            else res.send(data)
+          })
     })
 })
 
