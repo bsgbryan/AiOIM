@@ -10,7 +10,7 @@
 
       on('keyup', '#loqui-twitter-user-name', function (event) {
         var val        = $('#loqui-twitter-user-name').val(),
-            userSearch = 'http://falling-samurai-7438.herokuapp.com/twitter/find?username=' + val + '&lang=en&callback=?'
+            userSearch = 'http://falling-samurai-7438.herokuapp.com/twitter/find?username=' + val
 
         $.getJSON(userSearch, function (users) {
           console.log(users)
