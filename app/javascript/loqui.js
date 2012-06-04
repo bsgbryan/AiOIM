@@ -1,6 +1,28 @@
 (function ($) {
   var container = '#loqui'
 
+  function initializeChat(event) {
+    $(event.currentTarget).parent().addClass('selected')
+
+    var selected = $('#loqui .chattable.users .selected')
+
+    $('#loqui .chatting.with').append(
+      '<li class="user" data-screen_name="' + selected.find('.screen.name').text() + '">' +
+        '<h3 class="human name">' + selected.find('.human.name').text() + '</h3>' +
+        '<ol class="messages"></ol>' +
+        '<form class="new message">' +
+          '<input type="text" name="message">' +
+          '<button type="submit">say</button>' +
+        '</form>' +
+      '</li>').removeClass('hidden')
+
+    $('#loqui .chattable.users').addClass('hidden')
+  }
+
+  function clearUserSearch(event) {
+    $(event.currentTarget).val('')
+  }
+
   function executeUserSearch(event) {
     $.getJSON('/twitter/find?name=' + $(event.currentTarget).val(), function (u) {
       var users = ''
@@ -16,21 +38,21 @@
     })
   }
 
-  function initializeChat(event) {
-    $(event.currentTarget).parent().addClass('selected')
+  function messageSent(data) {
+    console.log(data)
+    console.log($('#' + Sha1.hash(data.text)))
 
-    var selected = $('#loqui .chattable.users .selected .screen.name').text()
+    $('#' + Sha1.hash(data.text)).find('.messages').append('<li class="self">' + data.text + '</li>')
+  }
 
-    $('#loqui .chatting.with').append(
-      '<li class="user" data-screen_name="' + selected + '">' +
-        '<ol class="messages"></ol>' +
-        '<form class="new message">' +
-          '<input type="text" name="message">' +
-          '<button type="submit">say</button>' +
-        '</form>' +
-      '</li>').removeClass('hidden')
+  function sendMessage(event) {
+    var message = {
+      status : ' @' + $(event.currentTarget).find('input').val() + ' IM'
+    }
 
-    $('#loqui .chattable.users').addClass('hidden')
+    $(event.currentTarget).parent().attr('id', Sha1.hash(message.status))
+
+    $.post('https://api.twitter.com/1/statuses/update.json', message, messageSent, 'json')
   }
 
   $.loqui = function () {
@@ -39,9 +61,8 @@
         '<a class="sign in hidden" href="/twitter/signin">sign in</a>' +
         '<ol class="chattable users hidden"></ol>' +
         '<ul class="chatting with hidden"></ul>' +
-        '<form class="user hidden">' +
-          '<input type="text" class="name search" placeholder="Twitter name">' +
-          '<button type="submit">find</button>' +
+        '<form class="user search hidden">' +
+          '<input type="text" class="name" placeholder="Search for a tweeter">' +
         '</form>' +
       '</div>')
 
@@ -52,7 +73,9 @@
 
       
     $('#loqui').
-      on('keyup', '.user .name.search', executeUserSearch).
-      on('click', '.chattable .user .name', initializeChat)
+      on('keyup',  '.user.search .name',            executeUserSearch).
+      on('blur',   '.user.search .name',            clearUserSearch).
+      on('click',  '.chattable .user .name',        initializeChat).
+      on('submit', '.chattable .user .new.message', sendMessage)
   }
 })(jQuery)
