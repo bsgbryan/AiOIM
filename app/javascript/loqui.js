@@ -75,9 +75,9 @@
 
       
     $('#loqui').
-      on('keyup',  '.user.search .name',            executeUserSearch).
-      on('blur',   '.user.search .name',            clearUserSearch).
-      on('click',  '.chattable .user .name',        initializeChat).
-      on('submit', '.chattable .user .new.message', sendMessage)
+      on('keyup',  '.user.search .name',                executeUserSearch).
+      on('blur',   '.user.search .name',                clearUserSearch).
+      on('click',  '.chattable .user .name',            initializeChat).
+      on('submit', '.chatting.with .user .new.message', sendMessage)
   }
 })(jQuery)
