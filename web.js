@@ -89,15 +89,15 @@ app.get('/twitter/find', function(req, res) {
   console.log('find oauth token', req.session.token)
   console.log('find oauth secret', req.session.secret)
 
-  oa.getOAuthAccessToken(
-    req.session.token, 
-    req.session.secret, 
-    req.query.oauth_verifier,
+  // oa.getOAuthAccessToken(
+  //   req.session.token, 
+  //   req.session.secret, 
+  //   req.query.oauth_verifier,
 
-    function(error, token, secret, results) {
-      if (error)
-        res.send(sys.insepct(error), 500)
-      else
+  //   function(error, token, secret, results) {
+  //     if (error)
+  //       res.send(sys.inspect(error), 500)
+  //     else
         oa.getProtectedResource(users + req.param('username'), 'GET',
           req.session.token,
           req.session.secret,
@@ -106,7 +106,7 @@ app.get('/twitter/find', function(req, res) {
             if (error) res.send(sys.inspect(error), 500)
             else res.send(data)
           })
-    })
+    // })
 })
 
 // The port number is passed in via Heroku
