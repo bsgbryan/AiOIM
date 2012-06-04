@@ -31,9 +31,7 @@ app.configure(function() {
   app.use(express.bodyParser())
   app.use(express.cookieParser())
   app.use(express.session({ 
-    store  : new RedisStore({ client : redis }), 
-    key    : 'bryan is awesome',
-    secret : secret,
+    store  : new RedisStore({ client : redis }),
     cookie : {
       path     : '/', 
       httpOnly : true, 
