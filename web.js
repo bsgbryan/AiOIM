@@ -1,9 +1,9 @@
 var express = require('express'),
     OAuth   = require('oauth').OAuth,
     sha1    = require('./app/sha1'),
-    secret  = sha1.hash(new Date().getTime()),
     RedisStore = require('connect-redis')(express),
-    sys     = require('util')
+    sys        = require('util'),
+    app        = express.createServer(express.logger())
 
 // Production
 if (process.env.REDISTOGO_URL) 
@@ -12,17 +12,16 @@ if (process.env.REDISTOGO_URL)
 else 
   var redis = require('redis').createClient()
 
-var app    = express.createServer(express.logger()),
-    token  = '15730716-UE4BDzg9YlgVacdjFx7pW6MOSK0oOZ8TUtJejXJQP',
-    secret = 'MwLGhLYQkJwKKRkDNBHoD6UMl6E64RoFYnd5K0WsJU',
-    key    = 'OqqiFJ8yB8fSa8vMRa9qWQ', // Consumer key
-    privat = 'pyH876yiaROW7JXCoanARBOpL9z0KiYllZW3PZX88OM' // Consumer secret
+var accessToken  = '15730716-UE4BDzg9YlgVacdjFx7pW6MOSK0oOZ8TUtJejXJQP',
+    accessSecret = 'MwLGhLYQkJwKKRkDNBHoD6UMl6E64RoFYnd5K0WsJU',
+    consumerKey    = 'OqqiFJ8yB8fSa8vMRa9qWQ', // Consumer key
+    consumerSecret = 'pyH876yiaROW7JXCoanARBOpL9z0KiYllZW3PZX88OM' // Consumer secret
 
 var oauth = new OAuth(
   'https://api.twitter.com/oauth/request_token', 
   'https://api.twitter.com/oauth/access_token', 
-  key,
-  privat,
+  consumerKey,
+  consumerSecret,
   '1.0', 
   'http://falling-samurai-7438.herokuapp.com/twitter/callback', 
   'HMAC-SHA1')
@@ -39,7 +38,7 @@ app.configure(function() {
   app.use(express.cookieParser())
   app.use(express.session({ 
     store  : new RedisStore({ client : redis }),
-    secret : secret
+    secret : sha1.hash(new Date().getTime())
   }))
 
   app.set('views', __dirname + '/jade')
@@ -58,7 +57,7 @@ app.get('/twitter/signin', function (req, res) {
       req.session.token  = t
       req.session.secret = s
 
-      res.redirect(auth + token)    
+      res.redirect(auth + t)    
     }
   })
 })
