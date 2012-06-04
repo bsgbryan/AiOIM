@@ -69,8 +69,8 @@
       '</div>')
 
     if ($.cookie('twitter_profile') === null)
-      $('#loqui .sign.in').addClass('active')
-    else
+      $('#loqui .sign.in').removeClass('hidden')
+    else 
       $('#loqui form.user.hidden').removeClass('hidden')
 
       

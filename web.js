@@ -71,13 +71,11 @@ app.get('/twitter/callback', function(req, res) {
     req.session.secret, 
     req.query.oauth_verifier,
 
-    function(error, t, s, results) {
-      req.session.accessToken  = t
-      req.session.accessSecret = s
+    function(error, token, secret, results) {
       if (error)
         res.send(error, 500)
       else
-        oauth.get(creds, t, s, 
+        oauth.get(creds, token, secret, 
           function (error, data, response) {
             if (error) res.send(error, 500)
             else {
