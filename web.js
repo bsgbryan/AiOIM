@@ -2,7 +2,8 @@ var express = require('express'),
     OAuth   = require('oauth').OAuth,
     sha1    = require('./app/sha1'),
     secret  = sha1.hash(new Date().getTime()),
-    RedisStore = require('connect-redis')(express)
+    RedisStore = require('connect-redis')(express),
+    sys     = require('sys')
 
 // Production
 if (process.env.REDISTOGO_URL) 
@@ -95,14 +96,14 @@ app.get('/twitter/find', function(req, res) {
 
     function(error, token, secret, results) {
       if (error)
-        res.send(error, 500)
+        res.send(sys.insepct(error), 500)
       else
         oa.getProtectedResource(users + req.param('username'), 'GET',
           req.session.token,
           req.session.secret,
 
           function (error, data, response) {
-            if (error) res.send(error, 500)
+            if (error) res.send(sys.inspect(error), 500)
             else res.send(data)
           })
     })
