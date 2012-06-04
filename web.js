@@ -17,7 +17,7 @@ var app = express.createServer(express.logger()),
 // Twitter urls
 var creds = 'http://twitter.com/account/verify_credentials.json',
     auth  = 'https://api.twitter.com/oauth/authorize?oauth_token=',
-    users = 'http://api.twitter.com/1/users/search.json?q='
+    users = 'https://api.twitter.com/1/users/search.json?q='
 
 app.configure(function() {
   app.use(express.static(__dirname + '/app'))
