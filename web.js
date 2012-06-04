@@ -88,6 +88,7 @@ app.get('/twitter/find', function(req, res) {
             if (error) res.send(error, 500)
             else res.send(data)
           })
+    })
 })
 
 // The port number is passed in via Heroku
