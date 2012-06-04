@@ -12,15 +12,18 @@ if (process.env.REDISTOGO_URL)
 else 
   var redis = require('redis').createClient()
 
-var app = express.createServer(express.logger()),
-    oa  = new OAuth(
-      'https://api.twitter.com/oauth/request_token', 
-      'https://api.twitter.com/oauth/access_token', 
-      'IYIAlnMPH17qPp6gV8QcA', 
-      'pDfVmCh9J9xJ42ZlYODEUrJhplU1Rfj7YxLcXzT0', 
-      '1.0', 
-      'http://falling-samurai-7438.herokuapp.com/twitter/callback', 
-      'HMAC-SHA1')
+var app = express.createServer(express.logger())
+
+function oauth() {
+  return new OAuth(
+    'https://api.twitter.com/oauth/request_token', 
+    'https://api.twitter.com/oauth/access_token', 
+    'IYIAlnMPH17qPp6gV8QcA', // Consumer key
+    'pDfVmCh9J9xJ42ZlYODEUrJhplU1Rfj7YxLcXzT0', // Consumer secret 
+    '1.0', 
+    'http://falling-samurai-7438.herokuapp.com/twitter/callback', 
+    'HMAC-SHA1')
+}
 
 // Twitter urls
 var creds = 'http://twitter.com/account/verify_credentials.json',
@@ -46,7 +49,7 @@ app.get('/', function(req, res) {
 })
 
 app.get('/twitter/signin', function (req, res) {
-  oa.getOAuthRequestToken(function(error, token, secret, results) {
+  oauth().getOAuthRequestToken(function(error, token, secret, results) {
 
     if (error) res.send(error, 500)
     else {
