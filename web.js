@@ -101,11 +101,11 @@ app.get('/twitter/find', function(req, res) {
 
 app.post('/twitter/message', function(req, res) {
   console.log('token', accessToken)
-  console.log('secret', accessToken)
+  console.log('secret', accessSecret)
   console.log('access token', req.session.token)
   console.log('access secret', req.session.secret)
 
-  oauth.post(message, accessToken, accessSecret, 'status=' + req.param('message'), function (error, data, response) {
+  oauth.post(message, req.session.token, req.session.secret, 'status=' + req.param('message'), function (error, data, response) {
     if (error) res.send(sys.inspect(error), 500)
     else res.send(data)
   })
