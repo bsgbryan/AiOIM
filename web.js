@@ -15,8 +15,8 @@ else
 var app    = express.createServer(express.logger()),
     token  = '15730716-duRZBRPjYSREfDTUYmBTwEswetUKrF2CHSSpQ0C7k',
     secret = 'yLMRJbPrFBacALxTEj9c9ZtVZFiWUjoNfleKtEsaM',
-    key    = 'IYIAlnMPH17qPp6gV8QcA', // Consumer key
-    privat = 'pDfVmCh9J9xJ42ZlYODEUrJhplU1Rfj7YxLcXzT0' // Consumer secret
+    key    = '3IDQxShcojOOktjwap7Ssw', // Consumer key
+    privat = 'C6VQPabiQwGhCPfmF5gjYMNkEZ34OynsGSQuB6DSSKM' // Consumer secret
 
 var oauth = new OAuth(
   'https://api.twitter.com/oauth/request_token', 
@@ -52,12 +52,12 @@ app.get('/', function(req, res) {
 })
 
 app.get('/twitter/signin', function (req, res) {
-  oauth.getOAuthRequestToken(function(error, token, secret, results) {
+  oauth.getOAuthRequestToken(function(error, t, s, results) {
 
     if (error) res.send(error, 500)
     else {
-      req.session.token  = token
-      req.session.secret = secret
+      req.session.token  = t
+      req.session.secret = s
 
       res.redirect(auth + token)    
     }
@@ -95,6 +95,11 @@ app.get('/twitter/find', function(req, res) {
 })
 
 app.post('/twitter/message', function(req, res) {
+  console.log('token', token)
+  console.log('secret', secret)
+  console.log('access token', req.session.token)
+  console.log('access secret', req.session.secret)
+
   oauth.post(message, token, secret, 'status=' + req.param('message'), function (error, data, response) {
     if (error) res.send(sys.inspect(error), 500)
     else res.send(data)
