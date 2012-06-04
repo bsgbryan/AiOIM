@@ -83,7 +83,7 @@ app.get('/twitter/callback', function(req, res) {
           function (error, data, response) {
             if (error) res.send(error, 500)
             else {
-              req.sessiontwitter_profile = JSON.parse(decodeURIComponent(data))
+              req.session.twitter_profile = JSON.parse(decodeURIComponent(data))
               res.redirect('/')
             }
           })
