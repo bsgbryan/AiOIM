@@ -38,8 +38,10 @@ app.get('/', function(req, res) {
 app.get('/twitter/signin', function (req, res) {
   consumer().getOAuthRequestToken(function(error, token, secret, results) {
 
-    if (error) res.send(error, 500)
-    else {
+    if (error) {
+      console.error('ERRRO IS', error)
+      res.send(error, 500)
+    } else {
       req.session.destination = req.param('final_destination')
 
       req.session.token  = token
