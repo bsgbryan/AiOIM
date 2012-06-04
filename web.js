@@ -66,7 +66,7 @@ app.get('/twitter/callback', function(req, res) {
   console.log('callback oauth token', req.session.token)
   console.log('callback oauth secret', req.session.secret)
 
-  oa.getOAuthAccessToken(
+  oauth().getOAuthAccessToken(
     req.session.token, 
     req.session.secret, 
     req.query.oauth_verifier,
@@ -75,7 +75,7 @@ app.get('/twitter/callback', function(req, res) {
       if (error)
         res.send(error, 500)
       else
-        oa.getProtectedResource(creds, 'GET', 
+        oauth().getProtectedResource(creds, 'GET', 
           token, 
           secret, 
           function (error, data, response) {
@@ -92,7 +92,7 @@ app.get('/twitter/find', function(req, res) {
   console.log('find oauth token', req.session.token)
   console.log('find oauth secret', req.session.secret)
 
-  // oa.getOAuthAccessToken(
+  // oauth().getOAuthAccessToken(
   //   req.session.token, 
   //   req.session.secret, 
   //   req.query.oauth_verifier,
@@ -101,7 +101,7 @@ app.get('/twitter/find', function(req, res) {
   //     if (error)
   //       res.send(sys.inspect(error), 500)
   //     else
-        oa.getProtectedResource(users + req.param('username'), 'GET',
+        oauth().getProtectedResource(users + req.param('username'), 'GET',
           req.session.token,
           req.session.secret,
 
