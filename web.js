@@ -2,7 +2,6 @@ var express = require('express'),
     OAuth   = require('oauth').OAuth,
     sha1    = require('./app/sha1'),
     secret  = sha1.hash(new Date().getTime()),
-    http    = require('http'),
     RedisStore = require('connect-redis')(express)
 
 // Production
@@ -29,7 +28,8 @@ var creds = 'http://twitter.com/account/verify_credentials.json',
 
 app.configure(function() {
   app.use(express.static(__dirname + '/app'))
-  app.use(express.cookieParser(secret))
+  app.use(express.bodyParser())
+  app.use(express.cookieParser())
   app.use(express.session({ store : new RedisStore({ client : redis }), secret : secret }))
 
   //views
