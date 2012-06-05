@@ -48,7 +48,7 @@
   function sendMessage(event) {
     var user    = $(event.currentTarget).parents('li').data('screen_name'), 
         message = $(event.currentTarget).find('input').val(),
-        tweet   = ' @' + user + ' ' + message + ' IM'
+        tweet   = '@' + user + ' ' + message + ' IM'
 
     $(event.currentTarget).parent().attr('id', Sha1.hash(tweet))
 
