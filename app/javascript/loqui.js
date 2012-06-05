@@ -46,13 +46,13 @@
   }
 
   function sendMessage(event) {
-    var message = {
-      status : ' @' + $(event.currentTarget).find('input').val() + ' IM'
-    }
+    var user    = $(event.currentTarget).parents('li').data('screen_name'), 
+        message = $(event.currentTarget).find('input').val(),
+        tweet   = ' @' + user + ' ' + message + ' IM'
 
-    $(event.currentTarget).parent().attr('id', Sha1.hash(message.status))
+    $(event.currentTarget).parent().attr('id', Sha1.hash(tweet))
 
-    $.post('/twitter/message', message, messageSent, 'json')
+    $.post('/twitter/message', { status : tweet }, messageSent, 'json')
 
     return false
   }
