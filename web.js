@@ -18,16 +18,14 @@ var accessToken  = '15730716-UE4BDzg9YlgVacdjFx7pW6MOSK0oOZ8TUtJejXJQP',
     consumerKey    = 'OqqiFJ8yB8fSa8vMRa9qWQ', // Consumer key
     consumerSecret = 'pyH876yiaROW7JXCoanARBOpL9z0KiYllZW3PZX88OM' // Consumer secret
 
-function oauth() {
-  return new OAuth(
-    'https://api.twitter.com/oauth/request_token', 
-    'https://api.twitter.com/oauth/access_token', 
-    consumerKey,
-    consumerSecret,
-    '1.0', 
-    'http://falling-samurai-7438.herokuapp.com/twitter/callback', 
-    'HMAC-SHA1')
-}
+var oauth = new OAuth(
+  'https://api.twitter.com/oauth/request_token', 
+  'https://api.twitter.com/oauth/access_token', 
+  consumerKey,
+  consumerSecret,
+  '1.0', 
+  'http://falling-samurai-7438.herokuapp.com/twitter/callback', 
+  'HMAC-SHA1')
 
 // Twitter urls
 var creds   = 'http://twitter.com/account/verify_credentials.json',
@@ -53,7 +51,7 @@ app.get('/', function(req, res) {
 })
 
 app.get('/twitter/signin', function (req, res) {
-  oauth().getOAuthRequestToken(function(error, t, s, results) {
+  oauth.getOAuthRequestToken(function(error, t, s, results) {
 
     if (error) res.send(error, 500)
     else {
@@ -69,7 +67,7 @@ app.get('/twitter/signin', function (req, res) {
 app.get('/twitter/callback', function(req, res) {
   console.log('oauth query verifyer', req.query.oauth_verifier)
 
-  oauth().getOAuthAccessToken(
+  oauth.getOAuthAccessToken(
     req.session.token, 
     req.session.secret, 
     req.query.oauth_verifier,
@@ -78,7 +76,7 @@ app.get('/twitter/callback', function(req, res) {
       if (error)
         res.send(error, 500)
       else
-        oauth().get(creds, token, secret, 
+        oauth.get(creds, token, secret, 
           function (error, data, response) {
             if (error) res.send(error, 500)
             else {
@@ -90,7 +88,7 @@ app.get('/twitter/callback', function(req, res) {
 })
 
 app.get('/twitter/find', function(req, res) {
-  oauth().get(users + req.param('name'), accessToken, accessSecret,
+  oauth.get(users + req.param('name'), accessToken, accessSecret,
     function (error, data, response) {
       if (error) res.send(sys.inspect(error), 500)
       else res.send(data)
@@ -98,8 +96,7 @@ app.get('/twitter/find', function(req, res) {
 })
 
 app.post('/twitter/message', function(req, res) {
-  console.log('request body status', req.body.status)
-  oauth().post(message + '?status=' + encodeURIComponent(req.body.status), accessToken, accessSecret, null, null,
+  oauth.post(message + '?status=' + encodeURIComponent(req.body.status), accessToken, accessSecret, null, null,
     function (error, data, response) {
       if (error) res.send(sys.inspect(error), 500)
       else res.send(data)
