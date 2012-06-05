@@ -18,7 +18,7 @@ var accessToken  = '15730716-UE4BDzg9YlgVacdjFx7pW6MOSK0oOZ8TUtJejXJQP',
     consumerKey    = 'OqqiFJ8yB8fSa8vMRa9qWQ', // Consumer key
     consumerSecret = 'pyH876yiaROW7JXCoanARBOpL9z0KiYllZW3PZX88OM' // Consumer secret
 
-function oauth = new OAuth(
+oauth = new OAuth(
   'https://api.twitter.com/oauth/request_token', 
   'https://api.twitter.com/oauth/access_token', 
   consumerKey,
