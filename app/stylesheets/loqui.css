@@ -1,3 +1,123 @@
-.hidden {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+body {
+  line-height: 1;
+  color: #000;
+  background: #fff;
+}
+ol,
+ul {
+  list-style: none;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  vertical-align: middle;
+}
+caption,
+th,
+td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+a img {
+  border: none;
+}
+#loqui {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2em;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #eee), color-stop(1, #ccc));
+  background: -webkit-linear-gradient(top, #eee 0%, #ccc 100%);
+  background: -moz-linear-gradient(top, #eee 0%, #ccc 100%);
+  background: -o-linear-gradient(top, #eee 0%, #ccc 100%);
+  background: -ms-linear-gradient(top, #eee 0%, #ccc 100%);
+  background: linear-gradient(top, #eee 0%, #ccc 100%);
+}
+#loqui .hidden {
   display: none;
+}
+#loqui .sign.in {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.5em;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #aaa), color-stop(1, #888));
+  background: -webkit-linear-gradient(top, #aaa 0%, #888 100%);
+  background: -moz-linear-gradient(top, #aaa 0%, #888 100%);
+  background: -o-linear-gradient(top, #aaa 0%, #888 100%);
+  background: -ms-linear-gradient(top, #aaa 0%, #888 100%);
+  background: linear-gradient(top, #aaa 0%, #888 100%);
+  text-shadow: 0 -1px 0 #333;
+  color: #fff;
+  font-family: sans-serif;
+  text-decoration: none;
 }

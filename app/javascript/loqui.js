@@ -64,7 +64,7 @@
         '<ol class="chattable users hidden"></ol>' +
         '<ul class="chatting with hidden"></ul>' +
         '<form class="user search hidden">' +
-          '<input type="text" class="name" placeholder="Search for a tweeter">' +
+          '<input type="text" class="name" placeholder="Find a tweeter">' +
         '</form>' +
       '</div>')
 

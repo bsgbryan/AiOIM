@@ -12,7 +12,8 @@
   },
   "devDependencies" : {
     "stylus" : "*",
-    "nib"    : "*"
+    "nib"    : "*",
+    "redis"  : "*"
   },
   "engines" : {
     "node" : "0.6.x",
