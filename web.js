@@ -97,6 +97,7 @@ app.get('/twitter/find', function(req, res) {
 })
 
 app.post('/twitter/message', function(req, res) {
+  console.log('request body status', req.body.status)
   oauth().post(message + '?status=' + req.body.status, accessToken, accessSecret, null, null,
     function (error, data, response) {
       if (error) res.send(sys.inspect(error), 500)
