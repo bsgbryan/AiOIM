@@ -40,9 +40,9 @@
 
   function messageSent(data) {
     console.log(data)
-    console.log($('#' + Sha1.hash(data.text)))
+    console.log($('#' + Sha1.hash(decodeURIComponent(data.text))))
 
-    $('#' + Sha1.hash(data.text)).find('.messages').append('<li class="self">' + data.text + '</li>')
+    $('#' + Sha1.hash(decodeURIComponent(data.text))).find('.messages').append('<li class="self">' + data.text + '</li>')
   }
 
   function sendMessage(event) {
