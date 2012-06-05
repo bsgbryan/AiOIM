@@ -76,15 +76,8 @@ app.get('/twitter/callback', function(req, res) {
     function(error, token, secret, results) {
       if (error)
         res.send(error, 500)
-      else {
-        console.log('returned token', token)
-        console.log('returned secret', secret)
-        console.log('session token', req.session.token)
-        console.log('session secret', req.session.secret)
-
-        req.session.oauth_verifier = req.query.oauth_verifier
-
-        oauth.get(creds, token, secret, 
+      else
+        oauth().get(creds, token, secret, 
           function (error, data, response) {
             if (error) res.send(error, 500)
             else {
@@ -92,12 +85,11 @@ app.get('/twitter/callback', function(req, res) {
               res.redirect('/')
             }
           })
-      }
   })
 })
 
 app.get('/twitter/find', function(req, res) {
-  oauth().get(users + req.param('name'), accessToken, accessSecret,
+  oauth().get(users + req.param('name'), req.session.token, req.session.secret,
     function (error, data, response) {
       if (error) res.send(sys.inspect(error), 500)
       else res.send(data)
@@ -105,7 +97,7 @@ app.get('/twitter/find', function(req, res) {
 })
 
 app.post('/twitter/message', function(req, res) {
-  oauth().post(message, accessToken, accessSecret, 'status=' + req.param('message'), 
+  oauth().post(message, req.session.token, req.session.secret, 'status=' + req.param('message'), 
     function (error, data, response) {
       if (error) res.send(sys.inspect(error), 500)
       else res.send(data)
