@@ -18,7 +18,7 @@ var accessToken  = '15730716-UE4BDzg9YlgVacdjFx7pW6MOSK0oOZ8TUtJejXJQP',
     consumerKey    = 'OqqiFJ8yB8fSa8vMRa9qWQ', // Consumer key
     consumerSecret = 'pyH876yiaROW7JXCoanARBOpL9z0KiYllZW3PZX88OM' // Consumer secret
 
-oauth = new OAuth(
+var oauth = new OAuth(
   'https://api.twitter.com/oauth/request_token', 
   'https://api.twitter.com/oauth/access_token', 
   consumerKey,
@@ -36,7 +36,7 @@ var creds   = 'http://twitter.com/account/verify_credentials.json',
 app.configure(function() {
   app.use(express.static(__dirname + '/app'))
   app.use(express.bodyParser())
-  app.use(express.cookieParser(hash))
+  app.use(express.cookieParser())
   app.use(express.session({ 
     store  : new RedisStore({ client : redis }),
     secret : hash
