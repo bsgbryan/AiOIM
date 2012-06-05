@@ -32,7 +32,7 @@ function oauth() {
 var creds   = 'http://twitter.com/account/verify_credentials.json',
     auth    = 'https://api.twitter.com/oauth/authorize?oauth_token=',
     users   = 'https://api.twitter.com/1/users/search.json?q=',
-    message = 'https://api.twitter.com/1/statuses/update.json'
+    message = 'http://api.twitter.com/1/statuses/update.json'
 
 app.configure(function() {
   app.use(express.static(__dirname + '/app'))
@@ -97,7 +97,7 @@ app.get('/twitter/find', function(req, res) {
 })
 
 app.post('/twitter/message', function(req, res) {
-  oauth().post(message, req.session.token, req.session.secret, 'status=' + req.param('message'), 
+  oauth().post(message, req.session.token, req.session.secret, { "status" : req.param('message') }, 'application/json', 
     function (error, data, response) {
       if (error) res.send(sys.inspect(error), 500)
       else res.send(data)
