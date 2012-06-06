@@ -18,7 +18,7 @@ var oauth = new OAuth(
 
 exports.token = { 
   request: function(res) {
-    this.oauth.getOAuthRequestToken(function(err, t, s, results) {
+    oauth.getOAuthRequestToken(function(err, t, s, results) {
 
       if (err) res.send(util.inspect(err), 500)
       else {
@@ -31,12 +31,12 @@ exports.token = {
   },
   access: function(oauth_verifier, res) {
 
-    this.oauth.getOAuthAccessToken(this.token, this.secret, oauth_verifier,
+    oauth.getOAuthAccessToken(this.token, this.secret, oauth_verifier,
 
       function(err, token, secret, results) {
         if (err) res.send(util.insepct(err), 500)
         else
-          this.oauth.get(creds, token, secret, function (error, data, response) {
+          oauth.get(creds, token, secret, function (error, data, response) {
             if (erro) res.send(util.insepct(erro), 500)
             else {
               res.cookie('twitter_user', JSON.parse(decodeURIComponent(data)).screen_name, { httpOnly: false, path: '/' })
@@ -49,7 +49,7 @@ exports.token = {
 
 exports.user = {
   search: function(name, success, error) {
-    this.oauth.get(users + name, process.env.TwitterAccessToken, process.env.TwitterAccessTokenSecret,
+    oauth.get(users + name, process.env.TwitterAccessToken, process.env.TwitterAccessTokenSecret,
     function (error, data, response) {
       if (error) res.send(util.inspect(error), 500)
       else res.send(data)
@@ -60,7 +60,7 @@ exports.user = {
 exports.statuses = {
   update: function(status, res) {
     // I have to pass the status parameter in the query string. Not sure why, but Twitter demands it.
-    this.oauth.post(message + '?status=' + encodeURIComponent(status), process.env.TwitterAccessToken, process.env.TwitterAccessTokenSecret, null, null,
+    oauth.post(message + '?status=' + encodeURIComponent(status), process.env.TwitterAccessToken, process.env.TwitterAccessTokenSecret, null, null,
       function (error, data, response) {
         if (error) res.send(util.inspect(error), 500)
         else res.send(data)
