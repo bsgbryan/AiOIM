@@ -28,9 +28,9 @@
       var users = ''
 
       u.forEach(function (user) {
-        users += '<li class="user">' +
-          '<a class="screen name">' + user.screen_name + '</a>' +
-          '<span class="human name">' + user.name + '</span>' +
+        users += '<li class="user name">' +
+          '<a class="screen">' + user.screen_name + '</a>' +
+          '<span class="human">' + user.name + '</span>' +
           '</li>'
       })
 
