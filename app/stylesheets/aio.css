@@ -145,6 +145,112 @@ p.capitalization.backstory a {
 #aio .hidden {
   display: none;
 }
+#aio .user.search {
+  position: absolute;
+  top: 0;
+}
+#aio .user.search .name {
+  font-size: 1em;
+  height: 1.4em;
+  margin: 0.125em;
+}
+#aio .chattable.users {
+  position: absolute;
+  top: 2.25em;
+  left: 0.125em;
+  -webkit-border-radius: 0.5em;
+  border-radius: 0.5em;
+  border: 3px solid #eee;
+  background-color: #fff;
+  padding: 0.125em;
+  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.20);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.20);
+}
+#aio .chattable.users li.name {
+  padding: 0.375em;
+  border-bottom: 1px solid #eee;
+  color: #aaa;
+}
+#aio .chattable.users li.name:hover {
+  cursor: pointer;
+}
+#aio .chattable.users li.name .screen {
+  font-family: 'Pontano Sans', sans-serif;
+  margin-right: 0.5em;
+}
+#aio .chattable.users li.name .human {
+  font-family: 'Philosopher', sans-serif;
+}
+#aio .chattable.users li.name:last-child {
+  border-bottom: none;
+}
+#aio .chatting.with {
+  position: fixed;
+  top: 0;
+  left: 11em;
+  right: 0;
+  bottom: 7em;
+}
+#aio .chatting.with > li {
+  display: inline-block;
+  width: 20em;
+}
+#aio .chatting.with > li .human.name {
+  width: 13.37em;
+  height: 1.3em;
+  font-size: 1.5em;
+  line-height: 1.2em;
+  text-align: center;
+  font-family: 'Lemon', cursive;
+  color: #eee;
+  text-shadow: 0 -1px #fff, 0 1px 0 #aaa;
+  cursor: pointer;
+}
+#aio .chatting.with > li .messages {
+  margin-top: 0.5em;
+  border-top: 3px solid #eee;
+  border-left: 3px solid #eee;
+  border-right: 3px solid #eee;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+  background-color: #fff;
+  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.20);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.20);
+  font-family: 'Philosopher', sans-serif;
+  color: #333;
+  padding: 0.25em;
+  width: 19em;
+}
+#aio .chatting.with > li .messages li {
+  width: 15em;
+}
+#aio .chatting.with > li .messages li.self {
+  margin-left: 4em;
+}
+#aio .chatting.with > li .new.message {
+  border-left: 3px solid #eee;
+  border-right: 3px solid #eee;
+  border-bottom: 3px solid #eee;
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  background-color: #fff;
+  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.20);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.20);
+}
+#aio .chatting.with > li .new.message input {
+  border-bottom-left-radius: 0.5em;
+  width: 24.65em;
+  border: none;
+  margin-left: 0.35em;
+  font-family: 'Pontano Sans', sans-serif;
+  letter-spacing: 1px;
+}
+#aio .chatting.with > li .new.message button {
+  background-color: #fff;
+  border: none;
+  font-family: 'Pontano Sans', sans-serif;
+  letter-spacing: 1px;
+}
 #aio .sign.in {
   position: absolute;
   top: 0;
@@ -160,4 +266,5 @@ p.capitalization.backstory a {
   color: #fff;
   font-family: 'Pontano Sans', sans-serif;
   text-decoration: none;
+  letter-spacing: 1px;
 }

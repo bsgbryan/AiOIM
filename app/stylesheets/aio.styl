@@ -34,7 +34,6 @@ p
       font-style oblique
       color #111
 
-
 #aio
   position: fixed
   top   0
@@ -45,6 +44,89 @@ p
   box-shadow 0 0 5px rgba(black, .2)
   .hidden
     display none
+  .user.search
+    position absolute
+    top 0
+    .name
+      font-size 1em
+      height 1.4em
+      margin .125em
+  .chattable.users
+    absolute top 2.25em left .125em
+    border-radius .5em
+    border 3px solid #eee
+    background-color white
+    padding .125em
+    box-shadow 0 2px 5px rgba(black, .2)
+    li.name
+      padding .375em
+      border-bottom 1px solid #eee
+      color #aaa
+      &:hover
+        cursor pointer
+      .screen
+        font-family 'Pontano Sans', sans-serif
+        margin-right .5em
+      .human
+        font-family 'Philosopher', sans-serif
+      &:last-child
+        border-bottom none
+  .chatting.with
+    position fixed
+    top    0
+    left   11em
+    right  0
+    bottom 7em
+    > li
+      display inline-block
+      width 20em
+      .human.name
+        width  13.37em // hawt
+        height 1.3em
+        font-size   1.5em
+        line-height 1.2em
+        text-align center
+        font-family 'Lemon', cursive
+        color #eee
+        text-shadow 0 -1px white, 0 1px 0 #aaa
+        cursor pointer
+      .messages
+        margin-top .5em
+        border-top   3px solid #eee
+        border-left  3px solid #eee
+        border-right 3px solid #eee
+        border-top-left-radius  .5em
+        border-top-right-radius .5em
+        background-color white
+        box-shadow 0 2px 5px rgba(black, .2)
+        font-family 'Philosopher', sans-serif
+        color #333
+        padding .25em
+        width 19em
+        li
+          width 15em
+          &.self
+            margin-left 4em
+      .new.message
+        border-left   3px solid #eee
+        border-right  3px solid #eee
+        border-bottom 3px solid #eee
+        border-bottom-left-radius  .5em
+        border-bottom-right-radius .5em
+        background-color white
+        box-shadow 0 2px 5px rgba(black, .2)
+        input
+          border-bottom-left-radius .5em
+          width 24.65em
+          border none
+          margin-left .35em
+          font-family 'Pontano Sans', sans-serif
+          letter-spacing 1px
+        button
+          background-color white
+          border none
+          font-family 'Pontano Sans', sans-serif
+          letter-spacing 1px
   .sign.in
     absolute top, left
     padding .5em 1.5em
@@ -53,3 +135,4 @@ p
     color white
     font-family 'Pontano Sans', sans-serif
     text-decoration none
+    letter-spacing 1px
