@@ -42,12 +42,12 @@ app.configure(function() {
     secret : hash
   }))
 
-  app.set('views', __dirname + '/jade')
+  app.set('views', __dirname + '/view')
   app.set('view engine', 'jade')
 })
 
 app.get('/', function(req, res) {
-  res.render('example', { layout : false })
+  res.render('aio', { layout : false })
 })
 
 app.get('/twitter/signin', function (req, res) {

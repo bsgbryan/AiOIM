@@ -1,0 +1,55 @@
+@import 'nib'
+
+global-reset()
+
+body
+  background-color white
+  overflow hidden
+
+h1
+  font-family 'Lemon', cursive
+  width 100%
+  text-align center
+  font-size  35em
+  absolute top 10% left 0
+  color white
+  text-shadow 0 -1px #eee, 0 1px 0 #ddd
+  margin-left -2%
+
+p
+  position fixed
+  color #333
+  font-family 'Philosopher', sans-serif
+  &.name.reason
+    bottom 4em
+    left   5%
+    .definition
+      color #222
+      font-weight bold
+  &.capitalization.backstory
+    bottom 2.625em
+    right  5%
+    a
+      text-decoration none
+      font-style oblique
+      color #111
+
+
+#loqui
+  position: fixed
+  top   0
+  left  0
+  right 0
+  height 2em
+  background linear-gradient(top, #eee, #ccc)
+  box-shadow 0 0 5px rgba(black, .2)
+  .hidden
+    display none
+  .sign.in
+    absolute top, left
+    padding .5em 1.5em
+    background linear-gradient(top, #aaa, #888)
+    text-shadow 0 -1px 0 #333
+    color white
+    font-family 'Pontano Sans', sans-serif
+    text-decoration none
