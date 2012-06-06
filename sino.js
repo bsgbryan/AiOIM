@@ -48,7 +48,7 @@ exports.token = {
 }
 
 exports.user = {
-  search: function(name, success, error) {
+  search: function(name, res) {
     oauth.get(users + name, process.env.TwitterAccessToken, process.env.TwitterAccessTokenSecret,
     function (error, data, response) {
       if (error) res.send(util.inspect(error), 500)
