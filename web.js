@@ -13,7 +13,7 @@ if (process.env.REDISTOGO_URL)
 else 
   var redis = require('redis').createClient()
 
-var sino = new SiNO('http://falling-samurai-7438.herokuapp.com/twitter/callback')
+var sino = new SiNO()
 
 app.configure(function() {
   app.use(express.static(__dirname + '/app'))
@@ -33,19 +33,19 @@ app.get('/', function(req, res) {
 })
 
 app.get('/twitter/signin', function (req, res) {
-  sino.token.request(res)
+  SiNO.token.request(res)
 })
 
 app.get('/twitter/callback', function(req, res) {
-  sino.token.access(req.query.oauth_verifier, res)
+  SiNO.token.access(req.query.oauth_verifier, res)
 })
 
 app.get('/twitter/find', function(req, res) {
-  sino.user.search(req.param('name'), res)
+  SiNO.user.search(req.param('name'), res)
 })
 
 app.post('/twitter/message', function(req, res) {
-  sino.statuses.update(req.body.status, res)
+  SiNO.statuses.update(req.body.status, res)
 })
 
 // The port number is passed in via Heroku
