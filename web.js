@@ -13,16 +13,16 @@ if (process.env.REDISTOGO_URL)
 else 
   var redis = require('redis').createClient()
 
-var accessToken  = '15730716-UE4BDzg9YlgVacdjFx7pW6MOSK0oOZ8TUtJejXJQP',
-    accessSecret = 'MwLGhLYQkJwKKRkDNBHoD6UMl6E64RoFYnd5K0WsJU',
-    consumerKey    = 'OqqiFJ8yB8fSa8vMRa9qWQ', // Consumer key
-    consumerSecret = 'pyH876yiaROW7JXCoanARBOpL9z0KiYllZW3PZX88OM' // Consumer secret
+// var accessToken  = '15730716-UE4BDzg9YlgVacdjFx7pW6MOSK0oOZ8TUtJejXJQP',
+//     accessSecret = 'MwLGhLYQkJwKKRkDNBHoD6UMl6E64RoFYnd5K0WsJU',
+//     consumerKey    = 'OqqiFJ8yB8fSa8vMRa9qWQ', // Consumer key
+//     consumerSecret = 'pyH876yiaROW7JXCoanARBOpL9z0KiYllZW3PZX88OM' // Consumer secret
 
 var oauth = new OAuth(
   'https://api.twitter.com/oauth/request_token', 
   'https://api.twitter.com/oauth/access_token', 
-  consumerKey,
-  consumerSecret,
+  process.env.TwitterConsumerKey,
+  process.env.TwitterConsumerSecret,
   '1.0', 
   'http://falling-samurai-7438.herokuapp.com/twitter/callback', 
   'HMAC-SHA1')
@@ -65,7 +65,6 @@ app.get('/twitter/signin', function (req, res) {
 })
 
 app.get('/twitter/callback', function(req, res) {
-  console.log('oauth query verifyer', req.query.oauth_verifier)
 
   oauth.getOAuthAccessToken(
     req.session.token, 
@@ -88,7 +87,7 @@ app.get('/twitter/callback', function(req, res) {
 })
 
 app.get('/twitter/find', function(req, res) {
-  oauth.get(users + req.param('name'), accessToken, accessSecret,
+  oauth.get(users + req.param('name'), process.env.TwitterAccessToken, process.env.TwitterAccessTokenSecret,
     function (error, data, response) {
       if (error) res.send(sys.inspect(error), 500)
       else res.send(data)
@@ -96,7 +95,8 @@ app.get('/twitter/find', function(req, res) {
 })
 
 app.post('/twitter/message', function(req, res) {
-  oauth.post(message + '?status=' + encodeURIComponent(req.body.status), accessToken, accessSecret, null, null,
+  // I have to pass the status parameter in the query string. Not sure why, but Twitter demands it.
+  oauth.post(message + '?status=' + encodeURIComponent(req.body.status), process.env.TwitterAccessToken, process.env.TwitterAccessTokenSecret, null, null,
     function (error, data, response) {
       if (error) res.send(sys.inspect(error), 500)
       else res.send(data)
