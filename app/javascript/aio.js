@@ -7,8 +7,8 @@
     var selected = $('#aio .chattable.users .selected')
 
     $('#aio .chatting.with').append(
-      '<li class="user" data-screen_name="' + selected.find('.screen.name').text() + '">' +
-        '<h3 class="human name">' + selected.find('.human.name').text() + '</h3>' +
+      '<li class="user" data-screen_name="' + selected.find('.screen .name').text() + '">' +
+        '<h3 class="human name">' + selected.find('.human .name').text() + '</h3>' +
         '<ol class="messages"></ol>' +
         '<form class="new message">' +
           '<input type="text" name="message">' +
@@ -77,7 +77,7 @@
     $('#aio').
       on('keyup',  '.user.search .name',                executeUserSearch).
       on('blur',   '.user.search .name',                clearUserSearch).
-      on('click',  '.chattable .user .name',            initializeChat).
+      on('click',  '.chattable .user.name .screen, .chattable .user.name .human', initializeChat).
       on('submit', '.chatting.with .user .new.message', sendMessage)
   }
 })(jQuery)
