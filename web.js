@@ -1,5 +1,5 @@
 var express = require('express'),
-    OAuth   = require('oauth').OAuth,
+    SiNO    = require('./sino'),
     sha1    = require('./app/sha1'),
     RedisStore = require('connect-redis')(express),
     sys        = require('util'),
@@ -13,25 +13,7 @@ if (process.env.REDISTOGO_URL)
 else 
   var redis = require('redis').createClient()
 
-// var accessToken  = '15730716-UE4BDzg9YlgVacdjFx7pW6MOSK0oOZ8TUtJejXJQP',
-//     accessSecret = 'MwLGhLYQkJwKKRkDNBHoD6UMl6E64RoFYnd5K0WsJU',
-//     consumerKey    = 'OqqiFJ8yB8fSa8vMRa9qWQ', // Consumer key
-//     consumerSecret = 'pyH876yiaROW7JXCoanARBOpL9z0KiYllZW3PZX88OM' // Consumer secret
-
-var oauth = new OAuth(
-  'https://api.twitter.com/oauth/request_token', 
-  'https://api.twitter.com/oauth/access_token', 
-  process.env.TwitterConsumerKey,
-  process.env.TwitterConsumerSecret,
-  '1.0', 
-  'http://falling-samurai-7438.herokuapp.com/twitter/callback', 
-  'HMAC-SHA1')
-
-// Twitter urls
-var creds   = 'http://twitter.com/account/verify_credentials.json',
-    auth    = 'https://api.twitter.com/oauth/authorize?oauth_token=',
-    users   = 'https://api.twitter.com/1/users/search.json?q=',
-    message = 'http://api.twitter.com/1/statuses/update.json'
+var sino = new SiNO('http://falling-samurai-7438.herokuapp.com/twitter/callback')
 
 app.configure(function() {
   app.use(express.static(__dirname + '/app'))
@@ -51,56 +33,19 @@ app.get('/', function(req, res) {
 })
 
 app.get('/twitter/signin', function (req, res) {
-  oauth.getOAuthRequestToken(function(error, t, s, results) {
-
-    if (error) res.send(error, 500)
-    else {
-      req.session.token  = t
-      req.session.secret = s
-
-      // We can't pass token here, not sure why
-      res.redirect(auth + t)    
-    }
-  })
+  sino.token.request(res)
 })
 
 app.get('/twitter/callback', function(req, res) {
-
-  oauth.getOAuthAccessToken(
-    req.session.token, 
-    req.session.secret, 
-    req.query.oauth_verifier,
-
-    function(error, token, secret, results) {
-      if (error)
-        res.send(error, 500)
-      else
-        oauth.get(creds, token, secret, 
-          function (error, data, response) {
-            if (error) res.send(error, 500)
-            else {
-              res.cookie('twitter_user', JSON.parse(decodeURIComponent(data)).screen_name, { httpOnly: false, path: '/' })
-              res.redirect('/')
-            }
-          })
-  })
+  sino.token.access(req.query.oauth_verifier, res)
 })
 
 app.get('/twitter/find', function(req, res) {
-  oauth.get(users + req.param('name'), process.env.TwitterAccessToken, process.env.TwitterAccessTokenSecret,
-    function (error, data, response) {
-      if (error) res.send(sys.inspect(error), 500)
-      else res.send(data)
-    })
+  sino.user.search(req.param('name'), res)
 })
 
 app.post('/twitter/message', function(req, res) {
-  // I have to pass the status parameter in the query string. Not sure why, but Twitter demands it.
-  oauth.post(message + '?status=' + encodeURIComponent(req.body.status), process.env.TwitterAccessToken, process.env.TwitterAccessTokenSecret, null, null,
-    function (error, data, response) {
-      if (error) res.send(sys.inspect(error), 500)
-      else res.send(data)
-    })
+  sino.statuses.update(req.body.status, res)
 })
 
 // The port number is passed in via Heroku
