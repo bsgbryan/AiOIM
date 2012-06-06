@@ -13,8 +13,6 @@ if (process.env.REDISTOGO_URL)
 else 
   var redis = require('redis').createClient()
 
-var sino = new SiNO()
-
 app.configure(function() {
   app.use(express.static(__dirname + '/app'))
   app.use(express.bodyParser())
