@@ -1,12 +1,12 @@
 (function ($) {
-  var container = '#loqui'
+  var container = '#aio'
 
   function initializeChat(event) {
     $(event.currentTarget).parent().addClass('selected')
 
-    var selected = $('#loqui .chattable.users .selected')
+    var selected = $('#aio .chattable.users .selected')
 
-    $('#loqui .chatting.with').append(
+    $('#aio .chatting.with').append(
       '<li class="user" data-screen_name="' + selected.find('.screen.name').text() + '">' +
         '<h3 class="human name">' + selected.find('.human.name').text() + '</h3>' +
         '<ol class="messages"></ol>' +
@@ -16,7 +16,7 @@
         '</form>' +
       '</li>').removeClass('hidden')
 
-    $('#loqui .chattable.users').addClass('hidden')
+    $('#aio .chattable.users').addClass('hidden')
   }
 
   function clearUserSearch(event) {
@@ -34,7 +34,7 @@
           '</li>'
       })
 
-      $('#loqui .chattable.users').html(users).removeClass('hidden')
+      $('#aio .chattable.users').html(users).removeClass('hidden')
     })
   }
 
@@ -57,9 +57,9 @@
     return false
   }
 
-  $.loqui = function () {
+  $.aio = function () {
     $('body').
-      append('<div id="loqui">' +
+      append('<div id="aio">' +
         '<a class="sign in hidden" href="/twitter/signin">sign in</a>' +
         '<ol class="chattable users hidden"></ol>' +
         '<ul class="chatting with hidden"></ul>' +
@@ -69,12 +69,12 @@
       '</div>')
 
     if ($.cookie('twitter_user') === null)
-      $('#loqui .sign.in').removeClass('hidden')
+      $('#aio .sign.in').removeClass('hidden')
     else 
-      $('#loqui form.user.hidden').removeClass('hidden')
+      $('#aio form.user.hidden').removeClass('hidden')
 
       
-    $('#loqui').
+    $('#aio').
       on('keyup',  '.user.search .name',                executeUserSearch).
       on('blur',   '.user.search .name',                clearUserSearch).
       on('click',  '.chattable .user .name',            initializeChat).
