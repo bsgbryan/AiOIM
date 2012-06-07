@@ -194,7 +194,7 @@ p.capitalization.backstory a {
 }
 #aio .chatting.with > li {
   display: inline-block;
-  width: 19.75em;
+  width: 19.69em;
 }
 #aio .chatting.with > li .human.name {
   width: 13.37em;
@@ -220,7 +220,7 @@ p.capitalization.backstory a {
   font-family: 'Philosopher', sans-serif;
   color: #333;
   padding: 0.25em;
-  width: 19.15em;
+  width: 18.85em;
 }
 #aio .chatting.with > li .messages li {
   width: 15em;
