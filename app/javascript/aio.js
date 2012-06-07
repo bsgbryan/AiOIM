@@ -2,13 +2,12 @@
   var container = '#aio'
 
   function initializeChat(event) {
-    $(event.currentTarget).parent().addClass('selected')
 
-    var selected = $('#aio .chattable.users .selected')
+    var selected = $(event.currentTarget).parent()
 
     $('#aio .chatting.with').append(
-      '<li class="user" data-screen_name="' + selected.parent().find('.screen').text() + '">' +
-        '<h3 class="human name">' + selected.parent().find('.human').text() + '</h3>' +
+      '<li class="user" data-screen_name="' + selected.find('.screen').text() + '">' +
+        '<h3 class="human name">' + selected.find('.human').text() + '</h3>' +
         '<ol class="messages"></ol>' +
         '<form class="new message">' +
           '<input type="text" name="message">' +
