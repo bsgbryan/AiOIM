@@ -16,14 +16,17 @@ var oauth = new OAuth(
   process.env.TwitterOAuthCallback, 
   'HMAC-SHA1')
 
+var tok = '',
+    sec = ''
+
 exports.token = { 
   request: function(res) {
     oauth.getOAuthRequestToken(function(err, t, s, results) {
 
       if (err) res.send(util.inspect(err), 500)
       else {
-        this.token  = t
-        this.secret = s
+        tok  = t
+        sec = s
 
         res.redirect(auth + t)    
       }
@@ -31,7 +34,7 @@ exports.token = {
   },
   access: function(oauth_verifier, res) {
 
-    oauth.getOAuthAccessToken(this.token, this.secret, oauth_verifier,
+    oauth.getOAuthAccessToken(tok, sec, oauth_verifier,
 
       function(err, token, secret, results) {
         if (err) res.send(util.inspect(err), 500)
