@@ -133,12 +133,12 @@ p.capitalization.backstory a {
   left: 0;
   right: 0;
   height: 2em;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #eee), color-stop(1, #ccc));
-  background: -webkit-linear-gradient(top, #eee 0%, #ccc 100%);
-  background: -moz-linear-gradient(top, #eee 0%, #ccc 100%);
-  background: -o-linear-gradient(top, #eee 0%, #ccc 100%);
-  background: -ms-linear-gradient(top, #eee 0%, #ccc 100%);
-  background: linear-gradient(top, #eee 0%, #ccc 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ccc), color-stop(1, #999));
+  background: -webkit-linear-gradient(top, #ccc 0%, #999 100%);
+  background: -moz-linear-gradient(top, #ccc 0%, #999 100%);
+  background: -o-linear-gradient(top, #ccc 0%, #999 100%);
+  background: -ms-linear-gradient(top, #ccc 0%, #999 100%);
+  background: linear-gradient(top, #ccc 0%, #999 100%);
   -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.20);
   box-shadow: 0 0 5px rgba(0,0,0,0.20);
 }
@@ -160,16 +160,17 @@ p.capitalization.backstory a {
   left: 0.125em;
   -webkit-border-radius: 0.5em;
   border-radius: 0.5em;
-  border: 3px solid #eee;
+  border: 3px solid #ccc;
   background-color: #fff;
   padding: 0.125em;
   -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.20);
   box-shadow: 0 2px 5px rgba(0,0,0,0.20);
+  z-index: 1000;
 }
 #aio .chattable.users li.name {
   padding: 0.375em;
   border-bottom: 1px solid #eee;
-  color: #aaa;
+  color: #999;
 }
 #aio .chattable.users li.name:hover {
   cursor: pointer;
@@ -202,15 +203,15 @@ p.capitalization.backstory a {
   line-height: 1.2em;
   text-align: center;
   font-family: 'Lemon', cursive;
-  color: #eee;
-  text-shadow: 0 -1px #fff, 0 1px 0 #aaa;
+  color: #333;
+  text-shadow: 0 -1px #ccc, 0 1px 0 #999;
   cursor: pointer;
 }
 #aio .chatting.with > li .messages {
   margin-top: 0.5em;
-  border-top: 3px solid #eee;
-  border-left: 3px solid #eee;
-  border-right: 3px solid #eee;
+  border-top: 3px solid #999;
+  border-left: 3px solid #999;
+  border-right: 3px solid #999;
   border-top-left-radius: 0.5em;
   border-top-right-radius: 0.5em;
   background-color: #fff;
@@ -228,9 +229,9 @@ p.capitalization.backstory a {
   margin-left: 4em;
 }
 #aio .chatting.with > li .new.message {
-  border-left: 3px solid #eee;
-  border-right: 3px solid #eee;
-  border-bottom: 3px solid #eee;
+  border-left: 3px solid #999;
+  border-right: 3px solid #999;
+  border-bottom: 3px solid #999;
   border-bottom-left-radius: 0.5em;
   border-bottom-right-radius: 0.5em;
   background-color: #fff;
@@ -244,6 +245,9 @@ p.capitalization.backstory a {
   margin-left: 0.35em;
   font-family: 'Pontano Sans', sans-serif;
   letter-spacing: 1px;
+}
+#aio .chatting.with > li .new.message input:focus {
+  outline: none;
 }
 #aio .chatting.with > li .new.message button {
   background-color: #fff;

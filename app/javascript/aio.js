@@ -10,7 +10,7 @@
         '<h3 class="human name">' + selected.find('.human').text() + '</h3>' +
         '<ol class="messages"></ol>' +
         '<form class="new message">' +
-          '<input type="text" name="message">' +
+          '<input type="text" name="message" placeholder="say yes">' +
           '<button type="submit">say</button>' +
         '</form>' +
       '</li>').removeClass('hidden')

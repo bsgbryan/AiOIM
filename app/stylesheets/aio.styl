@@ -40,7 +40,7 @@ p
   left  0
   right 0
   height 2em
-  background linear-gradient(top, #eee, #ccc)
+  background linear-gradient(top, #ccc, #999)
   box-shadow 0 0 5px rgba(black, .2)
   .hidden
     display none
@@ -54,14 +54,15 @@ p
   .chattable.users
     absolute top 2.25em left .125em
     border-radius .5em
-    border 3px solid #eee
+    border 3px solid #ccc
     background-color white
     padding .125em
     box-shadow 0 2px 5px rgba(black, .2)
+    z-index 1000
     li.name
       padding .375em
       border-bottom 1px solid #eee
-      color #aaa
+      color #999
       &:hover
         cursor pointer
       .screen
@@ -87,14 +88,14 @@ p
         line-height 1.2em
         text-align center
         font-family 'Lemon', cursive
-        color #eee
-        text-shadow 0 -1px white, 0 1px 0 #aaa
+        color #333
+        text-shadow 0 -1px #ccc, 0 1px 0 #999
         cursor pointer
       .messages
         margin-top .5em
-        border-top   3px solid #eee
-        border-left  3px solid #eee
-        border-right 3px solid #eee
+        border-top   3px solid #999
+        border-left  3px solid #999
+        border-right 3px solid #999
         border-top-left-radius  .5em
         border-top-right-radius .5em
         background-color white
@@ -108,9 +109,9 @@ p
           &.self
             margin-left 4em
       .new.message
-        border-left   3px solid #eee
-        border-right  3px solid #eee
-        border-bottom 3px solid #eee
+        border-left   3px solid #999
+        border-right  3px solid #999
+        border-bottom 3px solid #999
         border-bottom-left-radius  .5em
         border-bottom-right-radius .5em
         background-color white
@@ -122,6 +123,8 @@ p
           margin-left .35em
           font-family 'Pontano Sans', sans-serif
           letter-spacing 1px
+          &:focus
+            outline none
         button
           background-color white
           border none
