@@ -34,10 +34,10 @@ exports.token = {
     oauth.getOAuthAccessToken(this.token, this.secret, oauth_verifier,
 
       function(err, token, secret, results) {
-        if (err) res.send(util.insepct(err), 500)
+        if (err) res.send(util.inspect(err), 500)
         else
           oauth.get(creds, token, secret, function (error, data, response) {
-            if (erro) res.send(util.insepct(erro), 500)
+            if (erro) res.send(util.inspect(erro), 500)
             else {
               res.cookie('twitter_user', JSON.parse(decodeURIComponent(data)).screen_name, { httpOnly: false, path: '/' })
               res.redirect('/')
