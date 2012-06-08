@@ -7,7 +7,7 @@ var creds   = 'http://twitter.com/account/verify_credentials.json',
     users   = 'https://api.twitter.com/1/users/search.json?q=',
     message = 'http://api.twitter.com/1/statuses/update.json',
     filter  = 'https://stream.twitter.com/1/statuses/filter.json',
-    home_timeline = 'http://api.twitter.com/1/statuses/home_timeline.json'
+    home_timeline = 'http://api.twitter.com/1/statuses/home_timeline.json?include_entities=true'
 
 var tweeters = { }
 
@@ -80,7 +80,7 @@ function get(url, req, res, cb) {
       if (error) res.send(util.inspect(error), 500)
       else {
         if (cb) cb(data)
-        res.send(data)
+        else res.send(data)
       }
     })
 }
@@ -93,14 +93,30 @@ exports.statuses = {
   update: function(sts, res) { 
     post(message + '?status=' + encodeURIComponent(sts), req, res)
   },
-  home_timeline: function(req, res) {
-    var tweeter = tweeter(req)
-    var last    = tweeter.most_recent_tweet
 
-    get(home_timeline + '?since_id=' + last, req, res, function(tweets) {
-      tweeter.most_recent_tweet = tweets[0].id
+  // This will be the initial, non-streaming, polling solution for getting
+  // chat messages. It will not scale, however.
+  home_timeline: function(req, res) {
+    var usr   = tweeter(req)
+    var last  = usr.most_recent_tweet
+    var since = typeof last === 'undefined' ? '' : '&since_id=' + last
+
+    get(home_timeline + since, req, res, function(tweets) {
+      usr.most_recent_tweet = tweets[0].id
+      var messages = [ ]
+
+      tweets.forEach(function (tweet) {
+        var e = tweet.entities
+
+        if (e.hashtags.indexOf('AiOIM') > -1 && e.user_mentions.indexOf(usr) > -1)
+          messages.push(tweet)
+      })
+
+      res.send(messages)
     })
   },
+
+  // This will be the long term, streaming solution to tracking im messages
   filter: function(req, res) {
     // #AiOIM is the hashtag aio will use to track chat messages
     a(req).post(filter + '?track=#AiOIM', process.env.TwitterAccessToken, process.env.TwitterAccessTokenSecret, null, null,
