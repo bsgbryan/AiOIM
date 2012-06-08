@@ -75,7 +75,6 @@ function post(url, req, res) {
 }
 
 function get(url, req, res, cb) {
-  console.log('auth', auth(req))
   a(req).get(url, process.env.TwitterAccessToken, process.env.TwitterAccessTokenSecret,
     function (error, data, response) {
       if (error) res.send(util.inspect(error), 500)
