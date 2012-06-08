@@ -26,24 +26,33 @@ app.configure(function() {
   app.set('view engine', 'jade')
 })
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
   res.render('aio', { layout : false })
 })
 
-app.get('/twitter/signin', function (req, res) {
-  SiNO.token.request(res)
+app.get('/aio/signin', function (req, res) {
+  SiNO.token.request(req, res)
 })
 
-app.get('/twitter/callback', function(req, res) {
-  SiNO.token.access(req.query.oauth_verifier, res)
+app.get('/aio/authorized', function (req, res) {
+  SiNO.token.access(req, res)
 })
 
-app.get('/twitter/find', function(req, res) {
-  SiNO.user.search(req.param('name'), res)
+app.get('/aio/users.search', function (req, res) {
+  SiNO.users.search(req.param('name'), req, res)
 })
 
-app.post('/twitter/message', function(req, res) {
+app.post('/aio/statuses.update', function (req, res) {
   SiNO.statuses.update(req.body.status, res)
+})
+
+app.get('/aio/statuses.home_timeline', function (req, res) {
+  SiNO.statuses.home_timeline(res)
+})
+
+// TODO Add streaming support to node-oauth so I can do this
+app.post('/aio/statuses.filter', function (req, res) {
+  SiNO.statuses.filter(req, res)
 })
 
 // The port number is passed in via Heroku

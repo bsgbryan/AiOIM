@@ -23,7 +23,7 @@
   }
 
   function executeUserSearch(event) {
-    $.getJSON('/twitter/find?name=' + $(event.currentTarget).val(), function (u) {
+    $.getJSON('/aio/users.search?name=' + $(event.currentTarget).val(), function (u) {
       var users = ''
 
       u.forEach(function (user) {
@@ -51,7 +51,7 @@
 
     $(event.currentTarget).parent().attr('id', Sha1.hash(tweet))
 
-    $.post('/twitter/message', { status : tweet }, messageSent, 'json')
+    $.post('/aio/statuses.update', { status : tweet }, messageSent, 'json')
 
     return false
   }
@@ -59,7 +59,7 @@
   $.aio = function () {
     $('body').
       append('<div id="aio">' +
-        '<a class="sign in hidden" href="/twitter/signin">sign in</a>' +
+        '<a class="sign in hidden" href="/aio/signin">sign in</a>' +
         '<ol class="chattable users hidden"></ol>' +
         '<ul class="chatting with hidden"></ul>' +
         '<form class="user search hidden">' +
@@ -67,7 +67,7 @@
         '</form>' +
       '</div>')
 
-    if ($.cookie('twitter_user') === null)
+    if ($.cookie('AiOID') === null)
       $('#aio .sign.in').removeClass('hidden')
     else 
       $('#aio form.user.hidden').removeClass('hidden')
