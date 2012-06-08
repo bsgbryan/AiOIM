@@ -9,6 +9,8 @@ var creds   = 'http://twitter.com/account/verify_credentials.json',
     filter  = 'https://stream.twitter.com/1/statuses/filter.json',
     home_timeline = 'http://api.twitter.com/1/statuses/home_timeline.json'
 
+var tweeters = { }
+
 function oauth() {
   return new OAuth(
     'https://api.twitter.com/oauth/request_token', 
@@ -24,11 +26,9 @@ function tweeter(req) {
   return tweeters[req.cookies.AiOID]
 }
 
-function auth(req) {
+function a(req) {
   return tweeter(req).auth
 }
-
-var tweeters = { }
 
 exports.token = { 
   request: function(req, res) {
@@ -67,7 +67,7 @@ exports.token = {
 }
 
 function post(url, req, res) {
-  auth(req).post(url, process.env.TwitterAccessToken, process.env.TwitterAccessTokenSecret, null, null,
+  a(req).post(url, process.env.TwitterAccessToken, process.env.TwitterAccessTokenSecret, null, null,
     function (error, data, response) {
       if (error) res.send(util.inspect(error), 500)
       else res.send(data)
@@ -75,7 +75,8 @@ function post(url, req, res) {
 }
 
 function get(url, req, res, cb) {
-  auth(req).get(url, process.env.TwitterAccessToken, process.env.TwitterAccessTokenSecret,
+  console.log('auth', auth(req))
+  a(req).get(url, process.env.TwitterAccessToken, process.env.TwitterAccessTokenSecret,
     function (error, data, response) {
       if (error) res.send(util.inspect(error), 500)
       else {
@@ -103,7 +104,7 @@ exports.statuses = {
   },
   filter: function(req, res) {
     // #AiOIM is the hashtag aio will use to track chat messages
-    auth(req).post(filter + '?track=#AiOIM', process.env.TwitterAccessToken, process.env.TwitterAccessTokenSecret, null, null,
+    a(req).post(filter + '?track=#AiOIM', process.env.TwitterAccessToken, process.env.TwitterAccessTokenSecret, null, null,
       function (error, data, response) {
         // TODO add streaming support to node-oauth so I can implement this
       })
