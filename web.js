@@ -47,7 +47,7 @@ app.post('/aio/statuses.update', function (req, res) {
 })
 
 app.get('/aio/statuses.home_timeline', function (req, res) {
-  SiNO.statuses.home_timeline(res)
+  SiNO.statuses.home_timeline(req, res)
 })
 
 // TODO Add streaming support to node-oauth so I can do this

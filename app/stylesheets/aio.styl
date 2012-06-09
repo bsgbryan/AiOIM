@@ -2,6 +2,9 @@
 
 global-reset()
 
+highlight = #999
+lowlight  = #555
+
 body
   background-color white
   overflow hidden
@@ -37,32 +40,34 @@ p
 #aio
   position: fixed
   top   0
-  left  0
-  right 0
+  left  -.5em
+  right -.5em
   height 2em
-  background linear-gradient(top, #ccc, #999)
-  box-shadow 0 0 5px rgba(black, .2)
+  background linear-gradient(top, highlight, lowlight)
+  box-shadow 0 0 10px black
+  border-bottom 2px solid highlight
   .hidden
     display none
   .user.search
-    position absolute
-    top 0
+    absolute top 0 left .5em
     .name
       font-size 1em
-      height 1.4em
-      margin .125em
+      height 1.45em
+      width  10em
+      margin  .125em
+      padding 0 .25em
   .chattable.users
-    absolute top 2.25em left .125em
+    absolute top 2.5em left .725em
     border-radius .5em
-    border 3px solid #ccc
+    border 3px solid highlight
     background-color white
     padding .125em
-    box-shadow 0 2px 5px rgba(black, .2)
+    box-shadow 0 3px 15px black
     z-index 1000
     li.name
       padding .375em
       border-bottom 1px solid #eee
-      color #999
+      color highlight
       &:hover
         cursor pointer
       .screen
@@ -89,36 +94,38 @@ p
         text-align center
         font-family 'Lemon', cursive
         color #333
-        text-shadow 0 -1px #ccc, 0 1px 0 #999
+        text-shadow 0 -1px highlight, 0 1px 0 lowlight
         cursor pointer
       .messages
         margin-top .5em
-        border-top   3px solid #999
-        border-left  3px solid #999
-        border-right 3px solid #999
+        border-top   3px solid lowlight
+        border-left  3px solid lowlight
+        border-right 3px solid lowlight
         border-top-left-radius  .5em
         border-top-right-radius .5em
         background-color white
-        box-shadow 0 2px 5px rgba(black, .2)
+        box-shadow 0 5px 10px black
         font-family 'Philosopher', sans-serif
         color #333
         padding .25em
         width 18.85em
+        background-color #eee
         li
           width 15em
+          text-shadow 0 1px 0 white
           &.self
             margin-left 4em
       .new.message
-        border-left   3px solid #999
-        border-right  3px solid #999
-        border-bottom 3px solid #999
+        border-left   3px solid lowlight
+        border-right  3px solid lowlight
+        border-bottom 3px solid lowlight
         border-bottom-left-radius  .5em
         border-bottom-right-radius .5em
         background-color white
-        box-shadow 0 2px 5px rgba(black, .2)
+        box-shadow 0 5px 10px black
         input
           border-bottom-left-radius .5em
-          width 24.3em
+          width 24.2em
           border none
           margin-left .6em
           font-family 'Pontano Sans', sans-serif
@@ -130,12 +137,15 @@ p
           border none
           font-family 'Pontano Sans', sans-serif
           letter-spacing 1px
+          border-left 1px solid #ddd
   .sign.in
-    absolute top, left
+    absolute top 0 left .5em
     padding .5em 1.5em
-    background linear-gradient(top, #aaa, #888)
+    background linear-gradient(top, #666, #222)
     text-shadow 0 -1px 0 #333
     color white
     font-family 'Pontano Sans', sans-serif
     text-decoration none
     letter-spacing 1px
+    line-height .75em
+    height 1em
