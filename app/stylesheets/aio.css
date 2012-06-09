@@ -200,6 +200,7 @@ p.capitalization.backstory a {
 #aio .chatting.with > li {
   display: inline-block;
   width: 19.69em;
+  margin-right: 1em;
 }
 #aio .chatting.with > li .human.name {
   width: 13.37em;
