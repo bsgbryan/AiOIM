@@ -157,6 +157,7 @@ p.capitalization.backstory a {
   width: 10em;
   margin: 0.125em;
   padding: 0 0.25em;
+  font-family: 'Pontano Sans', sans-serif;
 }
 #aio .chattable.users {
   position: absolute;
