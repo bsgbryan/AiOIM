@@ -101,7 +101,7 @@ function showMessage(data) {
         break
       }
 
-    if (tag > 0 && user > 0) {
+    if (tag > 0 && mention > 0) {
       if ($('[data-screen_name=' + message.user.screen_name + ']').length === 0)
         addChatFor(message.user.screen_name, message.user.name)
 
