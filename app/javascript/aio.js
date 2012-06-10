@@ -91,6 +91,20 @@ function getNewMessages() {
 
 function showMessage(data) {
   $(data).each(function(i, message) {
-    console.log(message.text)
+    var crop, user
+
+    for (var i = 0; i < message.hashtags.length; i++)
+      if (message.hashtags[i].text === 'AiOIM') {
+        crop = message.hashtags[i].indices[0]
+        break
+      }
+
+    for(var i = 0; i < message.user_mentions.length; i++)
+      if (message.user_mentions[i].screen_name === $.cookie('AiOID')) {
+        user = message.user_mentions[i].indices[1]
+        break
+      }
+    if (crop > 0 && user > 0)
+      $('[data-screen_name=' + $.cookie('AiOID') + '] .messages').append('<li class="other">' + message.text + '</li>')
   })
 }

@@ -111,9 +111,6 @@ exports.statuses = {
         usr.most_recent_tweet = tweets[0].id
         var messages = [ ]
 
-console.log('tweet zero', tweets[0].entities.hashtags)
-console.log('tweet zero', tweets[0].entities.user_mentions)
-
         for (var i = 0; i < tweets.length; i++) {
           var e = tweets[i].entities
           var h, u
@@ -121,16 +118,12 @@ console.log('tweet zero', tweets[0].entities.user_mentions)
           for (var j = 0; j < e.hashtags.length; j++)
             if (e.hashtags[j].text === 'AiOIM') {
 console.log('hashtag', e.hashtags[j].text)
-console.log('tweet hashtag match', tweets[i])
               h = true
               break
             }
 
-console.log('usr', usr.screen_name)
-
           for (var k = 0; k < e.user_mentions.length; k++)
             if (e.user_mentions[k].screen_name === usr.screen_name) {
-console.log('screen_name', usr.screen_name)
 console.log('tweet screen_name', e.user_mentions[k].screen_name)
               u = true
               break
