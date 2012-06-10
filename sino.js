@@ -106,12 +106,27 @@ exports.statuses = {
 
       usr.most_recent_tweet = tweets[0].id
       var messages = [ ]
+
 console.log('tweet zero', tweets[0].entities.hashtags)
+console.log('tweet zero', tweets[0].entities.user_mentions)
+
       for (var i = 0; i < tweets.length; i++) {
         var e = tweets[i].entities
+        var h, u
 
-        if (e.hashtags.indexOf('AiOIM') > -1 && e.user_mentions.indexOf(usr) > -1)
-          messages.push(tweets[i])
+        for (var j = 0; j < e.hashtags.length; j++)
+          if (e.hashtags[j].text === 'AiOIM') {
+            h = true
+            break
+          }
+
+        for (var k = 0; k < e.user_mentions.length; k++)
+          if (e.user_mentions[k].text === usr) {
+            u = true
+            break
+          }
+
+        if (h && u) messages.push(tweets[i])
       }
 
       res.send(messages)
