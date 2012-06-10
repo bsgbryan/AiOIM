@@ -84,40 +84,24 @@ function getNewMessages() {
 }
 
 function showMessage(data) {
-  console.log(data)
   $(data).each(function(i, message) {
     var tag, mention
     var h = message.entities.hashtags,
         m = message.entities.user_mentions
 
-    for (var i = 0; i < h.length; i++)
-      if (h[i].text === 'AiOIM') {
-        tag = h[i].indices[0]
-        break
-      }
-
-    for(var i = 0; i < m.length; i++)
-      if (m[i].screen_name === $.cookie('AiOID')) {
-        mention = m[i].indices[1]
-        break
-      }
+    if (h[h.length - 1].text === 'AiOIM') {
+      tag     = h[h.length - 1].indices[0]
+      mention = m[0]
+    }
 
     if (tag > 0) {
-      if ($('[data-screen_name=' + message.user.screen_name + ']').length === 0)
-        addChatFor(message.user.screen_name, message.user.name)
+      if ($('[data-screen_name=' + mention.screen_name + ']').length === 0)
+        addChatFor(mention.screen_name, mention.name)
 
-      var said = message.text.substring(0, tag),
-          person
+      var said   = message.text.substring(0, tag).substring(mention.screen_name.length),
+          person = mention.screen_name === $.cookie('AiOID') ? 'self' : 'other'
 
-      if (message.user.screen_name === $.cookie('AiOID')) {
-        said   = said.substring($.cookie('AiOID').length)
-        person = 'self'
-      } else {
-        said   = said.substring(mention)
-        person = 'other'
-      }
-
-      $('[data-screen_name=' + message.user.screen_name + '] .messages').
+      $('[data-screen_name=' + mention.screen_name + '] .messages').
         append('<li class="' + person + '">' + said + '</li>')
     }
   })
