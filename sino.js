@@ -3,7 +3,7 @@ var OAuth = require('oauth').OAuth,
 
 // Twitter urls
 var creds   = 'http://twitter.com/account/verify_credentials.json',
-    auth    = 'https://api.twitter.com/oauth/authorize?oauth_token=',
+    auth    = 'https://api.twitter.com/oauth/authenticate?oauth_token=',
     users   = 'https://api.twitter.com/1/users/search.json?q=',
     message = 'http://api.twitter.com/1/statuses/update.json',
     filter  = 'https://stream.twitter.com/1/statuses/filter.json',
