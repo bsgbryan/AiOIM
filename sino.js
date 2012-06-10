@@ -23,7 +23,6 @@ function oauth() {
 }
 
 function tweeter(req) {
-  console.log('twitter id', req.cookies.aioid)
   return tweeters[req.cookies.aioid]
 }
 
@@ -49,6 +48,8 @@ exports.token = {
 
     myauth.getOAuthAccessToken(req.session.token, req.session.secret, req.query.oauth_verifier,
       function (err, token, secret, results) {
+        console.log('authorization results', results)
+
         if (err) res.send(util.inspect(err), 500)
         else
           myauth.get(creds, token, secret, function (error, data, response) {
