@@ -103,8 +103,6 @@ exports.statuses = {
 
     get(home_timeline + since, req, res, function(data) {
 
-console.log('result', data)
-
       var tweets = JSON.parse(decodeURIComponent(data))
 
       if (tweets.length > 0) {
@@ -126,9 +124,11 @@ console.log('tweet hashtag match', tweets[i])
               break
             }
 
+console.log('usr', usr)
+
           for (var k = 0; k < e.user_mentions.length; k++)
             if (e.user_mentions[k].screen_name === usr) {
-console.log('screen_name', use)
+console.log('screen_name', usr)
 console.log('tweet screen_name', e.user_mentions[k].screen_name)
               u = true
               break
