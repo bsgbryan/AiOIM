@@ -93,6 +93,8 @@ function showMessage(data) {
   $(data).each(function(i, message) {
     var crop, user
 
+console.log(message)
+
     for (var i = 0; i < message.hashtags.length; i++)
       if (message.hashtags[i].text === 'AiOIM') {
         crop = message.hashtags[i].indices[0]
