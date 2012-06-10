@@ -95,7 +95,7 @@ function showMessage(data) {
         break
       }
 
-    for(var i = 0; i < u.length; i++)
+    for(var i = 0; i < m.length; i++)
       if (m[i].screen_name === $.cookie('AiOID')) {
         mention = m[i].indices[1]
         break
