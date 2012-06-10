@@ -70,7 +70,7 @@
     if ($.cookie('AiOID') === null)
       $('#aio .sign.in').removeClass('hidden')
     else {
-      setInterval("$(document).ready(function($) { $.get('/aio/statuses.home_timeline', function(data) { console.log(data) }) })", 3000)
+      setInterval(getNewMessages, 3000)
       $('#aio form.user.hidden').removeClass('hidden')
     }
 
@@ -82,3 +82,15 @@
       on('submit', '.chatting.with .user .new.message', sendMessage)
   }
 })(jQuery)
+
+function getNewMessages() {
+  $(document).ready(function($) {
+    $.getJSON('/aio/statuses.home_timeline', showMessage)
+  })
+}
+
+function showMessage(data) {
+  $(data).each(function(i, message) {
+    console.log(message.text)
+  })
+}
