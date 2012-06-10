@@ -148,6 +148,7 @@ exports.statuses = {
 
             if ((mentions(usr, tweets[i]) || authoredBy(usr, tweets[i])))
               if (usr.messages.indexOf(hash) < 0) {
+                console.log('message to return', tweets[i])
                 usr.messages.push(hash)
                 messages.push(tweets[i])
               }
