@@ -120,12 +120,16 @@ console.log('tweet zero', tweets[0].entities.user_mentions)
 
           for (var j = 0; j < e.hashtags.length; j++)
             if (e.hashtags[j].text === 'AiOIM') {
+console.log('hashtag', e.hashtags[j].text)
+console.log('tweet hashtag match', tweets[i])
               h = true
               break
             }
 
           for (var k = 0; k < e.user_mentions.length; k++)
             if (e.user_mentions[k].screen_name === usr) {
+console.log('screen_name', use)
+console.log('tweet screen_name', e.user_mentions[k].screen_name)
               u = true
               break
             }
