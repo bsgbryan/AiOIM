@@ -75,9 +75,9 @@ exports.token = {
 }
 
 function post(url, req, res) {
-  var usr = a(req)
+  var usr = tweeter(req)
 
-  usr.post(url, usr.token, usr.secret, null, null,
+  a(req).post(url, usr.token, usr.secret, null, null,
     function (error, data, response) {
       if (error) res.send(util.inspect(error), 500)
       else res.send(data)
@@ -85,12 +85,12 @@ function post(url, req, res) {
 }
 
 function get(url, req, res, cb) {
-  var usr = a(req)
+  var usr = tweeter(req)
 
   console.log('user token', usr.token)
   console.log('user secret', usr.secret)
 
-  usr.get(url, usr.token, usr.secret,
+  a(req).get(url, usr.token, usr.secret,
     function (error, data, response) {
       if (error) res.send(util.inspect(error), 500)
       else {
