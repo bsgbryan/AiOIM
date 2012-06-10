@@ -70,9 +70,9 @@
     if ($.cookie('AiOID') === null)
       $('#aio .sign.in').removeClass('hidden')
     else {
-      setInterval($.get('/aio/statuses.home_timeline', function(data) {
+      setInterval("$.get('/aio/statuses.home_timeline', function(data) {
         console.log(data)
-      }), 1500)
+      })", 1500)
       $('#aio form.user.hidden').removeClass('hidden')
     }
 
