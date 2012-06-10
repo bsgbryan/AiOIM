@@ -92,18 +92,18 @@ function getNewMessages() {
 function showMessage(data) {
   $(data).each(function(i, message) {
     var crop, user
+    var h = message.entities.hashtags,
+        u = message.entities.user_mentions
 
-console.log(message)
-
-    for (var i = 0; i < message.entities.hashtags.length; i++)
-      if (message.entities.hashtags[i].text === 'AiOIM') {
-        crop = message.hashtags[i].indices[0]
+    for (var i = 0; i < h.length; i++)
+      if (h[i].text === 'AiOIM') {
+        crop = h[i].indices[0]
         break
       }
 
-    for(var i = 0; i < message.entities.user_mentions.length; i++)
-      if (message.entities.user_mentions[i].screen_name === $.cookie('AiOID')) {
-        user = message.user_mentions[i].indices[1]
+    for(var i = 0; i < u.length; i++)
+      if (u[i].screen_name === $.cookie('AiOID')) {
+        user = u[i].indices[1]
         break
       }
     if (crop > 0 && user > 0)
