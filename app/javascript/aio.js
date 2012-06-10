@@ -99,7 +99,7 @@ function showMessage(data) {
         addChatFor(mention.screen_name, mention.name)
 
       var said   = message.text.substring(0, tag).substring(mention.screen_name.length),
-          person = mention.screen_name === $.cookie('AiOID') ? 'self' : 'other'
+          person = message.user.screen_name === $.cookie('AiOID') ? 'self' : 'other'
 
       $('[data-screen_name=' + mention.screen_name + '] .messages').
         append('<li class="' + person + '">' + said + '</li>')
