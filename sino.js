@@ -23,6 +23,7 @@ function oauth() {
 }
 
 function tweeter(req) {
+  console.log('twitter id', req.cookies.aioid)
   return tweeters[req.cookies.aioid]
 }
 
