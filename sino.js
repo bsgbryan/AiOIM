@@ -59,6 +59,8 @@ exports.token = {
 
               tweeters[screen_name] = { auth: myauth }
 
+              tweeters[screen_name].screen_name = screen_name
+
               res.redirect('/')
             }
           })
@@ -124,11 +126,11 @@ console.log('tweet hashtag match', tweets[i])
               break
             }
 
-console.log('usr', usr)
+console.log('usr', usr.screen_name)
 
           for (var k = 0; k < e.user_mentions.length; k++)
-            if (e.user_mentions[k].screen_name === usr) {
-console.log('screen_name', usr)
+            if (e.user_mentions[k].screen_name === usr.screen_name) {
+console.log('screen_name', usr.screen_name)
 console.log('tweet screen_name', e.user_mentions[k].screen_name)
               u = true
               break
