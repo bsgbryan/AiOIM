@@ -106,7 +106,8 @@ function showMessage(data) {
       if ($('[data-screen_name=' + message.user.screen_name + ']').length === 0)
         addChatFor(message.user.screen_name, message.user.name)
 
-      var person
+      var said = message.text,
+          person
 
       if (message.user.screen_name === $.cookie('AiOID')) {
         said   = said.substring(0, tag - $.cookie('AiOID').length - 1)
