@@ -95,14 +95,14 @@ function showMessage(data) {
 
 console.log(message)
 
-    for (var i = 0; i < message.hashtags.length; i++)
-      if (message.hashtags[i].text === 'AiOIM') {
+    for (var i = 0; i < message.entities.hashtags.length; i++)
+      if (message.entities.hashtags[i].text === 'AiOIM') {
         crop = message.hashtags[i].indices[0]
         break
       }
 
-    for(var i = 0; i < message.user_mentions.length; i++)
-      if (message.user_mentions[i].screen_name === $.cookie('AiOID')) {
+    for(var i = 0; i < message.entities.user_mentions.length; i++)
+      if (message.entities.user_mentions[i].screen_name === $.cookie('AiOID')) {
         user = message.user_mentions[i].indices[1]
         break
       }
