@@ -89,8 +89,6 @@ function showMessage(data) {
     var h = message.entities.hashtags,
         u = message.entities.user_mentions
 
-console.log(message)
-
     for (var i = 0; i < h.length; i++)
       if (h[i].text === 'AiOIM') {
         crop = h[i].indices[0]

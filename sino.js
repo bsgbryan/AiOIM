@@ -1,5 +1,6 @@
 var OAuth = require('oauth').OAuth,
-    util  = require('util')
+    util  = require('util'),
+    sha1  = require('./app/sha1')
 
 // Twitter urls
 var creds   = 'http://twitter.com/account/verify_credentials.json',
@@ -48,10 +49,7 @@ exports.token = {
 
     myauth.getOAuthAccessToken(req.session.token, req.session.secret, req.query.oauth_verifier,
       function (err, token, secret, results) {
-        console.log('authorization results', results)
-        console.log('oauth token', token)
-        console.log('oauth secret', secret)
-
+        
         if (err) res.send(util.inspect(err), 500)
         else
           myauth.get(creds, token, secret, function (error, data, response) {
@@ -64,8 +62,13 @@ exports.token = {
               tweeters[screen_name] = { auth: myauth }
 
               tweeters[screen_name].screen_name = screen_name
-              tweeters[screen_name].token       = token
-              tweeters[screen_name].secret      = secret
+
+              // These two values are what we use to interact with Twitter on our user's behalf
+              tweeters[screen_name].token  = token
+              tweeters[screen_name].secret = secret
+
+              // Where we store old tweets to we don't keep sending them every time
+              tweeters[screen_name].archive = [ ]              
 
               res.redirect('/')
             }
@@ -86,9 +89,6 @@ function post(url, req, res) {
 
 function get(url, req, res, cb) {
   var usr = tweeter(req)
-
-  console.log('user token', usr.token)
-  console.log('user secret', usr.secret)
 
   a(req).get(url, usr.token, usr.secret,
     function (error, data, response) {
@@ -113,8 +113,7 @@ exports.statuses = {
   // chat messages. It will not scale, however.
   home_timeline: function(req, res) {
     var usr   = tweeter(req)
-    var last  = usr.most_recent_tweet
-    var since = typeof last === 'undefined' ? '' : '&since_id=' + last
+    var since = typeof usr.most_recent_tweet === 'undefined' ? '' : '&since_id=' + usr.most_recent_tweet
 
     get(home_timeline + since, req, res, function(data) {
 
@@ -141,8 +140,12 @@ exports.statuses = {
               break
             }
 
-          if (h === true && u === true)
+          var hash = sha1.hash(tweets[i].text)
+
+          if (h === true && u === true && use.archive.indexOf(hash) < 0) {
+            usr.archive.push(hash)
             messages.push(tweets[i])
+          }
         }
 
         res.send(messages)
