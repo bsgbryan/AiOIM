@@ -126,7 +126,7 @@ exports.statuses = {
         for (var i = 0; i < tweets.length; i++) {
           var e = tweets[i].entities,
               h = false, 
-              u = false
+              m = false
 
           for (var j = 0; j < e.hashtags.length; j++)
             if (e.hashtags[j].text === 'AiOIM') {
@@ -136,15 +136,20 @@ exports.statuses = {
 
           for (var k = 0; k < e.user_mentions.length; k++)
             if (e.user_mentions[k].screen_name === usr.screen_name) {
+              m = true
+              break
+            } else if (tweets[i].user.screen_name === usr.screen_name) {
               u = true
               break
             }
 
-          var hash = sha1.hash(tweets[i].text)
+          if (h === true) {
+            var hash = sha1.hash(tweets[i].text)
 
-          if (h === true && u === true && usr.messages.indexOf(hash) < 0) {
-            usr.messages.push(hash)
-            messages.push(tweets[i])
+            if ((m === true || u === true) && usr.messages.indexOf(hash) < 0) {
+              usr.messages.push(hash)
+              messages.push(tweets[i])
+            }
           }
         }
 

@@ -85,9 +85,9 @@ function getNewMessages() {
 
 function showMessage(data) {
   $(data).each(function(i, message) {
-    var tag, user
+    var tag, mention
     var h = message.entities.hashtags,
-        u = message.entities.user_mentions
+        m = message.entities.user_mentions
 
     for (var i = 0; i < h.length; i++)
       if (h[i].text === 'AiOIM') {
@@ -96,8 +96,8 @@ function showMessage(data) {
       }
 
     for(var i = 0; i < u.length; i++)
-      if (u[i].screen_name === $.cookie('AiOID')) {
-        user  = u[i].indices[1]
+      if (m[i].screen_name === $.cookie('AiOID')) {
+        mention = m[i].indices[1]
         break
       }
 
@@ -105,15 +105,14 @@ function showMessage(data) {
       if ($('[data-screen_name=' + message.user.screen_name + ']').length === 0)
         addChatFor(message.user.screen_name, message.user.name)
 
-      var said = message.text.substring(user + 1)
+      var said   = message.text.substring(mention + 1),
+          person = message.user.screen_name === $.cookie('AiOID') ? 'self' : 'other',
+          said   = said.substring(0, tag - mention - 2)
 
-      said = said.substring(0, tag - user - 2)
 
-      console.log('tag', tag)
-      console.log('said "%s"', said)
 
       $('[data-screen_name=' + message.user.screen_name + '] .messages').
-        append('<li class="other">' + said + '</li>')
+        append('<li class="' + person + '">' + said + '</li>')
     }
   })
 }
