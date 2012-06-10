@@ -112,27 +112,24 @@ exports.statuses = {
         var messages = [ ]
 
         for (var i = 0; i < tweets.length; i++) {
-          var e = tweets[i].entities
-          var h, u
+          var e = tweets[i].entities,
+              h = false, 
+              u = false
 
           for (var j = 0; j < e.hashtags.length; j++)
             if (e.hashtags[j].text === 'AiOIM') {
-console.log('hashtag', e.hashtags[j].text)
               h = true
               break
             }
 
           for (var k = 0; k < e.user_mentions.length; k++)
             if (e.user_mentions[k].screen_name === usr.screen_name) {
-console.log('tweet screen_name', e.user_mentions[k].screen_name)
               u = true
               break
             }
 
-          if (h === true && u === true) {
-            console.log('adding this tweet', tweets[i])
+          if (h === true && u === true)
             messages.push(tweets[i])
-          }
         }
 
         res.send(messages)
