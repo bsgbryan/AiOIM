@@ -85,13 +85,13 @@ function getNewMessages() {
 
 function showMessage(data) {
   $(data).each(function(i, message) {
-    var crop, user
+    var tag, user
     var h = message.entities.hashtags,
         u = message.entities.user_mentions
 
     for (var i = 0; i < h.length; i++)
       if (h[i].text === 'AiOIM') {
-        crop = h[i].indices[0]
+        tag = h[i].indices[0]
         break
       }
 
@@ -101,12 +101,18 @@ function showMessage(data) {
         break
       }
 
-    if (crop > 0 && user > 0) {
+    if (tag > 0 && user > 0) {
       if ($('[data-screen_name=' + message.user.screen_name + ']').length === 0)
         addChatFor(message.user.screen_name, message.user.name)
 
+      var said = message.text.substring(++user)
+
+      said = said.substring(0, --tag)
+
+      console.log('said "%s"', said)
+
       $('[data-screen_name=' + message.user.screen_name + '] .messages').
-        append('<li class="other">' + message.text + '</li>')
+        append('<li class="other">' + said + '</li>')
     }
   })
 }
