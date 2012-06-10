@@ -103,10 +103,10 @@ exports.statuses = {
 
     get(home_timeline + since, req, res, function(data) {
       var tweets = JSON.parse(decodeURIComponent(data))
-
+      
       usr.most_recent_tweet = tweets[0].id
       var messages = [ ]
-      
+console.log('tweet zero', tweets[0])
       for (var tweet in tweets) {
         var e = tweet.entities
 
