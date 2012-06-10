@@ -31,21 +31,14 @@
     })
   }
 
-  function messageSent(data) {
-    console.log(data)
-    console.log($('#' + Sha1.hash(decodeURIComponent(data.text))))
-
-    $('#' + Sha1.hash(decodeURIComponent(data.text))).find('.messages').append('<li class="self">' + data.text + '</li>')
-  }
-
   function sendMessage(event) {
     var user    = $(event.currentTarget).parents('li').data('screen_name'), 
         message = $(event.currentTarget).find('input').val(),
         tweet   = '@' + user + ' ' + message + ' #AiOIM'
 
-    $(event.currentTarget).parent().attr('id', Sha1.hash(tweet))
+    $.post('/aio/statuses.update', { status : tweet })
 
-    $.post('/aio/statuses.update', { status : tweet }, messageSent, 'json')
+    $(event.currentTarget).find('input').val('')
 
     return false
   }
