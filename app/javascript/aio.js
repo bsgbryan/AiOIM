@@ -105,9 +105,9 @@ function showMessage(data) {
       if ($('[data-screen_name=' + message.user.screen_name + ']').length === 0)
         addChatFor(message.user.screen_name, message.user.name)
 
-      var said = message.text.substring(++user)
+      var said = message.text.substring(user + 1)
 
-      said = said.substring(0, tag - 1)
+      said = said.substring(0, tag - user - 1)
 
       console.log('tag', tag)
       console.log('said "%s"', said)
