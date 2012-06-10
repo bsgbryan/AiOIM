@@ -49,6 +49,8 @@ exports.token = {
     myauth.getOAuthAccessToken(req.session.token, req.session.secret, req.query.oauth_verifier,
       function (err, token, secret, results) {
         console.log('authorization results', results)
+        console.log('oauth token', token)
+        console.log('oauth secret', secret)
 
         if (err) res.send(util.inspect(err), 500)
         else
