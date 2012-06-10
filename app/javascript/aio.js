@@ -3,17 +3,11 @@
 
   function initializeChat(event) {
 
-    var selected = $(event.currentTarget).parent()
+    var selected    = $(event.currentTarget).parent(),
+        screen_name = selected.find('.screen').text(),
+        human_name  = selected.find('.human').text()
 
-    $('#aio .chatting.with').append(
-      '<li class="user" data-screen_name="' + selected.find('.screen').text() + '">' +
-        '<h3 class="human name">' + selected.find('.human').text() + '</h3>' +
-        '<ol class="messages"></ol>' +
-        '<form class="new message">' +
-          '<input type="text" name="message" placeholder="say yes">' +
-          '<button type="submit">say</button>' +
-        '</form>' +
-      '</li>').removeClass('hidden')
+    addChatFor(screen_name, human_name)
 
     $('#aio .chattable.users').addClass('hidden')
   }
@@ -95,6 +89,8 @@ function showMessage(data) {
     var h = message.entities.hashtags,
         u = message.entities.user_mentions
 
+console.log(message)
+
     for (var i = 0; i < h.length; i++)
       if (h[i].text === 'AiOIM') {
         crop = h[i].indices[0]
@@ -106,7 +102,21 @@ function showMessage(data) {
         user = u[i].indices[1]
         break
       }
-    if (crop > 0 && user > 0)
-      $('[data-screen_name=' + $.cookie('AiOID') + '] .messages').append('<li class="other">' + message.text + '</li>')
+    // if (crop > 0 && user > 0)
+    //   if ($('[data-screen_name=' + $.cookie('AiOID') + ']').length === 0)
+    //     addChatFor()
+    //     $('[data-screen_name=' + $.cookie('AiOID') + '] .messages').append('<li class="other">' + message.text + '</li>')
   })
+}
+
+function addChatFor(screen_name, human_name) {
+  $('#aio .chatting.with').append(
+    '<li class="user" data-screen_name="' + screen_name + '">' +
+      '<h3 class="human name">' + human_name + '</h3>' +
+      '<ol class="messages"></ol>' +
+      '<form class="new message">' +
+        '<input type="text" name="message" placeholder="say yes">' +
+        '<button type="submit">say</button>' +
+      '</form>' +
+    '</li>').removeClass('hidden')
 }
