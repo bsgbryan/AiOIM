@@ -103,15 +103,15 @@ exports.statuses = {
 
     get(home_timeline + since, req, res, function(data) {
       var tweets = JSON.parse(decodeURIComponent(data))
-      
+
       usr.most_recent_tweet = tweets[0].id
       var messages = [ ]
-console.log('tweet zero', tweets[0])
-      for (var tweet in tweets) {
-        var e = tweet.entities
+console.log('tweet zero', tweets[0].entities)
+      for (var i = 0; i < tweets.length; i++) {
+        var e = tweets[i].entities
 
         if (e.hashtags.indexOf('AiOIM') > -1 && e.user_mentions.indexOf(usr) > -1)
-          messages.push(tweet)
+          messages.push(tweets[i])
       }
 
       res.send(messages)
