@@ -91,7 +91,7 @@ function showMessage(data) {
 
     if (h[h.length - 1].text === 'AiOIM') {
       tag     = h[h.length - 1].indices[0]
-      mention = m[0].screen_name === $.cookie('AiOID') ? message.user.screen_name : m[0].screen_name
+      mention = m[0].screen_name === $.cookie('AiOID') ? message.user : m[0]
     }
 
     if (tag > 0) {
