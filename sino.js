@@ -130,7 +130,10 @@ console.log('tweet zero', tweets[0].entities.user_mentions)
               break
             }
 
-          if (h === true && u === true) messages.push(tweets[i])
+          if (h === true && u === true) {
+            console.log('adding this tweet', tweets[i])
+            messages.push(tweets[i])
+          }
         }
 
         res.send(messages)
