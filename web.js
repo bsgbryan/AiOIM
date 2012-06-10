@@ -43,7 +43,7 @@ app.get('/aio/users.search', function (req, res) {
 })
 
 app.post('/aio/statuses.update', function (req, res) {
-  SiNO.statuses.update(req.body.status, res)
+  SiNO.statuses.update(req.body.status, req, res)
 })
 
 app.get('/aio/statuses.home_timeline', function (req, res) {

@@ -90,7 +90,7 @@ exports.users = {
 }
 
 exports.statuses = {
-  update: function(sts, res) { 
+  update: function(sts, req, res) { 
     post(message + '?status=' + encodeURIComponent(sts), req, res)
   },
 
