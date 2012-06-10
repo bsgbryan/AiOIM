@@ -110,7 +110,7 @@ exports.statuses = {
 
         if (e.hashtags.indexOf('AiOIM') > -1 && e.user_mentions.indexOf(usr) > -1)
           messages.push(tweet)
-      })
+      }
 
       res.send(messages)
     })
