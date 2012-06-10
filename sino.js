@@ -106,7 +106,7 @@ exports.statuses = {
 
       usr.most_recent_tweet = tweets[0].id
       var messages = [ ]
-console.log('tweet zero', tweets[0].entities)
+console.log('tweet zero', tweets[0].entities.hashtags)
       for (var i = 0; i < tweets.length; i++) {
         var e = tweets[i].entities
 
