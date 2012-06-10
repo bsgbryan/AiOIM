@@ -243,7 +243,7 @@ p.capitalization.backstory a {
 #aio .chatting.with > li .messages li {
   width: 15em;
   text-shadow: 0 1px 0 #fff;
-  padding: 0.5em 0.25em;
+  padding: 0.25em 0.5em;
 }
 #aio .chatting.with > li .messages li.self {
   margin-left: 4em;
