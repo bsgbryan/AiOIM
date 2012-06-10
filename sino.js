@@ -87,6 +87,9 @@ function post(url, req, res) {
 function get(url, req, res, cb) {
   var usr = a(req)
 
+  console.log('user token', usr.token)
+  console.log('user secret', usr.secret)
+
   usr.get(url, usr.token, usr.secret,
     function (error, data, response) {
       if (error) res.send(util.inspect(error), 500)
