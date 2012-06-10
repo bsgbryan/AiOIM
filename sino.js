@@ -102,6 +102,9 @@ exports.statuses = {
     var since = typeof last === 'undefined' ? '' : '&since_id=' + last
 
     get(home_timeline + since, req, res, function(data) {
+
+console.log('result', data)
+
       var tweets = JSON.parse(decodeURIComponent(data))
 
       usr.most_recent_tweet = tweets[0].id
