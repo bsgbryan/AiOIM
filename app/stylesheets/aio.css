@@ -212,7 +212,7 @@ p.capitalization.backstory a {
   width: 19.69em;
   margin-right: 1em;
   vertical-align: top;
-  padding: 0.25em;
+  padding: 0.5em 0.25em;
 }
 #aio .chatting.with > li .human.name {
   width: 13.37em;

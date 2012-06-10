@@ -57,7 +57,7 @@
     if ($.cookie('AiOID') === null)
       $('#aio .sign.in').removeClass('hidden')
     else {
-      setInterval(getNewMessages, 3000)
+      setInterval(getNewMessages, 1000)
       $('#aio form.user.hidden').removeClass('hidden')
     }
 
