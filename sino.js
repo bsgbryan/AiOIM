@@ -68,7 +68,7 @@ exports.token = {
               tweeters[screen_name].secret = secret
 
               // Where we store old tweets to we don't keep sending them every time
-              tweeters[screen_name].archive = [ ]              
+              tweeters[screen_name].messages = [ ]              
 
               res.redirect('/')
             }
@@ -142,8 +142,8 @@ exports.statuses = {
 
           var hash = sha1.hash(tweets[i].text)
 
-          if (h === true && u === true && use.archive.indexOf(hash) < 0) {
-            usr.archive.push(hash)
+          if (h === true && u === true && usr.messages.indexOf(hash) < 0) {
+            usr.messages.push(hash)
             messages.push(tweets[i])
           }
         }
