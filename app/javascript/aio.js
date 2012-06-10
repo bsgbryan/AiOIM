@@ -104,7 +104,7 @@ console.log(message)
       }
 
     if (crop > 0 && user > 0) {
-      if ($('[data-screen_name=' + sname + ']').length === 0)
+      if ($('[data-screen_name=' + message.user.screen_name + ']').length === 0)
         addChatFor(message.user.screen_name, message.user.name)
 
       $('[data-screen_name=' + message.user.screen_name + '] .messages').
