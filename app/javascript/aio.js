@@ -103,6 +103,9 @@ function showMessage(data) {
       }
 
     if (tag > 0) {
+      if ($('[data-screen_name=' + message.user.screen_name + ']').length === 0)
+        addChatFor(message.user.screen_name, message.user.name)
+
       var said = message.text.substring(0, tag),
           person
 
