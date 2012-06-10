@@ -104,6 +104,26 @@ exports.users = {
   search: function(name, req, res) { get(users + name, req, res) }
 }
 
+function isAiOIM(tweet) {
+  for (var j = 0; j < tweet.entities.hashtags.length; j++)
+    if (tweet.entities.hashtags[j].text === 'AiOIM')
+      return true
+
+  return false
+}
+
+function mentions(usr, tweet) {
+  for (var k = 0; k < tweet.entities.user_mentions.length; k++)
+    if (tweet.entities.user_mentions[k].screen_name === usr.screen_name)
+      return true
+
+  return false
+}
+
+function authoredBy(usr, tweet) {
+  return tweet.user.screen_name === usr.screen_name
+}
+
 exports.statuses = {
   update: function(sts, req, res) { 
     post(message + '?status=' + encodeURIComponent(sts), req, res)
@@ -116,42 +136,22 @@ exports.statuses = {
     var since = typeof usr.most_recent_tweet === 'undefined' ? '' : '&since_id=' + usr.most_recent_tweet
 
     get(home_timeline + since, req, res, function(data) {
-
       var tweets = JSON.parse(decodeURIComponent(data))
 
       if (tweets.length > 0) {
         usr.most_recent_tweet = tweets[0].id
         var messages = [ ]
 
-        for (var i = 0; i < tweets.length; i++) {
-          var e = tweets[i].entities,
-              h = false, 
-              m = false
-
-          for (var j = 0; j < e.hashtags.length; j++)
-            if (e.hashtags[j].text === 'AiOIM') {
-              h = true
-              break
-            }
-
-          for (var k = 0; k < e.user_mentions.length; k++)
-            if (e.user_mentions[k].screen_name === usr.screen_name) {
-              m = true
-              break
-            } else if (tweets[i].user.screen_name === usr.screen_name) {
-              u = true
-              break
-            }
-
-          if (h === true) {
+        for (var i = 0; i < tweets.length; i++)
+          if (isAiOIM(tweets[i])) {
             var hash = sha1.hash(tweets[i].text)
 
-            if ((m === true || u === true) && usr.messages.indexOf(hash) < 0) {
-              usr.messages.push(hash)
-              messages.push(tweets[i])
-            }
+            if ((mentions(usr, tweets[i]) || authoredBy(usr, tweets[i])))
+              if (usr.messages.indexOf(hash) < 0) {
+                usr.messages.push(hash)
+                messages.push(tweets[i])
+              }
           }
-        }
 
         res.send(messages)
       } else
