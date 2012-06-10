@@ -121,7 +121,7 @@ console.log('tweet zero', tweets[0].entities.user_mentions)
           }
 
         for (var k = 0; k < e.user_mentions.length; k++)
-          if (e.user_mentions[k].text === usr) {
+          if (e.user_mentions[k].screen_name === usr) {
             u = true
             break
           }
