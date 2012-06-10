@@ -84,10 +84,11 @@ function getNewMessages() {
 }
 
 function showMessage(data) {
-  $(data).each(function(i, message) {
-    var tag, mention
-    var h = message.entities.hashtags,
-        m = message.entities.user_mentions
+  for (var i = data.length - 1; i >= 0; i--) {
+    var message = data[i],
+        h       = message.entities.hashtags,
+        m       = message.entities.user_mentions,
+        tag, mention
 
     if (h[h.length - 1].text === 'AiOIM') {
       tag     = h[h.length - 1].indices[0]
@@ -98,13 +99,13 @@ function showMessage(data) {
       if ($('[data-screen_name=' + mention.screen_name + ']').length === 0)
         addChatFor(mention.screen_name, mention.name)
 
-      var said   = message.text.substring(0, tag).substring(mention.screen_name.length),
+      var said   = message.text.substring(0, tag).substring(message.user.screen_name.length + 2),
           person = message.user.screen_name === $.cookie('AiOID') ? 'self' : 'other'
 
       $('[data-screen_name=' + mention.screen_name + '] .messages').
         append('<li class="' + person + '">' + said + '</li>')
     }
-  })
+  }
 }
 
 function addChatFor(screen_name, human_name) {
