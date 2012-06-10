@@ -88,18 +88,19 @@ function showMessage(data) {
     var message = data[i],
         h       = message.entities.hashtags,
         m       = message.entities.user_mentions,
-        tag, mention
+        tag, mention, to
 
     if (h[h.length - 1].text === 'AiOIM') {
       tag     = h[h.length - 1].indices[0]
       mention = m[0].screen_name === $.cookie('AiOID') ? message.user : m[0]
+      to      = m[0].screen_name
     }
 
     if (tag > 0) {
       if ($('[data-screen_name=' + mention.screen_name + ']').length === 0)
         addChatFor(mention.screen_name, mention.name)
 
-      var said   = message.text.substring(0, tag).substring(message.user.screen_name.length + 2),
+      var said   = message.text.substring(0, tag).substring(to.length),
           person = message.user.screen_name === $.cookie('AiOID') ? 'self' : 'other'
 
       $('[data-screen_name=' + mention.screen_name + '] .messages').
