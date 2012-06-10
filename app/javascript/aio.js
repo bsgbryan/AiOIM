@@ -84,6 +84,7 @@ function getNewMessages() {
 }
 
 function showMessage(data) {
+  console.log(data)
   $(data).each(function(i, message) {
     var tag, mention
     var h = message.entities.hashtags,
