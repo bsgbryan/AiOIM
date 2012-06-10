@@ -105,7 +105,7 @@ exports.statuses = {
       usr.most_recent_tweet = tweets[0].id
       var messages = [ ]
 
-      tweets.forEach(function (tweet) {
+      for (var tweet in tweets) {
         var e = tweet.entities
 
         if (e.hashtags.indexOf('AiOIM') > -1 && e.user_mentions.indexOf(usr) > -1)
