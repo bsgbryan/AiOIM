@@ -107,7 +107,7 @@ function showMessage(data) {
 
       var said = message.text.substring(user + 1)
 
-      said = said.substring(0, tag - user)
+      said = said.substring(0, tag - user - 2)
 
       console.log('tag', tag)
       console.log('said "%s"', said)
