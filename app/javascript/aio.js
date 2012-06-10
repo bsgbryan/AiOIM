@@ -102,15 +102,19 @@ function showMessage(data) {
         break
       }
 
-    if (tag > 0 && mention > 0) {
+    if (tag > 0) {
       if ($('[data-screen_name=' + message.user.screen_name + ']').length === 0)
         addChatFor(message.user.screen_name, message.user.name)
 
-      var said   = message.text.substring(mention + 1),
-          person = message.user.screen_name === $.cookie('AiOID') ? 'self' : 'other',
-          said   = said.substring(0, tag - mention - 2)
+      var person
 
-
+      if (message.user.screen_name === $.cookie('AiOID')) {
+        said   = said.substring(0, tag - $.cookie('AiOID').length - 1)
+        person = 'self'
+      } else {
+        said   = said.substring(0, tag - mention - 2)
+        person = 'other'
+      }
 
       $('[data-screen_name=' + message.user.screen_name + '] .messages').
         append('<li class="' + person + '">' + said + '</li>')
