@@ -64,6 +64,8 @@ exports.token = {
               tweeters[screen_name] = { auth: myauth }
 
               tweeters[screen_name].screen_name = screen_name
+              tweeters[screen_name].token       = token
+              tweeters[screen_name].secret      = secret
 
               res.redirect('/')
             }
@@ -73,7 +75,9 @@ exports.token = {
 }
 
 function post(url, req, res) {
-  a(req).post(url, process.env.TwitterAccessToken, process.env.TwitterAccessTokenSecret, null, null,
+  var usr = a(req)
+
+  usr.post(url, usr.token, usr.secret, null, null,
     function (error, data, response) {
       if (error) res.send(util.inspect(error), 500)
       else res.send(data)
@@ -81,7 +85,9 @@ function post(url, req, res) {
 }
 
 function get(url, req, res, cb) {
-  a(req).get(url, process.env.TwitterAccessToken, process.env.TwitterAccessTokenSecret,
+  var usr = a(req)
+
+  usr.get(url, usr.token, usr.secret,
     function (error, data, response) {
       if (error) res.send(util.inspect(error), 500)
       else {
