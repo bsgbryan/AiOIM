@@ -107,8 +107,9 @@ function showMessage(data) {
 
       var said = message.text.substring(++user)
 
-      said = said.substring(0, --tag)
+      said = said.substring(0, tag - 1)
 
+      console.log('tag', tag)
       console.log('said "%s"', said)
 
       $('[data-screen_name=' + message.user.screen_name + '] .messages').
