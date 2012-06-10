@@ -107,32 +107,35 @@ console.log('result', data)
 
       var tweets = JSON.parse(decodeURIComponent(data))
 
-      usr.most_recent_tweet = tweets[0].id
-      var messages = [ ]
+      if (tweets.length > 0) {
+        usr.most_recent_tweet = tweets[0].id
+        var messages = [ ]
 
 console.log('tweet zero', tweets[0].entities.hashtags)
 console.log('tweet zero', tweets[0].entities.user_mentions)
 
-      for (var i = 0; i < tweets.length; i++) {
-        var e = tweets[i].entities
-        var h, u
+        for (var i = 0; i < tweets.length; i++) {
+          var e = tweets[i].entities
+          var h, u
 
-        for (var j = 0; j < e.hashtags.length; j++)
-          if (e.hashtags[j].text === 'AiOIM') {
-            h = true
-            break
-          }
+          for (var j = 0; j < e.hashtags.length; j++)
+            if (e.hashtags[j].text === 'AiOIM') {
+              h = true
+              break
+            }
 
-        for (var k = 0; k < e.user_mentions.length; k++)
-          if (e.user_mentions[k].screen_name === usr) {
-            u = true
-            break
-          }
+          for (var k = 0; k < e.user_mentions.length; k++)
+            if (e.user_mentions[k].screen_name === usr) {
+              u = true
+              break
+            }
 
-        if (h === true && u === true) messages.push(tweets[i])
-      }
+          if (h === true && u === true) messages.push(tweets[i])
+        }
 
-      res.send(messages)
+        res.send(messages)
+      } else
+        res.send()
     })
   },
 
