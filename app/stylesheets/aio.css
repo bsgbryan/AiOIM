@@ -212,6 +212,7 @@ p.capitalization.backstory a {
   width: 19.69em;
   margin-right: 1em;
   vertical-align: top;
+  padding: 0.25em;
 }
 #aio .chatting.with > li .human.name {
   width: 13.37em;
@@ -246,6 +247,8 @@ p.capitalization.backstory a {
 }
 #aio .chatting.with > li .messages li.self {
   margin-left: 4em;
+  color: #999;
+  text-shadow: none;
 }
 #aio .chatting.with > li .new.message {
   border-left: 3px solid #555;

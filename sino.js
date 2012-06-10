@@ -135,6 +135,8 @@ exports.statuses = {
     var usr   = tweeter(req)
     var since = typeof usr.most_recent_tweet === 'undefined' ? '' : '&since_id=' + usr.most_recent_tweet
 
+    console.log('timeline url', home_timeline + since)
+
     get(home_timeline + since, req, res, function(data) {
       var tweets = JSON.parse(decodeURIComponent(data))
 
@@ -148,7 +150,6 @@ exports.statuses = {
 
             if ((mentions(usr, tweets[i]) || authoredBy(usr, tweets[i])))
               if (usr.messages.indexOf(hash) < 0) {
-                console.log('message to return', tweets[i])
                 usr.messages.push(hash)
                 messages.push(tweets[i])
               }
