@@ -158,7 +158,7 @@ exports.statuses = {
     var twit = new TwitterNode({
       user: 'bsgbryan', 
       password: 'j6M24a3u#ubufuch',
-      host: 'bryanmaynard.me',
+      host: 'http://falling-samurai-7438.herokuapp.com/',
       port: 80,
       track: [ 'AiOIM' ],
     });
