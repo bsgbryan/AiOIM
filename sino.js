@@ -157,10 +157,8 @@ exports.statuses = {
 
     // you can pass args to create() or set them on the TwitterNode instance
     var twit = new TwitterNode({
-      user: process.env.APIGEE_USER_NAME, 
-      password: process.env.APIGEE_USER_PASSWORD,
-      host: process.env.APIGEE_TWITTER_API_ENDPOINT,
-      port: 80,
+      user: 'bsgbryan', 
+      password: 'j6M24a3u#ubufuch',
       track: [ 'AiOIM' ],
     });
 
