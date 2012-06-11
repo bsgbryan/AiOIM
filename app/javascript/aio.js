@@ -38,6 +38,9 @@
 
     $.post('/aio/statuses.update', { status : tweet })
 
+    $('[data-screen_name=' + user + '] .messages').
+      append('<li class="self">' + message + '</li>')
+
     $(event.currentTarget).find('input').val('')
 
     return false
@@ -94,11 +97,18 @@ function showMessage(data) {
         if ($('[data-screen_name=' + mention.screen_name + ']').length === 0)
           addChatFor(mention.screen_name, mention.name)
 
-        var said   = message.text.substring(0, tag).substring(to.length + 2),
-            person = message.user.screen_name === $.cookie('AiOID') ? 'self' : 'other'
+        var said     = message.text.substring(0, tag).substring(to.length + 2),
+            person   = message.user.screen_name === $.cookie('AiOID') ? 'self' : 'other',
+            present  = false
+            messages = $('[data-screen_name=' + mention.screen_name + '] .messages li')
 
-        $('[data-screen_name=' + mention.screen_name + '] .messages').
-          append('<li class="' + person + '">' + said + '</li>')
+        for (var j = 0; j < messages.length; j++)
+          if (said === msg.text())
+            present = true
+
+        if (present === false)
+          $('[data-screen_name=' + mention.screen_name + '] .messages').
+            append('<li class="' + person + '">' + said + '</li>')
       }
     }
 }
