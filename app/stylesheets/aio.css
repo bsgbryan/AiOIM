@@ -231,12 +231,11 @@ p.capitalization.backstory a {
   border-right: 3px solid #555;
   border-top-left-radius: 0.25em;
   border-top-right-radius: 0.25em;
-  background-color: #fff;
+  background-color: transparent;
   -webkit-box-shadow: 0 5px 10px #000;
   box-shadow: 0 5px 10px #000;
   font-family: 'Philosopher', sans-serif;
   color: #333;
-  padding: 0.25em;
   width: 18.85em;
   background-color: #eee;
   overflow-y: hidden;
