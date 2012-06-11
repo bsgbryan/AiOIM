@@ -153,7 +153,7 @@ exports.statuses = {
   filter: function(req, res) {
     console.log('inside filter')
 
-    var TwitterNode = require('./app/twitter-node').TwitterNode
+    var TwitterNode = require('./app/twitter-node/index').TwitterNode
 
     // you can pass args to create() or set them on the TwitterNode instance
     var twit = new TwitterNode({
