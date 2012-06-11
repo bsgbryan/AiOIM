@@ -163,9 +163,11 @@ exports.statuses = {
         console.log('twitter stream data', data)
       })
       stream.on('error', function(data) {
-        console.log('twitter stream error', data)
+        console.log('twitter stream error', arguments)
       })
     })
+
+    res.send()
 
     // var usr   = tweeter(req)
 
