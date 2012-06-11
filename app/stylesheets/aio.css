@@ -209,7 +209,7 @@ p.capitalization.backstory a {
 }
 #aio .chatting.with > li {
   display: inline-block;
-  width: 19.69em;
+  width: 19.2em;
   margin-right: 1em;
   vertical-align: top;
 }
@@ -231,13 +231,12 @@ p.capitalization.backstory a {
   border-right: 3px solid #555;
   border-top-left-radius: 0.25em;
   border-top-right-radius: 0.25em;
-  background-color: transparent;
+  background-color: #555;
   -webkit-box-shadow: 0 5px 10px #000;
   box-shadow: 0 5px 10px #000;
   font-family: 'Philosopher', sans-serif;
   color: #333;
   width: 18.85em;
-  background-color: #eee;
   overflow-y: hidden;
 }
 #aio .chatting.with > li .messages li {
@@ -248,11 +247,12 @@ p.capitalization.backstory a {
   border-top: 1px solid #fff;
   border-left: 1px solid #bbb;
   border-right: 1px solid #bbb;
+  background-color: #eee;
 }
 #aio .chatting.with > li .messages li:first-child {
   border-top: none;
-  border-top-left-radius: 0.25em;
-  border-top-right-radius: 0.25em;
+  border-top-left-radius: 0.125em;
+  border-top-right-radius: 0.125em;
 }
 #aio .chatting.with > li .messages li:last-child {
   border-bottom: none;
@@ -270,15 +270,15 @@ p.capitalization.backstory a {
   border-left: 3px solid #555;
   border-right: 3px solid #555;
   border-bottom: 3px solid #555;
-  border-bottom-left-radius: 0.25em;
-  border-bottom-right-radius: 0.25em;
+  border-bottom-left-radius: 0.375em;
+  border-bottom-right-radius: 0.375em;
   background-color: #fff;
   -webkit-box-shadow: 0 5px 10px #000;
   box-shadow: 0 5px 10px #000;
 }
 #aio .chatting.with > li .new.message input {
-  border-bottom-left-radius: 0.25em;
-  width: 24.2em;
+  border-bottom-left-radius: 0.5em;
+  width: 23.5em;
   border: none;
   margin-left: 0.6em;
   font-family: 'Pontano Sans', sans-serif;
