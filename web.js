@@ -51,7 +51,7 @@ app.get('/aio/statuses.home_timeline', function (req, res) {
 })
 
 // TODO Add streaming support to node-oauth so I can do this
-app.post('/aio/statuses.filter', function (req, res) {
+app.get('/aio/statuses.filter', function (req, res) {
   SiNO.statuses.filter(req, res)
 })
 
