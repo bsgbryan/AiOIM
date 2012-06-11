@@ -112,8 +112,8 @@ p
         border-top   3px solid lowlight
         border-left  3px solid lowlight
         border-right 3px solid lowlight
-        border-top-left-radius  .5em
-        border-top-right-radius .5em
+        border-top-left-radius  .25em
+        border-top-right-radius .25em
         background-color white
         box-shadow 0 5px 10px black
         font-family 'Philosopher', sans-serif
@@ -121,24 +121,38 @@ p
         padding .25em
         width 18.85em
         background-color #eee
+        overflow-y hidden
         li
           width 15em
           text-shadow 0 1px 0 white
           padding .25em .5em
+          border-bottom 1px solid #aaa
+          border-top    1px solid white
+          border-left   1px solid #bbb
+          border-right  1px solid #bbb
+          &:first-child
+            border-top none
+            border-top-left-radius  .25em
+            border-top-right-radius .25em
+          &:last-child
+            border-bottom none
           &.self
-            margin-left 4em
+            padding-left 4em
             color #999
+            width 14.2em
             text-shadow none
+          &.other
+            width 17.7em
       .new.message
         border-left   3px solid lowlight
         border-right  3px solid lowlight
         border-bottom 3px solid lowlight
-        border-bottom-left-radius  .5em
-        border-bottom-right-radius .5em
+        border-bottom-left-radius  .25em
+        border-bottom-right-radius .25em
         background-color white
         box-shadow 0 5px 10px black
         input
-          border-bottom-left-radius .5em
+          border-bottom-left-radius .25em
           width 24.2em
           border none
           margin-left .6em
