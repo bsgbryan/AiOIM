@@ -151,13 +151,14 @@ exports.statuses = {
 
   // This will be the long term, streaming solution to tracking im messages
   filter: function(req, res) {
-    var twitter = require('ntwitter');
+    var twitter = require('ntwitter'),
+        usr     = tweeter(req)
 
     new twitter({
       consumer_key: process.env.TwitterConsumerKey,
       consumer_secret: process.env.TwitterConsumerSecret,
-      access_token_key: process.env.TwitterAccessToken,
-      access_token_secret: process.env.TwitterAccessTokenSecret
+      access_token_key: usr.token,
+      access_token_secret: usr.secret
     }).stream('statuses/filter', { track : 'AiOIM' }, function(stream) {
       stream.on('data', function(data) {
         console.log('twitter stream data', data)
