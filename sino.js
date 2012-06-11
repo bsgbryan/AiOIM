@@ -1,4 +1,4 @@
-var OAuth = require('oauth').OAuth,
+var OAuth = require('bs-oauth').OAuth,
     util  = require('util'),
     sha1  = require('./app/sha1')
 
@@ -7,7 +7,7 @@ var creds   = 'http://twitter.com/account/verify_credentials.json',
     auth    = 'https://api.twitter.com/oauth/authenticate?oauth_token=',
     users   = 'https://api.twitter.com/1/users/search.json?q=',
     message = 'http://api.twitter.com/1/statuses/update.json',
-    filter  = 'https://stream.twitter.com/1/statuses/filter.json',
+    filter  = 'https://stream.twitter.com/1/statuses/filter.json?track=#AiOIM',
     home_timeline = 'http://api.twitter.com/1/statuses/home_timeline.json?include_entities=true'
 
 var tweeters = { }
@@ -77,20 +77,10 @@ exports.token = {
   }
 }
 
-function post(url, req, res) {
+function please(verb, url, req, res, cb) {
   var usr = tweeter(req)
 
-  a(req).post(url, usr.token, usr.secret, null, null,
-    function (error, data, response) {
-      if (error) res.send(util.inspect(error), 500)
-      else res.send(data)
-    })
-}
-
-function get(url, req, res, cb) {
-  var usr = tweeter(req)
-
-  a(req).get(url, usr.token, usr.secret,
+  a(req)[verb](url, usr.token, usr.secret,
     function (error, data, response) {
       if (error) res.send(util.inspect(error), 500)
       else {
@@ -126,7 +116,7 @@ function authoredBy(usr, tweet) {
 
 exports.statuses = {
   update: function(sts, req, res) { 
-    post(message + '?status=' + encodeURIComponent(sts), req, res)
+    please('post', message + '?status=' + encodeURIComponent(sts), req, res)
   },
 
   // This will be the initial, non-streaming, polling solution for getting
@@ -135,9 +125,7 @@ exports.statuses = {
     var usr   = tweeter(req)
     var since = typeof usr.most_recent_tweet === 'undefined' ? '' : '&since_id=' + usr.most_recent_tweet
 
-    console.log('timeline url', home_timeline + since)
-
-    get(home_timeline + since, req, res, function(data) {
+    please('get', home_timeline + since, req, res, function(data) {
       var tweets = JSON.parse(decodeURIComponent(data))
 
       if (tweets.length > 0) {
@@ -155,10 +143,6 @@ exports.statuses = {
               }
           }
 
-        console.log('===========================')
-        console.log('messages returning', messages)
-        console.log('===========================')
-
         res.send(messages)
       } else
         res.send()
@@ -167,10 +151,14 @@ exports.statuses = {
 
   // This will be the long term, streaming solution to tracking im messages
   filter: function(req, res) {
+    var usr   = tweeter(req)
+
     // #AiOIM is the hashtag aio will use to track chat messages
-    a(req).post(filter + '?track=#AiOIM', process.env.TwitterAccessToken, process.env.TwitterAccessTokenSecret, null, null,
+    a(req).stream(filter, usr.token, usr.secret,
       function (error, data, response) {
-        // TODO add streaming support to node-oauth so I can implement this
+        console.log('=======================')
+        console.log('streaming data received', data)
+        console.log('=======================')
       })
   }
 }
