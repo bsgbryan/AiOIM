@@ -151,14 +151,53 @@ exports.statuses = {
 
   // This will be the long term, streaming solution to tracking im messages
   filter: function(req, res) {
-    var usr   = tweeter(req)
+    var TwitterNode = require('twitter-node').TwitterNode
+      , util         = require('util')
 
-    // #AiOIM is the hashtag aio will use to track chat messages
-    a(req).stream(filter, usr.token, usr.secret,
-      function (error, data, response) {
-        console.log('=======================')
-        console.log('streaming data received', data)
-        console.log('=======================')
+    // you can pass args to create() or set them on the TwitterNode instance
+    var twit = new TwitterNode({
+      user: 'bsgbryan', 
+      password: 'j6M24a3u#ubufuch',
+      host: 'bryanmaynard.me',
+      port: 80,
+      track: [ 'AiOIM' ],
+    });
+
+    twit.headers['User-Agent'] = 'AiO';
+
+    // Make sure you listen for errors, otherwise
+    // they are thrown
+    twit.addListener('error', function(error) {
+      console.log(error.message);
+    });
+
+    twit
+      .addListener('tweet', function(tweet) {
+        util.puts("@" + tweet.user.screen_name + ": " + tweet.text);
       })
+
+      .addListener('limit', function(limit) {
+        util.puts("LIMIT: " + util.inspect(limit));
+      })
+
+      .addListener('delete', function(del) {
+        util.puts("DELETE: " + util.inspect(del));
+      })
+
+      .addListener('end', function(resp) {
+        util.puts("wave goodbye... " + resp.statusCode);
+      })
+
+      .stream();
+
+    // var usr   = tweeter(req)
+
+    // // #AiOIM is the hashtag aio will use to track chat messages
+    // a(req).stream(filter, usr.token, usr.secret,
+    //   function (error, data, response) {
+    //     console.log('=======================')
+    //     console.log('streaming data received', data)
+    //     console.log('=======================')
+    //   })
   }
 }
