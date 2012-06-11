@@ -97,7 +97,7 @@ function showMessage(data) {
         if ($('[data-screen_name=' + mention.screen_name + ']').length === 0)
           addChatFor(mention.screen_name, mention.name)
 
-        var said     = message.text.substring(0, tag).substring(to.length + 2),
+        var said     = message.text.substring(0, tag - 1).substring(to.length + 2),
             person   = message.user.screen_name === $.cookie('AiOID') ? 'self' : 'other',
             present  = false,
             messages = $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages li')
