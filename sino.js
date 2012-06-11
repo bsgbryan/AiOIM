@@ -155,6 +155,10 @@ exports.statuses = {
               }
           }
 
+        console.log('===========================')
+        console.log('messages returning', messages)
+        console.log('===========================')
+
         res.send(messages)
       } else
         res.send()
