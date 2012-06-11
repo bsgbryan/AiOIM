@@ -99,15 +99,15 @@ function showMessage(data) {
 
         var said     = message.text.substring(0, tag).substring(to.length + 2),
             person   = message.user.screen_name === $.cookie('AiOID') ? 'self' : 'other',
-            present  = false
-            messages = $('[data-screen_name=' + mention.screen_name + '] .messages li')
+            present  = false,
+            messages = $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages li')
 
         for (var j = 0; j < messages.length; j++)
-          if (said === msg.text())
+          if (said === messages[j].text())
             present = true
 
         if (present === false)
-          $('[data-screen_name=' + mention.screen_name + '] .messages').
+          $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages').
             append('<li class="' + person + '">' + said + '</li>')
       }
     }
