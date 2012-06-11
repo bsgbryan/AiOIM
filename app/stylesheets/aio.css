@@ -250,7 +250,6 @@ p.capitalization.backstory a {
   background-color: #eee;
 }
 #aio .chatting.with > li .messages li:first-child {
-  border-top: none;
   border-top-left-radius: 0.125em;
   border-top-right-radius: 0.125em;
 }
