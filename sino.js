@@ -91,7 +91,7 @@ function please(verb, url, req, res, cb) {
 }
 
 exports.users = {
-  search: function(name, req, res) { get(users + name, req, res) }
+  search: function(name, req, res) { please('get', users + name, req, res) }
 }
 
 function isAiOIM(tweet) {
