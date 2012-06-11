@@ -190,6 +190,8 @@ exports.statuses = {
 
       .stream();
 
+      res.send()
+
     // var usr   = tweeter(req)
 
     // // #AiOIM is the hashtag aio will use to track chat messages
