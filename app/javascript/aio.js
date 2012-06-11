@@ -122,5 +122,5 @@ function addChatFor(screen_name, human_name) {
         '<input type="text" name="message" placeholder="say yes">' +
         '<button type="submit">say</button>' +
       '</form>' +
-    '</li>').removeClass('hidden')
+    '</li>').removeClass('hidden') 
 }
