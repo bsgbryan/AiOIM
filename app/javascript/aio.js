@@ -103,7 +103,7 @@ function showMessage(data) {
             messages = $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages li')
 
         for (var j = 0; j < messages.length; j++)
-          if (said === messages[j].text())
+          if (said === $(messages[j]).text())
             present = true
 
         if (present === false)
