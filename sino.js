@@ -2,6 +2,8 @@ var OAuth = require('bs-oauth').OAuth,
     util  = require('util'),
     sha1  = require('./app/sha1')
 
+var TwitterNode = require('./app/twitter-node/index').TwitterNode
+
 // Twitter urls
 var creds   = 'http://twitter.com/account/verify_credentials.json',
     auth    = 'https://api.twitter.com/oauth/authenticate?oauth_token=',
@@ -152,8 +154,6 @@ exports.statuses = {
   // This will be the long term, streaming solution to tracking im messages
   filter: function(req, res) {
     console.log('inside filter')
-
-    var TwitterNode = require('./app/twitter-node/index').TwitterNode
 
     // you can pass args to create() or set them on the TwitterNode instance
     var twit = new TwitterNode({
