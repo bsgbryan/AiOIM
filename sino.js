@@ -2,8 +2,6 @@ var OAuth = require('bs-oauth').OAuth,
     util  = require('util'),
     sha1  = require('./app/sha1')
 
-var TwitterNode = require('./app/twitter-node').TwitterNode
-
 // Twitter urls
 var creds   = 'http://twitter.com/account/verify_credentials.json',
     auth    = 'https://api.twitter.com/oauth/authenticate?oauth_token=',
@@ -153,43 +151,18 @@ exports.statuses = {
 
   // This will be the long term, streaming solution to tracking im messages
   filter: function(req, res) {
-    console.log('inside filter')
+    var twitter = require('ntwitter');
 
-    // you can pass args to create() or set them on the TwitterNode instance
-    var twit = new TwitterNode({
-      user: 'bsgbryan', 
-      password: 'j6M24a3u#ubufuch',
-      track: [ 'AiOIM' ],
-    });
-
-    twit.headers['User-Agent'] = 'AiO';
-
-    // Make sure you listen for errors, otherwise
-    // they are thrown
-    twit.addListener('error', function(error) {
-      console.log(error.message);
-    });
-
-    twit
-      .addListener('tweet', function(tweet) {
-        util.puts("@" + tweet.user.screen_name + ": " + tweet.text);
+    new twitter({
+      consumer_key: process.env.TwitterConsumerKey,
+      consumer_secret: process.env.TwitterConsumerSecret,
+      access_token_key: process.env.TwitterAccessToken,
+      access_token_secret: process.env.TwitterAccessTokenSecret
+    }).stream('statuses/filter', { track : 'AiOIM' }, function(stream) {
+      stream.on('data', function(data) {
+        console.log('twitter stream data', data)
       })
-
-      .addListener('limit', function(limit) {
-        util.puts("LIMIT: " + util.inspect(limit));
-      })
-
-      .addListener('delete', function(del) {
-        util.puts("DELETE: " + util.inspect(del));
-      })
-
-      .addListener('end', function(resp) {
-        util.puts("wave goodbye... " + resp.statusCode);
-      })
-
-      .stream();
-
-      res.send()
+    })
 
     // var usr   = tweeter(req)
 
