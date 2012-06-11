@@ -162,7 +162,7 @@ exports.statuses = {
       stream.on('data', function(data) {
         console.log('twitter stream data', data)
       })
-      stream.on('errpr', function(data) {
+      stream.on('error', function(data) {
         console.log('twitter stream error', data)
       })
     })
