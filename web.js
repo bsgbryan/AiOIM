@@ -42,7 +42,7 @@ app.get('/aio', function (req, res) {
       on('send message', function (message) {
         var tweet = '@' + message.to + ' ' + message.content + ' #AiOIM'
 
-        SiNO.statuses.update(tweet)
+        SiNO.statuses.update(tweet, u)
       })
   }
 

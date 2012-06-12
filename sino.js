@@ -82,12 +82,10 @@ function please(verb, url, req, res, cb) {
 
   a(req)[verb](url, usr.token, usr.secret,
     function (error, data, response) {
-      if (typeof req !== 'undefined') {
-        if (error) res.send(util.inspect(error), 500)
-        else {
-          if (cb) cb(data)
-          else res.send(data)
-        }
+      if (error) res.send(util.inspect(error), 500)
+      else {
+        if (cb) cb(data)
+        else res.send(data)
       }
     })
 }
@@ -117,8 +115,10 @@ function authoredBy(usr, tweet) {
 }
 
 exports.statuses = {
-  update: function(sts, req, res) { 
-    please('post', message + '?status=' + encodeURIComponent(sts), req, res)
+  update: function(sts, user) { 
+    var usr = tweeters[user]
+
+    usr.auth.post(message + '?status=' + encodeURIComponent(sts), usr.token, usr.secret)
   },
 
   // This will be the initial, non-streaming, polling solution for getting
