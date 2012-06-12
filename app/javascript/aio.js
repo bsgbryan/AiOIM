@@ -51,37 +51,34 @@
 
   function showMessage(data) {
     console.log('data', data)
-    if (data !== null)
-      for (var i = data.length - 1; i >= 0; i--) {
-        var message = data[i],
-            h       = message.entities.hashtags,
-            m       = message.entities.user_mentions,
-            tag, mention, to
+    var message = data,
+        h       = message.entities.hashtags,
+        m       = message.entities.user_mentions,
+        tag, mention, to
 
-        if (h[h.length - 1].text === 'AiOIM') {
-          tag     = h[h.length - 1].indices[0]
-          mention = m[0].screen_name === $.cookie('AiOID') ? message.user : m[0]
-          to      = m[0].screen_name
-        }
+    if (h[h.length - 1].text === 'AiOIM') {
+      tag     = h[h.length - 1].indices[0]
+      mention = m[0].screen_name === $.cookie('AiOID') ? message.user : m[0]
+      to      = m[0].screen_name
+    }
 
-        if (tag > 0) {
-          if ($('[data-screen_name=' + mention.screen_name + ']').length === 0)
-            addChatFor(mention.screen_name, mention.name)
+    if (tag > 0) {
+      if ($('[data-screen_name=' + mention.screen_name + ']').length === 0)
+        addChatFor(mention.screen_name, mention.name)
 
-          var said     = message.text.substring(0, tag - 1).substring(to.length + 2),
-              person   = message.user.screen_name === $.cookie('AiOID') ? 'self' : 'other',
-              present  = false,
-              messages = $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages li')
+      var said     = message.text.substring(0, tag - 1).substring(to.length + 2),
+          person   = message.user.screen_name === $.cookie('AiOID') ? 'self' : 'other',
+          present  = false,
+          messages = $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages li')
 
-          for (var j = 0; j < messages.length; j++)
-            if (said === $(messages[j]).text())
-              present = true
+      for (var j = 0; j < messages.length; j++)
+        if (said === $(messages[j]).text())
+          present = true
 
-          if (present === false)
-            $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages').
-              append('<li class="' + person + '">' + said + '</li>')
-        }
-      }
+      if (present === false)
+        $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages').
+          append('<li class="' + person + '">' + said + '</li>')
+    }
   }
 
   function addChatFor(screen_name, human_name) {
