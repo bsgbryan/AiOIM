@@ -48,7 +48,7 @@ app.get('/aio', function (req, res) {
           SiNO.statuses.update(tweet, u)
         })
 
-        console.log('CONNECTED USER', data)
+        console.log('CONNECTED USER', socket)
       })
   }
 
