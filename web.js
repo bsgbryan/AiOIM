@@ -67,6 +67,8 @@ app.get('/aio/statuses.filter', function (req, res) {
   }
 
   var data = function(data) {
+    sockets[data.user.screen_name].emit('receive message', data)
+    
     console.log('twitter stream data', data.user.name)
   }
 
