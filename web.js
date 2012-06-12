@@ -80,6 +80,8 @@ app.get('/aio/statuses.filter', function (req, res) {
   }
 
   SiNO.statuses.filter(error, data, req)
+
+  res.send()
 })
 
 // The port number is passed in via Heroku

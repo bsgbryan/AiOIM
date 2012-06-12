@@ -49,6 +49,60 @@
     return false
   }
 
+  function getNewMessages() {
+    $(document).ready(function($) {
+      session = io.
+        connect('http://falling-samurai-7438.herokuapp.com/aio/' + $.cookie('AiOID')).
+        on('receive message', showMessage)
+    })
+  }
+
+  function showMessage(data) {
+    if (data !== null)
+      for (var i = data.length - 1; i >= 0; i--) {
+        var message = data[i],
+            h       = message.entities.hashtags,
+            m       = message.entities.user_mentions,
+            tag, mention, to
+
+        if (h[h.length - 1].text === 'AiOIM') {
+          tag     = h[h.length - 1].indices[0]
+          mention = m[0].screen_name === $.cookie('AiOID') ? message.user : m[0]
+          to      = m[0].screen_name
+        }
+
+        if (tag > 0) {
+          if ($('[data-screen_name=' + mention.screen_name + ']').length === 0)
+            addChatFor(mention.screen_name, mention.name)
+
+          var said     = message.text.substring(0, tag - 1).substring(to.length + 2),
+              person   = message.user.screen_name === $.cookie('AiOID') ? 'self' : 'other',
+              present  = false,
+              messages = $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages li')
+
+          for (var j = 0; j < messages.length; j++)
+            if (said === $(messages[j]).text())
+              present = true
+
+          if (present === false)
+            $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages').
+              append('<li class="' + person + '">' + said + '</li>')
+        }
+      }
+  }
+
+  function addChatFor(screen_name, human_name) {
+    $('#aio .chatting.with').append(
+      '<li class="user" data-screen_name="' + screen_name + '">' +
+        '<h3 class="human name">' + human_name + '</h3>' +
+        '<ol class="messages"></ol>' +
+        '<form class="new message">' +
+          '<input type="text" name="message" placeholder="say yes">' +
+          '<button type="submit">say</button>' +
+        '</form>' +
+      '</li>').removeClass('hidden') 
+  }
+
   $.aio = function () {
     $('body').
       append('<div id="aio">' +
@@ -75,59 +129,3 @@
       on('submit', '.chatting.with .user .new.message', sendMessage)
   }
 })(jQuery)
-
-function getNewMessages() {
-  $(document).ready(function($) {
-    $.getJSON('/aio/statuses.home_timeline', showMessage)
-    
-    session = io.
-      connect('http://falling-samurai-7438.herokuapp.com/aio/' + $.cookie('AiOID')).
-      on('receive message', showMessage)
-  })
-}
-
-function showMessage(data) {
-  if (data !== null)
-    for (var i = data.length - 1; i >= 0; i--) {
-      var message = data[i],
-          h       = message.entities.hashtags,
-          m       = message.entities.user_mentions,
-          tag, mention, to
-
-      if (h[h.length - 1].text === 'AiOIM') {
-        tag     = h[h.length - 1].indices[0]
-        mention = m[0].screen_name === $.cookie('AiOID') ? message.user : m[0]
-        to      = m[0].screen_name
-      }
-
-      if (tag > 0) {
-        if ($('[data-screen_name=' + mention.screen_name + ']').length === 0)
-          addChatFor(mention.screen_name, mention.name)
-
-        var said     = message.text.substring(0, tag - 1).substring(to.length + 2),
-            person   = message.user.screen_name === $.cookie('AiOID') ? 'self' : 'other',
-            present  = false,
-            messages = $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages li')
-
-        for (var j = 0; j < messages.length; j++)
-          if (said === $(messages[j]).text())
-            present = true
-
-        if (present === false)
-          $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages').
-            append('<li class="' + person + '">' + said + '</li>')
-      }
-    }
-}
-
-function addChatFor(screen_name, human_name) {
-  $('#aio .chatting.with').append(
-    '<li class="user" data-screen_name="' + screen_name + '">' +
-      '<h3 class="human name">' + human_name + '</h3>' +
-      '<ol class="messages"></ol>' +
-      '<form class="new message">' +
-        '<input type="text" name="message" placeholder="say yes">' +
-        '<button type="submit">say</button>' +
-      '</form>' +
-    '</li>').removeClass('hidden') 
-}
