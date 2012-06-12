@@ -28,7 +28,7 @@ app.configure(function() {
 
 app.get('/', function (req, res) {
   console.log('==================')
-  console.log('cookie', res.headers)
+  console.log('cookie', req.cookie.aioid)
   console.log('==================')
   res.render('aio', { layout : false })
 })
