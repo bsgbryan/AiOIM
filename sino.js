@@ -118,7 +118,11 @@ exports.statuses = {
   update: function(sts, user) { 
     var usr = tweeters[user]
 console.log('UPDATING STATUS', sts)
-    usr.auth.post(message + '?status=' + encodeURIComponent(sts), usr.token, usr.secret)
+    usr.auth.post(message + '?status=' + encodeURIComponent(sts), usr.token, usr.secret,
+      function (error, data, response) {
+        if (error) res.send(util.inspect(error), 500)
+        else res.send()
+      })
   },
 
   // This will be the initial, non-streaming, polling solution for getting
