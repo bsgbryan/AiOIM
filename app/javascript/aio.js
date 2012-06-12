@@ -50,6 +50,7 @@
   }
 
   function showMessage(data) {
+    console.log('data', data)
     if (data !== null)
       for (var i = data.length - 1; i >= 0; i--) {
         var message = data[i],
