@@ -79,7 +79,7 @@ app.get('/aio/statuses.filter', function (req, res) {
     console.log('twitter stream data', data.user.name)
   }
 
-  SiNO.statuses.filter(error, data)
+  SiNO.statuses.filter(error, data, req)
 })
 
 // The port number is passed in via Heroku

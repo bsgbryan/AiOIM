@@ -152,7 +152,7 @@ exports.statuses = {
   },
 
   // This will be the long term, streaming solution to tracking im messages
-  filter: function(error, data) {
+  filter: function(error, data, req) {
     var twitter = require('ntwitter'),
         usr     = tweeter(req)
 
