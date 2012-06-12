@@ -115,14 +115,8 @@ function authoredBy(usr, tweet) {
 }
 
 exports.statuses = {
-  update: function(sts, user) { 
-    var usr = tweeters[user]
-console.log('UPDATING STATUS', sts)
-    usr.auth.post(message + '?status=' + encodeURIComponent(sts), usr.token, usr.secret,
-      function (error, data, response) {
-        if (error) res.send(util.inspect(error), 500)
-        else res.send()
-      })
+  update: function(sts, req, res) { 
+    please('post', message + '?status=' + encodeURIComponent(sts), req, res)
   },
 
   // This will be the initial, non-streaming, polling solution for getting

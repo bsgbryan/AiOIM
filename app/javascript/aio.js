@@ -34,12 +34,12 @@
 
   function sendMessage(event) {
     var user    = $(event.currentTarget).parents('li').data('screen_name'), 
-        message = $(event.currentTarget).find('input').val() //,
-        // tweet   = '@' + user + ' ' + message + ' #AiOIM'
+        message = $(event.currentTarget).find('input').val(),
+        tweet   = '@' + user + ' ' + message + ' #AiOIM'
 
-    session.emit('send message', { to : user , content : message })
+    // session.emit('send message', { to : user , content : message })
 
-    // $.post('/aio/statuses.update', { status : tweet })
+    $.post('/aio/statuses.update', { status : tweet })
 
     $('[data-screen_name=' + user + '] .messages').
       append('<li class="self">' + message + '</li>')

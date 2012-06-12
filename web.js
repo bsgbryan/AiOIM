@@ -34,23 +34,8 @@ app.configure(function() {
 })
 
 app.get('/aio', function (req, res) {
-  if (typeof req.cookies.aioid !== 'undefined') {
-    var u = req.cookies.aioid
-
-    sockets[u] = io.
-      of('/aio/' + u).
-      on('connection', function (socket) {
-        socket.on('send message', function (message) {
-          var tweet = '@' + message.to + ' ' + message.content + ' #AiOIM'
-          
-          console.log('RECEIVED WEB SOCKET REQUEST FROM', u)
-          
-          SiNO.statuses.update(tweet, u)
-        })
-
-        console.log('CONNECTED USER', socket)
-      })
-  }
+  if (typeof req.cookies.aioid !== 'undefined')
+    sockets[req.cookies.aioid] = io.of('/aio/' + req.cookies.aioid)
 
   res.render('aio', { layout : false })
 })
