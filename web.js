@@ -39,13 +39,14 @@ app.get('/aio', function (req, res) {
 
     sockets[u] = io.
       of('/aio/' + u).
-      on('connection', function (data) {
-        console.log('CONNECTED USER', data)
-      }).
-      on('send message', function (message) {
-        var tweet = '@' + message.to + ' ' + message.content + ' #AiOIM'
-console.log('RECEIVED WEB SOCKET REQUEST FROM', u)
-        SiNO.statuses.update(tweet, u)
+      on('connection', function (socket) {
+        socket.on('send message', function (message) {
+          var tweet = '@' + message.to + ' ' + message.content + ' #AiOIM'
+          
+          console.log('RECEIVED WEB SOCKET REQUEST FROM', u)
+          
+          SiNO.statuses.update(tweet, u)
+        })console.log('CONNECTED USER', data)
       })
   }
 
