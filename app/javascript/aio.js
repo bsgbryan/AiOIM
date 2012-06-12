@@ -49,14 +49,6 @@
     return false
   }
 
-  function getNewMessages() {
-    $(document).ready(function($) {
-      session = io.
-        connect('http://falling-samurai-7438.herokuapp.com/aio/' + $.cookie('AiOID')).
-        on('receive message', showMessage)
-    })
-  }
-
   function showMessage(data) {
     if (data !== null)
       for (var i = data.length - 1; i >= 0; i--) {
@@ -117,7 +109,10 @@
     if ($.cookie('AiOID') === null)
       $('#aio .sign.in').removeClass('hidden')
     else {
-      // setInterval(getNewMessages, 1000)
+      session = io.
+        connect('http://falling-samurai-7438.herokuapp.com/aio/' + $.cookie('AiOID')).
+        on('receive message', showMessage)
+        
       $('#aio form.user.hidden').removeClass('hidden')
     }
 
