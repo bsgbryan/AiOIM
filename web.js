@@ -43,7 +43,6 @@ app.get('/aio', function (req, res) {
         var tweet = '@' + message.to + ' ' + message.content + ' #AiOIM'
 
         SiNO.statuses.update(tweet)
-        // sockets[message.to].emit('receive message', { from : u , content : message.content })
       })
   }
 
@@ -72,22 +71,15 @@ app.get('/aio/statuses.home_timeline', function (req, res) {
 
 // TODO Add streaming support to node-oauth so I can do this
 app.get('/aio/statuses.filter', function (req, res) {
-  var twitter = require('ntwitter'),
-      usr     = tweeter(req)
+  var error = function(error, code) {
+    console.log('twitter stream error', arguments)
+  }
 
-  new twitter({
-    consumer_key: process.env.TwitterConsumerKey,
-    consumer_secret: process.env.TwitterConsumerSecret,
-    access_token_key: usr.token,
-    access_token_secret: usr.secret
-  }).stream('statuses/filter', { track : 'AiOIM' }, function(stream) {
-    stream.on('data', function(data) {
-      console.log('twitter stream data', data.user.name)
-    })
-    stream.on('error', function(data) {
-      console.log('twitter stream error', arguments)
-    })
-  })
+  var data = function(data) {
+    console.log('twitter stream data', data.user.name)
+  }
+
+  SiNO.statuses.filter(error, data)
 })
 
 // The port number is passed in via Heroku

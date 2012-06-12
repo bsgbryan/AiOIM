@@ -152,7 +152,7 @@ exports.statuses = {
   },
 
   // This will be the long term, streaming solution to tracking im messages
-  filter: function(req, res) {
+  filter: function(error, data) {
     var twitter = require('ntwitter'),
         usr     = tweeter(req)
 
@@ -162,24 +162,8 @@ exports.statuses = {
       access_token_key: usr.token,
       access_token_secret: usr.secret
     }).stream('statuses/filter', { track : 'AiOIM' }, function(stream) {
-      stream.on('data', function(data) {
-        console.log('twitter stream data', data)
-      })
-      stream.on('error', function(data) {
-        console.log('twitter stream error', arguments)
-      })
+      stream.on('data', data)
+      stream.on('error', error)
     })
-
-    res.send()
-
-    // var usr   = tweeter(req)
-
-    // // #AiOIM is the hashtag aio will use to track chat messages
-    // a(req).stream(filter, usr.token, usr.secret,
-    //   function (error, data, response) {
-    //     console.log('=======================')
-    //     console.log('streaming data received', data)
-    //     console.log('=======================')
-    //   })
   }
 }
