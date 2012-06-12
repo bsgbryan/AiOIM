@@ -67,9 +67,10 @@ app.get('/aio/statuses.filter', function (req, res) {
   }
 
   var data = function(data) {
-    sockets[data.user.screen_name].emit('receive message', data)
-    
-    console.log('twitter stream data', data.user.name)
+    var socket = sockets[data.entities.user_mentions[0].screen_name]
+
+    if (typeof socket !== 'undefined')
+      socket.emit('receive message', data)
   }
 
   SiNO.statuses.filter(error, data, req)
