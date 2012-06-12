@@ -41,7 +41,7 @@ app.get('/aio', function (req, res) {
       of('/aio/' + u).
       on('send message', function (message) {
         var tweet = '@' + message.to + ' ' + message.content + ' #AiOIM'
-
+console.log('RECEIVED WEB SOCKET REQUEST FROM', u)
         SiNO.statuses.update(tweet, u)
       })
   }
