@@ -38,7 +38,7 @@ app.get('/aio', function (req, res) {
     var u = req.cookies.aioid
 
     sockets[u] = io.
-      of('/' + u).
+      of('/aio/' + u).
       on('send message', function (message) {
         var tweet = '@' + message.to + ' ' + message.content + ' #AiOIM'
 

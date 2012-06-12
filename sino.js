@@ -117,7 +117,7 @@ function authoredBy(usr, tweet) {
 exports.statuses = {
   update: function(sts, user) { 
     var usr = tweeters[user]
-
+console.log('UPDATING STATUS', sts)
     usr.auth.post(message + '?status=' + encodeURIComponent(sts), usr.token, usr.secret)
   },
 
