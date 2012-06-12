@@ -8,6 +8,7 @@
     "jade"       : "*",
     "bs-oauth"   : "*",
     "ntwitter"   : "*",
+    "socket.io"  : "*",
     "connect-redis" : "*",
     "redis-url"     : "*"
   },
