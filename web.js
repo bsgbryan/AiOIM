@@ -46,7 +46,9 @@ app.get('/aio', function (req, res) {
           console.log('RECEIVED WEB SOCKET REQUEST FROM', u)
           
           SiNO.statuses.update(tweet, u)
-        })console.log('CONNECTED USER', data)
+        })
+
+        console.log('CONNECTED USER', data)
       })
   }
 
