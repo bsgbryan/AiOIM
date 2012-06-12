@@ -1,5 +1,6 @@
 (function ($) {
-  var container = '#aio'
+  var container = '#aio',
+      session
 
   function initializeChat(event) {
 
@@ -33,10 +34,12 @@
 
   function sendMessage(event) {
     var user    = $(event.currentTarget).parents('li').data('screen_name'), 
-        message = $(event.currentTarget).find('input').val(),
-        tweet   = '@' + user + ' ' + message + ' #AiOIM'
+        message = $(event.currentTarget).find('input').val() //,
+        // tweet   = '@' + user + ' ' + message + ' #AiOIM'
 
-    $.post('/aio/statuses.update', { status : tweet })
+    session.emit('send message', { to : user , content : message })
+
+    // $.post('/aio/statuses.update', { status : tweet })
 
     $('[data-screen_name=' + user + '] .messages').
       append('<li class="self">' + message + '</li>')
@@ -76,6 +79,10 @@
 function getNewMessages() {
   $(document).ready(function($) {
     $.getJSON('/aio/statuses.home_timeline', showMessage)
+    
+    session = io.
+      connect('http://falling-samurai-7438.herokuapp.com/aio/' + $.cookie('AiOID')).
+      on('receive message', showMessage)
   })
 }
 

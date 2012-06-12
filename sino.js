@@ -70,7 +70,7 @@ exports.token = {
               // Where we store old tweets to we don't keep sending them every time
               tweeters[screen_name].messages = [ ]              
 
-              res.redirect('/')
+              res.redirect('/aio')
             }
           })
       })
@@ -82,10 +82,12 @@ function please(verb, url, req, res, cb) {
 
   a(req)[verb](url, usr.token, usr.secret,
     function (error, data, response) {
-      if (error) res.send(util.inspect(error), 500)
-      else {
-        if (cb) cb(data)
-        else res.send(data)
+      if (typeof req !== 'undefined') {
+        if (error) res.send(util.inspect(error), 500)
+        else {
+          if (cb) cb(data)
+          else res.send(data)
+        }
       }
     })
 }

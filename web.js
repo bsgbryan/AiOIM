@@ -4,7 +4,14 @@ var express = require('express'),
     RedisStore = require('connect-redis')(express),
     sys        = require('util'),
     app        = express.createServer(express.logger()),
-    hash       = sha1.hash(new Date().getTime())
+    hash       = sha1.hash(new Date().getTime()),
+    io         = require('socket.io').listen(app),
+    sockets    = { }
+
+io.configure(function () { 
+  io.set('transports', ['xhr-polling']); 
+  io.set('polling duration', 10); 
+});
 
 // Production
 if (process.env.REDISTOGO_URL) 
@@ -26,10 +33,20 @@ app.configure(function() {
   app.set('view engine', 'jade')
 })
 
-app.get('/', function (req, res) {
-  console.log('==================')
-  console.log('cookie', req.cookies.aioid)
-  console.log('==================')
+app.get('/aio', function (req, res) {
+  if (typeof req.cookies.aioid !== 'undefined') {
+    var u = req.cookies.aioid
+
+    sockets[u] = io.
+      of('/' + u).
+      on('send message', function (message) {
+        var tweet = '@' + message.to + ' ' + message.content + ' #AiOIM'
+
+        SiNO.statuses.update(tweet)
+        // sockets[message.to].emit('receive message', { from : u , content : message.content })
+      })
+  }
+
   res.render('aio', { layout : false })
 })
 
@@ -55,7 +72,22 @@ app.get('/aio/statuses.home_timeline', function (req, res) {
 
 // TODO Add streaming support to node-oauth so I can do this
 app.get('/aio/statuses.filter', function (req, res) {
-  SiNO.statuses.filter(req, res)
+  var twitter = require('ntwitter'),
+      usr     = tweeter(req)
+
+  new twitter({
+    consumer_key: process.env.TwitterConsumerKey,
+    consumer_secret: process.env.TwitterConsumerSecret,
+    access_token_key: usr.token,
+    access_token_secret: usr.secret
+  }).stream('statuses/filter', { track : 'AiOIM' }, function(stream) {
+    stream.on('data', function(data) {
+      console.log('twitter stream data', data.user.name)
+    })
+    stream.on('error', function(data) {
+      console.log('twitter stream error', arguments)
+    })
+  })
 })
 
 // The port number is passed in via Heroku
