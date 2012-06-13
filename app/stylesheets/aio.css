@@ -269,8 +269,17 @@ p.capitalization.backstory a {
   padding-bottom: 0.1em;
 }
 #aio .chatting.with > li .messages:first-child {
-  height: 100%;
-  width: 100%;
+  position: absolute;
+  top: 25%;
+  width: 11.45em;
+  height: 42%;
+  font-size: 1.5em;
+  background-color: transparent;
+  border: none;
+  vertical-align: bottom;
+  margin-top: 25%;
+  color: #454545;
+  text-shadow: 0 -1px 0 #353535, 0 1px 0 #555;
 }
 #aio .chatting.with > li .messages li {
   width: 15em;
