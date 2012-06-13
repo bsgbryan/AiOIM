@@ -96,7 +96,7 @@
         '</form>' +
       '</li>').removeClass('hidden')
 
-    $.get('http://www.iheartquotes.com/api/v1/random?format=json&max_characters=140&callback=?', function (data) {
+    $.getJSON('http://www.iheartquotes.com/api/v1/random?format=json&max_characters=140&callback=?', function (data) {
       console.log(data)
     }) 
   }
