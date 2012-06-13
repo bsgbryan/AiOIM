@@ -95,6 +95,11 @@
     $('body').
       append('<div id="aio">' +
         '<a class="sign in hidden" href="/aio/signin">authorize</a>' +
+        '<ol class="first steps">' +
+          '<li>Click "authorize"</li>' +
+          '<li>Find a Tweeter</li>' +
+          '<li>Say something</li>' +
+        '</ol>' +
         '<ol class="chattable users hidden"></ol>' +
         '<ul class="chatting with hidden"></ul>' +
         '<form class="user search hidden">' +
@@ -104,12 +109,7 @@
 
     if ($.cookie('AiOID') === null) {
       $('#aio .sign.in').removeClass('hidden')
-      $('#aio').append(
-        '<ol class="first steps">' +
-          '<li>Click "authorize"</li>' +
-          '<li>Find a Tweeter</li>' +
-          '<li>Say something</li>' +
-        '</ol>').find('ol li:first-child').addClass('selected')
+      $('#aio .first.steps li:first-child').addClass('selected')
     }
     else {
       session = io.
@@ -117,7 +117,7 @@
         on('receive message', showMessage)
         
       $('#aio form.user.hidden').removeClass('hidden')
-      $('#aio ol li:first-child').
+      $('#aio .first.steps li:first-child').
         addClass('completed').
         next('li').
         addClass('selected')
