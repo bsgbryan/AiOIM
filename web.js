@@ -43,8 +43,9 @@ app.get('/aio', function (req, res) {
 
 app.get('/aio/quote', function(req, res) {
   http.get({ host: 'www.iheartquotes.com', path: '/api/v1/random?format=json&max_characters=140' }, function (r) {
-    console.log("QUOTE RESPONSE", r)
-    res.send(r.body)
+    var quote = ''
+    r.on('data', function(chunk) { quote += chunk  })
+    r.on('end',  function()      { res.send(quote) })
   })
 })
 
