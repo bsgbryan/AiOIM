@@ -146,6 +146,27 @@ p.capitalization.backstory a {
 #aio .hidden {
   display: none;
 }
+#aio .first.steps {
+  position: absolute;
+  top: 0;
+  left: 7em;
+  line-height: 2em;
+}
+#aio .first.steps li {
+  display: inline-block;
+  width: 9em;
+  padding-left: 1em;
+  font-family: 'Pontano Sans', sans-serif;
+  color: #555;
+}
+#aio .first.steps li.selected {
+  color: #333;
+  text-shadow: 0 1px 2px #555, 0 -1px 2px #999;
+}
+#aio .first.steps li.completed {
+  color: transparent;
+  text-shadow: 0 -1px 2px transparent, 0 1px 2px transparent;
+}
 #aio .user.search {
   position: absolute;
   top: 0;
@@ -164,7 +185,7 @@ p.capitalization.backstory a {
   text-shadow: 0 -1px 0 #222, 0 1px 0 #444;
   -webkit-box-shadow: 0 1px 2px #999, 0 -1px 2px #111;
   box-shadow: 0 1px 2px #999, 0 -1px 2px #111;
-  margin-top: 0.35em;
+  margin-top: 0.325em;
   margin-left: 0.25em;
   -webkit-border-radius: 0.125em;
   border-radius: 0.125em;
@@ -312,7 +333,7 @@ p.capitalization.backstory a {
   font-family: 'Pontano Sans', sans-serif;
   text-decoration: none;
   letter-spacing: 1px;
-  line-height: 0.75em;
+  line-height: 1em;
   height: 1em;
   -webkit-box-shadow: 0 -1px 2px #aaa, 0 1px 2px #111;
   box-shadow: 0 -1px 2px #aaa, 0 1px 2px #111;

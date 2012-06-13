@@ -37,8 +37,6 @@
         message = $(event.currentTarget).find('input').val(),
         tweet   = '@' + user + ' ' + message + ' #AiOIM'
 
-    // session.emit('send message', { to : user , content : message })
-
     $.post('/aio/statuses.update', { status : tweet })
 
     $('[data-screen_name=' + user + '] .messages').
@@ -96,7 +94,7 @@
   $.aio = function () {
     $('body').
       append('<div id="aio">' +
-        '<a class="sign in hidden" href="/aio/signin">sign in</a>' +
+        '<a class="sign in hidden" href="/aio/signin">authorize</a>' +
         '<ol class="chattable users hidden"></ol>' +
         '<ul class="chatting with hidden"></ul>' +
         '<form class="user search hidden">' +
@@ -104,14 +102,25 @@
         '</form>' +
       '</div>')
 
-    if ($.cookie('AiOID') === null)
+    if ($.cookie('AiOID') === null) {
       $('#aio .sign.in').removeClass('hidden')
+      $('#aio').append(
+        '<ol class="first steps">' +
+          '<li>Click "authorize"</li>' +
+          '<li>Find a Tweeter</li>' +
+          '<li>Say something</li>' +
+        '</ol>').find('ol li:first-child').addClass('selected')
+    }
     else {
       session = io.
         connect('http://falling-samurai-7438.herokuapp.com/aio/' + $.cookie('AiOID')).
         on('receive message', showMessage)
         
       $('#aio form.user.hidden').removeClass('hidden')
+      $('#aio ol li:first-child').
+        addClass('completed').
+        next('li').
+        addClass('selected')
     }
 
       
