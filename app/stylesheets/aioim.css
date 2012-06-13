@@ -275,6 +275,8 @@ p.capitalization.backstory a {
   font-size: 1.5em;
   background-color: transparent;
   border: none;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
 }
 #aioim .chatting.with > li .messages .quote p {
   position: absolute;
