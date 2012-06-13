@@ -4,6 +4,12 @@
 
   function initializeChat(event) {
 
+    $('#aio .first.steps .find.someone').
+      removeClass('active').
+      addClass('completed').
+      next('li').
+      addClass('active')
+
     var selected    = $(event.currentTarget).parent(),
         screen_name = selected.find('.screen').text(),
         human_name  = selected.find('.human').text()
@@ -96,9 +102,9 @@
       append('<div id="aio">' +
         '<a class="sign in hidden" href="/aio/signin">authorize</a>' +
         '<ol class="first steps">' +
-          '<li>Click "authorize"</li>' +
-          '<li>Find a Tweeter</li>' +
-          '<li>Say something</li>' +
+          '<li class="authorize">Click "authorize"</li>' +
+          '<li class="find someone">Find someone</li>' +
+          '<li class="say something">Say something</li>' +
         '</ol>' +
         '<ol class="chattable users hidden"></ol>' +
         '<ul class="chatting with hidden"></ul>' +
@@ -109,7 +115,7 @@
 
     if ($.cookie('AiOID') === null) {
       $('#aio .sign.in').removeClass('hidden')
-      $('#aio .first.steps li:first-child').addClass('selected')
+      $('#aio .first.steps .authorize').addClass('active')
     }
     else {
       session = io.
@@ -117,10 +123,10 @@
         on('receive message', showMessage)
         
       $('#aio form.user.hidden').removeClass('hidden')
-      $('#aio .first.steps li:first-child').
+      $('#aio .first.steps .authorize').
         addClass('completed').
         next('li').
-        addClass('selected')
+        addClass('active')
     }
 
       
