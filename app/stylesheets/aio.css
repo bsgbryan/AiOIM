@@ -282,8 +282,8 @@ p.capitalization.backstory a {
   bottom: 0;
   left: 0;
   padding: 0.5em;
-  color: #444;
-  text-shadow: 0 1px 0 #555, 0 -1px 0 #333;
+  color: #393939;
+  text-shadow: 0 1px 1px #555, 0 -1px 0 #333;
 }
 #aio .chatting.with > li .messages li {
   width: 15em;
