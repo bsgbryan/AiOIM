@@ -226,7 +226,7 @@ p.capitalization.backstory a {
   top: 0;
   left: 9em;
   right: 0;
-  bottom: 50%;
+  bottom: 3.5em;
 }
 #aio .chatting.with > li {
   display: inline-block;
@@ -270,9 +270,8 @@ p.capitalization.backstory a {
 }
 #aio .chatting.with > li .messages .quote {
   position: absolute;
-  top: 59%;
+  bottom: 3.55em;
   width: 11.55em;
-  height: 30%;
   font-size: 1.5em;
   background-color: transparent;
   border: none;
