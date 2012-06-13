@@ -253,7 +253,12 @@ p.capitalization.backstory a {
   border-right: 3px solid #555;
   border-top-left-radius: 0.25em;
   border-top-right-radius: 0.25em;
-  background-color: #555;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #555), color-stop(1, #444));
+  background: -webkit-linear-gradient(top, #555 0%, #444 100%);
+  background: -moz-linear-gradient(top, #555 0%, #444 100%);
+  background: -o-linear-gradient(top, #555 0%, #444 100%);
+  background: -ms-linear-gradient(top, #555 0%, #444 100%);
+  background: linear-gradient(top, #555 0%, #444 100%);
   -webkit-box-shadow: inset 0 2px 5px rgba(0,0,0,0.50), 0 5px 10px #999;
   box-shadow: inset 0 2px 5px rgba(0,0,0,0.50), 0 5px 10px #999;
   font-family: 'Philosopher', sans-serif;
@@ -277,8 +282,8 @@ p.capitalization.backstory a {
   bottom: 0;
   left: 0;
   padding: 0.5em;
-  color: #555;
-  text-shadow: 0 -1px 0 #666, 0 1px 0 #444;
+  color: #444;
+  text-shadow: 0 -1px 0 #555, 0 1px 0 #333;
 }
 #aio .chatting.with > li .messages li {
   width: 15em;
