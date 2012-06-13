@@ -154,7 +154,7 @@ p.capitalization.backstory a {
 }
 #aio .first.steps li {
   display: inline-block;
-  width: 9em;
+  width: 10em;
   padding-left: 1em;
   font-family: 'Pontano Sans', sans-serif;
   color: #555;
@@ -224,7 +224,7 @@ p.capitalization.backstory a {
 #aio .chatting.with {
   position: fixed;
   top: 0;
-  left: 11em;
+  left: 9em;
   right: 0;
   bottom: 50%;
 }
