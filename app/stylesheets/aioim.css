@@ -300,6 +300,8 @@ p.capitalization.backstory a {
 }
 #aioim .chatting.with > li .messages li:last-child {
   border-bottom: none;
+  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.50);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.50);
 }
 #aioim .chatting.with > li .messages li.self {
   padding-left: 4em;
