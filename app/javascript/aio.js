@@ -50,6 +50,8 @@
 
     $(event.currentTarget).find('input').val('')
 
+    $('#aio .first.steps .say.something').removeClass('active').addClass('completed')
+
     return false
   }
 
