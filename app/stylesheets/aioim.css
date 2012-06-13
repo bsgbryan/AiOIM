@@ -1,0 +1,364 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+body {
+  line-height: 1;
+  color: #000;
+  background: #fff;
+}
+ol,
+ul {
+  list-style: none;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  vertical-align: middle;
+}
+caption,
+th,
+td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+a img {
+  border: none;
+}
+body {
+  background-color: #fff;
+  overflow: hidden;
+}
+h1 {
+  font-family: 'Lemon', cursive;
+  width: 100%;
+  text-align: center;
+  font-size: 35em;
+  position: absolute;
+  top: 10%;
+  left: 0;
+  color: #fff;
+  text-shadow: 0 -1px #eee, 0 1px 0 #ddd;
+  margin-left: -2%;
+}
+p {
+  position: fixed;
+  color: #333;
+  font-family: 'Philosopher', sans-serif;
+}
+p.name.reason {
+  bottom: 4em;
+  left: 5%;
+}
+p.name.reason .definition {
+  color: #222;
+  font-weight: bold;
+}
+p.capitalization.backstory {
+  bottom: 2.625em;
+  right: 5%;
+}
+p.capitalization.backstory a {
+  text-decoration: none;
+  font-style: oblique;
+  color: #111;
+}
+#aioim {
+  position: fixed;
+  top: 0;
+  left: -0.5em;
+  right: -0.5em;
+  height: 2em;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #999), color-stop(1, #555));
+  background: -webkit-linear-gradient(top, #999 0%, #555 100%);
+  background: -moz-linear-gradient(top, #999 0%, #555 100%);
+  background: -o-linear-gradient(top, #999 0%, #555 100%);
+  background: -ms-linear-gradient(top, #999 0%, #555 100%);
+  background: linear-gradient(top, #999 0%, #555 100%);
+  -webkit-box-shadow: 0 0 10px #000;
+  box-shadow: 0 0 10px #000;
+  border-bottom: 2px solid #999;
+}
+#aioim .hidden {
+  display: none;
+}
+#aioim .first.steps {
+  position: absolute;
+  top: 0;
+  left: 7em;
+  line-height: 2em;
+}
+#aioim .first.steps li {
+  display: inline-block;
+  width: 10em;
+  padding-left: 1em;
+  font-family: 'Pontano Sans', sans-serif;
+  color: #555;
+}
+#aioim .first.steps li.active {
+  color: #333;
+  text-shadow: 0 1px 2px #555, 0 -1px 2px #999;
+}
+#aioim .first.steps li.completed {
+  color: transparent;
+  text-shadow: 0 -1px 2px transparent, 0 1px 2px transparent;
+}
+#aioim .user.search {
+  position: absolute;
+  top: 0;
+  left: 0.5em;
+}
+#aioim .user.search .name {
+  font-size: 1em;
+  height: 1.45em;
+  width: 8em;
+  margin: 0.125em;
+  padding: 0 0.25em;
+  font-family: 'Pontano Sans', sans-serif;
+  background-color: #333;
+  border: none;
+  color: #999;
+  text-shadow: 0 -1px 0 #222, 0 1px 0 #444;
+  -webkit-box-shadow: 0 1px 2px #999, 0 -1px 2px #111;
+  box-shadow: 0 1px 2px #999, 0 -1px 2px #111;
+  margin-top: 0.325em;
+  margin-left: 0.25em;
+  -webkit-border-radius: 0.125em;
+  border-radius: 0.125em;
+}
+#aioim .chattable.users {
+  position: absolute;
+  top: 2.5em;
+  left: 0.725em;
+  -webkit-border-radius: 0.5em;
+  border-radius: 0.5em;
+  border: 3px solid #999;
+  background-color: #fff;
+  padding: 0.125em;
+  -webkit-box-shadow: 0 3px 15px #000;
+  box-shadow: 0 3px 15px #000;
+  z-index: 1000;
+}
+#aioim .chattable.users li.name {
+  padding: 0.375em;
+  border-bottom: 1px solid #eee;
+  color: #999;
+}
+#aioim .chattable.users li.name:hover {
+  cursor: pointer;
+}
+#aioim .chattable.users li.name .screen {
+  font-family: 'Pontano Sans', sans-serif;
+  margin-right: 0.5em;
+}
+#aioim .chattable.users li.name .human {
+  font-family: 'Philosopher', sans-serif;
+}
+#aioim .chattable.users li.name:last-child {
+  border-bottom: none;
+}
+#aioim .chatting.with {
+  position: fixed;
+  top: 0;
+  left: 9em;
+  right: 0;
+  bottom: 3.5em;
+}
+#aioim .chatting.with > li {
+  display: inline-block;
+  width: 19.2em;
+  margin-right: 1em;
+  vertical-align: top;
+  height: 100%;
+}
+#aioim .chatting.with > li .human.name {
+  width: 13.37em;
+  height: 1.3em;
+  font-size: 1.5em;
+  line-height: 1.2em;
+  text-align: center;
+  font-family: 'Lemon', cursive;
+  color: #333;
+  text-shadow: 0 -1px #999, 0 1px 0 #555;
+  cursor: pointer;
+}
+#aioim .chatting.with > li .messages {
+  margin-top: 0.5em;
+  border-top: 3px solid #555;
+  border-left: 3px solid #555;
+  border-right: 3px solid #555;
+  border-top-left-radius: 0.25em;
+  border-top-right-radius: 0.25em;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #555), color-stop(1, #444));
+  background: -webkit-linear-gradient(top, #555 0%, #444 100%);
+  background: -moz-linear-gradient(top, #555 0%, #444 100%);
+  background: -o-linear-gradient(top, #555 0%, #444 100%);
+  background: -ms-linear-gradient(top, #555 0%, #444 100%);
+  background: linear-gradient(top, #555 0%, #444 100%);
+  -webkit-box-shadow: inset 0 2px 5px rgba(0,0,0,0.50), 0 5px 10px #999;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.50), 0 5px 10px #999;
+  font-family: 'Philosopher', sans-serif;
+  color: #333;
+  width: 18.85em;
+  height: 80%;
+  overflow-x: scroll;
+  padding-bottom: 0.1em;
+}
+#aioim .chatting.with > li .messages .quote {
+  position: absolute;
+  bottom: 3.55em;
+  width: 11.55em;
+  font-size: 1.5em;
+  background-color: transparent;
+  border: none;
+}
+#aioim .chatting.with > li .messages .quote p {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 0.5em;
+  color: #393939;
+  text-shadow: 0 1px 1px #555, 0 -1px 0 #333;
+}
+#aioim .chatting.with > li .messages li {
+  width: 15em;
+  text-shadow: 0 1px 0 #fff;
+  padding: 0.25em 0.5em;
+  border-bottom: 1px solid #aaa;
+  border-top: 1px solid #fff;
+  border-left: 1px solid #bbb;
+  border-right: 1px solid #bbb;
+  background-color: #eee;
+}
+#aioim .chatting.with > li .messages li:first-child {
+  border-top-left-radius: 0.125em;
+  border-top-right-radius: 0.125em;
+}
+#aioim .chatting.with > li .messages li:last-child {
+  border-bottom: none;
+}
+#aioim .chatting.with > li .messages li.self {
+  padding-left: 4em;
+  color: #999;
+  width: 14.2em;
+  text-shadow: none;
+}
+#aioim .chatting.with > li .messages li.other {
+  width: 17.7em;
+}
+#aioim .chatting.with > li .new.message {
+  border-left: 3px solid #555;
+  border-right: 3px solid #555;
+  border-bottom: 3px solid #555;
+  border-bottom-left-radius: 0.375em;
+  border-bottom-right-radius: 0.375em;
+  background-color: #fff;
+  -webkit-box-shadow: 0 5px 10px #999;
+  box-shadow: 0 5px 10px #999;
+}
+#aioim .chatting.with > li .new.message input {
+  border-bottom-left-radius: 0.5em;
+  width: 23.5em;
+  border: none;
+  margin-left: 0.6em;
+  font-family: 'Pontano Sans', sans-serif;
+  letter-spacing: 1px;
+}
+#aioim .chatting.with > li .new.message input:focus {
+  outline: none;
+}
+#aioim .chatting.with > li .new.message button {
+  background-color: #fff;
+  border: none;
+  font-family: 'Pontano Sans', sans-serif;
+  letter-spacing: 1px;
+  border-left: 1px solid #ddd;
+}
+#aioim .sign.in {
+  position: absolute;
+  top: 0.4em;
+  left: 1.5em;
+  padding: 0.5em 1.5em;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #666), color-stop(1, #222));
+  background: -webkit-linear-gradient(top, #666 0%, #222 100%);
+  background: -moz-linear-gradient(top, #666 0%, #222 100%);
+  background: -o-linear-gradient(top, #666 0%, #222 100%);
+  background: -ms-linear-gradient(top, #666 0%, #222 100%);
+  background: linear-gradient(top, #666 0%, #222 100%);
+  text-shadow: 0 -1px 0 #222;
+  color: #fff;
+  font-family: 'Pontano Sans', sans-serif;
+  text-decoration: none;
+  letter-spacing: 1px;
+  line-height: 1em;
+  height: 1em;
+  -webkit-box-shadow: 0 -1px 2px #aaa, 0 1px 2px #111;
+  box-shadow: 0 -1px 2px #aaa, 0 1px 2px #111;
+  font-size: 0.75em;
+  -webkit-border-radius: 0.25em;
+  border-radius: 0.25em;
+}
