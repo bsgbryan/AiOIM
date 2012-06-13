@@ -34,14 +34,16 @@ app.configure(function() {
   app.set('view engine', 'jade')
 })
 
-app.get('/aio', function (req, res) {
-  if (typeof req.cookies.aioid !== 'undefined')
-    sockets[req.cookies.aioid] = io.of('/aio/' + req.cookies.aioid)
+app.get('/aio', function (req, res) { res.redirect('/aioim') })
 
-  res.render('aio', { layout : false })
+app.get('/aioim', function (req, res) {
+  if (typeof req.cookies.aioimid !== 'undefined')
+    sockets[req.cookies.aioimid] = io.of('/aioim/' + req.cookies.aioimid)
+
+  res.render('aioim', { layout : false })
 })
 
-app.get('/aio/quote', function(req, res) {
+app.get('/aioim/quote', function(req, res) {
   http.get({ host: 'www.iheartquotes.com', path: '/api/v1/random?format=json&max_characters=140' }, function (r) {
     var quote = ''
     r.on('data', function(chunk) { quote += chunk  })
@@ -49,28 +51,28 @@ app.get('/aio/quote', function(req, res) {
   })
 })
 
-app.get('/aio/signin', function (req, res) {
+app.get('/aioim/signin', function (req, res) {
   SiNO.token.request(req, res)
 })
 
-app.get('/aio/authorized', function (req, res) {
+app.get('/aioim/authorized', function (req, res) {
   SiNO.token.access(req, res)
 })
 
-app.get('/aio/users.search', function (req, res) {
+app.get('/aioim/users.search', function (req, res) {
   SiNO.users.search(req.param('name'), req, res)
 })
 
-app.post('/aio/statuses.update', function (req, res) {
+app.post('/aioim/statuses.update', function (req, res) {
   SiNO.statuses.update(req.body.status, req, res)
 })
 
-app.get('/aio/statuses.home_timeline', function (req, res) {
+app.get('/aioim/statuses.home_timeline', function (req, res) {
   SiNO.statuses.home_timeline(req, res)
 })
 
 // TODO Add streaming support to node-oauth so I can do this
-app.get('/aio/statuses.filter', function (req, res) {
+app.get('/aioim/statuses.filter', function (req, res) {
   var error = function(error, code) {
     console.log('twitter stream error', arguments)
   }

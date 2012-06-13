@@ -127,7 +127,7 @@ p.capitalization.backstory a {
   font-style: oblique;
   color: #111;
 }
-#aio {
+#aioim {
   position: fixed;
   top: 0;
   left: -0.5em;
@@ -143,36 +143,36 @@ p.capitalization.backstory a {
   box-shadow: 0 0 10px #000;
   border-bottom: 2px solid #999;
 }
-#aio .hidden {
+#aioim .hidden {
   display: none;
 }
-#aio .first.steps {
+#aioim .first.steps {
   position: absolute;
   top: 0;
   left: 7em;
   line-height: 2em;
 }
-#aio .first.steps li {
+#aioim .first.steps li {
   display: inline-block;
   width: 10em;
   padding-left: 1em;
   font-family: 'Pontano Sans', sans-serif;
   color: #555;
 }
-#aio .first.steps li.active {
+#aioim .first.steps li.active {
   color: #333;
   text-shadow: 0 1px 2px #555, 0 -1px 2px #999;
 }
-#aio .first.steps li.completed {
+#aioim .first.steps li.completed {
   color: transparent;
   text-shadow: 0 -1px 2px transparent, 0 1px 2px transparent;
 }
-#aio .user.search {
+#aioim .user.search {
   position: absolute;
   top: 0;
   left: 0.5em;
 }
-#aio .user.search .name {
+#aioim .user.search .name {
   font-size: 1em;
   height: 1.45em;
   width: 8em;
@@ -190,7 +190,7 @@ p.capitalization.backstory a {
   -webkit-border-radius: 0.125em;
   border-radius: 0.125em;
 }
-#aio .chattable.users {
+#aioim .chattable.users {
   position: absolute;
   top: 2.5em;
   left: 0.725em;
@@ -203,39 +203,39 @@ p.capitalization.backstory a {
   box-shadow: 0 3px 15px #000;
   z-index: 1000;
 }
-#aio .chattable.users li.name {
+#aioim .chattable.users li.name {
   padding: 0.375em;
   border-bottom: 1px solid #eee;
   color: #999;
 }
-#aio .chattable.users li.name:hover {
+#aioim .chattable.users li.name:hover {
   cursor: pointer;
 }
-#aio .chattable.users li.name .screen {
+#aioim .chattable.users li.name .screen {
   font-family: 'Pontano Sans', sans-serif;
   margin-right: 0.5em;
 }
-#aio .chattable.users li.name .human {
+#aioim .chattable.users li.name .human {
   font-family: 'Philosopher', sans-serif;
 }
-#aio .chattable.users li.name:last-child {
+#aioim .chattable.users li.name:last-child {
   border-bottom: none;
 }
-#aio .chatting.with {
+#aioim .chatting.with {
   position: fixed;
   top: 0;
   left: 9em;
   right: 0;
   bottom: 3.5em;
 }
-#aio .chatting.with > li {
+#aioim .chatting.with > li {
   display: inline-block;
   width: 19.2em;
   margin-right: 1em;
   vertical-align: top;
   height: 100%;
 }
-#aio .chatting.with > li .human.name {
+#aioim .chatting.with > li .human.name {
   width: 13.37em;
   height: 1.3em;
   font-size: 1.5em;
@@ -246,7 +246,7 @@ p.capitalization.backstory a {
   text-shadow: 0 -1px #999, 0 1px 0 #555;
   cursor: pointer;
 }
-#aio .chatting.with > li .messages {
+#aioim .chatting.with > li .messages {
   margin-top: 0.5em;
   border-top: 3px solid #555;
   border-left: 3px solid #555;
@@ -268,7 +268,7 @@ p.capitalization.backstory a {
   overflow-x: scroll;
   padding-bottom: 0.1em;
 }
-#aio .chatting.with > li .messages .quote {
+#aioim .chatting.with > li .messages .quote {
   position: absolute;
   bottom: 3.55em;
   width: 11.55em;
@@ -276,7 +276,7 @@ p.capitalization.backstory a {
   background-color: transparent;
   border: none;
 }
-#aio .chatting.with > li .messages .quote p {
+#aioim .chatting.with > li .messages .quote p {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -284,7 +284,7 @@ p.capitalization.backstory a {
   color: #393939;
   text-shadow: 0 1px 1px #555, 0 -1px 0 #333;
 }
-#aio .chatting.with > li .messages li {
+#aioim .chatting.with > li .messages li {
   width: 15em;
   text-shadow: 0 1px 0 #fff;
   padding: 0.25em 0.5em;
@@ -294,23 +294,23 @@ p.capitalization.backstory a {
   border-right: 1px solid #bbb;
   background-color: #eee;
 }
-#aio .chatting.with > li .messages li:first-child {
+#aioim .chatting.with > li .messages li:first-child {
   border-top-left-radius: 0.125em;
   border-top-right-radius: 0.125em;
 }
-#aio .chatting.with > li .messages li:last-child {
+#aioim .chatting.with > li .messages li:last-child {
   border-bottom: none;
 }
-#aio .chatting.with > li .messages li.self {
+#aioim .chatting.with > li .messages li.self {
   padding-left: 4em;
   color: #999;
   width: 14.2em;
   text-shadow: none;
 }
-#aio .chatting.with > li .messages li.other {
+#aioim .chatting.with > li .messages li.other {
   width: 17.7em;
 }
-#aio .chatting.with > li .new.message {
+#aioim .chatting.with > li .new.message {
   border-left: 3px solid #555;
   border-right: 3px solid #555;
   border-bottom: 3px solid #555;
@@ -320,7 +320,7 @@ p.capitalization.backstory a {
   -webkit-box-shadow: 0 5px 10px #999;
   box-shadow: 0 5px 10px #999;
 }
-#aio .chatting.with > li .new.message input {
+#aioim .chatting.with > li .new.message input {
   border-bottom-left-radius: 0.5em;
   width: 23.5em;
   border: none;
@@ -328,17 +328,17 @@ p.capitalization.backstory a {
   font-family: 'Pontano Sans', sans-serif;
   letter-spacing: 1px;
 }
-#aio .chatting.with > li .new.message input:focus {
+#aioim .chatting.with > li .new.message input:focus {
   outline: none;
 }
-#aio .chatting.with > li .new.message button {
+#aioim .chatting.with > li .new.message button {
   background-color: #fff;
   border: none;
   font-family: 'Pontano Sans', sans-serif;
   letter-spacing: 1px;
   border-left: 1px solid #ddd;
 }
-#aio .sign.in {
+#aioim .sign.in {
   position: absolute;
   top: 0.4em;
   left: 1.5em;

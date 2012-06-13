@@ -1,10 +1,10 @@
 (function ($) {
-  var container = '#aio',
+  var container = '#aioim',
       session
 
   function initializeChat(event) {
 
-    $('#aio .first.steps .find.someone').
+    $('#aioim .first.steps .find.someone').
       removeClass('active').
       addClass('completed').
       next('li').
@@ -16,7 +16,7 @@
 
     addChatFor(screen_name, human_name)
 
-    $('#aio .chattable.users').addClass('hidden')
+    $('#aioim .chattable.users').addClass('hidden')
   }
 
   function clearUserSearch(event) {
@@ -24,7 +24,7 @@
   }
 
   function executeUserSearch(event) {
-    $.getJSON('/aio/users.search?name=' + $(event.currentTarget).val(), function (u) {
+    $.getJSON('/aioim/users.search?name=' + $(event.currentTarget).val(), function (u) {
       var users = ''
 
       u.forEach(function (user) {
@@ -34,23 +34,23 @@
           '</li>'
       })
 
-      $('#aio .chattable.users').html(users).removeClass('hidden')
+      $('#aioim .chattable.users').html(users).removeClass('hidden')
     })
   }
 
   function sendMessage(event) {
     var user    = $(event.currentTarget).parents('li').data('screen_name'), 
         message = $(event.currentTarget).find('input').val(),
-        tweet   = '@' + user + ' ' + message + ' #AiOIM'
+        tweet   = '@' + user + ' ' + message + ' #aioimIM'
 
-    $.post('/aio/statuses.update', { status : tweet })
+    $.post('/aioim/statuses.update', { status : tweet })
 
     $('[data-screen_name=' + user + '] .messages').
       append('<li class="self">' + message + '</li>')
 
     $(event.currentTarget).find('input').val('')
 
-    $('#aio .first.steps .say.something').removeClass('active').addClass('completed')
+    $('#aioim .first.steps .say.something').removeClass('active').addClass('completed')
 
     return false
   }
@@ -62,9 +62,9 @@
         m       = message.entities.user_mentions,
         tag, mention, to
 
-    if (h[h.length - 1].text === 'AiOIM') {
+    if (h[h.length - 1].text === 'aioimIM') {
       tag     = h[h.length - 1].indices[0]
-      mention = m[0].screen_name === $.cookie('AiOID') ? message.user : m[0]
+      mention = m[0].screen_name === $.cookie('aioimID') ? message.user : m[0]
       to      = m[0].screen_name
     }
 
@@ -73,7 +73,7 @@
         addChatFor(mention.screen_name, mention.name)
 
       var said     = message.text.substring(0, tag - 1).substring(to.length + 2),
-          person   = message.user.screen_name === $.cookie('AiOID') ? 'self' : 'other',
+          person   = message.user.screen_name === $.cookie('aioimID') ? 'self' : 'other',
           present  = false,
           messages = $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages li')
 
@@ -88,7 +88,7 @@
   }
 
   function addChatFor(screen_name, human_name) {
-    $('#aio .chatting.with').append(
+    $('#aioim .chatting.with').append(
       '<li class="user" data-screen_name="' + screen_name + '">' +
         '<h3 class="human name">' + human_name + '</h3>' +
         '<ol class="messages"></ol>' +
@@ -98,16 +98,16 @@
         '</form>' +
       '</li>')
 
-    $.get('/aio/quote', function (data) {
+    $.get('/aioim/quote', function (data) {
       $('[data-screen_name=' + screen_name + '] .messages').append('<li class="quote"><p>' + JSON.parse(data).quote + '</p></li>')
       $('[data-screen_name=' + screen_name + ']').parent().removeClass('hidden')
     }) 
   }
 
-  $.aio = function () {
+  $.aioim = function () {
     $('body').
-      append('<div id="aio">' +
-        '<a class="sign in hidden" href="/aio/signin">authorize</a>' +
+      append('<div id="aioim">' +
+        '<a class="sign in hidden" href="/aioim/signin">authorize</a>' +
         '<ol class="first steps">' +
           '<li class="authorize">Click "authorize"</li>' +
           '<li class="find someone">Find someone</li>' +
@@ -120,24 +120,24 @@
         '</form>' +
       '</div>')
 
-    if ($.cookie('AiOID') === null) {
-      $('#aio .sign.in').removeClass('hidden')
-      $('#aio .first.steps .authorize').addClass('active')
+    if ($.cookie('aioimID') === null) {
+      $('#aioim .sign.in').removeClass('hidden')
+      $('#aioim .first.steps .authorize').addClass('active')
     }
     else {
       session = io.
-        connect('http://falling-samurai-7438.herokuapp.com/aio/' + $.cookie('AiOID')).
+        connect('http://falling-samurai-7438.herokuapp.com/aioim/' + $.cookie('aioimID')).
         on('receive message', showMessage)
         
-      $('#aio form.user.hidden').removeClass('hidden')
-      $('#aio .first.steps .authorize').
+      $('#aioim form.user.hidden').removeClass('hidden')
+      $('#aioim .first.steps .authorize').
         addClass('completed').
         next('li').
         addClass('active')
     }
 
       
-    $('#aio').
+    $('#aioim').
       on('keyup',  '.user.search .name',                executeUserSearch).
       on('blur',   '.user.search .name',                clearUserSearch).
       on('click',  '.chattable .user.name .screen, .chattable .user.name .human', initializeChat).
