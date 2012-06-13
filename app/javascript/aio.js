@@ -97,7 +97,7 @@
       '</li>')
 
     $.get('/aio/quote', function (data) {
-      $('[data-screen_name=' + screen_name + '] .messages:after').css('content', JSON.parse(data).quote)
+      $('[data-screen_name=' + screen_name + '] .messages').append('<li class="quote">' + JSON.parse(data).quote + '</li>')
       $('[data-screen_name=' + screen_name + ']').parent().removeClass('hidden')
     }) 
   }

@@ -268,11 +268,9 @@ p.capitalization.backstory a {
   overflow-x: scroll;
   padding-bottom: 0.1em;
 }
-#aio .chatting.with > li .messages:after {
-  display: block;
-  margin-left: -19.2em;
-  height: 80%;
-  width: 19.2em;
+#aio .chatting.with > li .messages:first-child {
+  height: 100%;
+  width: 100%;
 }
 #aio .chatting.with > li .messages li {
   width: 15em;
