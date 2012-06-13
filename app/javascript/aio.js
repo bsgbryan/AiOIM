@@ -94,10 +94,11 @@
           '<input type="text" name="message" placeholder="say yes">' +
           '<button type="submit">say</button>' +
         '</form>' +
-      '</li>').removeClass('hidden')
+      '</li>')
 
     $.get('/aio/quote', function (data) {
-      $('[data-screen_name=' + + screen_name'] .messages::after').css('content', JSON.parse(data))
+      $('[data-screen_name=' + screen_name + '] .messages::after').css('content', JSON.parse(data))
+      $('[data-screen_name=' + screen_name + ']').parent().removeClass('hidden')
     }) 
   }
 
