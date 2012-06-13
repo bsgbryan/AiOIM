@@ -94,7 +94,11 @@
           '<input type="text" name="message" placeholder="say yes">' +
           '<button type="submit">say</button>' +
         '</form>' +
-      '</li>').removeClass('hidden') 
+      '</li>').removeClass('hidden')
+
+    $.load('http://www.iheartquotes.com/api/v1/random?format=html&max_characters=140 .rbcontent', function (data) {
+      console.log(data)
+    }) 
   }
 
   $.aio = function () {
