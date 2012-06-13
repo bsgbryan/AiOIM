@@ -6,7 +6,8 @@ var express = require('express'),
     app        = express.createServer(express.logger()),
     hash       = sha1.hash(new Date().getTime()),
     io         = require('socket.io').listen(app),
-    sockets    = { }
+    sockets    = { },
+    http       = require('http')
 
 io.configure(function () { 
   io.set('transports', ['xhr-polling']); 
@@ -38,6 +39,13 @@ app.get('/aio', function (req, res) {
     sockets[req.cookies.aioid] = io.of('/aio/' + req.cookies.aioid)
 
   res.render('aio', { layout : false })
+})
+
+app.get('/aio/quote', function(req, res) {
+  http.get({ host: 'www.iheartquotes.com', path: '/api/v1/random?format=json&max_characters=140' }, function (r) {
+    console.log("QUOTE RESPONSE", r)
+    res.send(r.body)
+  })
 })
 
 app.get('/aio/signin', function (req, res) {
