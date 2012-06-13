@@ -97,7 +97,7 @@
       '</li>').removeClass('hidden')
 
     $.get('/aio/quote', function (data) {
-      console.log(data)
+      console.log(JSON.parse(data))
     }) 
   }
 
