@@ -41,7 +41,7 @@
   function sendMessage(event) {
     var user    = $(event.currentTarget).parents('li').data('screen_name'), 
         message = $(event.currentTarget).find('input').val(),
-        tweet   = '@' + user + ' ' + message + ' #aioimIM'
+        tweet   = '@' + user + ' ' + message + ' #AiOIM'
 
     $.post('/aioim/statuses.update', { status : tweet })
 
@@ -120,7 +120,7 @@
         '</form>' +
       '</div>')
 
-    if ($.cookie('aioimID') === null) {
+    if ($.cookie('AiOID') === null) {
       $('#aioim .sign.in').removeClass('hidden')
       $('#aioim .first.steps .authorize').addClass('active')
     }
