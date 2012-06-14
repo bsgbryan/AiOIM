@@ -116,7 +116,7 @@ function authoredBy(usr, tweet) {
 exports.statuses = {
   update: function(sts, req, res) { 
     please('post', message + '?status=' + encodeURIComponent(sts), req, res)
-  }
+  },
 
   filter: function(error, data, req) {
     var twitter = require('ntwitter'),
