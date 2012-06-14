@@ -160,7 +160,7 @@ p.capitalization.backstory a {
 }
 #aioim .first.steps li.active {
   color: #000;
-  text-shadow: 0 -1px #ffd65e, 0 1px 0 #a66b1f;
+  text-shadow: 0 -1px 1px #ffd65e, 0 1px 1px #a66b1f;
 }
 #aioim .first.steps li.completed {
   color: transparent;
@@ -296,7 +296,7 @@ p.capitalization.backstory a {
   left: 0;
   padding: 0.5em;
   color: #bfa865;
-  text-shadow: 0 1px 1px rgba(255,255,255,0.50), 0 -1px 1px #333;
+  text-shadow: 0 -1px 2px #333;
 }
 #aioim .chatting.with > li .messages li {
   width: 15em;
