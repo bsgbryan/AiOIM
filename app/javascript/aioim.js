@@ -8,7 +8,9 @@
       removeClass('active').
       addClass('completed').
       next('li').
-      addClass('active')
+      addClass('active').
+      parent().
+      append('<li class="enjoy yourself active">Enjoy yourself!</li>')
 
     var selected    = $(event.currentTarget).parent(),
         screen_name = selected.find('.screen').text(),
@@ -16,7 +18,7 @@
 
     addChatFor(screen_name, human_name)
 
-    $('#aioim .chattable.users').addClass('hidden')
+    $('#aioim .chattable.users').html('').addClass('hidden')
   }
 
   function clearUserSearch(event) {
@@ -24,18 +26,23 @@
   }
 
   function executeUserSearch(event) {
-    $.getJSON('/aioim/users.search?name=' + $(event.currentTarget).val(), function (u) {
-      var users = ''
+    var query = $(event.currentTarget).val()
 
-      u.forEach(function (user) {
-        users += '<li class="user name">' +
-          '<a class="screen">' + user.screen_name + '</a>' +
-          '<span class="human">' + user.name + '</span>' +
-          '</li>'
+    if (query.length > 2)
+      $.getJSON('/aioim/users.search?name=' + query, function (u) {
+        var users = ''
+
+        u.forEach(function (user) {
+          users += '<li class="user name">' +
+            '<a class="screen">' + user.screen_name + '</a>' +
+            '<span class="human">' + user.name + '</span>' +
+            '</li>'
+        })
+
+        $('#aioim .chattable.users').html(users).removeClass('hidden')
       })
-
-      $('#aioim .chattable.users').html(users).removeClass('hidden')
-    })
+    else
+      $('#aioim .chattable.users').html('').addClass('hidden')
   }
 
   function sendMessage(event) {
