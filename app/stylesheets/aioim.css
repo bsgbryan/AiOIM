@@ -270,7 +270,7 @@ p.capitalization.backstory a {
 }
 #aioim .chatting.with > li .messages .quote {
   position: absolute;
-  bottom: 3.55em;
+  bottom: 14%;
   width: 11.55em;
   font-size: 1.5em;
   background-color: transparent;
