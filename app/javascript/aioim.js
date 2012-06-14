@@ -126,7 +126,7 @@
     }
     else {
       session = io.
-        connect('http://falling-samurai-7438.herokuapp.com/aioim/' + $.cookie('aioimID')).
+        connect('http://falling-samurai-7438.herokuapp.com/aioim/' + $.cookie('AiOID')).
         on('receive message', showMessage)
         
       $('#aioim form.user.hidden').removeClass('hidden')

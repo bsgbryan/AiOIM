@@ -78,6 +78,8 @@ app.get('/aioim/statuses.filter', function (req, res) {
   }
 
   var data = function(data) {
+    console.log('MENTIONED USER', data.entities.user_mentions[0].screen_name)
+    console.log('ENTITIES', data.entities)
     var socket = sockets[data.entities.user_mentions[0].screen_name]
 
     if (typeof socket !== 'undefined')
