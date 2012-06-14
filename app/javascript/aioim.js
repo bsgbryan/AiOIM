@@ -62,9 +62,9 @@
         m       = message.entities.user_mentions,
         tag, mention, to
 
-    if (h[h.length - 1].text === 'aioimIM') {
+    if (h[h.length - 1].text === 'AiOIM') {
       tag     = h[h.length - 1].indices[0]
-      mention = m[0].screen_name === $.cookie('aioimID') ? message.user : m[0]
+      mention = m[0].screen_name === $.cookie('AiOID') ? message.user : m[0]
       to      = m[0].screen_name
     }
 

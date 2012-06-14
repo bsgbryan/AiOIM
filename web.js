@@ -37,8 +37,8 @@ app.configure(function() {
 app.get('/aio', function (req, res) { res.redirect('/aioim') })
 
 app.get('/aioim', function (req, res) {
-  if (typeof req.cookies.aioimid !== 'undefined')
-    sockets[req.cookies.aioimid] = io.of('/aioim/' + req.cookies.aioimid)
+  if (typeof req.cookies.aioid !== 'undefined')
+    sockets[req.cookies.aioid] = io.of('/aioim/' + req.cookies.aioimid)
 
   res.render('aioim', { layout : false })
 })
