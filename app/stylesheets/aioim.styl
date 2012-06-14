@@ -16,8 +16,11 @@ h1
   font-size  35em
   absolute top 10% left 0
   color white
-  text-shadow 0 -1px #eee, 0 1px 0 #ddd
-  margin-left -2%
+  // I'll need to move these next three lines into a media query or something
+  color transparent
+  background-color rgba(88, 129, 158, .125)
+  -webkit-background-clip text
+  text-shadow 0 2px 2px rgba(white, .5)
 
 p
   position fixed
@@ -54,7 +57,7 @@ p
       width 10em
       padding-left 1em
       font-family 'Pontano Sans', sans-serif
-      color rgba(black, .5)
+      color rgba(black, .125)
       &.active
         color black
         text-shadow 0 -1px #FFD65E, 0 1px 0 #A66B1F

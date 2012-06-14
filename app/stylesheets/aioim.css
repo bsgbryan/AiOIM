@@ -107,8 +107,10 @@ h1 {
   top: 10%;
   left: 0;
   color: #fff;
-  text-shadow: 0 -1px #eee, 0 1px 0 #ddd;
-  margin-left: -2%;
+  color: transparent;
+  background-color: rgba(88,129,158,0.13);
+  -webkit-background-clip: text;
+  text-shadow: 0 2px 2px rgba(255,255,255,0.50);
 }
 p {
   position: fixed;
@@ -159,7 +161,7 @@ p.capitalization.backstory a {
   width: 10em;
   padding-left: 1em;
   font-family: 'Pontano Sans', sans-serif;
-  color: rgba(0,0,0,0.50);
+  color: rgba(0,0,0,0.13);
 }
 #aioim .first.steps li.active {
   color: #000;
