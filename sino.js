@@ -7,8 +7,7 @@ var creds   = 'http://twitter.com/account/verify_credentials.json',
     auth    = 'https://api.twitter.com/oauth/authenticate?oauth_token=',
     users   = 'https://api.twitter.com/1/users/search.json?q=',
     message = 'http://api.twitter.com/1/statuses/update.json',
-    filter  = 'https://stream.twitter.com/1/statuses/filter.json?track=#AiOIM',
-    home_timeline = 'http://api.twitter.com/1/statuses/home_timeline.json?include_entities=true'
+    filter  = 'https://stream.twitter.com/1/statuses/filter.json?track=#AiOIM'
 
 var tweeters = { }
 
@@ -117,39 +116,8 @@ function authoredBy(usr, tweet) {
 exports.statuses = {
   update: function(sts, req, res) { 
     please('post', message + '?status=' + encodeURIComponent(sts), req, res)
-  },
+  }
 
-  // This will be the initial, non-streaming, polling solution for getting
-  // chat messages. It will not scale, however.
-  home_timeline: function(req, res) {
-    var usr   = tweeter(req)
-    var since = typeof usr.most_recent_tweet === 'undefined' ? '' : '&since_id=' + usr.most_recent_tweet
-
-    please('get', home_timeline + since, req, res, function(data) {
-      var tweets = JSON.parse(decodeURIComponent(data))
-
-      if (tweets.length > 0) {
-        usr.most_recent_tweet = tweets[0].id
-        var messages = [ ]
-
-        for (var i = 0; i < tweets.length; i++)
-          if (isAiOIM(tweets[i])) {
-            var hash = sha1.hash(tweets[i].text)
-
-            if ((mentions(usr, tweets[i]) || authoredBy(usr, tweets[i])))
-              if (usr.messages.indexOf(hash) < 0) {
-                usr.messages.push(hash)
-                messages.push(tweets[i])
-              }
-          }
-
-        res.send(messages)
-      } else
-        res.send()
-    })
-  },
-
-  // This will be the long term, streaming solution to tracking im messages
   filter: function(error, data, req) {
     var twitter = require('ntwitter'),
         usr     = tweeter(req)
@@ -159,7 +127,7 @@ exports.statuses = {
       consumer_secret: process.env.TwitterConsumerSecret,
       access_token_key: usr.token,
       access_token_secret: usr.secret
-    }).stream('statuses/filter', { track : 'AiOIM' }, function(stream) {
+    }).stream('statuses/filter', { track : [ 'AiOIM', 'aioim' ] }, function(stream) {
       stream.on('data', data)
       stream.on('error', error)
     })

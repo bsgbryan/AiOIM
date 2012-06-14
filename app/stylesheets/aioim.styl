@@ -82,25 +82,30 @@ p
       border-radius .125em
   .chattable.users
     absolute top 2.5em left .725em
-    border-radius .5em
+    border-radius .25em
     border 3px solid highlight
-    background-color white
-    padding .125em
+    background-color #eee
     box-shadow 0 3px 15px black
     z-index 1000
     li.name
       padding .375em
-      border-bottom 1px solid #eee
+      border-bottom 1px solid #ddd
+      border-top    1px solid white
+      border-left   1px solid #ccc
+      border-right  1px solid #ccc
+      background-color rgba(#eee, .9)
       color highlight
+      width 20em
       &:hover
         cursor pointer
       .screen
         font-family 'Pontano Sans', sans-serif
-        margin-right .5em
+        color #666
+        text-shadow 0 1px 0 white
+        display inline-block
+        width 50%
       .human
         font-family 'Philosopher', sans-serif
-      &:last-child
-        border-bottom none
   .chatting.with
     position fixed
     top    0
