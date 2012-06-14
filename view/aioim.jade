@@ -1,7 +1,9 @@
 !!! 5
 html
   head
-    title AiO. Say yes.
+    - var meanings = [ 'Say yes', 'Say yes', 'Assert', 'Assert', 'Say something', 'Say something', 'Speak', 'Speak', 'Assent', 'Assent' ]
+    - var greeting = meanings[Math.floor((Math.random() * 10))]
+    title AiOIM. #{ greeting }.
     link(rel='stylesheet', href='/stylesheets/aioim.css')
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Lemon|Philosopher:400,700,400italic|Pontano+Sans')
   body
@@ -17,19 +19,3 @@ html
     script(src='/javascript/aioim.js')
     script
       $.aioim()
-    //- #aio
-    //-   asign.in.hidden(href="/twitter/signin") sign in
-    //-   ol.chattable.users
-    //-     li.user.name.selected
-    //-       a.screen bsgbryan
-    //-       span.human Bryan Maynard
-    //-   ul.chatting.with
-    //-     li.user#cbcb0e3d20114e3ba4d505cbc453765650d8da7f(data-screen_name="bsgbryan")
-    //-       h3.human.name Bryan Maynard
-    //-       ol.messages
-    //-         li.self @bsgbryan fooo, gooooo IM
-    //-       form.new.message
-    //-         input(type="text", name="message", placeholder="say yes")
-    //-         button(type="submit") say
-    //-   form.user.search
-    //-     input.name(type="text", placeholder="Find a tweeter")

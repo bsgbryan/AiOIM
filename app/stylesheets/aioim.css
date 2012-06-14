@@ -277,6 +277,7 @@ p.capitalization.backstory a {
   border: none;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
+  z-index: 0;
 }
 #aioim .chatting.with > li .messages .quote p {
   position: absolute;
@@ -295,6 +296,8 @@ p.capitalization.backstory a {
   border-left: 1px solid #bbb;
   border-right: 1px solid #bbb;
   background-color: #eee;
+  z-index: 100;
+  position: relative;
 }
 #aioim .chatting.with > li .messages li:first-child {
   border-top-left-radius: 0.125em;
