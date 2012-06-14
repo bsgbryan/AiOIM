@@ -73,13 +73,19 @@
         addChatFor(mention.screen_name, mention.name)
 
       var said     = message.text.substring(0, tag - 1).substring(to.length + 2),
-          person   = message.user.screen_name === $.cookie('aioimID') ? 'self' : 'other',
+          person   = message.user.screen_name === $.cookie('AiOID') ? 'self' : 'other',
           present  = false,
           messages = $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages li')
 
       for (var j = 0; j < messages.length; j++)
         if (said === $(messages[j]).text())
           present = true
+
+      $('#aioim .first.steps .find.someone').
+        removeClass('active').
+        addClass('completed').
+        next('.say.something').
+        addClass('')
 
       if (present === false)
         $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages').

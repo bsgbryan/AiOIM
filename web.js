@@ -27,8 +27,11 @@ app.configure(function() {
   app.use(express.cookieParser(hash))
   app.use(express.session({ 
     store  : new RedisStore({ client : redis }),
-    secret : hash
-  }))
+    secret : hash,
+    cookie : {
+      maxAge : 1209600000,
+      path   : '/aioim'
+    }}))
 
   app.set('views', __dirname + '/view')
   app.set('view engine', 'jade')
@@ -78,8 +81,6 @@ app.get('/aioim/statuses.filter', function (req, res) {
   }
 
   var data = function(data) {
-    console.log('MENTIONED USER', data.entities.user_mentions[0].screen_name)
-    console.log('ENTITIES', data.entities)
     var socket = sockets[data.entities.user_mentions[0].screen_name]
 
     if (typeof socket !== 'undefined')
