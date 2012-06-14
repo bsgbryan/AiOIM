@@ -174,7 +174,7 @@ p.capitalization.backstory a {
 #aioim .user.search {
   position: absolute;
   top: 0;
-  left: 1.5em;
+  left: 0.5em;
 }
 #aioim .user.search .name {
   font-size: 1em;
@@ -183,7 +183,7 @@ p.capitalization.backstory a {
   margin: 0.125em;
   padding: 0 0.25em;
   font-family: 'Pontano Sans', sans-serif;
-  background-color: #a66b1f;
+  background-color: #000;
   border: none;
   color: #ffb95e;
   -webkit-box-shadow: 0 1px 2px rgba(192,192,192,0.70), 0 -1px 2px rgba(8,8,8,0.70);
@@ -264,9 +264,9 @@ p.capitalization.backstory a {
 }
 #aioim .chatting.with > li .messages {
   margin-top: 0.5em;
-  border-top: 3px solid #81bee9;
-  border-left: 3px solid #81bee9;
-  border-right: 3px solid #81bee9;
+  border-top: 3px solid #1c5c89;
+  border-left: 3px solid #1c5c89;
+  border-right: 3px solid #1c5c89;
   border-top-left-radius: 0.25em;
   border-top-right-radius: 0.25em;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #58819e), color-stop(1, #1c5c89));
@@ -275,8 +275,8 @@ p.capitalization.backstory a {
   background: -o-linear-gradient(top, #58819e 0%, #1c5c89 100%);
   background: -ms-linear-gradient(top, #58819e 0%, #1c5c89 100%);
   background: linear-gradient(top, #58819e 0%, #1c5c89 100%);
-  -webkit-box-shadow: inset 0 2px 5px rgba(0,0,0,0.50), 0 5px 10px #1c5c89;
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.50), 0 5px 10px #1c5c89;
+  -webkit-box-shadow: inset 0 2px 5px rgba(0,0,0,0.50), 0 5px 10px rgba(0,0,0,0.70);
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.50), 0 5px 10px rgba(0,0,0,0.70);
   font-family: 'Philosopher', sans-serif;
   color: #333;
   width: 18.85em;
@@ -334,14 +334,14 @@ p.capitalization.backstory a {
   width: 17.7em;
 }
 #aioim .chatting.with > li .new.message {
-  border-left: 3px solid #81bee9;
-  border-right: 3px solid #81bee9;
-  border-bottom: 3px solid #81bee9;
+  border-left: 3px solid #1c5c89;
+  border-right: 3px solid #1c5c89;
+  border-bottom: 3px solid #1c5c89;
   border-bottom-left-radius: 0.375em;
   border-bottom-right-radius: 0.375em;
   background-color: #fff;
-  -webkit-box-shadow: 0 5px 10px #1c5c89;
-  box-shadow: 0 5px 10px #1c5c89;
+  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.70);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.70);
 }
 #aioim .chatting.with > li .new.message input {
   border-bottom-left-radius: 0.5em;
