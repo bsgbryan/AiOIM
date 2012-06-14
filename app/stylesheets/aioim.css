@@ -90,12 +90,7 @@ a img {
   border: none;
 }
 body {
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(1, #efefef));
-  background: -webkit-linear-gradient(top, #fff 0%, #efefef 100%);
-  background: -moz-linear-gradient(top, #fff 0%, #efefef 100%);
-  background: -o-linear-gradient(top, #fff 0%, #efefef 100%);
-  background: -ms-linear-gradient(top, #fff 0%, #efefef 100%);
-  background: linear-gradient(top, #fff 0%, #efefef 100%);
+  background: #efefef;
   overflow: hidden;
 }
 h1 {
