@@ -43,9 +43,8 @@ p
   left  -.5em
   right -.5em
   height 2em
-  background linear-gradient(top, highlight, lowlight)
-  box-shadow 0 0 10px black
-  border-bottom 2px solid highlight
+  background linear-gradient(top, #FFD65E, #A66B1F)
+  box-shadow 0 5px 10px #A66B1F
   .hidden
     display none
   .first.steps
@@ -56,15 +55,15 @@ p
       width 10em
       padding-left 1em
       font-family 'Pontano Sans', sans-serif
-      color #555
+      color rgba(black, .5)
       &.active
-        color #333
-        text-shadow 0 1px 2px lowlight, 0 -1px 2px highlight
+        color black
+        text-shadow 0 -1px #FFD65E, 0 1px 0 #A66B1F
       &.completed
         color transparent
         text-shadow 0 -1px 2px transparent, 0 1px 2px transparent
   .user.search
-    absolute top 0 left .5em
+    absolute top 0 left 1.5em
     .name
       font-size 1em
       height 1.45em
