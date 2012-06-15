@@ -337,7 +337,7 @@ p.capitalization.backstory a {
   border-bottom: 3px solid #1c5c89;
   border-bottom-left-radius: 0.375em;
   border-bottom-right-radius: 0.375em;
-  background-color: #fff;
+  background-color: #1c5c89;
   -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.70);
   box-shadow: 0 5px 10px rgba(0,0,0,0.70);
 }
