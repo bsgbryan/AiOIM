@@ -342,22 +342,44 @@ p.capitalization.backstory a {
   box-shadow: 0 5px 10px rgba(0,0,0,0.70);
 }
 #aioim .chatting.with > li .new.message input {
-  border-bottom-left-radius: 0.5em;
-  width: 23.5em;
-  border: none;
-  margin-left: 0.6em;
+  width: 23.8em;
+  margin-left: 0;
   font-family: 'Pontano Sans', sans-serif;
   letter-spacing: 1px;
+  padding: 2px 5px 3px 4px;
+  border-top: 1px solid #82bee9;
+  border-left: 1px solid #82bee9;
+  border-bottom: 1px solid #82bee9;
+  border-right: none;
+  border-bottom-left-radius: 0.25em;
+  border-top-left-radius: 0.25em;
+  background-color: #9dcae9;
+  -webkit-box-shadow: inset 0 1px 2px #569fd3;
+  box-shadow: inset 0 1px 2px #569fd3;
+}
+#aioim .chatting.with > li .new.message input ::-webkit-input-placeholder {
+  color: #58819e;
+  text-shadow: 0 -1px 0 #1c5c89;
 }
 #aioim .chatting.with > li .new.message input:focus {
   outline: none;
 }
 #aioim .chatting.with > li .new.message button {
-  background-color: #fff;
-  border: none;
+  padding: 2px 5px 3px 5px;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #9dcae9), color-stop(1, #58819e));
+  background: -webkit-linear-gradient(top, #9dcae9 0%, #58819e 100%);
+  background: -moz-linear-gradient(top, #9dcae9 0%, #58819e 100%);
+  background: -o-linear-gradient(top, #9dcae9 0%, #58819e 100%);
+  background: -ms-linear-gradient(top, #9dcae9 0%, #58819e 100%);
+  background: linear-gradient(top, #9dcae9 0%, #58819e 100%);
   font-family: 'Pontano Sans', sans-serif;
+  margin: 0;
+  color: #fff;
+  border-bottom-right-radius: 0.25em;
+  border-top-right-radius: 0.25em;
   letter-spacing: 1px;
-  border-left: 1px solid #ddd;
+  text-shadow: 0 -1px 0 #1c5c89;
+  border: 1px solid #82bee9;
 }
 #aioim .sign.in {
   position: absolute;
