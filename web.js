@@ -21,7 +21,7 @@ if (process.env.REDISTOGO_URL)
 else 
   var redis = require('redis').createClient()
 
-function ensureSocketExistsFor(req) {
+function sockets(req) {
   if (typeof req.cookies.aioid !== 'undefined' && typeof sockets[req.cookies.aioid] === 'undefined')
     sockets[req.cookies.aioid] = io.of('/aioim/' + req.cookies.aioid)
 }
@@ -37,6 +37,7 @@ app.configure(function() {
       maxAge : 1209600000,
       path   : '/'
     }}))
+  app.use(sockets)
 
   app.set('views', __dirname + '/view')
   app.set('view engine', 'jade')
@@ -45,12 +46,6 @@ app.configure(function() {
 app.get('/aio', function (req, res) { res.redirect('/aioim') })
 
 app.get('/aioim', function (req, res) {
-  if (typeof req.cookies.aioid !== 'undefined')
-    sockets[req.cookies.aioid] = io.of('/aioim/' + req.cookies.aioid).
-      on('connection', function () {
-        req.redirect('/aioim/statuses.filter')
-      })
-
   res.render('aioim', { layout : false })
 })
 
@@ -63,8 +58,6 @@ app.get('/aioim/quote', function(req, res) {
 })
 
 app.get('/aioim/signin', function (req, res) {
-  ensureSocketExistsFor(req)
-
   SiNO.token.request(req, res)
 })
 
@@ -73,14 +66,10 @@ app.get('/aioim/authorized', function (req, res) {
 })
 
 app.get('/aioim/users.search', function (req, res) {
-  ensureSocketExistsFor(req)
-
   SiNO.users.search(req.param('name'), req, res)
 })
 
 app.post('/aioim/statuses.update', function (req, res) {
-  ensureSocketExistsFor(req)
-
   SiNO.statuses.update(req.body.status, req, res)
 })
 
