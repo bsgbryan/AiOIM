@@ -123,7 +123,7 @@
     session = io.
       connect('http://falling-samurai-7438.herokuapp.com/aioim/' + $.cookie('AiOID')).
       on('receive message',  showMessage).
-      on('connect',          function () { console.log('connect');          initializeSocketConnection() })
+      on('connect',          function () { console.log('connect');          initializeSocketConnection() }).
       on('connect_failed',   function () { console.log('connect failed');   initializeSocketConnection() }).
       on('disconnect',       function () { console.log('disconneted');      initializeSocketConnection() }).
       on('reconnect_failed', function () { console.log('reconnect failed'); initializeSocketConnection() })
