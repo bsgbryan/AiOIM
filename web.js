@@ -14,6 +14,12 @@ io.configure(function () {
   io.set('transports', ['xhr-polling'])
   io.set('polling duration', 10)
 })
+
+io.of('/aioim/*' + req.cookies.aioid).
+  on('connection', function (socket) {
+    console.log('CREATING SOCKET', socket)
+    // sockets[req.cookies.aioid] = socket
+  })
  
 io.set('authorization', function (data, accept) {
   if (data.headers.cookie) {
