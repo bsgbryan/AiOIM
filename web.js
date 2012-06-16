@@ -15,7 +15,7 @@ io.configure(function () {
   io.set('polling duration', 10)
 })
 
-io.of('/aioim/*' + req.cookies.aioid).
+io.of('/aioim/*').
   on('connection', function (socket) {
     console.log('CREATING SOCKET', socket)
     // sockets[req.cookies.aioid] = socket
