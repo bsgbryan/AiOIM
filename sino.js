@@ -59,8 +59,6 @@ exports.token = {
 }
 
 function please(verb, url, req, res, cb) {
-  console.log('AUTH TOKEN', req.session.accessToken)
-  console.log('AUTH SECRET', req.session.accessSecret)
   oauth[verb](url, req.session.accessToken, req.session.accessSecret,
     function (error, data, response) {
       if (error) res.send(util.inspect(error), 500)
