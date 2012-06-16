@@ -138,7 +138,8 @@
       $('#aioim .first.steps .authorize').addClass('active')
     }
     else {
-      io.connect('/aioim/' + $.cookie('AiOID')).
+      sesion = io.connect('/aioim/' + $.cookie('AiOID')).
+        on('connect', function() { console.log('connected') }).
         on('message',  showMessage)
         
       $('#aioim form.user.hidden').removeClass('hidden')
