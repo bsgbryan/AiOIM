@@ -63,8 +63,8 @@ exports.token = {
               tweeters[screen_name].screen_name = screen_name
 
               // These two values are what we use to interact with Twitter on our user's behalf
-              tweeters[screen_name].token  = token
-              tweeters[screen_name].secret = secret
+              req.session.accessToken  = token
+              req.session.accessSecret = secret
 
               // Where we store old tweets to we don't keep sending them every time
               tweeters[screen_name].messages = [ ]              
@@ -79,7 +79,7 @@ exports.token = {
 function please(verb, url, req, res, cb) {
   var usr = tweeter(req)
 
-  a(req)[verb](url, usr.token, usr.secret,
+  a(req)[verb](url, req.session.accessToken, req.session.accessSecret,
     function (error, data, response) {
       if (error) res.send(util.inspect(error), 500)
       else {
@@ -91,26 +91,6 @@ function please(verb, url, req, res, cb) {
 
 exports.users = {
   search: function(name, req, res) { please('get', users + name, req, res) }
-}
-
-function isAiOIM(tweet) {
-  for (var j = 0; j < tweet.entities.hashtags.length; j++)
-    if (tweet.entities.hashtags[j].text === 'AiOIM')
-      return true
-
-  return false
-}
-
-function mentions(usr, tweet) {
-  for (var k = 0; k < tweet.entities.user_mentions.length; k++)
-    if (tweet.entities.user_mentions[k].screen_name === usr.screen_name)
-      return true
-
-  return false
-}
-
-function authoredBy(usr, tweet) {
-  return tweet.user.screen_name === usr.screen_name
 }
 
 exports.statuses = {
@@ -125,8 +105,8 @@ exports.statuses = {
     new twitter({
       consumer_key: process.env.TwitterConsumerKey,
       consumer_secret: process.env.TwitterConsumerSecret,
-      access_token_key: usr.token,
-      access_token_secret: usr.secret
+      access_token_key: req.session.accessToken,
+      access_token_secret: req.session.accessSecret
     }).stream('statuses/filter', { track : [ 'AiOIM', 'aioim' ] }, function(stream) {
       stream.on('data', data)
       stream.on('error', error)
