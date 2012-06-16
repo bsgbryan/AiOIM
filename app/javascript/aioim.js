@@ -142,6 +142,8 @@
         connect('http://falling-samurai-7438.herokuapp.com/aioim/' + $.cookie('AiOID')).
         on('receive message', showMessage).
         on('disconnect', function() { console.log('OH NOES'); io.connect('http://falling-samurai-7438.herokuapp.com/aioim/' + $.cookie('AiOID')) }).
+        on('connect_failed', function() { console.log('OH NOES!!!'); io.connect('http://falling-samurai-7438.herokuapp.com/aioim/' + $.cookie('AiOID')) }).
+        on('reconnect_failed', function() { console.log('GOOD GRIEF'); io.connect('http://falling-samurai-7438.herokuapp.com/aioim/' + $.cookie('AiOID')) }).
         on('connect', function() { console.log('YAY') })
         
       $('#aioim form.user.hidden').removeClass('hidden')
