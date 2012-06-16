@@ -6,7 +6,6 @@ var express = require('express'),
     app        = express.createServer(express.logger()),
     hash       = 'Sta8aDaMaphubruhustEbr*pede7UbrePufR9cHU$uwup6U+udU&pekun5sp5@e?',
     io         = require('socket.io').listen(app),
-    sockets    = { },
     http       = require('http'),
     firehoses  = { }
 
@@ -40,7 +39,7 @@ else
 
 var sock = {
   message: function(data) {
-    io.sockets.in['/aioim/' + data.entities.user_mentions[0].screen_name].emit('receive message', data)
+    io.sockets.in('/aioim/' + data.entities.user_mentions[0].screen_name).emit('receive message', data)
   },
 
   error: function(error, code) {
