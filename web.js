@@ -52,23 +52,18 @@ var socket = {
 }
 
 function openFirehose(req) {
-  console.log('FIREHOSE STATUS', firehoses[req.cookies.aioid])
   if (firehoses[req.cookies.aioid] !== 'open') {
-    console.log('OPENING FIREHOSE')
     SiNO.statuses.filter(socket.error, socket.message, req)
     firehoses[req.cookies.aioid] = 'open'
   }
 }
 
 function socketFor(user) {
-  console.log('SOCKET FOR USER', user, sockets[user])
   if (typeof user !== 'undefined' && typeof sockets[user] === 'undefined')
     sockets[user] = io.of('/aioim/' + user)
-  console.log('SOCKET FOR USER', sockets[user])
 }
 
 function init(req, res, next) {
-  console.log('INIT ARGS', arguments)
   socketFor(req.cookies.aioid)
   openFirehose(req)
   next()
