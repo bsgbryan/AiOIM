@@ -77,9 +77,9 @@ exports.token = {
 function please(verb, url, req, res, cb) {
   var usr = tweeter(req)
 
-  console.log('SESSION TOKEN', req,session.token)
-  console.log('SESSION SECRET', req,session.secret)
-  
+  console.log('SESSION TOKEN', req.session.token)
+  console.log('SESSION SECRET', req.session.secret)
+
   a(req)[verb](url, req.session.token, req.session.secret,
     function (error, data, response) {
       if (error) res.send(util.inspect(error), 500)
