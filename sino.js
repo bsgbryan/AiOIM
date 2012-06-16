@@ -35,13 +35,18 @@ exports.token = {
     oauth().getOAuthRequestToken(function (err, t, s, results) {
 
       if (err) res.send(util.inspect(err), 500)
-      else res.redirect(auth + t)
+      else {
+        req.session.token  = t
+        req.session.secret = s 
+              
+        res.redirect(auth + t)
+      }
     })
   },
   access: function(req, res) {
     var myauth = oauth()
 
-    myauth.getOAuthAccessToken(process.env.TwitterAccessToken, process.env.TwitterAccessTokenSecret, req.query.oauth_verifier,
+    myauth.getOAuthAccessToken(req.session.token, req.session.secret, req.query.oauth_verifier,
       function (err, token, secret, results) {
         
         if (err) res.send(util.inspect(err), 500)
