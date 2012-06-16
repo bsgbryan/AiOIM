@@ -38,22 +38,22 @@ if (process.env.REDISTOGO_URL)
 else 
   var redis = require('redis').createClient()
 
-var socket = {
+var sock = {
   message: function(data) {
     io.sockets.in['/aioim/' + data.entities.user_mentions[0].screen_name].emit('receive message', data)
   },
 
   error: function(error, code) {
-    console.log('twitter stream error', arguments)
+    console.log('twitter stream error "%s", "%s"', error, code)
   }
 }
 
 function init(req, res, next) {
   if (firehoses[req.cookies.aioid] !== 'open') {
-    SiNO.statuses.filter(socket.error, socket.message, req)
+    SiNO.statuses.filter(sock, req)
     firehoses[req.cookies.aioid] = 'open'
   }
-  
+
   next()
 }
 

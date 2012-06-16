@@ -78,7 +78,7 @@ exports.statuses = {
     please('post', message + '?status=' + encodeURIComponent(sts), req, res)
   },
 
-  filter: function(error, data, req) {
+  filter: function(sock, req) {
     require('ntwitter')({
 
       consumer_key: process.env.TwitterConsumerKey,
@@ -87,8 +87,8 @@ exports.statuses = {
       access_token_secret: req.session.accessSecret
 
     }).stream('statuses/filter', { track : [ 'AiOIM', 'aioim' ] }, function(stream) {
-      stream.on('data', data)
-      stream.on('error', error)
+      stream.on('data', sock.message)
+      stream.on('error', sock.error)
     })
   }
 }
