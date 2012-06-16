@@ -23,12 +23,17 @@ io.set('authorization', function (data, accept) {
       cookies[parts[0].trim()] = (parts[ 1 ] || '').trim()
     })
     
-    data.id = cookies['connect.sid']
+    data.id   = cookies['connect.sid']
+    data.user = cookies['AiOID']
   } else
    return accept('No cookie transmitted.', false)
 
   accept(null, true)
 });
+
+io.sockets.on('connection', function (socket) {
+  sockets[socket.user] = socket
+})
 
 // Production
 if (process.env.REDISTOGO_URL) 
@@ -41,7 +46,7 @@ var sock = {
   message: function(data) {
     console.log('DATA FOR ', 
       data.entities.user_mentions[0].screen_name, 
-      io.sockets.in('/aioim/' + data.entities.user_mentions[0].screen_name))
+      sockets[data.entities.user_mentions[0].screen_name])
 
     io.sockets.in('/aioim/' + data.entities.user_mentions[0].screen_name).send(data)
   },
