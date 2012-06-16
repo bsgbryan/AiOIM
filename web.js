@@ -24,7 +24,7 @@ io.set('authorization', function (data, accept) {
       cookies[parts[0].trim()] = (parts[ 1 ] || '').trim()
     })
     
-    data.id = cookies.cookie['connect.sid']
+    data.id = cookies['connect.sid']
   } else
    return accept('No cookie transmitted.', false)
 
