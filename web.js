@@ -40,10 +40,7 @@ else
 
 var socket = {
   message: function(data) {
-    var socket = io.rooms['/aioim/' + data.entities.user_mentions[0].screen_name]
-console.log('MY SOCKET', socket)
-    if (typeof socket !== 'undefined')
-      socket.emit('receive message', data)
+    io.sockets.in['/aioim/' + data.entities.user_mentions[0].screen_name].emit('receive message', data)
   },
 
   error: function(error, code) {
@@ -56,17 +53,6 @@ function openFirehose(req) {
     SiNO.statuses.filter(socket.error, socket.message, req)
     firehoses[req.cookies.aioid] = 'open'
   }
-}
-
-function socketFor(user) {
-  if (typeof user !== 'undefined' && typeof sockets[user] === 'undefined')
-    sockets[user] = io.of('/aioim/' + user)
-}
-
-function init(req, res, next) {
-  socketFor(req.cookies.aioid)
-  openFirehose(req)
-  next()
 }
 
 app.configure(function() {
@@ -87,7 +73,7 @@ app.configure(function() {
 
 app.get('/aio', function (req, res) { res.redirect('/aioim') })
 
-app.get('/aioim', init, function (req, res) {
+app.get('/aioim', function (req, res) {
   res.render('aioim', { layout : false })
 })
 
@@ -99,7 +85,7 @@ app.get('/aioim/quote', function(req, res) {
   })
 })
 
-app.get('/aioim/signin', init, function (req, res) {
+app.get('/aioim/signin', function (req, res) {
   SiNO.token.request(req, res)
 })
 
@@ -107,11 +93,11 @@ app.get('/aioim/authorized', function (req, res) {
   SiNO.token.access(req, res)
 })
 
-app.get('/aioim/users.search', init, function (req, res) {
+app.get('/aioim/users.search', function (req, res) {
   SiNO.users.search(req.param('name'), req, res)
 })
 
-app.post('/aioim/statuses.update', init, function (req, res) {
+app.post('/aioim/statuses.update', function (req, res) {
   SiNO.statuses.update(req.body.status, req, res)
 })
 
