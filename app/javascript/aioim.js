@@ -140,7 +140,7 @@
     else {
       io.
         connect('/aioim/' + $.cookie('AiOID')).
-        on('connect', function (socket) { session = socket; console.log('connected') })
+        on('connect', function (socket) { session = socket; console.log('connected') }).
         on('receive message',  showMessage)
         
       $('#aioim form.user.hidden').removeClass('hidden')
