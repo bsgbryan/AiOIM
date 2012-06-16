@@ -59,8 +59,6 @@ exports.token = {
 }
 
 function please(verb, url, req, res, cb) {
-  var usr = tweeter(req)
-
   oauth[verb](url, req.session.accessToken, req.session.accessSecret,
     function (error, data, response) {
       if (error) res.send(util.inspect(error), 500)
