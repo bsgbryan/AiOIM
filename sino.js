@@ -62,7 +62,7 @@ exports.token = {
               // Where we store old tweets to we don't keep sending them every time
               tweeters[screen_name].messages = [ ]              
 
-              res.redirect('/aio')
+              res.redirect('/aioim')
             }
           })
       })
@@ -84,26 +84,6 @@ function please(verb, url, req, res, cb) {
 
 exports.users = {
   search: function(name, req, res) { please('get', users + name, req, res) }
-}
-
-function isAiOIM(tweet) {
-  for (var j = 0; j < tweet.entities.hashtags.length; j++)
-    if (tweet.entities.hashtags[j].text === 'AiOIM' || tweet.entities.hashtags[j].text === 'aioim')
-      return true
-
-  return false
-}
-
-function mentions(usr, tweet) {
-  for (var k = 0; k < tweet.entities.user_mentions.length; k++)
-    if (tweet.entities.user_mentions[k].screen_name === usr.screen_name)
-      return true
-
-  return false
-}
-
-function authoredBy(usr, tweet) {
-  return tweet.user.screen_name === req.cookies.aioid
 }
 
 exports.statuses = {
