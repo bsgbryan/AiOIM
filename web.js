@@ -31,10 +31,6 @@ io.set('authorization', function (data, accept) {
   accept(null, true)
 });
 
-io.sockets.on('connection', function (socket) {
-  console.log('SOCKET CONNECTION', io.sockets.manager.namespaces)
-})
-
 // Production
 if (process.env.REDISTOGO_URL) 
   var redis = require('redis-url').connect(process.env.REDISTOGO_URL)
@@ -44,8 +40,8 @@ else
 
 var socket = {
   message: function(data) {
-    var socket = sockets[data.entities.user_mentions[0].screen_name]
-
+    var socket = io.sockets.manager.namespaces['/aioim/' + data.entities.user_mentions[0].screen_name]
+console.log('MY SOCKET', socket)
     if (typeof socket !== 'undefined')
       socket.emit('receive message', data)
   },
