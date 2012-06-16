@@ -37,14 +37,8 @@ app.configure(function() {
 app.get('/aio', function (req, res) { res.redirect('/aioim') })
 
 app.get('/aioim', function (req, res) {
-  if (typeof req.cookies.aioid !== 'undefined') {
-    console.log('FOUND COOKIE AIOID', req.cookies.aioid)
-    console.log('FOUND COOKIE TOKEN', req.session.token)
-    console.log('FOUND COOKIE SECRET', req.session.secret)
+  if (typeof req.cookies.aioid !== 'undefined')
     sockets[req.cookies.aioid] = io.of('/aioim/' + req.cookies.aioid)
-  } else {
-    console.log('NO COOKIES')
-  }
 
   res.render('aioim', { layout : false })
 })
@@ -84,10 +78,6 @@ app.get('/aioim/statuses.filter', function (req, res) {
   }
 
   var data = function(data) {
-
-    console.log('COOKIES ON MESSAGE', req.cookies.aioid)
-    console.log('COOKIES ON MESSAGE TOKEN', req.session.token)
-    console.log('COOKIES ON MESSAGE SECRET', req.session.secret)
     var socket = sockets[data.entities.user_mentions[0].screen_name]
 
     if (typeof socket !== 'undefined')
