@@ -61,8 +61,8 @@ exports.token = {
               tweeters[screen_name] = { auth: myauth }
 
               // These two values are what we use to interact with Twitter on our user's behalf
-              req.session.token  = token
-              req.session.secret = secret
+              req.session.accessToken  = token
+              req.session.accessSecret = secret
 
               // Where we store old tweets to we don't keep sending them every time
               tweeters[screen_name].messages = [ ]              
@@ -77,10 +77,10 @@ exports.token = {
 function please(verb, url, req, res, cb) {
   var usr = tweeter(req)
 
-  console.log('SESSION TOKEN', req.session.token)
-  console.log('SESSION SECRET', req.session.secret)
+  console.log('SESSION TOKEN', req.session.accessToken)
+  console.log('SESSION SECRET', req.session.accessSecret)
 
-  a(req)[verb](url, req.session.token, req.session.secret,
+  a(req)[verb](url, req.session.acessToken, req.session.accessSecret,
     function (error, data, response) {
       if (error) res.send(util.inspect(error), 500)
       else {
