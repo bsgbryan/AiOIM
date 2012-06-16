@@ -27,8 +27,11 @@ app.configure(function() {
   app.use(express.cookieParser(hash))
   app.use(express.session({ 
     store  : new RedisStore({ client : redis }),
-    secret : hash
-   }))
+    secret : hash,
+    cookie : {
+      maxAge : 1209600000,
+      path   : '/'
+    }}))
 
   app.set('views', __dirname + '/view')
   app.set('view engine', 'jade')
