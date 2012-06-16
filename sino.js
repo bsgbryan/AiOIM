@@ -38,7 +38,7 @@ exports.token = {
       else {
         req.session.token  = t
         req.session.secret = s 
-              
+
         res.redirect(auth + t)
       }
     })
@@ -61,8 +61,8 @@ exports.token = {
               tweeters[screen_name] = { auth: myauth }
 
               // These two values are what we use to interact with Twitter on our user's behalf
-              req.cookies.token  = token
-              req.cookies.secret = secret
+              req.session.cookie.token  = token
+              req.session.cookie.secret = secret
 
               // Where we store old tweets to we don't keep sending them every time
               tweeters[screen_name].messages = [ ]              
@@ -77,7 +77,7 @@ exports.token = {
 function please(verb, url, req, res, cb) {
   var usr = tweeter(req)
 
-  a(req)[verb](url, req.cookies.token, req.cookies.secret,
+  a(req)[verb](url, req.session.cookie.token, req.session.cookie.secret,
     function (error, data, response) {
       if (error) res.send(util.inspect(error), 500)
       else {
@@ -103,8 +103,8 @@ exports.statuses = {
     new twitter({
       consumer_key: process.env.TwitterConsumerKey,
       consumer_secret: process.env.TwitterConsumerSecret,
-      access_token_key: req.cookies.token,
-      access_token_secret: req.cookies.secret
+      access_token_key: req.session.cookie.token,
+      access_token_secret: req.session.cookie.secret
     }).stream('statuses/filter', { track : [ 'AiOIM', 'aioim' ] }, function(stream) {
       stream.on('data', data)
       stream.on('error', error)
