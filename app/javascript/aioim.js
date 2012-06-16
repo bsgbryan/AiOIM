@@ -138,8 +138,7 @@
       $('#aioim .first.steps .authorize').addClass('active')
     }
     else {
-      io.
-        connect('aioim/' + $.cookie('AiOID')).
+      io.connect('http://falling-samurai-7438.herokuapp.com/aioim/' + $.cookie('AiOID')).
         on('message',  showMessage)
         
       $('#aioim form.user.hidden').removeClass('hidden')
