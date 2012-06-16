@@ -34,21 +34,21 @@ var socket = {
   }
 }
 
-function firehose(req) {
+function openFirehose(req) {
   if (req.session.firehose !== 'open') {
     SiNO.statuses.filter(socket.error, socket.message, req)
     req.session.firehose = 'open'
   }
 }
 
-function sockets(user) {
+function socketFor(user) {
   if (typeof user !== 'undefined' && typeof sockets[user] === 'undefined')
     sockets[user] = io.of('/aioim/' + user)
 }
 
 function init(req, res, next) {
-  sockets(req.session.aioid)
-  firehose(req)
+  socketFor(req.session.aioid)
+  openFirehose(req)
   next()
 }
 
