@@ -59,6 +59,8 @@ exports.token = {
 }
 
 function please(verb, url, req, res, cb) {
+  console.log('AUTH TOKEN', req.session.accessToken)
+  console.log('AUTH SECRET', req.session.accessSecret)
   oauth[verb](url, req.session.accessToken, req.session.accessSecret,
     function (error, data, response) {
       if (error) res.send(util.inspect(error), 500)
@@ -79,14 +81,13 @@ exports.statuses = {
   },
 
   filter: function(error, data, req) {
-    var twitter = require('ntwitter'),
-        usr     = tweeter(req)
+    require('ntwitter')({
 
-    new twitter({
       consumer_key: process.env.TwitterConsumerKey,
       consumer_secret: process.env.TwitterConsumerSecret,
       access_token_key: req.session.accessToken,
       access_token_secret: req.session.accessSecret
+
     }).stream('statuses/filter', { track : [ 'AiOIM', 'aioim' ] }, function(stream) {
       stream.on('data', data)
       stream.on('error', error)
