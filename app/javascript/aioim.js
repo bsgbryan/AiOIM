@@ -121,7 +121,7 @@
     console.log('event', arguments)
 
     session = io.
-      connect('/aioim/' + $.cookie('AiOID'), { 'reconnection delay': 3000 }).
+      connect('/aioim/' + $.cookie('AiOID'), { 'max reconnection attempts': 30 }).
       on('receive message',  showMessage)
   }
 
