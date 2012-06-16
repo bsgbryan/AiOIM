@@ -63,8 +63,6 @@ app.configure(function() {
       maxAge : 1209600000,
       path   : '/'
     }}))
-  app.use(sockets)
-  app.use(firehose)
 
   app.set('views', __dirname + '/view')
   app.set('view engine', 'jade')
