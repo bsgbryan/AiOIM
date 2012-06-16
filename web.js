@@ -46,7 +46,10 @@ app.get('/aio', function (req, res) { res.redirect('/aioim') })
 
 app.get('/aioim', function (req, res) {
   if (typeof req.cookies.aioid !== 'undefined')
-    sockets[req.cookies.aioid] = io.of('/aioim/' + req.cookies.aioid)
+    sockets[req.cookies.aioid] = io.of('/aioim/' + req.cookies.aioid).
+      on('connection', function () {
+        req.redirect('/aioim/statuses.filter')
+      })
 
   res.render('aioim', { layout : false })
 })
