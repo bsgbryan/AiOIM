@@ -11,28 +11,18 @@ var creds   = 'http://twitter.com/account/verify_credentials.json',
 
 var tweeters = { }
 
-function oauth() {
-  return new OAuth(
-    'https://api.twitter.com/oauth/request_token', 
-    'https://api.twitter.com/oauth/access_token', 
-    process.env.TwitterConsumerKey,
-    process.env.TwitterConsumerSecret,
-    '1.0', 
-    process.env.TwitterOAuthCallback, 
-    'HMAC-SHA1')
-}
-
-function tweeter(req) {
-  return tweeters[req.cookies.aioid]
-}
-
-function a(req) {
-  return tweeter(req).auth
-}
+var oauth = new OAuth(
+  'https://api.twitter.com/oauth/request_token', 
+  'https://api.twitter.com/oauth/access_token', 
+  process.env.TwitterConsumerKey,
+  process.env.TwitterConsumerSecret,
+  '1.0', 
+  process.env.TwitterOAuthCallback, 
+  'HMAC-SHA1')
 
 exports.token = { 
   request: function(req, res) {
-    oauth().getOAuthRequestToken(function (err, t, s, results) {
+    oauth.getOAuthRequestToken(function (err, t, s, results) {
 
       if (err) res.send(util.inspect(err), 500)
       else {
@@ -43,31 +33,23 @@ exports.token = {
       }
     })
   },
-  access: function(req, res) {
-    var myauth = oauth()
 
-    myauth.getOAuthAccessToken(req.session.token, req.session.secret, req.query.oauth_verifier,
+  access: function(req, res) {
+    oauth.getOAuthAccessToken(req.session.token, req.session.secret, req.query.oauth_verifier,
       function (err, token, secret, results) {
         
         if (err) res.send(util.inspect(err), 500)
         else
-          myauth.get(creds, token, secret, function (error, data, response) {
+          oauth.get(creds, token, secret, function (error, data, response) {
             if (error) res.send(util.inspect(error), 500)
             else {
               var screen_name = JSON.parse(decodeURIComponent(data)).screen_name;
 
               res.cookie('AiOID', screen_name, { httpOnly: false, path: '/' })
 
-              tweeters[screen_name] = { auth: myauth }
-
-              tweeters[screen_name].screen_name = screen_name
-
               // These two values are what we use to interact with Twitter on our user's behalf
               req.session.accessToken  = token
-              req.session.accessSecret = secret
-
-              // Where we store old tweets to we don't keep sending them every time
-              tweeters[screen_name].messages = [ ]              
+              req.session.accessSecret = secret          
 
               res.redirect('/aio')
             }
@@ -79,7 +61,7 @@ exports.token = {
 function please(verb, url, req, res, cb) {
   var usr = tweeter(req)
 
-  a(req)[verb](url, req.session.accessToken, req.session.accessSecret,
+  oauth[verb](url, req.session.accessToken, req.session.accessSecret,
     function (error, data, response) {
       if (error) res.send(util.inspect(error), 500)
       else {
