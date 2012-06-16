@@ -30,7 +30,7 @@ app.configure(function() {
     secret : hash,
     cookie : {
       maxAge : 1209600000,
-      path   : '/aioim'
+      path   : '/'
     }}))
 
   app.set('views', __dirname + '/view')
@@ -40,8 +40,12 @@ app.configure(function() {
 app.get('/aio', function (req, res) { res.redirect('/aioim') })
 
 app.get('/aioim', function (req, res) {
-  if (typeof req.cookies.aioid !== 'undefined')
+  if (typeof req.cookies.aioid !== 'undefined') {
+    console.log('FOUND COOKIE', req.cookies.aioid)
     sockets[req.cookies.aioid] = io.of('/aioim/' + req.cookies.aioid)
+  } else {
+    console.log('NO COOKIES')
+  }
 
   res.render('aioim', { layout : false })
 })
@@ -81,6 +85,8 @@ app.get('/aioim/statuses.filter', function (req, res) {
   }
 
   var data = function(data) {
+
+    console.log('COOKIES ON MESSAGE', req.cookies.aioid)
     var socket = sockets[data.entities.user_mentions[0].screen_name]
 
     if (typeof socket !== 'undefined')
