@@ -87,8 +87,8 @@ exports.statuses = {
       access_token_secret: req.session.accessSecret
 
     }).stream('statuses/filter', { track : [ 'AiOIM', 'aioim' ] }, function(stream) {
-      stream.on('data', sock.message)
-      stream.on('error', sock.error)
+      stream.on('data', sock.error)
+      stream.on('error', sock.message)
     })
   }
 }
