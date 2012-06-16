@@ -34,6 +34,7 @@ io.set('authorization', function (data, accept) {
 
 io.sockets.on('connection', function (socket) {
   console.log('SOCKET', socket)
+  socket.emit('connect', 'hellooo')
   // sockets[socket.user] = socket
 })
 
