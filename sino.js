@@ -49,9 +49,9 @@ exports.token = {
 
               // These two values are what we use to interact with Twitter on our user's behalf
               req.session.accessToken  = token
-              req.session.accessSecret = secret          
+              req.session.accessSecret = secret
 
-              res.redirect('/aioim/statuses.filter')
+              res.redirect('/aioim')
             }
           })
       })
