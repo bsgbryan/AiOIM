@@ -118,6 +118,8 @@
   }
 
   function initializeSocketConnection() {
+    console.log('event', arguments)
+    
     session = io.
       connect('http://falling-samurai-7438.herokuapp.com/aioim/' + $.cookie('AiOID')).
       on('receive message',  showMessage).
