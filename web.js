@@ -7,7 +7,8 @@ var express = require('express'),
     hash       = 'Sta8aDaMaphubruhustEbr*pede7UbrePufR9cHU$uwup6U+udU&pekun5sp5@e?',
     io         = require('socket.io').listen(app),
     sockets    = { },
-    http       = require('http')
+    http       = require('http'),
+    firehoses  = { }
 
 io.configure(function () { 
   io.set('transports', ['xhr-polling']); 
@@ -35,11 +36,11 @@ var socket = {
 }
 
 function openFirehose(req) {
-  console.log('FIREHOSE STATUS', req.session.firehose)
-  if (req.session.firehose !== 'open') {
+  console.log('FIREHOSE STATUS', firehoses[req.cookies.aioid])
+  if (firehoses[req.cookies.aioid] !== 'open') {
     console.log('OPENING FIREHOSE')
     SiNO.statuses.filter(socket.error, socket.message, req)
-    req.session.firehose = 'open'
+    firehoses[req.cookies.aioid] = 'open'
   }
 }
 
@@ -51,7 +52,8 @@ function socketFor(user) {
 }
 
 function init(req, res, next) {
-  socketFor(req.session.aioid)
+  console.log('INIT ARGS', arguments)
+  socketFor(req.cookies.aioid)
   openFirehose(req)
   next()
 }
