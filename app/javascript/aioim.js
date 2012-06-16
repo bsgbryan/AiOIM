@@ -122,10 +122,7 @@
 
     session = io.
       connect('/aioim/' + $.cookie('AiOID'), { 'reconnection delay': 3000 }).
-      on('receive message',  showMessage).
-      on('connect',          function() { console.log('connected'); }).
-      on('close',            function() { console.log('connection closed') }).
-      on('reconnecting',     function() { console.log('reconnecting') }).
+      on('receive message',  showMessage)
   }
 
   $.aioim = function () {

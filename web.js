@@ -31,6 +31,10 @@ io.set('authorization', function (data, accept) {
   accept(null, true)
 });
 
+io.sockets.on('connection', function (socket) {
+  console.log('SOCKET CONNECTION', socket)
+})
+
 // Production
 if (process.env.REDISTOGO_URL) 
   var redis = require('redis-url').connect(process.env.REDISTOGO_URL)
