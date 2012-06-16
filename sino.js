@@ -80,7 +80,7 @@ function please(verb, url, req, res, cb) {
   console.log('SESSION TOKEN', req.session.accessToken)
   console.log('SESSION SECRET', req.session.accessSecret)
 
-  a(req)[verb](url, req.session.acessToken, req.session.accessSecret,
+  a(req)[verb](url, req.session.accessToken, req.session.accessToken,
     function (error, data, response) {
       if (error) res.send(util.inspect(error), 500)
       else {
