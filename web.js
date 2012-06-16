@@ -32,7 +32,7 @@ io.set('authorization', function (data, accept) {
 });
 
 io.sockets.on('connection', function (socket) {
-  console.log('SOCKET CONNECTION', io.sockets.server.namespaces)
+  console.log('SOCKET CONNECTION', io.sockets.server)
 })
 
 // Production
