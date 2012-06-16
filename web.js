@@ -7,7 +7,8 @@ var express = require('express'),
     hash       = 'Sta8aDaMaphubruhustEbr*pede7UbrePufR9cHU$uwup6U+udU&pekun5sp5@e?',
     io         = require('socket.io').listen(app),
     http       = require('http'),
-    firehoses  = { }
+    firehoses  = { },
+    sockets    = { }
 
 io.configure(function () { 
   io.set('transports', ['xhr-polling'])
