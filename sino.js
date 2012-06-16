@@ -48,8 +48,8 @@ exports.token = {
               res.cookie('AiOID', screen_name, { httpOnly: false, path: '/' })
 
               // These two values are what we use to interact with Twitter on our user's behalf
-              res.cookie('token',  token,  { httpOnly: false, path: '/' })
-              res.cookie('secret', secret, { httpOnly: false, path: '/' })
+              req.session.accessToken  = token
+              req.session.accessSecret = secret          
 
               res.redirect('/aio')
             }
@@ -59,9 +59,9 @@ exports.token = {
 }
 
 function please(verb, url, req, res, cb) {
-  console.log('AUTH TOKEN', req.cookies.token)
-  console.log('AUTH SECRET', req.cookies.secret)
-  oauth[verb](url, req.cookies.token, req.cookies.secret,
+  console.log('AUTH TOKEN', req.session.accessToken)
+  console.log('AUTH SECRET', req.session.accessSecret)
+  oauth[verb](url, req.session.accessToken, req.session.accessSecret,
     function (error, data, response) {
       if (error) res.send(util.inspect(error), 500)
       else {
