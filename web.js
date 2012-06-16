@@ -45,7 +45,7 @@ var sock = {
       data.entities.user_mentions[0].screen_name, 
       sockets[data.entities.user_mentions[0].screen_name])
 
-    io.sockets.in('/aioim/' + data.entities.user_mentions[0].screen_name).send(data)
+    sockets[data.entities.user_mentions[0].screen_name].send(data)
   },
 
   error: function(error, code) {
@@ -59,7 +59,7 @@ function init(req, res, next) {
       on('connection', function (socket) {
         sockets[req.cookies.aioid] = socket
       })
-      
+
   if (firehoses[req.cookies.aioid] !== 'open') {
     SiNO.statuses.filter(sock, req)
     firehoses[req.cookies.aioid] = 'open'
