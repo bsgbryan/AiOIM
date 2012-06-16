@@ -8,11 +8,22 @@ var express = require('express'),
     io         = require('socket.io').listen(app),
     sockets    = { },
     http       = require('http'),
-    firehoses  = { }
+    firehoses  = { },
+    parseCookie = require('connect').utils.parseCookie
 
 io.configure(function () { 
-  io.set('transports', ['xhr-polling']); 
-  io.set('polling duration', 10); 
+  io.set('transports', ['xhr-polling'])
+  io.set('polling duration', 10)
+})
+ 
+io.set('authorization', function (data, accept) {
+  if (data.headers.cookie) {
+    data.cookie = parseCookie(data.headers.cookie)
+    data.id     = data.cookie['connect.sid']
+  } else
+   return accept('No cookie transmitted.', false)
+
+  accept(null, true)
 });
 
 // Production
