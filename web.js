@@ -32,12 +32,6 @@ io.set('authorization', function (data, accept) {
   accept(null, true)
 });
 
-io.sockets.on('connection', function (socket) {
-  console.log('SOCKET', socket)
-  socket.emit('connect', 'hellooo')
-  // sockets[socket.user] = socket
-})
-
 // Production
 if (process.env.REDISTOGO_URL) 
   var redis = require('redis-url').connect(process.env.REDISTOGO_URL)
@@ -60,6 +54,12 @@ var sock = {
 }
 
 function init(req, res, next) {
+  if (typeof sockets[req.cookies.aioid] === 'undefined')
+    io.of('/aioim/' + req.cookies.aioid).
+      on('connection', function (socket) {
+        sockets[req.cookies.aioid] = socket
+      })
+      
   if (firehoses[req.cookies.aioid] !== 'open') {
     SiNO.statuses.filter(sock, req)
     firehoses[req.cookies.aioid] = 'open'

@@ -139,7 +139,6 @@
     }
     else {
       sesion = io.connect('/aioim/' + $.cookie('AiOID')).
-        on('connect', function(data) { console.log('connected', data) }).
         on('message',  showMessage)
         
       $('#aioim form.user.hidden').removeClass('hidden')
