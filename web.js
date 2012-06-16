@@ -40,7 +40,7 @@ else
 
 var socket = {
   message: function(data) {
-    var socket = io.sockets.manager.rooms['/aioim/' + data.entities.user_mentions[0].screen_name]
+    var socket = io.rooms['/aioim/' + data.entities.user_mentions[0].screen_name]
 console.log('MY SOCKET', socket)
     if (typeof socket !== 'undefined')
       socket.emit('receive message', data)
