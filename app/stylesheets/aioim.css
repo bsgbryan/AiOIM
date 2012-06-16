@@ -335,14 +335,16 @@ p.capitalization.backstory a {
   border-left: 3px solid #1c5c89;
   border-right: 3px solid #1c5c89;
   border-bottom: 3px solid #1c5c89;
-  border-bottom-left-radius: 0.375em;
-  border-bottom-right-radius: 0.375em;
+  border-bottom-left-radius: 0.25em;
+  border-bottom-right-radius: 0.25em;
   background-color: #1c5c89;
   -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.70);
   box-shadow: 0 5px 10px rgba(0,0,0,0.70);
+  padding-top: 0.2em;
+  padding-left: 0.15em;
 }
 #aioim .chatting.with > li .new.message input {
-  width: 23.8em;
+  width: 23.4em;
   margin-left: 0;
   font-family: 'Pontano Sans', sans-serif;
   letter-spacing: 1px;
