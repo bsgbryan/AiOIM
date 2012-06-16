@@ -39,6 +39,10 @@ else
 
 var sock = {
   message: function(data) {
+    console.log('SOCKET FOR ', 
+      data.entities.user_mentions[0].screen_name, 
+      io.sockets.in('/aioim/' + data.entities.user_mentions[0].screen_name))
+    
     io.sockets.in('/aioim/' + data.entities.user_mentions[0].screen_name).emit('receive message', data)
   },
 
