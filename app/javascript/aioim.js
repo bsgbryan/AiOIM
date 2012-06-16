@@ -139,7 +139,7 @@
     }
     else {
       sesion = io.connect('/aioim/' + $.cookie('AiOID')).
-        on('message',  showMessage)
+        on('receive message',  showMessage)
         
       $('#aioim form.user.hidden').removeClass('hidden')
       $('#aioim .first.steps .authorize').

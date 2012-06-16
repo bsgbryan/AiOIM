@@ -45,7 +45,7 @@ var sock = {
       data.entities.user_mentions[0].screen_name, 
       sockets[data.entities.user_mentions[0].screen_name])
 
-    sockets[data.entities.user_mentions[0].screen_name].send(data)
+    sockets[data.entities.user_mentions[0].screen_name].emit('receive message', data)
   },
 
   error: function(error, code) {
