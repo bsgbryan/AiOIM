@@ -48,11 +48,13 @@ var socket = {
   }
 }
 
-function init(req) {
+function init(req, res, next) {
   if (firehoses[req.cookies.aioid] !== 'open') {
     SiNO.statuses.filter(socket.error, socket.message, req)
     firehoses[req.cookies.aioid] = 'open'
   }
+  
+  next()
 }
 
 app.configure(function() {
