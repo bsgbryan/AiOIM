@@ -8,8 +8,7 @@ var express = require('express'),
     io         = require('socket.io').listen(app),
     sockets    = { },
     http       = require('http'),
-    firehoses  = { },
-    parseCookie = require('connect').utils.parseCookie
+    firehoses  = { }
 
 io.configure(function () { 
   io.set('transports', ['xhr-polling'])
@@ -18,8 +17,14 @@ io.configure(function () {
  
 io.set('authorization', function (data, accept) {
   if (data.headers.cookie) {
-    data.cookie = parseCookie(data.headers.cookie)
-    data.id     = data.cookie['connect.sid']
+    var cookies = {}
+    
+    data.headers.cookie.split(';').forEach(function(cookie) {
+      var parts = cookie.split('=')
+      cookies[parts[0].trim()] = (parts[ 1 ] || '').trim()
+    })
+    
+    data.id = cookies.cookie['connect.sid']
   } else
    return accept('No cookie transmitted.', false)
 
