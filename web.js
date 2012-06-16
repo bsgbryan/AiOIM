@@ -33,7 +33,8 @@ io.set('authorization', function (data, accept) {
 });
 
 io.sockets.on('connection', function (socket) {
-  sockets[socket.user] = socket
+  console.log('SOCKET', socket)
+  // sockets[socket.user] = socket
 })
 
 // Production
