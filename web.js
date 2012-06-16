@@ -120,6 +120,4 @@ app.post('/aioim/statuses.update', init, function (req, res) {
   SiNO.statuses.update(req.body.status, req, res)
 })
 
-// The port number is passed in via Heroku
-var port = process.env.PORT
-app.listen(port)
+app.listen(process.env.PORT)
