@@ -10,7 +10,8 @@
     "ntwitter"   : "*",
     "socket.io"  : "*",
     "connect-redis" : "*",
-    "redis-url"     : "*"
+    "redis-url"     : "*",
+    "connect" : "*"
   },
   "devDependencies" : {
     "stylus" : "*",
