@@ -359,7 +359,6 @@ p.capitalization.backstory a {
 }
 #aioim .chatting.with > li .new.message input::-webkit-input-placeholder {
   color: #569fd3;
-  text-shadow: 0 -1px 0 #82bee9;
 }
 #aioim .chatting.with > li .new.message input:focus {
   outline: none;
