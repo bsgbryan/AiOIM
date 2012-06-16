@@ -39,9 +39,9 @@ else
 
 var sock = {
   message: function(data) {
-    console.log('SOCKET FOR ', 
+    console.log('DATA FOR ', 
       data.entities.user_mentions[0].screen_name, 
-      io.sockets.in('/aioim/' + data.entities.user_mentions[0].screen_name))
+      data)
 
     io.sockets.in('/aioim/' + data.entities.user_mentions[0].screen_name).send(data)
   },
