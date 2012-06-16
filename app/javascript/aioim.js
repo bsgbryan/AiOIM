@@ -117,14 +117,6 @@
     }) 
   }
 
-  function initializeSocketConnection() {
-    console.log('event', arguments)
-
-    session = io.
-      connect('/aioim/' + $.cookie('AiOID'), { 'max reconnection attempts': 30 }).
-      on('receive message',  showMessage)
-  }
-
   $.aioim = function () {
     $('body').
       append('<div id="aioim">' +
@@ -146,7 +138,10 @@
       $('#aioim .first.steps .authorize').addClass('active')
     }
     else {
-      initializeSocketConnection('connect')
+      io.
+        connect('/aioim/' + $.cookie('AiOID')).
+        on('connect', function (socket) { session = socket; console.log('connected') })
+        on('receive message',  showMessage)
         
       $('#aioim form.user.hidden').removeClass('hidden')
       $('#aioim .first.steps .authorize').
