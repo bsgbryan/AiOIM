@@ -35,12 +35,7 @@ exports.token = {
     oauth().getOAuthRequestToken(function (err, t, s, results) {
 
       if (err) res.send(util.inspect(err), 500)
-      else {
-        req.session.token  = t
-        req.session.secret = s
-
-        res.redirect(auth + t)    
-      }
+      else     res.redirect(auth + t)
     })
   },
   access: function(req, res) {
@@ -60,11 +55,9 @@ exports.token = {
 
               tweeters[screen_name] = { auth: myauth }
 
-              tweeters[screen_name].screen_name = screen_name
-
               // These two values are what we use to interact with Twitter on our user's behalf
-              tweeters[screen_name].token  = token
-              tweeters[screen_name].secret = secret
+              req.cookies.token  = token
+              req.cookies.secret = secret
 
               // Where we store old tweets to we don't keep sending them every time
               tweeters[screen_name].messages = [ ]              
@@ -79,7 +72,7 @@ exports.token = {
 function please(verb, url, req, res, cb) {
   var usr = tweeter(req)
 
-  a(req)[verb](url, usr.token, usr.secret,
+  a(req)[verb](url, req.cookies.token, req.cookies.secret,
     function (error, data, response) {
       if (error) res.send(util.inspect(error), 500)
       else {
@@ -95,7 +88,7 @@ exports.users = {
 
 function isAiOIM(tweet) {
   for (var j = 0; j < tweet.entities.hashtags.length; j++)
-    if (tweet.entities.hashtags[j].text === 'AiOIM')
+    if (tweet.entities.hashtags[j].text === 'AiOIM' || tweet.entities.hashtags[j].text === 'aioim')
       return true
 
   return false
@@ -110,7 +103,7 @@ function mentions(usr, tweet) {
 }
 
 function authoredBy(usr, tweet) {
-  return tweet.user.screen_name === usr.screen_name
+  return tweet.user.screen_name === req.cookies.aioid
 }
 
 exports.statuses = {
@@ -125,8 +118,8 @@ exports.statuses = {
     new twitter({
       consumer_key: process.env.TwitterConsumerKey,
       consumer_secret: process.env.TwitterConsumerSecret,
-      access_token_key: usr.token,
-      access_token_secret: usr.secret
+      access_token_key: req.cookies.token,
+      access_token_secret: req.cookies.secret
     }).stream('statuses/filter', { track : [ 'AiOIM', 'aioim' ] }, function(stream) {
       stream.on('data', data)
       stream.on('error', error)
