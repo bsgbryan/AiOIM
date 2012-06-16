@@ -21,6 +21,26 @@ if (process.env.REDISTOGO_URL)
 else 
   var redis = require('redis').createClient()
 
+var socket = {
+  message: function(data) {
+    var socket = sockets[data.entities.user_mentions[0].screen_name]
+
+    if (typeof socket !== 'undefined')
+      socket.emit('receive message', data)
+  },
+
+  error: function(error, code) {
+    console.log('twitter stream error', arguments)
+  }
+}
+
+function firehose(req, res) {
+  if (req.session.firehose !== 'open') {
+    SiNO.statuses.filter(socket.error, socket.message, req)
+    req.session.firehose = 'open'
+  }
+}
+
 function sockets(req) {
   if (typeof req.cookies.aioid !== 'undefined' && typeof sockets[req.cookies.aioid] === 'undefined')
     sockets[req.cookies.aioid] = io.of('/aioim/' + req.cookies.aioid)
@@ -38,6 +58,7 @@ app.configure(function() {
       path   : '/'
     }}))
   app.use(sockets)
+  app.use(firehose)
 
   app.set('views', __dirname + '/view')
   app.set('view engine', 'jade')
@@ -71,24 +92,6 @@ app.get('/aioim/users.search', function (req, res) {
 
 app.post('/aioim/statuses.update', function (req, res) {
   SiNO.statuses.update(req.body.status, req, res)
-})
-
-// This is an admin function. It only needs to be called once - immediatly after the server starts
-app.get('/aioim/statuses.filter', function (req, res) {
-  var error = function(error, code) {
-    console.log('twitter stream error', arguments)
-  }
-
-  var data = function(data) {
-    var socket = sockets[data.entities.user_mentions[0].screen_name]
-
-    if (typeof socket !== 'undefined')
-      socket.emit('receive message', data)
-  }
-
-  SiNO.statuses.filter(error, data, req)
-
-  res.redirect('/aioim')
 })
 
 // The port number is passed in via Heroku
