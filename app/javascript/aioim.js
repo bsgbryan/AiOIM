@@ -125,7 +125,7 @@
       on('receive message',  showMessage).
       on('connect',          function() { console.log('connect');          initializeSocketConnection() }).
       on('connect_failed',   function() { console.log('connect failed');   initializeSocketConnection() }).
-      on('disconnect',       function() { console.log('disconneted');      initializeSocketConnection() }).
+      on('disconnect',       function() { console.log('disconneted');      initializeSocketConnection('reconnect') }).
       on('reconnect_failed', function() { console.log('reconnect failed'); initializeSocketConnection() }).
       on('close',            function() { console.log('connection closed') }).
       on('anything',         function() { console.log(arguments) }).
@@ -153,7 +153,7 @@
       $('#aioim .first.steps .authorize').addClass('active')
     }
     else {
-      initializeSocketConnection()
+      initializeSocketConnection('connect')
         
       $('#aioim form.user.hidden').removeClass('hidden')
       $('#aioim .first.steps .authorize').
