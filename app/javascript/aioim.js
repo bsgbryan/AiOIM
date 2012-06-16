@@ -127,7 +127,8 @@
       on('connect_failed',   function() { console.log('connect failed');   initializeSocketConnection() }).
       on('disconnect',       function() { console.log('disconneted');      initializeSocketConnection() }).
       on('reconnect_failed', function() { console.log('reconnect failed'); initializeSocketConnection() }).
-      on('close',            function() { console.log('connection closed') })
+      on('close',            function() { console.log('connection closed') }).
+      on('anything',         function() { console.log(arguments) })
   }
 
   $.aioim = function () {
