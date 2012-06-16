@@ -46,8 +46,10 @@ function sockets(user) {
     sockets[user] = io.of('/aioim/' + user)
 }
 
-function init(req) {
-  return [ sockets(req.session.aioid) , firehose(req) ]
+function init(req, res, next) {
+  sockets(req.session.aioid)
+  firehose(req)
+  next()
 }
 
 app.configure(function() {
@@ -70,7 +72,7 @@ app.configure(function() {
 
 app.get('/aio', function (req, res) { res.redirect('/aioim') })
 
-app.get('/aioim', init(req), function (req, res) {
+app.get('/aioim', init, function (req, res) {
   res.render('aioim', { layout : false })
 })
 
@@ -82,7 +84,7 @@ app.get('/aioim/quote', function(req, res) {
   })
 })
 
-app.get('/aioim/signin', init(req), function (req, res) {
+app.get('/aioim/signin', init, function (req, res) {
   SiNO.token.request(req, res)
 })
 
@@ -90,11 +92,11 @@ app.get('/aioim/authorized', function (req, res) {
   SiNO.token.access(req, res)
 })
 
-app.get('/aioim/users.search', init(req), function (req, res) {
+app.get('/aioim/users.search', init, function (req, res) {
   SiNO.users.search(req.param('name'), req, res)
 })
 
-app.post('/aioim/statuses.update', init(req), function (req, res) {
+app.post('/aioim/statuses.update', init, function (req, res) {
   SiNO.statuses.update(req.body.status, req, res)
 })
 
