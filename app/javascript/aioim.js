@@ -117,6 +117,14 @@
     }) 
   }
 
+  function initializeSocketConnection() {
+    session = io.
+      connect('http://falling-samurai-7438.herokuapp.com/aioim/' + $.cookie('AiOID')).
+      on('receive message',  showMessage).
+      on('disconnect',       initializeSocketConnection).
+      on('reconnect_failed', initializeSocketConnection)
+  }
+
   $.aioim = function () {
     $('body').
       append('<div id="aioim">' +
@@ -138,10 +146,7 @@
       $('#aioim .first.steps .authorize').addClass('active')
     }
     else {
-      session = io.
-        connect('http://falling-samurai-7438.herokuapp.com/aioim/' + $.cookie('AiOID')).
-        on('receive message', showMessage).
-        on('disconnect', function() { console.log('Show reconnect/re-login dialog'))
+      initializeSocketConnection()
         
       $('#aioim form.user.hidden').removeClass('hidden')
       $('#aioim .first.steps .authorize').
