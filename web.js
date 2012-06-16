@@ -96,7 +96,7 @@ app.get('/aioim/statuses.filter', function (req, res) {
 
   SiNO.statuses.filter(error, data, req)
 
-  res.send()
+  res.redirect('/aioim')
 })
 
 // The port number is passed in via Heroku
