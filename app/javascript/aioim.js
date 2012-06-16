@@ -121,15 +121,11 @@
     console.log('event', arguments)
 
     session = io.
-      connect('http://falling-samurai-7438.herokuapp.com/aioim/' + $.cookie('AiOID')).
+      connect('/aioim/' + $.cookie('AiOID'), { 'reconnection delay': 3000 }).
       on('receive message',  showMessage).
-      on('connect',          function() { console.log('connect');          initializeSocketConnection() }).
-      on('connect_failed',   function() { console.log('connect failed');   initializeSocketConnection() }).
-      on('disconnect',       function() { console.log('disconneted');      initializeSocketConnection('reconnect') }).
-      on('reconnect_failed', function() { console.log('reconnect failed'); initializeSocketConnection() }).
+      on('connect',          function() { console.log('connected'); }).
       on('close',            function() { console.log('connection closed') }).
-      on('anything',         function() { console.log(arguments) }).
-      on('message',          function() { console.log(arguments) })
+      on('reconnecting',     function() { console.log('reconnecting') }).
   }
 
   $.aioim = function () {
