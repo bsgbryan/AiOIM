@@ -21,6 +21,11 @@ if (process.env.REDISTOGO_URL)
 else 
   var redis = require('redis').createClient()
 
+function ensureSocketExistsFor(req) {
+  if (typeof req.cookies.aioid !== 'undefined' && typeof sockets[req.cookies.aioid] === 'undefined')
+    sockets[req.cookies.aioid] = io.of('/aioim/' + req.cookies.aioid)
+}
+
 app.configure(function() {
   app.use(express.static(__dirname + '/app'))
   app.use(express.bodyParser())
@@ -55,6 +60,8 @@ app.get('/aioim/quote', function(req, res) {
 })
 
 app.get('/aioim/signin', function (req, res) {
+  ensureSocketExistsFor(req)
+
   SiNO.token.request(req, res)
 })
 
@@ -63,18 +70,18 @@ app.get('/aioim/authorized', function (req, res) {
 })
 
 app.get('/aioim/users.search', function (req, res) {
+  ensureSocketExistsFor(req)
+
   SiNO.users.search(req.param('name'), req, res)
 })
 
 app.post('/aioim/statuses.update', function (req, res) {
+  ensureSocketExistsFor(req)
+
   SiNO.statuses.update(req.body.status, req, res)
 })
 
-app.get('/aioim/statuses.home_timeline', function (req, res) {
-  SiNO.statuses.home_timeline(req, res)
-})
-
-// TODO Add streaming support to node-oauth so I can do this
+// This is an admin function. It only needs to be called once - immediatly after the server starts
 app.get('/aioim/statuses.filter', function (req, res) {
   var error = function(error, code) {
     console.log('twitter stream error', arguments)
