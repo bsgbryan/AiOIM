@@ -48,7 +48,7 @@ var socket = {
   }
 }
 
-function openFirehose(req) {
+function init(req) {
   if (firehoses[req.cookies.aioid] !== 'open') {
     SiNO.statuses.filter(socket.error, socket.message, req)
     firehoses[req.cookies.aioid] = 'open'
@@ -73,7 +73,7 @@ app.configure(function() {
 
 app.get('/aio', function (req, res) { res.redirect('/aioim') })
 
-app.get('/aioim', function (req, res) {
+app.get('/aioim', init, function (req, res) {
   res.render('aioim', { layout : false })
 })
 
@@ -93,11 +93,11 @@ app.get('/aioim/authorized', function (req, res) {
   SiNO.token.access(req, res)
 })
 
-app.get('/aioim/users.search', function (req, res) {
+app.get('/aioim/users.search', init, function (req, res) {
   SiNO.users.search(req.param('name'), req, res)
 })
 
-app.post('/aioim/statuses.update', function (req, res) {
+app.post('/aioim/statuses.update', init, function (req, res) {
   SiNO.statuses.update(req.body.status, req, res)
 })
 
