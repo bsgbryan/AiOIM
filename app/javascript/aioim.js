@@ -138,7 +138,7 @@
       $('#aioim .first.steps .authorize').addClass('active')
     }
     else {
-      sesion = io.connect('/aioim/' + $.cookie('AiOID')).
+      session = io.connect('/aioim/' + $.cookie('AiOID'), { 'max reconnection attempts': 30 }).
         on('receive message',  showMessage)
         
       $('#aioim form.user.hidden').removeClass('hidden')
