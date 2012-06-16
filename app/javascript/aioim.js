@@ -140,8 +140,7 @@
     else {
       io.
         connect('aioim/' + $.cookie('AiOID')).
-        on('connect', function (socket) { session = socket; console.log('connected') }).
-        on('receive message',  showMessage)
+        on('message',  showMessage)
         
       $('#aioim form.user.hidden').removeClass('hidden')
       $('#aioim .first.steps .authorize').
