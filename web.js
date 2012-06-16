@@ -34,16 +34,20 @@ var socket = {
   }
 }
 
-function firehose(req, res) {
+function firehose(req) {
   if (req.session.firehose !== 'open') {
     SiNO.statuses.filter(socket.error, socket.message, req)
     req.session.firehose = 'open'
   }
 }
 
-function sockets(req) {
-  if (typeof req.cookies.aioid !== 'undefined' && typeof sockets[req.cookies.aioid] === 'undefined')
-    sockets[req.cookies.aioid] = io.of('/aioim/' + req.cookies.aioid)
+function sockets(user) {
+  if (typeof user !== 'undefined' && typeof sockets[user] === 'undefined')
+    sockets[user] = io.of('/aioim/' + user)
+}
+
+function init(req) {
+  return [ sockets(req.session.aioid) , firehose(req) ]
 }
 
 app.configure(function() {
@@ -66,7 +70,7 @@ app.configure(function() {
 
 app.get('/aio', function (req, res) { res.redirect('/aioim') })
 
-app.get('/aioim', function (req, res) {
+app.get('/aioim', init(req), function (req, res) {
   res.render('aioim', { layout : false })
 })
 
@@ -78,7 +82,7 @@ app.get('/aioim/quote', function(req, res) {
   })
 })
 
-app.get('/aioim/signin', function (req, res) {
+app.get('/aioim/signin', init(req), function (req, res) {
   SiNO.token.request(req, res)
 })
 
@@ -86,11 +90,11 @@ app.get('/aioim/authorized', function (req, res) {
   SiNO.token.access(req, res)
 })
 
-app.get('/aioim/users.search', function (req, res) {
+app.get('/aioim/users.search', init(req), function (req, res) {
   SiNO.users.search(req.param('name'), req, res)
 })
 
-app.post('/aioim/statuses.update', function (req, res) {
+app.post('/aioim/statuses.update', init(req), function (req, res) {
   SiNO.statuses.update(req.body.status, req, res)
 })
 
