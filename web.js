@@ -16,13 +16,15 @@ io.configure(function () {
 })
 
 io.of('/aioim').
-  on('create channel for', function (user, cb) {
-    io.of('/aioim/' + user).
-      on('connection', function (socket) {
-        sockets[user] = socket
-      })
+  on('connection', function (socket) {
+    socket.on('create channel for', function (user, cb) {
+      io.of('/aioim/' + user).
+        on('connection', function (socket) {
+          sockets[user] = socket
+        })
 
-    cb()
+      cb()
+    })
   })
  
 io.set('authorization', function (data, accept) {
