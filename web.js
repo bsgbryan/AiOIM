@@ -38,7 +38,6 @@ io.set('authorization', function (data, accept) {
     })
     
     data.id   = cookies['connect.sid']
-    data.user = cookies['AiOID']
   } else
    return accept('No cookie transmitted.', false)
 
@@ -54,9 +53,7 @@ else
 
 var sock = {
   message: function(data) {
-    console.log('DATA FOR ', 
-      data.entities.user_mentions[0].screen_name, 
-      sockets[data.entities.user_mentions[0].screen_name])
+    console.log('SOCKETS', sockets)
 
     sockets[data.entities.user_mentions[0].screen_name].emit('receive message', data)
   },
