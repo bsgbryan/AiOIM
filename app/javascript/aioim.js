@@ -117,6 +117,29 @@
     }) 
   }
 
+  function initializeSocketConnection() {
+    var options = { 
+      reconnect: false,
+      'connect timeout': 3000
+    }
+
+    session = io.connect('/aioim', options).
+      on('connect', function() { 
+        console.log('creating a channel for', $.cookie('AiOID'))
+
+        session.emit('create channel for', $.cookie('AiOID'), 
+          function () {
+            io.connect('/aioim/' + $.cookie('AiOID'), options).
+              on('connect' , function() { console.log('connected') }).
+              on('receive message', showMessage)
+
+            console.log('channel created for', $.cookie('AiOID'))
+          })
+      }).
+      on('disconnect',     initializeSocketConnection).
+      on('connect_failed', initializeSocketConnection)
+  }
+
   $.aioim = function () {
     $('body').
       append('<div id="aioim">' +
@@ -138,26 +161,7 @@
       $('#aioim .first.steps .authorize').addClass('active')
     }
     else {
-      var options = { 
-        'max reconnection attempts': 10, 
-        'reconnection delay':        5000,
-        'connect timeout':           5000, 
-        reconnect:                   true
-      }
-
-      io.connect('/aioim', options).
-        on('connect', function() { 
-          console.log('creating a channel for', $.cookie('AiOID'))
-
-          io.emit('create channel for', $.cookie('AiOID'), 
-            function () {
-              io.connect('/aioim/' + $.cookie('AiOID'), options).
-                on('connect' , function() { console.log('connected') }).
-                on('receive message', showMessage)
-
-              console.log('channel created for', $.cookie('AiOID'))
-            })
-        })
+      initializeSocketConnection()
         
       $('#aioim form.user.hidden').removeClass('hidden')
       $('#aioim .first.steps .authorize').
