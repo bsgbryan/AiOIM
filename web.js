@@ -35,7 +35,7 @@ io.set('authorization', function (data, accept) {
     
     data.id        = cookies['connect.sid']
     users[data.id] = cookies['AiOID']
-
+    console.log("\nsession id %s\n", cookies['connect.sid'])
     console.log("\n\nAiOID %s\n\n", cookies['AiOID'])
   } else
    return accept('No cookie transmitted.', false)
