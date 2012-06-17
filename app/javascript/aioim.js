@@ -145,11 +145,11 @@
         reconnect:                   true
       }
 
-      io.connect('/aioim', options).
+      session = io.connect('/aioim', options).
         on('connect', function() { 
           console.log('creating a channel for', $.cookie('AiOID'))
           console.log('io', io)
-          io.sockets['http://falling-samurai-7438.herokuapp.com:80'].namespaces['/aioim'].emit('create channel for', $.cookie('AiOID'), 
+          session.emit('create channel for', $.cookie('AiOID'), 
             function () {
               io.connect('/aioim/' + $.cookie('AiOID'), options).
                 on('connect' , function() { console.log('connected') }).
@@ -158,6 +158,8 @@
               console.log('channel created for', $.cookie('AiOID'))
             })
         })
+
+      session.on('disconnect', function() { console.log('disconnected') })
         
       $('#aioim form.user.hidden').removeClass('hidden')
       $('#aioim .first.steps .authorize').
