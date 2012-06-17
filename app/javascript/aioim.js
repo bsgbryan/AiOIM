@@ -145,12 +145,12 @@
         reconnect:                   false
       }
 
-      session = io.connect('/aioim', options).
+      io.connect('/aioim', options).
         on('connect', function() { 
           console.log('creating a channel for', $.cookie('AiOID'))
           console.log('session', session)
           console.log('io', io)
-          session.emit('create channel for', $.cookie('AiOID'), 
+          io.sockets.namespaces['/aioim'].emit('create channel for', $.cookie('AiOID'), 
             function () {
               io.connect('/aioim/' + $.cookie('AiOID'), options).
                 on('connect' , function() { console.log('connected') }).
