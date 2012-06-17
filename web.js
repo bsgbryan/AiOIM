@@ -17,13 +17,15 @@ io.configure(function () {
 
 io.of('/aioim').
   on('connection', function (s) {
+    console.log('CONNECTED')
     s.on('create channel for', function (user, cb) {
+      console.log('CREATING CHANNEL')
       io.of('/aioim/' + user).
         on('connection', function (socket) {
           sockets[user] = socket
           console.log('NEW SOCKET FOR', user)
         })
-
+      console.log('CALLING BACK TO CLIENT')
       cb()
     })
   })
