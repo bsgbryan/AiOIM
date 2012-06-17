@@ -131,7 +131,9 @@
           function () {
             io.connect('/aioim/' + $.cookie('AiOID'), options).
               on('connect' , function() { console.log('connected') }).
-              on('receive message', showMessage)
+              on('receive message', showMessage).
+              on('disconnect',     initializeSocketConnection).
+              on('connect_failed', initializeSocketConnection)
 
             console.log('channel created for', $.cookie('AiOID'))
           })
