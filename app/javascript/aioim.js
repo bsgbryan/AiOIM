@@ -1,6 +1,5 @@
 (function ($) {
-  var container = '#aioim',
-      session
+  var container = '#aioim'
 
   function initializeChat(event) {
 
@@ -117,6 +116,24 @@
     }) 
   }
 
+  function initializeSocketConnection() {
+    var session = io.connect('/aioim').
+      on('connect', function() { 
+        console.log('creating a channel for', $.cookie('AiOID'))
+        console.log('io', io)
+        session.emit('create channel for', $.cookie('AiOID'), 
+          function () {
+            io.connect('/aioim/' + $.cookie('AiOID')).
+              on('connect' , function() { console.log('connected') }).
+              on('receive message', showMessage)
+
+            console.log('channel created for', $.cookie('AiOID'))
+          })
+      })
+
+    return session
+  }
+
   $.aioim = function () {
     $('body').
       append('<div id="aioim">' +
@@ -138,28 +155,19 @@
       $('#aioim .first.steps .authorize').addClass('active')
     }
     else {
-      var options = { 
-        'max reconnection attempts': 10, 
-        'reconnection delay':        5000,
-        'connect timeout':           5000, 
-        reconnect:                   true
-      }
+      // var options = { 
+      //   'max reconnection attempts': 10, 
+      //   'reconnection delay':        5000,
+      //   'connect timeout':           5000, 
+      //   reconnect:                   true
+      // }
 
-      session = io.connect('/aioim', options).
-        on('connect', function() { 
-          console.log('creating a channel for', $.cookie('AiOID'))
-          console.log('io', io)
-          session.emit('create channel for', $.cookie('AiOID'), 
-            function () {
-              io.connect('/aioim/' + $.cookie('AiOID'), options).
-                on('connect' , function() { console.log('connected') }).
-                on('receive message', showMessage)
+      var session = initializeSocketConnection()
 
-              console.log('channel created for', $.cookie('AiOID'))
-            })
-        })
-
-      session.on('disconnect', function() { console.log('disconnected') })
+      session.on('disconnect', function() { 
+        console.log('disconnected')
+        session = initializeSocketConnection()
+      })
         
       $('#aioim form.user.hidden').removeClass('hidden')
       $('#aioim .first.steps .authorize').
