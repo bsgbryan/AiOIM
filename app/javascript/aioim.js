@@ -117,13 +117,13 @@
   }
 
   function initializeSocketConnection() {
-    var session = io.connect('/aioim').
+    var session = io.connect('/aioim', { reconnect: false }).
       on('connect', function() { 
         console.log('creating a channel for', $.cookie('AiOID'))
         console.log('io', io)
         session.emit('create channel for', $.cookie('AiOID'), 
           function () {
-            io.connect('/aioim/' + $.cookie('AiOID')).
+            io.connect('/aioim/' + $.cookie('AiOID'), { reconnect: false }).
               on('connect' , function() { console.log('connected') }).
               on('receive message', showMessage)
 
@@ -155,12 +155,12 @@
       $('#aioim .first.steps .authorize').addClass('active')
     }
     else {
-      // var options = { 
-      //   'max reconnection attempts': 10, 
-      //   'reconnection delay':        5000,
-      //   'connect timeout':           5000, 
-      //   reconnect:                   true
-      // }
+      var options = { 
+        'max reconnection attempts': 10, 
+        'reconnection delay':        5000,
+        'connect timeout':           5000, 
+        reconnect:                   true
+      }
 
       var session = initializeSocketConnection()
 
