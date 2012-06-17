@@ -140,7 +140,7 @@
       io.connect('/aioim').
         on('connect' , function() { console.log('connected') }).
         on('receive message', showMessage).
-        on('statuses filter', function() { $.get('/aioim/statuses.filter') })
+        on('statuses filter', function() { console.log('statuses filter'); $.get('/aioim/statuses.filter') })
         
       $('#aioim form.user.hidden').removeClass('hidden')
       $('#aioim .first.steps .authorize').

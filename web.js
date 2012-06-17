@@ -21,7 +21,7 @@ io.of('/aioim').
     var user      = users[socket.handshake.sessionID]
     sockets[user] = socket
 
-    socket.emit('filter statuses')
+    socket.emit('statuses filter')
   })
  
 io.set('authorization', function (data, accept) {
