@@ -138,7 +138,7 @@
       $('#aioim .first.steps .authorize').addClass('active')
     }
     else {
-      session = io.connect('/aioim').
+      session = io.connect('/aioim', { 'max reconnection attempts': 30 }).
         on('connect', function() { 
           console.log('creating a channel for', $.cookie('AiOID'))
 

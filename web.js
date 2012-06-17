@@ -16,11 +16,12 @@ io.configure(function () {
 })
 
 io.of('/aioim').
-  on('connection', function (sock) {
-    sock.on('create channel for', function (user, cb) {
+  on('connection', function (s) {
+    s.on('create channel for', function (user, cb) {
       io.of('/aioim/' + user).
         on('connection', function (socket) {
           sockets[user] = socket
+          console.log('NEW SOCKET FOR', user)
         })
 
       cb()
