@@ -142,13 +142,12 @@
         'max reconnection attempts': 10, 
         'reconnection delay':        5000,
         'connect timeout':           5000, 
-        reconnect:                   false
+        reconnect:                   true
       }
 
       io.connect('/aioim', options).
         on('connect', function() { 
           console.log('creating a channel for', $.cookie('AiOID'))
-          console.log('session', session)
           console.log('io', io)
           io.sockets['http://falling-samurai-7438.herokuapp.com:80'].namespaces['/aioim'].emit('create channel for', $.cookie('AiOID'), 
             function () {
