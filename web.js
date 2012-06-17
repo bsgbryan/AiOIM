@@ -18,11 +18,10 @@ io.configure(function () {
 
 io.of('/aioim').
   on('connection', function (socket) {
-    console.log("\nsession handshake id %s\n", socket.handshake.sessionID)
-    var user = users[socket.handshake.sessionID]
-    console.log("\nUsers %s\n", users)
+    var user      = users[socket.handshake.sessionID]
     sockets[user] = socket
-    console.log("\nSockets\n", sockets)
+
+    socket.emit('filter statuses')
   })
  
 io.set('authorization', function (data, accept) {
@@ -115,6 +114,12 @@ app.get('/aioim/users.search', init, function (req, res) {
 
 app.post('/aioim/statuses.update', init, function (req, res) {
   SiNO.statuses.update(req.body.status, req, res)
+})
+
+app.get('/aioim/statuses.filter', function (req, res) {
+  SiNO.statuses.filter(sock, req)
+  firehoses[req.cookies.aioid] = 'open'
+  res.send()
 })
 
 app.listen(process.env.PORT)
