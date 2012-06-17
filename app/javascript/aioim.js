@@ -151,7 +151,7 @@
 
           session.emit('create channel for', $.cookie('AiOID'), 
             function () {
-              io.connect('/aioim/' + $.cookie('AiOID')).
+              io.connect('/aioim/' + $.cookie('AiOID'), options).
                 on('connect' , function() { console.log('connected') }).
                 on('receive message', showMessage)
 
