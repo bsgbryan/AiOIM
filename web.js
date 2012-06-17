@@ -26,7 +26,7 @@ io.of('/aioim').
           console.log('NEW SOCKET FOR', user)
         })
       console.log('CALLING BACK TO CLIENT')
-      cb()
+      cb(s)
     })
   })
  
