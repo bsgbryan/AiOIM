@@ -17,6 +17,8 @@ io.configure(function () {
 
 io.of('/aioim').
   on('connection', function (socket) {
+    // We are linking users to sessions via the socket.handshake.sessionID,
+    // which is identical to the connect.sid (connect session id)
     var user      = users[socket.handshake.sessionID]
     sockets[user] = socket
 
@@ -32,6 +34,9 @@ io.set('authorization', function (data, accept) {
       cookies[parts[0].trim()] = (parts[ 1 ] || '').trim()
     })
     
+    // We're assigning our handshake session id to the connect session id
+    // and mapping the session id to our user so we can later assign the
+    // socket resulting from this handshake to our user
     data.sessionID        = cookies['connect.sid']
     users[data.sessionID] = cookies['AiOID']
   } else
@@ -49,6 +54,7 @@ else
 
 var sock = {
   message: function(data) {
+    // Here we pull out the socket we assigned to our user to send them a message
     var user = data.entities.user_mentions[0].screen_name
     sockets[user].emit('receive message', data)
   },
