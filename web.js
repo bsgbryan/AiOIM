@@ -20,7 +20,7 @@ io.of('/aioim').
     console.log('CONNECTED')
     s.on('create channel for', function (user, cb) {
       console.log('CREATING CHANNEL')
-      s.of('/aioim/' + user).
+      io.of('/aioim/' + user).
         on('connection', function (socket) {
           sockets[user] = socket
           console.log('NEW SOCKET FOR', user)
