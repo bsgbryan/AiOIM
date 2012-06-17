@@ -16,7 +16,7 @@ io.configure(function () {
   io.set('polling duration', 10)
 })
 
-io.sockets.
+io.of('/aioim').
   on('connection', function (socket) {
     var user = users[socket.id]
     console.log("\nUsers %s\n", users)
