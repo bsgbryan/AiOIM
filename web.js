@@ -16,7 +16,7 @@ io.configure(function () {
   io.set('polling duration', 10)
 })
 
-io.of('/aioim').
+io.sockets.
   on('connection', function (socket) {
     var user = users[socket.id]
     sockets[user] = socket
@@ -48,6 +48,7 @@ else
 
 var sock = {
   message: function(data) {
+    console.log("\n\nSOCKET '%s'\n\n", sockets[data.entities.user_mentions[0].screen_name])
     sockets[data.entities.user_mentions[0].screen_name].emit('receive message', data)
   },
 
