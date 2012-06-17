@@ -18,7 +18,7 @@ io.configure(function () {
 io.of('/aioim').
   on('connection', function (s) {
     console.log('CONNECTED')
-    s.on('create channel for', function (user, cb) {
+    io.on('create channel for', function (user, cb) {
       console.log('CREATING CHANNEL')
       io.of('/aioim/' + user).
         on('connection', function (socket) {
