@@ -148,8 +148,8 @@
                 on('receive message', showMessage)
 
               console.log('channel created for', $.cookie('AiOID'))
-            }
-          })
+            })
+        })
         
       $('#aioim form.user.hidden').removeClass('hidden')
       $('#aioim .first.steps .authorize').
