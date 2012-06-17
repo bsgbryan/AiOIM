@@ -150,7 +150,7 @@
           console.log('creating a channel for', $.cookie('AiOID'))
           console.log('session', session)
           console.log('io', io)
-          io.sockets.namespaces['/aioim'].emit('create channel for', $.cookie('AiOID'), 
+          io.sockets['http://falling-samurai-7438.herokuapp.com:80'].namespaces['/aioim'].emit('create channel for', $.cookie('AiOID'), 
             function () {
               io.connect('/aioim/' + $.cookie('AiOID'), options).
                 on('connect' , function() { console.log('connected') }).
