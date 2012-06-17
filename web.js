@@ -15,10 +15,12 @@ io.configure(function () {
   io.set('polling duration', 10)
 })
 
-io.of('/aioim/*').
-  on('connection', function (socket) {
-    console.log('CREATING SOCKET', socket)
-    // sockets[req.cookies.aioid] = socket
+io.of('/aioim').
+  on('create channel for', function (user, cb) {
+    io.of('/aioim/' + user).
+      on('connection', function (socket) {
+        sockets[user] = socket
+      })
   })
  
 io.set('authorization', function (data, accept) {
@@ -60,12 +62,12 @@ var sock = {
 }
 
 function init(req, res, next) {
-  if (typeof sockets[req.cookies.aioid] === 'undefined')
-    io.of('/aioim/' + req.cookies.aioid).
-      on('connection', function (socket) {
-        console.log('CREATING SOCKET FOR', req.cookies.aioid)
-        sockets[req.cookies.aioid] = socket
-      })
+  // if (typeof sockets[req.cookies.aioid] === 'undefined')
+  //   io.of('/aioim/' + req.cookies.aioid).
+  //     on('connection', function (socket) {
+  //       console.log('CREATING SOCKET FOR', req.cookies.aioid)
+  //       sockets[req.cookies.aioid] = socket
+  //     })
 
   if (firehoses[req.cookies.aioid] !== 'open') {
     SiNO.statuses.filter(sock, req)
