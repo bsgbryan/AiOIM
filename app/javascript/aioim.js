@@ -139,9 +139,9 @@
     }
     else {
       var options = { 
-        'max reconnection attempts': 30, 
-        'reconnection delay':        3000,
-        'connect timeout':           3000, 
+        'max reconnection attempts': 10, 
+        'reconnection delay':        5000,
+        'connect timeout':           5000, 
         reconnect:                   true
       }
 
