@@ -138,13 +138,17 @@
       $('#aioim .first.steps .authorize').addClass('active')
     }
     else {
-      session = io.connect('/aioim'), { 'max reconnection attempts': 30 }).
+      session = io.connect('/aioim').
         on('connect', function() { 
+          console.log('creating a channel for', $.cookie('AiOID'))
+
           session.emit('create channel for', $.cookie('AiOID'), 
             function (channel) { 
               io.connect('/aioim/' + $.cookie('AiOID')).
                 on('receive message', showMessage)
-              }
+
+              console.log('channel created for', $.cookie('AiOID'))
+            }
           })
         
       $('#aioim form.user.hidden').removeClass('hidden')
