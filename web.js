@@ -19,7 +19,9 @@ io.configure(function () {
 io.sockets.
   on('connection', function (socket) {
     var user = users[socket.id]
+    console.log("\nUsers %s\n", users)
     sockets[user] = socket
+    console.log("\nSockets\n", sockets)
   })
  
 io.set('authorization', function (data, accept) {
@@ -33,6 +35,8 @@ io.set('authorization', function (data, accept) {
     
     data.id        = cookies['connect.sid']
     users[data.id] = cookies['AiOID']
+
+    console.log("\n\nAiOID %s\n\n", cookies['AiOID'])
   } else
    return accept('No cookie transmitted.', false)
 
