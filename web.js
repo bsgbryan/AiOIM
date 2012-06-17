@@ -8,7 +8,8 @@ var express = require('express'),
     io         = require('socket.io').listen(app),
     http       = require('http'),
     firehoses  = { },
-    sockets    = { }
+    sockets    = { },
+    users      = { }
 
 io.configure(function () { 
   io.set('transports', ['xhr-polling'])
@@ -16,18 +17,9 @@ io.configure(function () {
 })
 
 io.of('/aioim').
-  on('connection', function (s) {
-    console.log('CONNECTED')
-    s.on('create channel for', function (user, cb) {
-      console.log('CREATING CHANNEL')
-      io.of('/aioim/' + user).
-        on('connection', function (socket) {
-          sockets[user] = socket
-          console.log('NEW SOCKET FOR', user)
-        })
-      console.log('CALLING BACK TO CLIENT')
-      cb()
-    })
+  on('connection', function (socket) {
+    var user = users[socket.id]
+    sockets[user] = socket
   })
  
 io.set('authorization', function (data, accept) {
@@ -39,7 +31,8 @@ io.set('authorization', function (data, accept) {
       cookies[parts[0].trim()] = (parts[ 1 ] || '').trim()
     })
     
-    data.id   = cookies['connect.sid']
+    data.id        = cookies['connect.sid']
+    users[data.id] = cookies['AiOID']
   } else
    return accept('No cookie transmitted.', false)
 
@@ -55,8 +48,6 @@ else
 
 var sock = {
   message: function(data) {
-    console.log('SOCKETS', sockets)
-
     sockets[data.entities.user_mentions[0].screen_name].emit('receive message', data)
   },
 
