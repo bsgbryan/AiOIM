@@ -138,7 +138,14 @@
       $('#aioim .first.steps .authorize').addClass('active')
     }
     else {
-      session = io.connect('/aioim', { 'max reconnection attempts': 30, 'reconnection delay': 500, reconnect: true, 'connect timeout': 2000 }).
+      var options = { 
+        'max reconnection attempts': 30, 
+        'reconnection delay':        3000,
+        'connect timeout':           3000, 
+        reconnect:                   true
+      }
+
+      session = io.connect('/aioim', options).
         on('connect', function() { 
           console.log('creating a channel for', $.cookie('AiOID'))
 
