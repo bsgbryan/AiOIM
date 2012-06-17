@@ -117,31 +117,6 @@
     }) 
   }
 
-  function initializeSocketConnection() {
-    var options = { 
-      reconnect: false,
-      'connect timeout': 3000
-    }
-
-    session = io.connect('/aioim', options).
-      on('connect', function() { 
-        console.log('creating a channel for', $.cookie('AiOID'))
-
-        session.emit('create channel for', $.cookie('AiOID'), 
-          function () {
-            io.connect('/aioim/' + $.cookie('AiOID'), options).
-              on('connect' , function() { console.log('connected') }).
-              on('receive message', showMessage).
-              on('disconnect',     initializeSocketConnection).
-              on('connect_failed', initializeSocketConnection)
-
-            console.log('channel created for', $.cookie('AiOID'))
-          })
-      }).
-      on('disconnect',     initializeSocketConnection).
-      on('connect_failed', initializeSocketConnection)
-  }
-
   $.aioim = function () {
     $('body').
       append('<div id="aioim">' +
@@ -163,7 +138,26 @@
       $('#aioim .first.steps .authorize').addClass('active')
     }
     else {
-      initializeSocketConnection()
+      var options = { 
+        'max reconnection attempts': 10, 
+        'reconnection delay':        5000,
+        'connect timeout':           5000, 
+        reconnect:                   false
+      }
+
+      session = io.connect('/aioim', options).
+        on('connect', function() { 
+          console.log('creating a channel for', $.cookie('AiOID'))
+          console.log('session', session)
+          session.emit('create channel for', $.cookie('AiOID'), 
+            function () {
+              io.connect('/aioim/' + $.cookie('AiOID'), options).
+                on('connect' , function() { console.log('connected') }).
+                on('receive message', showMessage)
+
+              console.log('channel created for', $.cookie('AiOID'))
+            })
+        })
         
       $('#aioim form.user.hidden').removeClass('hidden')
       $('#aioim .first.steps .authorize').
