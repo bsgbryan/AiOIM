@@ -47,7 +47,7 @@ p
   left  -.5em
   right -.5em
   height 2em
-  background linear-gradient(top, #FFD65E, #A66B1F)
+  background linear-gradient(top, #FFCA86, #A66B1F)
   box-shadow 0 1px 2px white
   .hidden
     display none
@@ -63,7 +63,7 @@ p
       color rgba(black, .125)
       &.active
         color black
-        text-shadow 0 -1px 1px #FFD65E, 0 1px 1px #A66B1F
+        text-shadow 0 -1px 1px #FFD8A6, 0 1px 1px #A66B1F
       &.completed
         color transparent
         text-shadow 0 -1px 2px transparent, 0 1px 2px transparent
@@ -86,34 +86,30 @@ p
   .chattable.users
     absolute top 2.5em left .725em
     border-radius .25em
-    border 3px solid #58819E
-    background-color #eee
+    border 3px solid #1A8D59
+    background linear-gradient(top, #56A380, #1A8D59)
     box-shadow 0 3px 15px black
     z-index 1000
     li.name
       padding .375em
-      border-bottom 1px solid #ddd
-      border-top    1px solid white
-      border-left   1px solid #ccc
-      border-right  1px solid #ccc
-      background-color rgba(#eee, .9)
-      color highlight
-      width 20em
+      border-bottom 1px solid transparent
+      background-color transparent
+      color #9AECC7
+      width 10em
+      text-shadow 0 -1px rgba(black, .35)
       &:hover
         cursor pointer
-        background-color #81BEE9
-        color #569FD3
-        border 1px solid #81BEE9
-        box-shadow inset 0 1px 3px #1C5C89
+        background-color #1A8D59
+        color white
+        border 1px solid #56A380
+        box-shadow inset 0 1px 2px rgba(black, .5), 0 1px 2px rgba(black, .5)
+        border-radius .125em
         .screen
-          color #1C5C89
-          text-shadow 0 1px 0 #9DCAE9
+          color white
+          text-shadow 0 1px 0 rgba(black, .35)
       .screen
         font-family 'Pontano Sans', sans-serif
-        color #666
-        text-shadow 0 1px 0 white
         display inline-block
-        width 50%
       .human
         font-family 'Philosopher', sans-serif
   .chatting.with
@@ -136,7 +132,7 @@ p
         text-align center
         font-family 'Lemon', cursive
         color black
-        text-shadow 0 -1px #FFD65E, 0 1px 0 #A66B1F
+        text-shadow 0 -1px #FFD8A6, 0 1px 0 #A66B1F
         cursor pointer
         text-align left
         display inline-block
@@ -154,7 +150,7 @@ p
         text-decoration none
         vertical-align bottom
         color black
-        text-shadow: 0 -1px 1px #FFD65E, 0 1px 1px #A66B1F
+        text-shadow: 0 -1px 1px #FFD8A6, 0 1px 1px #A66B1F
       .messages
         margin-top .5em
         border-top   3px solid #1C5C89
@@ -182,7 +178,7 @@ p
           p
             absolute bottom, left
             padding .5em
-            color #BFA865
+            color #8D8FEC
             text-shadow 0 -1px 2px #333
         li
           width 15em
