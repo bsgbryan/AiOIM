@@ -36,7 +36,6 @@
         u.forEach(function (user) {
           users += '<li class="user name">' +
             '<a class="screen">' + user.screen_name + '</a>' +
-            '<span class="human">' + user.name + '</span>' +
             '</li>'
         })
 
