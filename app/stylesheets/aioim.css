@@ -210,7 +210,6 @@ p.capitalization.backstory a {
   z-index: 1000;
 }
 #aioim .chattable.users li.name {
-  padding: 0.375em;
   border: 1px solid transparent;
   background-color: transparent;
   color: #9aecc7;
@@ -234,6 +233,9 @@ p.capitalization.backstory a {
 #aioim .chattable.users li.name .screen {
   font-family: 'Pontano Sans', sans-serif;
   display: inline-block;
+  width: 100%;
+  height: 100%;
+  padding: 0.375em;
 }
 #aioim .chattable.users li.name .human {
   font-family: 'Philosopher', sans-serif;
