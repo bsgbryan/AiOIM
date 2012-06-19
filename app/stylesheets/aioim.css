@@ -260,7 +260,7 @@ p.capitalization.backstory a {
   color: #000;
   text-shadow: 0 -1px #ffd65e, 0 1px 0 #a66b1f;
   cursor: pointer;
-  text-align: right;
+  text-align: left;
   display: inline-block;
   margin-left: 0.4em;
 }

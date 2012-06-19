@@ -2,14 +2,16 @@
   var container = '#aioim'
 
   function initializeChat(event) {
+    var step = $('#aioim .first.steps .find.someone')
 
-    $('#aioim .first.steps .find.someone').
+    step.
       removeClass('active').
       addClass('completed').
       next('li').
-      addClass('active').
-      parent().
-      append('<li class="enjoy yourself">Enjoy yourself!</li>')
+      addClass('active')
+
+    if (step.next('.enjoy.yourself').length === 0)
+      step.after('<li class="enjoy yourself">Enjoy yourself!</li>')
 
     var selected    = $(event.currentTarget).parent(),
         screen_name = selected.find('.screen').text(),
@@ -56,7 +58,12 @@
 
     $(event.currentTarget).find('input').val('')
 
-    $('#aioim .first.steps .say.something').removeClass('active').addClass('completed')
+    if ($('#aioim .first.steps .enjoy.yourself.active').length === 0)
+      $('#aioim .first.steps .say.something').
+        removeClass('active').
+        addClass('completed').
+        next('.enjoy.yourself').
+        addClass('active')
 
     return false
   }
