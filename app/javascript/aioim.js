@@ -62,7 +62,7 @@
       $('#aioim .first.steps .say.something').
         removeClass('active').
         addClass('completed').
-        next('.enjoy.yourself').
+        next('li').
         addClass('active')
 
     return false
