@@ -251,7 +251,7 @@ p.capitalization.backstory a {
   height: 100%;
 }
 #aioim .chatting.with > li .human.name {
-  width: 13.37em;
+  width: 11.1em;
   height: 1.3em;
   font-size: 1.5em;
   line-height: 1.2em;
@@ -260,9 +260,20 @@ p.capitalization.backstory a {
   color: #000;
   text-shadow: 0 -1px #ffd65e, 0 1px 0 #a66b1f;
   cursor: pointer;
+  text-align: right;
 }
 #aioim .chatting.with > li .close {
   font-family: 'EntypoRegular';
+  font-size: 3em;
+  display: inline-block;
+  position: relative;
+  line-height: 0.6em;
+  width: 0.7em;
+  text-align: right;
+  text-decoration: none;
+  vertical-align: bottom;
+  color: #000;
+  text-shadow: 0 -1px 1px #ffd65e, 0 1px 1px #a66b1f;
 }
 #aioim .chatting.with > li .messages {
   margin-top: 0.5em;
