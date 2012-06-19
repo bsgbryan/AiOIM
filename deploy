@@ -1,0 +1,6 @@
+git push
+git oc gh-pages
+git merge master
+git push
+git co master
+git push heroku master
