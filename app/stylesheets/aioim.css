@@ -103,7 +103,7 @@ h1 {
   left: 0;
   color: #fff;
   color: transparent;
-  background-color: rgba(88,129,158,0.13);
+  background-color: rgba(88,129,158,0.25);
   -webkit-background-clip: text;
   text-shadow: 0 2px 2px rgba(255,255,255,0.50);
 }
@@ -152,12 +152,13 @@ p.capitalization.backstory a {
   position: absolute;
   top: 0;
   left: 7em;
+  right: 0;
   line-height: 2em;
 }
 #aioim .first.steps li {
   display: inline-block;
-  width: 10em;
-  padding-left: 1em;
+  width: 25%;
+  text-align: center;
   font-family: 'Pontano Sans', sans-serif;
   color: rgba(0,0,0,0.13);
 }
@@ -324,7 +325,7 @@ p.capitalization.backstory a {
 }
 #aioim .chatting.with > li .messages li.self {
   padding-left: 4em;
-  color: #999;
+  color: #82bee9;
   width: 14.2em;
   text-shadow: none;
 }

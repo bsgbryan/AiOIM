@@ -9,7 +9,7 @@
       next('li').
       addClass('active').
       parent().
-      append('<li class="enjoy yourself active">Enjoy yourself!</li>')
+      append('<li class="enjoy yourself">Enjoy yourself!</li>')
 
     var selected    = $(event.currentTarget).parent(),
         screen_name = selected.find('.screen').text(),
@@ -103,6 +103,7 @@
     $('#aioim .chatting.with').append(
       '<li class="user" data-screen_name="' + screen_name + '">' +
         '<h3 class="human name">' + human_name + '</h3>' +
+        '<a class="close" href="#close">'
         '<ol class="messages"></ol>' +
         '<form class="new message">' +
           '<input type="text" name="message" placeholder="say yes">' +
