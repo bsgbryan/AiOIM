@@ -261,6 +261,7 @@ p.capitalization.backstory a {
   text-shadow: 0 -1px #ffd65e, 0 1px 0 #a66b1f;
   cursor: pointer;
   text-align: right;
+  display: inline-block;
 }
 #aioim .chatting.with > li .close {
   font-family: 'EntypoRegular';
