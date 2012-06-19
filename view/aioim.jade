@@ -4,19 +4,10 @@ html
     - var meanings = [ 'Say yes', 'Say yes', 'Assert', 'Assert', 'Say something', 'Say something', 'Speak', 'Speak', 'Assent', 'Assent' ]
     - var greeting = meanings[Math.floor((Math.random() * 10))]
     title AiOIM. #{ greeting }.
-    link(rel='stylesheet', href='/stylesheets/aioim.css')
+    link(rel='stylesheet', href='https://github.com/bsgbryan/loqui/raw/master/app/stylesheets/aioim.css')
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Lemon|Philosopher:400,700,400italic|Pontano+Sans')
-    style
-      @font-face {
-        font-family: 'EntypoRegular';
-        src: url('Entypo-webfont.eot');
-        src: url('Entypo-webfont.eot?#iefix') format('embedded-opentype'),
-             url('Entypo-webfont.woff') format('woff'),
-             url('Entypo-webfont.ttf') format('truetype'),
-             url('Entypo-webfont.svg#EntypoRegular') format('svg');
-        font-weight: normal;
-        font-style: normal;
-      }
+    link(rel='stylesheet', href='https://github.com/bsgbryan/loqui/raw/master/app/stylesheets/font-face.css')
+      
   body
     h1 AiO
     p.name.reason "aio" is Latin and means 
@@ -25,9 +16,9 @@ html
       a(href='http://en.wikipedia.org/wiki/Nights_into_Dreams...', target='_new') NiGHTS Into Dreams...
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
     script(src='https://raw.github.com/carhartl/jquery-cookie/master/jquery.cookie.js')
-    script(src='/sha1/index.js')
+    script(src='https://github.com/bsgbryan/loqui/raw/master/app/sha1/index.js')
     script(/src='/socket.io/socket.io.js')
-    script(src='/javascript/aioim.js')
-    script(src='/javascript/modernizr.js')
+    script(src='https://github.com/bsgbryan/loqui/raw/master/app/javascript/aioim.js')
+    script(src='https://github.com/bsgbryan/loqui/raw/master/app/javascript/modernizr.js')
     script
       $.aioim()

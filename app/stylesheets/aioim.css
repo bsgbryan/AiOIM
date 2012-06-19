@@ -261,6 +261,9 @@ p.capitalization.backstory a {
   text-shadow: 0 -1px #ffd65e, 0 1px 0 #a66b1f;
   cursor: pointer;
 }
+#aioim .chatting.with > li .close {
+  font-family: 'EntypoRegular';
+}
 #aioim .chatting.with > li .messages {
   margin-top: 0.5em;
   border-top: 3px solid #1c5c89;
