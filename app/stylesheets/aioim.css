@@ -251,7 +251,7 @@ p.capitalization.backstory a {
   height: 100%;
 }
 #aioim .chatting.with > li .human.name {
-  width: 11.1em;
+  width: 10.8em;
   height: 1.3em;
   font-size: 1.5em;
   line-height: 1.2em;
@@ -262,6 +262,7 @@ p.capitalization.backstory a {
   cursor: pointer;
   text-align: right;
   display: inline-block;
+  margin-left: 0.4em;
 }
 #aioim .chatting.with > li .close {
   font-family: 'EntypoRegular';

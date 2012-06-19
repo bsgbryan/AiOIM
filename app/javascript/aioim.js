@@ -117,6 +117,11 @@
     }) 
   }
 
+  function closeChat(event) { 
+    $(event.currentTarget).parent().remove()
+    return false
+  }
+
   $.aioim = function () {
     $('body').
       append('<div id="aioim">' +
@@ -156,7 +161,8 @@
       on('keyup',  '.user.search .name',                executeUserSearch).
       on('blur',   '.user.search .name',                clearUserSearch).
       on('submit', '.chatting.with .user .new.message', sendMessage).
-      on('click',  '.chattable .user.name .screen, .chattable .user.name .human', initializeChat).
-      on('click',  '.close', function (event) { $(event.currentTarget).parent().remove() })
+      on('click',  '.chattable .user.name .screen',     initializeChat).
+      on('click',  '.chattable .user.name .human',      initializeChat).
+      on('click',  '.close',                            closeChat)
   }
 })(jQuery)
