@@ -10,7 +10,7 @@
       next('li').
       addClass('active')
 
-    if (step.next('.enjoy.yourself').length === 0)
+    if (step.next('li').length === 0)
       step.after('<li class="enjoy yourself">Enjoy yourself!</li>')
 
     var selected    = $(event.currentTarget).parent(),
