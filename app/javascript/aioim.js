@@ -103,7 +103,7 @@
     $('#aioim .chatting.with').append(
       '<li class="user" data-screen_name="' + screen_name + '">' +
         '<h3 class="human name">' + human_name + '</h3>' +
-        '<a class="close" href="#close">\005B</a>'
+        "<a class=\"close\" href=\"#close\">\005B</a>" +
         '<ol class="messages"></ol>' +
         '<form class="new message">' +
           '<input type="text" name="message" placeholder="say yes">' +
