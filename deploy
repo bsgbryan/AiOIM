@@ -1,5 +1,5 @@
 git push
-git oc gh-pages
+git co gh-pages
 git merge master
 git push
 git co master
