@@ -4,9 +4,9 @@ html
     - var meanings = [ 'Say yes', 'Say yes', 'Assert', 'Assert', 'Say something', 'Say something', 'Speak', 'Speak', 'Assent', 'Assent' ]
     - var greeting = meanings[Math.floor((Math.random() * 10))]
     title AiOIM. #{ greeting }.
-    link(rel='stylesheet', href='https://raw.github.com/bsgbryan/loqui/master/app/stylesheets/aioim.css')
-    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Lemon|Philosopher:400,700,400italic|Pontano+Sans')
-    link(rel='stylesheet', href='https://raw.github.com/bsgbryan/loqui/master/app/stylesheets/font-face.css')
+    link(rel='stylesheet', type='text/css', href='https://raw.github.com/bsgbryan/loqui/master/app/stylesheets/aioim.css')
+    link(rel='stylesheet', type='text/css', href='http://fonts.googleapis.com/css?family=Lemon|Philosopher:400,700,400italic|Pontano+Sans')
+    link(rel='stylesheet', type='text/css', href='https://raw.github.com/bsgbryan/loqui/master/app/stylesheets/font-face.css')
       
   body
     h1 AiO
@@ -17,7 +17,7 @@ html
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
     script(src='https://raw.github.com/carhartl/jquery-cookie/master/jquery.cookie.js')
     script(src='https://raw.github.com/bsgbryan/loqui/master/app/sha1/index.js')
-    script(/src='/socket.io/socket.io.js')
+    script(src='/socket.io/socket.io.js')
     script(src='https://raw.github.com/bsgbryan/loqui/master/app/javascript/aioim.js')
     script(src='https://raw.github.com/bsgbryan/loqui/master/app/javascript/modernizr.js')
     script
