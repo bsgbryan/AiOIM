@@ -14,10 +14,9 @@
       step.after('<li class="enjoy yourself">Enjoy yourself!</li>')
 
     var selected    = $(event.currentTarget).parent(),
-        screen_name = selected.find('.screen').text(),
-        human_name  = selected.find('.human').text()
+        screen_name = selected.find('.screen').text()
 
-    addChatFor(screen_name, human_name)
+    addChatFor(screen_name)
 
     $('#aioim .chattable.users').html('').addClass('hidden')
   }
@@ -105,10 +104,10 @@
     }
   }
 
-  function addChatFor(screen_name, human_name) {
+  function addChatFor(screen_name) {
     $('#aioim .chatting.with').append(
       '<li class="user" data-screen_name="' + screen_name + '">' +
-        '<h3 class="human name">' + human_name + '</h3>' +
+        '<h3 class="human name">' + screen_name + '</h3>' +
         '<a class="close" href="#close">[</a>' +
         '<ol class="messages"></ol>' +
         '<form class="new message">' +
@@ -168,7 +167,6 @@
       on('blur',   '.user.search .name',                clearUserSearch).
       on('submit', '.chatting.with .user .new.message', sendMessage).
       on('click',  '.chattable .user.name .screen',     initializeChat).
-      on('click',  '.chattable .user.name .human',      initializeChat).
       on('click',  '.close',                            closeChat)
   }
 })(jQuery)
