@@ -49,9 +49,15 @@
         user    = target.parents('li').data('screen_name'), 
         message = target.find('input').val(),
         tweet   = '@' + user + ' ' + message + ' #AiOIM',
-        id      = target.prev('ol').find('li:last-child').attr('id')
+        id      = target.prev('ol').find('li.other:last-child').attr('id'),
+        post    = { status : tweet }
 
-    $.post('/aioim/statuses.update', { status : tweet, in_reply_to_status_id: id })
+    console.log('id', id)
+
+    if (typeof id === 'undefined')
+      post.in_reply_to_status_id = id
+
+    $.post('/aioim/statuses.update', post)
 
     $('[data-screen_name=' + user + '] .messages').
       append('<li class="self">' + message + '</li>')
