@@ -82,7 +82,7 @@ exports.statuses = {
       access_token_key: req.session.accessToken,
       access_token_secret: req.session.accessSecret
 
-    }).updateStatus(params.status, { in_reply_to_status_id: params.in_reply_to_status_id }, function (err, data) {
+    }).updateStatus(params.status, { 'in_reply_to_status_id': params.in_reply_to_status_id }, function (err, data) {
       if (err) res.send(err, 500)
       else res.send(data)
     })
