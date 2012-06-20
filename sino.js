@@ -82,7 +82,9 @@ exports.statuses = {
     if (typeof params.in_reply_to_status_id === 'string')
       props += '&in_reply_to_status_id=' + params.in_reply_to_status_id
     
-    please('post', message + props, req, res)
+    console.log("\n\nRequest: %s\n\n", params.status + props)
+
+    please('post', params.status + props, req, res)
   },
 
   filter: function(sock, req) {
