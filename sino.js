@@ -75,10 +75,6 @@ exports.users = {
 
 exports.statuses = {
   update: function(params, req, res) {
-    
-    if (typeof params.in_reply_to_status_id === 'string')
-      props += '&in_reply_to_status_id=' + params.in_reply_to_status_id
-
     require('ntwitter')({
 
       consumer_key: process.env.TwitterConsumerKey,
@@ -86,7 +82,11 @@ exports.statuses = {
       access_token_key: req.session.accessToken,
       access_token_secret: req.session.accessSecret
 
-    }).updateStatus(params.status, { in_reply_to_status_id: params.in_reply_to_status_id })
+    }).updateStatus(params.status, { in_reply_to_status_id: params.in_reply_to_status_id },
+      function (err, data) {
+        if (err) res.send(err, 500)
+        else res.send(data)
+      })
   },
 
   filter: function(sock, req) {
