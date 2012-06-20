@@ -53,7 +53,7 @@ console.log('query', query)
         post    = { status : tweet }
 
     if (other.length > 0)
-      post.in_reply_to_status_id = other[other.length - 1].attr('id')
+      post.in_reply_to_status_id = $(other[other.length - 1]).attr('id')
 
     $.post('/aioim/statuses.update', post)
 
