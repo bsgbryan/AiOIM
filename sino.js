@@ -74,8 +74,13 @@ exports.users = {
 }
 
 exports.statuses = {
-  update: function(params, req, res) { 
-    please('post', message + '?status=' + encodeURIComponent(params.status) + '&in_reply_to_status_id=' + params.in_reply_to_status_id, req, res)
+  update: function(params, req, res) {
+    var props = '?status=' + encodeURIComponent(params.status)
+
+    if (typeof params.in_reply_to_status_id === 'undefined')
+      props += '&in_reply_to_status_id=' + params.in_reply_to_status_id
+    
+    please('post', message + props, req, res)
   },
 
   filter: function(sock, req) {

@@ -49,13 +49,11 @@
         user    = target.parents('li').data('screen_name'), 
         message = target.find('input').val(),
         tweet   = '@' + user + ' ' + message + ' #AiOIM',
-        id      = target.prev('ol').find('li.other:last-child').attr('id'),
+        other   = target.prev('ol').find('li.other'),
         post    = { status : tweet }
 
-    console.log('id', id)
-
-    if (typeof id === 'undefined')
-      post.in_reply_to_status_id = id
+    if (other.length > 0)
+      post.in_reply_to_status_id = other[other.length - 1].attr('id')
 
     $.post('/aioim/statuses.update', post)
 
