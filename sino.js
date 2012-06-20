@@ -74,8 +74,8 @@ exports.users = {
 }
 
 exports.statuses = {
-  update: function(sts, req, res) { 
-    please('post', message + '?status=' + encodeURIComponent(sts), req, res)
+  update: function(params, req, res) { 
+    please('post', message + '?status=' + encodeURIComponent(params.status) + '&in_reply_to_status_id=' + params.in_reply_to_status_id, req, res)
   },
 
   filter: function(sock, req) {

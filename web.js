@@ -107,7 +107,7 @@ app.get('/aioim/users.search', function (req, res) {
 })
 
 app.post('/aioim/statuses.update', function (req, res) {
-  SiNO.statuses.update(req.body.status, req, res)
+  SiNO.statuses.update(req.body, req, res)
 })
 
 app.get('/aioim/statuses.filter', function (req, res) {
