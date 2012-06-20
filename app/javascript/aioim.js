@@ -27,7 +27,7 @@
 
   function executeUserSearch(event) {
     var query = $(event.currentTarget).val()
-
+console.log('query', query)
     if (query.length > 2)
       $.getJSON('/aioim/users.search?name=' + query, function (u) {
         var users = ''
