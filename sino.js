@@ -75,16 +75,17 @@ exports.users = {
 
 exports.statuses = {
   update: function(params, req, res) {
-    var props = '?status=' + encodeURIComponent(params.status)
+    require('ntwitter')({
 
-    console.log("\n\nIN REPLY TO %s\n\n", params.in_reply_to_status_id)
+      consumer_key: process.env.TwitterConsumerKey,
+      consumer_secret: process.env.TwitterConsumerSecret,
+      access_token_key: req.session.accessToken,
+      access_token_secret: req.session.accessSecret
 
-    if (typeof params.in_reply_to_status_id === 'string')
-      props += '&in_reply_to_status_id=' + params.in_reply_to_status_id
-    
-    console.log("\n\nRequest: %s\n\n", message + props)
-
-    please('post', message + props, req, res)
+    }).updateStatus(params.status, { in_reply_to_status_id: params.in_reply_to_status_id }, function (err, data) {
+      if (err) res.send(err, 500)
+      else res.send(data)
+    })
   },
 
   filter: function(sock, req) {

@@ -55,10 +55,8 @@
     if (other.length > 0)
       post.in_reply_to_status_id = $(other[other.length - 1]).attr('id')
 
-    console.log('post', post)
-
     $.post('/aioim/statuses.update', post, function (data) {
-      console.log(data)
+      console.log(JSON.parse(data))
     })
 
     $('[data-screen_name=' + user + '] .messages').
