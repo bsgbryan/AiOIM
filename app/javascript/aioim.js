@@ -56,7 +56,7 @@
       post.in_reply_to_status_id = $(other[other.length - 1]).attr('id')
 
     $.post('/aioim/statuses.update', post, function (data) {
-      console.log(JSON.parse(decodeURIComponent(data)))
+      console.log(data)
     })
 
     $('[data-screen_name=' + user + '] .messages').
