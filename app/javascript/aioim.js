@@ -45,16 +45,18 @@
   }
 
   function sendMessage(event) {
-    var user    = $(event.currentTarget).parents('li').data('screen_name'), 
-        message = $(event.currentTarget).find('input').val(),
-        tweet   = '@' + user + ' ' + message + ' #AiOIM'
+    var target  = $(event.currentTarget),
+        user    = target.parents('li').data('screen_name'), 
+        message = target.find('input').val(),
+        tweet   = '@' + user + ' ' + message + ' #AiOIM',
+        id      = target.prev('ol').find('li:last-child').attr('id')
 
-    $.post('/aioim/statuses.update', { status : tweet })
+    $.post('/aioim/statuses.update', { status : tweet, in_reply_to_status_id: id })
 
     $('[data-screen_name=' + user + '] .messages').
       append('<li class="self">' + message + '</li>')
 
-    $(event.currentTarget).find('input').val('')
+    target.find('input').val('')
 
     if ($('#aioim .first.steps .enjoy.yourself.active').length === 0)
       $('#aioim .first.steps .say.something').
@@ -100,7 +102,7 @@
 
       if (present === false)
         $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages').
-          append('<li class="' + person + '">' + said + '</li>')
+          append('<li class="' + person + '" id="' + data.id + '">' + said + '</li>')
     }
   }
 
