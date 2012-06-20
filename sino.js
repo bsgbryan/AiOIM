@@ -75,7 +75,7 @@ exports.users = {
 
 exports.statuses = {
   update: function(params, req, res) {
-    console.log("\n\nPARAMS %s\n\n", params)
+    console.log("\n\nPARAMS %s\n\n", params.in_reply_to_status_id)
     require('ntwitter')({
 
       consumer_key: process.env.TwitterConsumerKey,
