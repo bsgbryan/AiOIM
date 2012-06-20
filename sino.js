@@ -77,6 +77,8 @@ exports.statuses = {
   update: function(params, req, res) {
     var props = '?status=' + encodeURIComponent(params.status)
 
+    console.log("\n\nIN REPLY TO %s\n\n", params.in_reply_to_status_id)
+
     if (typeof params.in_reply_to_status_id === 'undefined')
       props += '&in_reply_to_status_id=' + params.in_reply_to_status_id
     
