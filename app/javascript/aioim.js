@@ -57,7 +57,9 @@
 
     console.log('post', post)
 
-    $.post('/aioim/statuses.update', post)
+    $.post('/aioim/statuses.update', post, function (data) {
+      console.log(data)
+    })
 
     $('[data-screen_name=' + user + '] .messages').
       append('<li class="self">' + message + '</li>')
