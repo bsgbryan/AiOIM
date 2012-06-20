@@ -11,7 +11,7 @@
       addClass('active')
 
     if (step.parent().find('.enjoy.yourself').length === 0)
-      step.after('<li class="enjoy yourself">Enjoy yourself!</li>')
+      step.parent().append('<li class="enjoy yourself">Enjoy yourself!</li>')
 
     var selected    = $(event.currentTarget).parent(),
         screen_name = selected.find('.screen').text()
