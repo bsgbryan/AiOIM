@@ -106,9 +106,22 @@
         next('.say.something').
         addClass('')
 
-      if (present === false)
-        $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages').
-          append('<li class="' + person + '" id="' + data.id + '">' + said + '</li>')
+      if (present === false) {
+        var chat = $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages')
+
+        chat.append(
+          '<li class="' + person + '" id="' + data.id + '">' +
+          '<p class="message">' + said + '</p>' +
+          '</li>')
+
+        if (person === 'other') {
+          var messages = chat.find('li.other')
+
+          $(messages[messages.length - 1]).append(
+            '<a class="favorite" href="#">&nbsp;</a>' +
+            '<a class="retweet" href="#">&nbsp;</a>')
+        }
+      }
     }
   }
 
