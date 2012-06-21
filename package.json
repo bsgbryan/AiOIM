@@ -7,7 +7,7 @@
     "express"    : "*",
     "jade"       : "*",
     "bs-oauth"   : "*",
-    "ntwitter"   : "*",
+    "bstwitter"  : "*",
     "socket.io"  : "*",
     "connect-redis" : "*",
     "redis-url"     : "*"

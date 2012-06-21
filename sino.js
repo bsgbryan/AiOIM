@@ -9,8 +9,6 @@ var creds   = 'http://twitter.com/account/verify_credentials.json',
     message = 'http://api.twitter.com/1/statuses/update.json',
     filter  = 'https://stream.twitter.com/1/statuses/filter.json?track=#AiOIM'
 
-var tweeters = { }
-
 var oauth = new OAuth(
   'https://api.twitter.com/oauth/request_token', 
   'https://api.twitter.com/oauth/access_token', 
