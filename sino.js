@@ -20,6 +20,15 @@ var oauth = new OAuth(
   process.env.TwitterOAuthCallback, 
   'HMAC-SHA1')
 
+function twitter(req) {
+  return require('ntwitter')({
+    consumer_key: process.env.TwitterConsumerKey,
+    consumer_secret: process.env.TwitterConsumerSecret,
+    access_token_key: req.session.accessToken,
+    access_token_secret: req.session.accessSecret
+  })
+}
+
 exports.token = { 
   request: function(req, res) {
     oauth.getOAuthRequestToken(function (err, t, s, results) {
@@ -74,53 +83,25 @@ exports.users = {
 }
 
 exports.favorites = {
-  create: function(id, cb) {
-    require('ntwitter')({
-
-      consumer_key: process.env.TwitterConsumerKey,
-      consumer_secret: process.env.TwitterConsumerSecret,
-      access_token_key: req.session.accessToken,
-      access_token_secret: req.session.accessSecret
-
-    }).favoriteStatus(id, cb)
+  create: function(id, req, cb) {
+    twitter(req).favoriteStatus(id, cb)
   }
 }
 
 exports.statuses = {
   update: function(params, req, res) {
-    require('ntwitter')({
-
-      consumer_key: process.env.TwitterConsumerKey,
-      consumer_secret: process.env.TwitterConsumerSecret,
-      access_token_key: req.session.accessToken,
-      access_token_secret: req.session.accessSecret
-
-    }).updateStatus(params.status, { in_reply_to_status_id: params.in_reply_to_status_id }, function (err, data) {
+    twitter(req).updateStatus(params.status, { in_reply_to_status_id: params.in_reply_to_status_id }, function (err, data) {
       if (err) res.send(err, 500)
       else res.send(data)
     })
   },
 
-  retweet: function(id, cb) {
-    require('ntwitter')({
-
-      consumer_key: process.env.TwitterConsumerKey,
-      consumer_secret: process.env.TwitterConsumerSecret,
-      access_token_key: req.session.accessToken,
-      access_token_secret: req.session.accessSecret
-
-    }).retweetStatus(id, cb)
+  retweet: function(id, req, cb) {
+    twitter(req).retweetStatus(id, cb)
   },
 
   filter: function(sock, req) {
-    require('ntwitter')({
-
-      consumer_key: process.env.TwitterConsumerKey,
-      consumer_secret: process.env.TwitterConsumerSecret,
-      access_token_key: req.session.accessToken,
-      access_token_secret: req.session.accessSecret
-
-    }).stream('statuses/filter', { track : [ 'AiOIM', 'aioim' ] }, function(stream) {
+    twitter(req).stream('statuses/filter', { track : [ 'AiOIM', 'aioim' ] }, function(stream) {
       stream.on('data', sock.message)
       stream.on('error', sock.error)
     })
