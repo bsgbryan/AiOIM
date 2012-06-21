@@ -148,6 +148,26 @@
     return false
   }
 
+  function favorite(event) {
+    var id = $(event.currentTarget).parents('li').attr('id')
+
+    $.post('/aioim/favorites.create/' + id, function (data) {
+      $(event.currentTarget).
+        removeClass('favorite').
+        addClass('favorited')
+    })
+  }
+
+  function retweet(event) {
+    var id = $(event.currentTarget).parents('li').attr('id')
+
+    $.post('/aioim/statuses.retweet/' + id, function (data) {
+      $(event.currentTarget).
+        removeClass('retweet').
+        addClass('retweeted')
+    })
+  }
+
   $.aioim = function () {
     $('body').
       append('<div id="aioim">' +
@@ -188,6 +208,8 @@
       on('blur',   '.user.search .name',                clearUserSearch).
       on('submit', '.chatting.with .user .new.message', sendMessage).
       on('click',  '.chattable .user.name .screen',     initializeChat).
-      on('click',  '.close',                            closeChat)
+      on('click',  '.chatting.with .user .close',       closeChat).
+      on('click',  '.chatting.with .user .message + .favorite', favorite).
+      on('click',  '.chatting.with .user .message + .retweet',  retweet)
   }
 })(jQuery)

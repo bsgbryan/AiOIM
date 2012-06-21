@@ -110,6 +110,14 @@ app.post('/aioim/statuses.update', function (req, res) {
   SiNO.statuses.update(req.body, req, res)
 })
 
+app.post('/aioim/statuses.retweet/:id', function (req, res) {
+  SiNO.statuses.retweet(req.params.id, res.send)
+})
+
+app.post('/aioim/favorites.create/:id', function (req, res) {
+  SiNO.favorites.create(req.params.id, res.send)
+})
+
 app.get('/aioim/statuses.filter', function (req, res) {
   SiNO.statuses.filter(sock, req)
   res.send()

@@ -73,10 +73,21 @@ exports.users = {
   search: function(name, req, res) { please('get', users + name, req, res) }
 }
 
+exports.favorites = {
+  create: function(id, cb) {
+    require('ntwitter')({
+
+      consumer_key: process.env.TwitterConsumerKey,
+      consumer_secret: process.env.TwitterConsumerSecret,
+      access_token_key: req.session.accessToken,
+      access_token_secret: req.session.accessSecret
+
+    }).favoriteStatus(id, cb)
+  }
+}
+
 exports.statuses = {
   update: function(params, req, res) {
-    console.log("\n\nREPLYING TO %s\n\n", params.in_reply_to_status_id)
-    
     require('ntwitter')({
 
       consumer_key: process.env.TwitterConsumerKey,
@@ -88,6 +99,17 @@ exports.statuses = {
       if (err) res.send(err, 500)
       else res.send(data)
     })
+  },
+
+  retweet: function(id, cb) {
+    require('ntwitter')({
+
+      consumer_key: process.env.TwitterConsumerKey,
+      consumer_secret: process.env.TwitterConsumerSecret,
+      access_token_key: req.session.accessToken,
+      access_token_secret: req.session.accessSecret
+
+    }).retweetStatus(id, cb)
   },
 
   filter: function(sock, req) {
