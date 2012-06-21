@@ -205,7 +205,35 @@ p
             width 14.2em
             text-shadow none
           &.other
-            width 17.7em
+            width 18.2em
+            .message
+              position relative
+              display inline-block
+              width 15.95em
+              padding-right .25em
+            &:hover
+              .favorite
+              .retweet
+                display inline-block
+            .favorite
+            .retweet
+              display none
+              width 1em
+              background-image url("/images/everything-spritev2.png")
+              text-decoration none
+              background-position-y -1px
+            .favorite
+              background-position-x 95px
+              &:hover
+                background-position-x 79px
+            .retweet
+              background-position-x 48px
+              &:hover
+                background-position-x 32px
+            .favorited
+              background-position-x 63px
+            .retweeted
+              background-position-x 16px
       .new.message
         border-left   3px solid #1C5C89
         border-right  3px solid #1C5C89

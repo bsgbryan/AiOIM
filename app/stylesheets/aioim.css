@@ -352,7 +352,43 @@ p.capitalization.backstory a {
   text-shadow: none;
 }
 #aioim .chatting.with > li .messages li.other {
-  width: 17.7em;
+  width: 18.2em;
+}
+#aioim .chatting.with > li .messages li.other .message {
+  position: relative;
+  display: inline-block;
+  width: 15.95em;
+  padding-right: 0.25em;
+}
+#aioim .chatting.with > li .messages li.other:hover .favorite,
+#aioim .chatting.with > li .messages li.other:hover .retweet {
+  display: inline-block;
+}
+#aioim .chatting.with > li .messages li.other .favorite,
+#aioim .chatting.with > li .messages li.other .retweet {
+  display: none;
+  width: 1em;
+  background-image: url("/images/everything-spritev2.png");
+  text-decoration: none;
+  background-position-y: -1px;
+}
+#aioim .chatting.with > li .messages li.other .favorite {
+  background-position-x: 95px;
+}
+#aioim .chatting.with > li .messages li.other .favorite:hover {
+  background-position-x: 79px;
+}
+#aioim .chatting.with > li .messages li.other .retweet {
+  background-position-x: 48px;
+}
+#aioim .chatting.with > li .messages li.other .retweet:hover {
+  background-position-x: 32px;
+}
+#aioim .chatting.with > li .messages li.other .favorited {
+  background-position-x: 63px;
+}
+#aioim .chatting.with > li .messages li.other .retweeted {
+  background-position-x: 16px;
 }
 #aioim .chatting.with > li .new.message {
   border-left: 3px solid #1c5c89;
