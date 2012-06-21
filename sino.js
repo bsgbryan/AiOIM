@@ -19,7 +19,7 @@ var oauth = new OAuth(
   'HMAC-SHA1')
 
 function twitter(req) {
-  return require('bstwitter')({
+  return require('ntwitter')({
     consumer_key: process.env.TwitterConsumerKey,
     consumer_secret: process.env.TwitterConsumerSecret,
     access_token_key: req.session.accessToken,
