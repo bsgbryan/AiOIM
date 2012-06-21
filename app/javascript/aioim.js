@@ -209,7 +209,7 @@
       on('submit', '.chatting.with .user .new.message', sendMessage).
       on('click',  '.chattable .user.name .screen',     initializeChat).
       on('click',  '.chatting.with .user .close',       closeChat).
-      on('click',  '.chatting.with .user .message + .favorite', favorite).
-      on('click',  '.chatting.with .user .message + .retweet',  retweet)
+      on('click',  '.chatting.with .user .messages .favorite', favorite).
+      on('click',  '.chatting.with .user .messages .retweet',  retweet)
   }
 })(jQuery)
