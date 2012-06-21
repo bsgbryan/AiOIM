@@ -367,6 +367,12 @@ p.capitalization.backstory a {
 #aioim .chatting.with > li .messages li.other .favorite,
 #aioim .chatting.with > li .messages li.other .retweet {
   display: none;
+}
+#aioim .chatting.with > li .messages li.other .favorited,
+#aioim .chatting.with > li .messages li.other .retweeted {
+  display: inline-block;
+}
+#aioim .chatting.with > li .messages li.other a {
   width: 1em;
   background-image: url("/loqui/app/images/everything-spritev2.png");
   text-decoration: none;
