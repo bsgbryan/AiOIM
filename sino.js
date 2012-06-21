@@ -83,10 +83,10 @@ exports.users = {
 }
 
 exports.favorites = {
-  create: function(id, req, cb) {
+  create: function(id, req, res) {
     twitter(req).favoriteStatus(id, function (err, data) {
-      if (err) cb(err, 500)
-      else cb(data)
+      if (err) res.send(err, 500)
+      else res.send(data)
     })
   }
 }
@@ -99,10 +99,10 @@ exports.statuses = {
     })
   },
 
-  retweet: function(id, req, cb) {
+  retweet: function(id, req, res) {
     twitter(req).retweetStatus(id, function (err, data) {
-      if (err) cb(err, 500)
-      else cb(data)
+      if (err) res.send(err, 500)
+      else res.send(data)
     })
   },
 

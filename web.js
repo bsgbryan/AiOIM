@@ -111,11 +111,11 @@ app.post('/aioim/statuses.update', function (req, res) {
 })
 
 app.post('/aioim/statuses.retweet/:id', function (req, res) {
-  SiNO.statuses.retweet(req.params.id, req, res.send)
+  SiNO.statuses.retweet(req.params.id, req, res)
 })
 
 app.post('/aioim/favorites.create/:id', function (req, res) {
-  SiNO.favorites.create(req.params.id, req, res.send)
+  SiNO.favorites.create(req.params.id, req, res)
 })
 
 app.get('/aioim/statuses.filter', function (req, res) {
