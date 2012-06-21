@@ -110,7 +110,7 @@
         var chat = $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages')
 
         chat.append(
-          '<li class="' + person + '" id="' + data.id + '">' +
+          '<li class="' + person + '" id="' + data.id_str + '">' +
           '<p class="message">' + said + '</p>' +
           '</li>')
 
