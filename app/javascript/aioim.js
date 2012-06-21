@@ -97,7 +97,7 @@
           messages = $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages li')
 
       for (var j = 0; j < messages.length; j++)
-        if (said === $(messages[j]).text())
+        if (said === $(messages[j]).find('.message').text())
           present = true
 
       $('#aioim .first.steps .find.someone').
