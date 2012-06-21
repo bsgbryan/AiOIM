@@ -327,7 +327,7 @@ p.capitalization.backstory a {
 #aioim .chatting.with > li .messages li {
   width: 15em;
   text-shadow: 0 1px 0 #fff;
-  padding: 0.25em 0.5em;
+  padding: 0.25em;
   border-bottom: 1px solid #aaa;
   border-top: 1px solid #fff;
   border-left: 1px solid #bbb;
