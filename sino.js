@@ -58,7 +58,7 @@ exports.token = {
               req.session.accessToken  = token
               req.session.accessSecret = secret
 
-              res.redirect('/aioim')
+              res.redirect('/')
             }
           })
       })
