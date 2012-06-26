@@ -29,7 +29,7 @@
     var query = $(event.currentTarget).val()
 
     if (query.length > 2)
-      $.getJSON('/aioim/users.search?name=' + query, function (u) {
+      $.getJSON('/users.search?name=' + query, function (u) {
         var users = ''
 
         u.forEach(function (user) {
@@ -55,7 +55,7 @@
     if (other.length > 0)
       post.in_reply_to_status_id = $(other[other.length - 1]).attr('id')
 
-    $.post('/aioim/statuses.update', post, function (data) {
+    $.post('/statuses.update', post, function (data) {
       console.log(data)
     })
 
@@ -106,7 +106,7 @@
         next('.say.something').
         addClass('')
 
-      if (present === false) {
+      if (present === false && said.indexOf('RT @' + $.cookie('AiOID')) < 0) {
         var chat = $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages')
 
         chat.append(
@@ -137,7 +137,7 @@
         '</form>' +
       '</li>')
 
-    $.get('/aioim/quote', function (data) {
+    $.get('/iheartquotes', function (data) {
       $('[data-screen_name=' + screen_name + '] .messages').append('<li class="quote"><p>' + JSON.parse(data).quote + '</p></li>')
       $('[data-screen_name=' + screen_name + ']').parent().removeClass('hidden')
     }) 
@@ -151,7 +151,7 @@
   function favorite(event) {
     var id = $(event.currentTarget).parents('li').attr('id')
 
-    $.post('/aioim/favorites.create/' + id, function (data) {
+    $.post('/favorites.create/' + id, function (data) {
       $(event.currentTarget).
         removeClass('favorite').
         addClass('favorited')
@@ -161,7 +161,7 @@
   function retweet(event) {
     var id = $(event.currentTarget).parents('li').attr('id')
 
-    $.post('/aioim/statuses.retweet/' + id, function (data) {
+    $.post('/statuses.retweet/' + id, function (data) {
       $(event.currentTarget).
         removeClass('retweet').
         addClass('retweeted')
@@ -171,7 +171,7 @@
   $.aioim = function () {
     $('body').
       append('<div id="aioim">' +
-        '<a class="sign in hidden" href="/aioim/signin">authorize</a>' +
+        '<a class="sign in hidden" href="/signin">authorize</a>' +
         '<ol class="first steps">' +
           '<li class="authorize">Click "authorize"</li>' +
           '<li class="find someone">Find someone</li>' +
@@ -192,7 +192,7 @@
       io.connect('/aioim').
         on('receive message', showMessage).
         on('statuses filter', function() { 
-          $.get('/aioim/statuses.filter')
+          $.get('/statuses.filter')
         })
         
       $('#aioim form.user.hidden').removeClass('hidden')

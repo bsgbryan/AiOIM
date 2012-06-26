@@ -80,13 +80,11 @@ app.configure(function() {
   app.set('view engine', 'jade')
 })
 
-app.get('/aio', function (req, res) { res.redirect('/aioim') })
-
-app.get('/aioim', function (req, res) {
+app.get('/', function (req, res) {
   res.render('aioim', { layout : false })
 })
 
-app.get('/aioim/quote', function(req, res) {
+app.get('/iheartquotes', function(req, res) {
   http.get({ host: 'www.iheartquotes.com', path: '/api/v1/random?format=json&max_characters=140' }, function (r) {
     var quote = ''
     r.on('data', function(chunk) { quote += chunk  })
@@ -94,31 +92,31 @@ app.get('/aioim/quote', function(req, res) {
   })
 })
 
-app.get('/aioim/signin', function (req, res) {
+app.get('/signin', function (req, res) {
   SiNO.token.request(req, res)
 })
 
-app.get('/aioim/authorized', function (req, res) {
+app.get('/authorized', function (req, res) {
   SiNO.token.access(req, res)
 })
 
-app.get('/aioim/users.search', function (req, res) {
+app.get('/users.search', function (req, res) {
   SiNO.users.search(req.param('name'), req, res)
 })
 
-app.post('/aioim/statuses.update', function (req, res) {
+app.post('/statuses.update', function (req, res) {
   SiNO.statuses.update(req.body, req, res)
 })
 
-app.post('/aioim/statuses.retweet/:id', function (req, res) {
+app.post('/statuses.retweet/:id', function (req, res) {
   SiNO.statuses.retweet(req.params.id, req, res)
 })
 
-app.post('/aioim/favorites.create/:id', function (req, res) {
+app.post('/favorites.create/:id', function (req, res) {
   SiNO.favorites.create(req.params.id, req, res)
 })
 
-app.get('/aioim/statuses.filter', function (req, res) {
+app.get('/statuses.filter', function (req, res) {
   SiNO.statuses.filter(sock, req)
   res.send()
 })
