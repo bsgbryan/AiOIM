@@ -524,7 +524,7 @@ p.capitalization.backstory a {
   }
   #aioim .user.search .name {
     height: 2.5em;
-    width: 87%;
+    width: 85%;
     padding: 0 0.75em;
     margin-top: 0.5em;
     margin-left: 0.75em;
@@ -561,7 +561,7 @@ p.capitalization.backstory a {
     right: 0;
     z-index: 20;
   }
-  #aioim .chatting.with li {
+  #aioim .chatting.with > li {
     position: absolute;
     top: -2.25em;
     left: 0;
@@ -572,10 +572,10 @@ p.capitalization.backstory a {
     height: auto;
     padding-top: 0.375em;
   }
-  #aioim .chatting.with li .human.name {
+  #aioim .chatting.with > li .human.name {
     width: 85%;
   }
-  #aioim .chatting.with li .messages {
+  #aioim .chatting.with > li .messages {
     position: absolute;
     top: 2.25em;
     left: 0;
@@ -591,11 +591,11 @@ p.capitalization.backstory a {
     width: 100%;
     height: auto;
   }
-  #aioim .chatting.with li .messages .quote {
+  #aioim .chatting.with > li .messages .quote {
     width: 97%;
     bottom: 0;
   }
-  #aioim .chatting.with li .new.message {
+  #aioim .chatting.with > li .new.message {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -607,7 +607,7 @@ p.capitalization.backstory a {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
-  #aioim .chatting.with li .new.message input {
+  #aioim .chatting.with > li .new.message input {
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
     border-top-right-radius: 0;
@@ -617,7 +617,7 @@ p.capitalization.backstory a {
     font-size: 1.75em;
     padding: 0px 5px 0px 4px;
   }
-  #aioim .chatting.with li .new.message button {
+  #aioim .chatting.with > li .new.message button {
     padding: 0px 5px 5px 6px;
     position: absolute;
     right: 0.2em;
