@@ -476,7 +476,7 @@ p.capitalization.backstory a {
   -webkit-border-radius: 0.25em;
   border-radius: 0.25em;
 }
-@media screen only and (max-width: 640px) {
+@media screen and (max-width: 640px) {
   html,
   body {
     width: 100%;
