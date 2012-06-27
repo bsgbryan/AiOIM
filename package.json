@@ -4,7 +4,7 @@
   "author"  : "Bryan Maynard <bsgbryan@gmail.com>",
   "description": "A twitter-backed web based chat client",
   "dependencies" : {
-    "express"    : "*",
+    "express"    : "= 2.5",
     "jade"       : "*",
     "bs-oauth"   : "*",
     "ntwitter"   : "*",
