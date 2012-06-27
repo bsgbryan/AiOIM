@@ -19,7 +19,7 @@ io.configure(function () {
   io.set('polling duration', 10)
 })
 
-io.of('/').
+io.of('/aioim').
   on('connection', function (socket) {
     // We are linking users to sessions via the socket.handshake.sessionID,
     // which is identical to the connect.sid (connect session id)

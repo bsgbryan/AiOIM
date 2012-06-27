@@ -573,7 +573,7 @@ p.capitalization.backstory a {
     padding-top: 0.375em;
   }
   #aioim .chatting.with li .human.name {
-    width: 87%;
+    width: 85%;
   }
   #aioim .chatting.with li .messages {
     position: absolute;
@@ -610,7 +610,9 @@ p.capitalization.backstory a {
   #aioim .chatting.with li .new.message input {
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
-    width: 84%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    width: 80%;
     height: 1.3em;
     font-size: 1.75em;
     padding: 0px 5px 0px 4px;
@@ -618,6 +620,7 @@ p.capitalization.backstory a {
   #aioim .chatting.with li .new.message button {
     padding: 0px 5px 5px 6px;
     position: absolute;
+    right: 0.2em;
     border-bottom-right-radius: 3px;
     border-top-right-radius: 3px;
     font-size: 1.5em;
