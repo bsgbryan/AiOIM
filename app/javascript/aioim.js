@@ -189,7 +189,7 @@
       $('#aioim .first.steps .authorize').addClass('active')
     }
     else {
-      io.connect('/aioim').
+      io.connect('/').
         on('receive message', showMessage).
         on('statuses filter', function() { 
           $.get('/statuses.filter')
