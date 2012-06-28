@@ -375,7 +375,7 @@ p.capitalization.backstory a {
 #aioim .chatting.with > li .messages li.other a {
   display: inline-block;
   width: 1em;
-  background-image: url("/loqui/app/images/everything-spritev2.png");
+  background-image: url("/AiOIM/app/images/everything-spritev2.png");
   text-decoration: none;
   background-position-y: -1px;
 }
@@ -590,6 +590,9 @@ p.capitalization.backstory a {
     overflow-x: hidden;
     width: 100%;
     height: auto;
+  }
+  #aioim .chatting.with > li .messages li {
+    width: 100%;
   }
   #aioim .chatting.with > li .messages .quote {
     width: 97%;
