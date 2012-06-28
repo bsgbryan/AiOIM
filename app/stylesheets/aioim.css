@@ -554,7 +554,7 @@ p.capitalization.backstory a {
     width: 9.7em;
   }
   #aioim .chatting.with {
-    position: fixed;
+    position: absolute;
     top: 2.25em;
     left: 0;
     bottom: 0;
@@ -562,7 +562,7 @@ p.capitalization.backstory a {
     z-index: 20;
   }
   #aioim .chatting.with > li {
-    position: fixed;
+    position: absolute;
     top: -2.25em;
     left: 0;
     background-color: #ffb95e;
@@ -576,7 +576,7 @@ p.capitalization.backstory a {
     width: 85%;
   }
   #aioim .chatting.with > li .messages {
-    position: fixed;
+    position: absolute;
     top: 2.25em;
     left: 0;
     right: 0;
