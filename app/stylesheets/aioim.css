@@ -482,31 +482,10 @@ p.capitalization.backstory a {
     width: 100%;
     height: 100%;
   }
-  h1 {
-    display: none;
-  }
+  h1,
+  p.capitalization.backstory,
   p.name.reason {
-    top: 4em;
-    left: 1em;
-    right: 1em;
-    z-index: 10;
-    color: #a66b1f;
-    text-shadow: 0 1px 0 #ffca86;
-  }
-  p.name.reason .definition {
-    color: #a66b1f;
-  }
-  p.capitalization.backstory {
-    left: 1em;
-    right: 1em;
-    bottom: 1em;
-    z-index: 10;
-    color: #ffb95e;
-    text-shadow: 0 -1px 0 #a66b1f;
-    line-height: 1.3em;
-  }
-  p.capitalization.backstory a {
-    color: #ffb95e;
+    display: none;
   }
   #aioim {
     position: relative;
@@ -529,12 +508,26 @@ p.capitalization.backstory a {
     margin-top: 0.5em;
     margin-left: 0.75em;
   }
+  #aioim .sign.in {
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    height: 15%;
+    font-size: 2em;
+    width: 40%;
+    padding-top: 5%;
+    padding-bottom: 0;
+    line-height: 1em;
+  }
   #aioim .first.steps {
     position: absolute;
-    top: 0.5em;
-    left: 50%;
-    right: 0;
+    bottom: 25%;
+    left: 0%;
+    top: auto;
+    width: 100%;
     line-height: 1em;
+    font-size: 2em;
+    text-align: center;
   }
   #aioim .first.steps li,
   #aioim .first.steps .completed {
@@ -595,8 +588,7 @@ p.capitalization.backstory a {
     width: 100% !important;
   }
   #aioim .chatting.with > li .messages .quote {
-    width: 97%;
-    bottom: 0;
+    display: none;
   }
   #aioim .chatting.with > li .new.message {
     position: absolute;
@@ -607,7 +599,7 @@ p.capitalization.backstory a {
     border-bottom: none;
     border-left: none;
     border-right: none;
-    border-top-left-radius: 0;
+    border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
   #aioim .chatting.with > li .new.message input {

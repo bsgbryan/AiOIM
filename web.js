@@ -85,7 +85,8 @@ app.configure(function() {
 })
 
 app.get('/', function (req, res) {
-  res.render('aioim', { layout : false })
+  var base = req.headers.host.indexOf('localhost:5000') === 0 ? '/' : 'http://bsgbryan.github.com/AiOIM/app/'
+  res.render('aioim', { layout : false , base : base })
 })
 
 app.get('/iheartquotes', function(req, res) {
