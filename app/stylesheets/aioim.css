@@ -592,7 +592,7 @@ p.capitalization.backstory a {
     height: auto;
   }
   #aioim .chatting.with > li .messages li {
-    width: 100%;
+    width: 100% !important;
   }
   #aioim .chatting.with > li .messages .quote {
     width: 97%;
