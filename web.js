@@ -30,21 +30,8 @@ io.of('/aioim').
   })
  
 io.set('authorization', function (data, accept) {
-  if (data.headers.cookie) {
-    var cookies = {}
-    
-    data.headers.cookie.split(';').forEach(function(cookie) {
-      var parts                = cookie.split('=')
-      cookies[parts[0].trim()] = (parts[ 1 ] || '').trim()
-    })
-    
-    // We're assigning our handshake session id to the connect session id
-    // and mapping the session id to our user so we can later assign the
-    // socket resulting from this handshake to our user
-    data.sessionID        = cookies['connect.sid']
-    users[data.sessionID] = cookies['AiOID']
-  } else
-   return accept('No cookie transmitted.', false)
+  data.sessionID        = data.params.session
+  users[data.sessionID] = data.params.AiOID
 
   accept(null, true)
 });
