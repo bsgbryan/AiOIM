@@ -39,7 +39,7 @@
 
   function initialize() {
     if (cookie('AiOID') === null)
-      $('#aioim').prepend('<a class="authorize">Sign in via Twitter</a> to join the discussion!')
+      $('#aioim').prepend('<a class="authorize" href="https://aioim.bryanmaynard.com/signin">Sign in via Twitter</a> to join the discussion!')
     else
       io.connect('http://aioim.bryanmaynard.com/aioim').
         on('receive message', showMessage).
