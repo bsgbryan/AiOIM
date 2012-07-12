@@ -58,6 +58,6 @@
   }
 
   $(document).ready(function() {
-
+    $.getScript('http://aioim.bryanmaynard.com/socket.io/socket.io.js', initialize)
   })
 })(jQuery)
