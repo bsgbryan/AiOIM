@@ -36,7 +36,7 @@ exports.token = {
         req.session.token  = t
         req.session.secret = s
 
-        // Set the req.session.whenAuthenticatedRedirectTo value here
+        req.session.whenAuthenticatedRedirectTo = req.header('Referer')
 
         res.redirect(auth + t)    
       }
@@ -60,8 +60,8 @@ exports.token = {
               req.session.accessToken  = token
               req.session.accessSecret = secret
 
-              // This should be res.redirect(req.session.whenAuthenticatedRedirectTo)
-              res.redirect('/')
+              res.redirect(req.session.whenAuthenticatedRedirectTo)
+              // res.redirect('/')
             }
           })
       })
