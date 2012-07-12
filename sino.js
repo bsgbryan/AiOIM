@@ -60,7 +60,7 @@ exports.token = {
               req.session.accessToken  = token
               req.session.accessSecret = secret
 
-              res.redirect(req.session.whenAuthenticatedRedirectTo + '?AiOID=' + screen_name)
+              res.redirect(req.session.whenAuthenticatedRedirectTo + '?AiOID=' + screen_name + '&AiOSID=' + req.session.id)
               // res.redirect('/')
             }
           })

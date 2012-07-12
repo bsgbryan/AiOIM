@@ -66,7 +66,10 @@
     if (typeof qParam('AiOID') === 'string')
       cookie('AiOID', qParam('AiOID'))
 
-    io.connect('http://aioim.bryanmaynard.com/aioim?AiOID=' + cookie('AiOID') + '&session=' + cookie('connect.sid')).
+    if (typeof qParam('AiOSID') === 'string')
+      cookie('AiOSID', qParam('AiOSID'))
+
+    io.connect('http://aioim.bryanmaynard.com/aioim?AiOID=' + cookie('AiOID') + '&session=' + cookie('AiOSID')).
       on('receive message', showMessage).
       on('statuses filter', function() { 
         $.get('http://aioim.bryanmaynard.com/statuses.filter?callback=?')
