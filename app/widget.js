@@ -1,4 +1,26 @@
 (function($) {
+  function qParams() {
+    var vars   = { }, hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+
+    for (var i = 0; i < hashes.length; i++) {
+      hash = hashes[i].split('=');
+      if (hash.length === 2) {
+        vars[hash[0]] = undefined;
+
+        var pound = hash[1].indexOf('#');
+
+        vars[hash[0]] = (pound < 0 ? hash[1] : hash[1].substring(0, pound));
+      }
+    }
+
+    return vars;
+  }
+
+  function qParam(name) {
+    return qParams()[name];
+  }
+
   // Ganked from jquery.cookie
   function cookie(key, value, options) {
 
@@ -38,14 +60,17 @@
   };
 
   function initialize() {
-    if (cookie('AiOID') === null)
+    if (cookie('AiOID') === null && typeof qParam('AiOID') === 'undefined')
       $('#aioim').prepend('<p><a class="authorize" href="https://aioim.bryanmaynard.com/signin">Sign in via Twitter</a> to join the discussion!</p>')
-    else
-      io.connect('http://aioim.bryanmaynard.com/aioim').
-        on('receive message', showMessage).
-        on('statuses filter', function() { 
-          $.get('http://aioim.bryanmaynard.com/statuses.filter?callback=?')
-        })
+
+    if (typeof qParam('AiOID') === 'string')
+      cookie('AiOID', qParam('AiOID'))
+
+    io.connect('http://aioim.bryanmaynard.com/aioim').
+      on('receive message', showMessage).
+      on('statuses filter', function() { 
+        $.get('http://aioim.bryanmaynard.com/statuses.filter?callback=?')
+      })
   }
 
   $(document).ready(function() {
