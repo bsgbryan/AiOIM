@@ -1,6 +1,6 @@
 (function($) {
   // Ganked from jquery.cookie
-  var cookie = function(key, value, options) {
+  function cookie(key, value, options) {
 
       // key and at least value given, set cookie...
       if (arguments.length > 1 && (!/Object/.test(Object.prototype.toString.call(value)) || value === null || value === undefined)) {
@@ -38,23 +38,14 @@
   };
 
   function initialize() {
-    if (cookie('AiOID') === null) {
-      $('#aioim .sign.in').removeClass('hidden')
-      $('#aioim .first.steps .authorize').addClass('active')
-    }
-    else {
+    if (cookie('AiOID') === null)
+      $('#aioim').prepend('<a class="authorize">Sign in via Twitter</a> to join the discussion!')
+    else
       io.connect('http://aioim.bryanmaynard.com/aioim').
         on('receive message', showMessage).
         on('statuses filter', function() { 
           $.get('http://aioim.bryanmaynard.com/statuses.filter?callback=?')
         })
-        
-      $('#aioim form.user.hidden').removeClass('hidden')
-      $('#aioim .first.steps .authorize').
-        addClass('completed').
-        next('li').
-        addClass('active')
-    }
   }
 
   $(document).ready(function() {
