@@ -94,6 +94,17 @@ exports.favorites = {
   }
 }
 
+funciton stringifyIDs(data) {
+  for (var prop in data)
+    if (data[prop] instanceof Object)
+      deleteIDs(data[prop])
+    else if (data[prop] instanceof Array)
+      for (var i = 0; i < data[prop].lenth; i++)
+        deleteIDs(data[prop][i])
+    else if (prop === 'id')
+      data[prop] = data[prop].toString()
+}
+
 exports.statuses = {
   update: function(params, req, res) {
     twitter(req).updateStatus(params.status, { in_reply_to_status_id: params.in_reply_to_status_id }, function (err, data) {
@@ -113,6 +124,8 @@ exports.statuses = {
             res.send(d, 500)
           })
         })
+
+        stringifyIDs(data)
 
         var tweet = JSON.parse(data)
 
