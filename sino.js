@@ -99,6 +99,8 @@ exports.statuses = {
     twitter(req).updateStatus(params.status, { in_reply_to_status_id: params.in_reply_to_status_id }, function (err, data) {
       if (err) res.send(err, 500)
       else  {
+        console.error("\n\nFIREBASE URL\n%s\n\n", '/bsgbryan/aioim/' + req.header('Referer').split('//')[1].split('?')[0].replace(/\./g, '_'))
+
         var post = http.request({
           host: 'gamma.firebase.com',
           port: 80,
