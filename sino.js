@@ -114,7 +114,7 @@ exports.statuses = {
           })
         })
 
-        console.error("\n\nTWEET\n%s\n\n", qString.stringify(data))
+        console.error("\n\nREQUEST\n%s\n\n", post.toString())
 
         post.write(qString.stringify(data))
         post.end()
