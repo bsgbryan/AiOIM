@@ -92,7 +92,7 @@
         '<a href="#" class="favorite">f</a>' +
       '</dt>' +
       '<dd class="message">' +
-        '<p class="content">' + message.text + '</p>'
+        '<p class="content">' + message.text + '</p>' +
       '</dd>')
     })
   }
