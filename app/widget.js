@@ -82,10 +82,10 @@
     if (typeof qParam('AiOID') === 'string')
       cookie('AiOID', qParam('AiOID'))
 
-    var firebase = 'http://gamma.firebase.com/bsgbryan/aioim/' + window.location.host + window.location.pathname,
-        messages = new Firebase('http://gamma.firebase.com/bsgbryan/aioim/' + window.location.host + window.location.pathname)
+    var root     = 'http://gamma.firebase.com/bsgbryan/aioim/' + window.location.host.replace(/\./g, '_') + window.location.pathname.replace(/\./g, '_'),
+        messages = new Firebase(root)
 
-    console.log(firebase)
+    console.log(root)
 
     messages.on('child_added', function (message) {
       console.log(message.name(), message.val())
