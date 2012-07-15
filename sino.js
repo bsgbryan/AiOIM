@@ -127,11 +127,11 @@ exports.statuses = {
 
         stringifyIDs(data)
 
-        var tweet = JSON.parse(data)
+        console.error("\n\nTWEET\n", data)
 
-        console.error("\n\nTWEET\n%o\n\n", tweet)
+        // var tweet = JSON.parse(data)
 
-        post.write(tweet)
+        post.write(data)
         post.end()
       }
     })
