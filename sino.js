@@ -104,7 +104,7 @@ exports.statuses = {
         var post = http.request({
           host: 'gamma.firebase.com',
           port: 80,
-          path: '/bsgbryan/aioim/' + req.header('Referer').split('//')[1].split('?')[0].replace(/\./g, '_'),
+          path: 'bsgbryan/aioim/' + req.header('Referer').split('//')[1].split('?')[0].replace(/\./g, '_'),
           method: 'POST'
         }, function (r) {
           r.on('end', function() {
