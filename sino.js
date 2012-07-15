@@ -129,7 +129,7 @@ exports.statuses = {
 
         console.error("\n\nTWEET\n", data)
 
-        var tweet = JSON.parse([data])
+        var tweet = JSON.stringify(data)
 
         post.write(tweet)
         post.end()
