@@ -64,7 +64,7 @@
   }
 
   function showNewMessageForm() {
-    $('#aioim').append('<form action="http://aioim.bryanmaynard.com/statuses.update" method="post">' +
+    $('#aioim').append('<form class="new message" action="http://aioim.bryanmaynard.com/statuses.update" method="post">' +
         '<input type="hidden" name="AiOID" value="' + cookie('AiOID') + '">' +
         '<textarea name="status" placeholder="What do you have to say?"></textarea>' +
         '<button type="submit">say</button>' +
@@ -73,24 +73,27 @@
 
   function initialize() {
     if (cookie('AiOID') === null && typeof qParam('AiOID') === 'undefined')
-      $('#aioim').prepend('<p><a class="authorize" href="https://aioim.bryanmaynard.com/signin">Sign in via Twitter</a> to join the discussion!</p>')
+      $('#aioim').prepend('<p><a class="authorize" href="http://aioim.bryanmaynard.com/signin">Sign in via Twitter</a> to join the discussion!</p>')
     else {
       populateMessages()
       showNewMessageForm()
     }
 
-
     if (typeof qParam('AiOID') === 'string')
       cookie('AiOID', qParam('AiOID'))
 
-    io.connect('http://aioim.bryanmaynard.com/aioim?AiOID=' + cookie('AiOID')).
-      on('receive message', showMessage).
-      on('statuses filter', function() { 
-        $.get('http://aioim.bryanmaynard.com/statuses.filter?callback=?')
-      })
+    var messages = new Firebase('http://gamma.firebase.com/bsgbryan/aioim/' + window.location.host + '/' + window.location.path)
+
+    messages.on('child_added', function (message) {
+      console.log(message.name(), message.val())
+    })
   }
 
   $(document).ready(function() {
-    $.getScript('http://aioim.bryanmaynard.com/socket.io/socket.io.js', initialize)
+    $.getScript('http://static.firebase.com/v0/firebase.js', initialize)
+
+    $('#aioim').on('submit', '.new.message', function (event) {
+      $.post($(event.currentTarget).attr('action'), { status: $('#aioim .new.message .status').val() })
+    })
   })
 })(jQuery)
