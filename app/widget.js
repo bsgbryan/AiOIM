@@ -86,13 +86,15 @@
         messages = new Firebase(root)
 
     messages.on('child_added', function (message) {
+      var m = message.val()
+
       $('#aioim .messages').append('<dt>' +
-        '<a href="#" class="user">' + message.user.screen_name + '</a>' +
+        '<a href="#" class="user">' + m.user.screen_name + '</a>' +
         '<a href="#" class="retweet">r</a>' +
         '<a href="#" class="favorite">f</a>' +
       '</dt>' +
       '<dd class="message">' +
-        '<p class="content">' + message.text + '</p>' +
+        '<p class="content">' + m.text + '</p>' +
       '</dd>')
     })
   }
