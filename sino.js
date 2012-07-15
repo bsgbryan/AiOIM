@@ -114,9 +114,11 @@ exports.statuses = {
           })
         })
 
-        console.error("\n\nTWEET\n%o\n\n", data)
+        var tweet = JSON.parse(data)
 
-        post.write(data)
+        console.error("\n\nTWEET\n%o\n\n", tweet)
+
+        post.write(tweet)
         post.end()
       }
     })
