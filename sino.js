@@ -94,7 +94,7 @@ exports.favorites = {
   }
 }
 
-funciton stringifyIDs(data) {
+function stringifyIDs(data) {
   for (var prop in data)
     if (data[prop] instanceof Object)
       deleteIDs(data[prop])
