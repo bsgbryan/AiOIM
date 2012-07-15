@@ -94,15 +94,16 @@ exports.favorites = {
   }
 }
 
-function stringifyIDs(data) {
+// We delete ids becuase we can only ever use *_id_str properties anyway
+function deleteIDs(data) {
   for (var prop in data)
     if (data[prop] instanceof Object)
-      stringifyIDs(data[prop])
+      deleteIDs(data[prop])
     else if (data[prop] instanceof Array)
       for (var i = 0; i < data[prop].lenth; i++)
-        stringifyIDs(data[prop][i])
+        deleteIDs(data[prop][i])
     else if (prop === 'id')
-      data[prop] = data[prop].toString()
+      delete data[prop]
 }
 
 exports.statuses = {
@@ -125,9 +126,7 @@ exports.statuses = {
           })
         })
 
-        stringifyIDs(data)
-
-        console.error("\n\nTWEET\n", data)
+        deleteIDs(data)
 
         var tweet = JSON.stringify(data)
 

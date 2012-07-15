@@ -85,10 +85,15 @@
     var root     = 'http://gamma.firebase.com/bsgbryan/aioim/' + window.location.host.replace(/\./g, '_') + window.location.pathname.replace(/\./g, '_'),
         messages = new Firebase(root)
 
-    console.log(root)
-
     messages.on('child_added', function (message) {
-      console.log(message.name(), message.val())
+      $('#aioim .messages').append('<dt>' +
+        '<a href="#" class="user">' + messages.user.screen_name + '</a>' +
+        '<a href="#" class="retweet">r</a>' +
+        '<a href="#" class="favorite">f</a>' +
+      '</dt>' +
+      '<dd class="message">' +
+        '<p class="content">' + message.text + '</p>'
+      '</dd>')
     })
   }
 
@@ -98,5 +103,7 @@
     $('#aioim').on('submit', '.new.message', function (event) {
       $.post($(event.currentTarget).attr('action'), { status: $('#aioim .new.message .status').val() })
     })
+
+    $('#aioim').append('<dl class="messages"></dl>')
   })
 })(jQuery)
