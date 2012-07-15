@@ -114,9 +114,7 @@ exports.statuses = {
           })
         })
 
-        console.error("\n\nREQUEST\n%s\n\n", post.toString())
-
-        post.write(qString.stringify(data))
+        post.write(JSON.parse(data))
         post.end()
       }
     })
