@@ -97,10 +97,10 @@ exports.favorites = {
 function stringifyIDs(data) {
   for (var prop in data)
     if (data[prop] instanceof Object)
-      deleteIDs(data[prop])
+      stringifyIDs(data[prop])
     else if (data[prop] instanceof Array)
       for (var i = 0; i < data[prop].lenth; i++)
-        deleteIDs(data[prop][i])
+        stringifyIDs(data[prop][i])
     else if (prop === 'id')
       data[prop] = data[prop].toString()
 }
