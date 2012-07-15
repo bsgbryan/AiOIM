@@ -1,6 +1,8 @@
 var OAuth = require('bs-oauth').OAuth,
     util  = require('util'),
-    sha1  = require('./app/sha1')
+    sha1  = require('./app/sha1'),
+    http  = require('http'),
+    qString = require('querystring')
 
 // Twitter urls
 var creds   = 'http://twitter.com/account/verify_credentials.json',
@@ -96,7 +98,25 @@ exports.statuses = {
   update: function(params, req, res) {
     twitter(req).updateStatus(params.status, { in_reply_to_status_id: params.in_reply_to_status_id }, function (err, data) {
       if (err) res.send(err, 500)
-      else res.send(data)
+      else  {
+        var post = http.request({
+          host: 'gamma.firebase.com',
+          port: 80,
+          path: '/bsgbryan/aioim/' + req.header('Referer').splint('::')[1].split('?')[0],
+          method: 'POST'
+        }, function (r) {
+          r.on('end', function() {
+            res.send()
+          })
+
+          r.on('error', function (d) {
+            res.send(d, 500)
+          })
+        })
+
+        post.write(qString.stringify(data))
+        post.end()
+      }
     })
   },
 
@@ -105,12 +125,12 @@ exports.statuses = {
       if (err) res.send(err, 500)
       else res.send(data)
     })
-  },
+  }// ,
 
-  filter: function(sock, req) {
-    twitter(req).stream('statuses/filter', { track : [ 'AiOIM', 'aioim' ] }, function(stream) {
-      stream.on('data', sock.message)
-      stream.on('error', sock.error)
-    })
-  }
+  // filter: function(sock, req) {
+  //   twitter(req).stream('statuses/filter', { track : [ 'AiOIM', 'aioim' ] }, function(stream) {
+  //     stream.on('data', sock.message)
+  //     stream.on('error', sock.error)
+  //   })
+  // }
 }
