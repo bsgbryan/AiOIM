@@ -87,7 +87,7 @@
 
     messages.on('child_added', function (message) {
       $('#aioim .messages').append('<dt>' +
-        '<a href="#" class="user">' + messages.user.screen_name + '</a>' +
+        '<a href="#" class="user">' + message.user.screen_name + '</a>' +
         '<a href="#" class="retweet">r</a>' +
         '<a href="#" class="favorite">f</a>' +
       '</dt>' +
