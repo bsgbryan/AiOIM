@@ -51,7 +51,10 @@ var sock = {
   },
 
   err: function(error, code) {
-    console.log('twitter stream error', error, code)
+    if (arguments.length === 1)
+      sock.message(error)
+    else
+      console.log('twitter stream error', error, code)
   }
 }
 
