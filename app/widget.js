@@ -90,8 +90,8 @@
 
       $('#aioim .messages').append('<dt>' +
         '<a href="#" class="user">' + m.user.screen_name + '</a>' +
-        '<a href="#" class="retweet">r</a>' +
-        '<a href="#" class="favorite">f</a>' +
+        '<a href="#" class="retweet">h</a>' +
+        '<a href="#" class="favorite">7</a>' +
       '</dt>' +
       '<dd class="message">' +
         '<p class="content">' + m.text + '</p>' +
