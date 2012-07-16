@@ -146,7 +146,7 @@ exports.statuses = {
   filter: function(sock, req) {
     twitter(req).stream('statuses/filter', { track : [ 'AiOIM', 'aioim' ] }, function(stream) {
       stream.on('data', sock.message)
-      stream.on('error', sock.error)
+      stream.on('error', sock.err)
     })
   }
 }

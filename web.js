@@ -50,7 +50,7 @@ var sock = {
     sockets[user].emit('receive message', data)
   },
 
-  error: function(error, code) {
+  err: function(error, code) {
     console.log('twitter stream error', error, code)
   }
 }
