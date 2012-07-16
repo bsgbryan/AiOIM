@@ -108,9 +108,9 @@ app.post('/favorites.create/:id', function (req, res) {
   SiNO.favorites.create(req.params.id, req, res)
 })
 
-// app.get('/statuses.filter', function (req, res) {
-//   SiNO.statuses.filter(sock, req)
-//   res.send()
-// })
+app.get('/statuses.filter', function (req, res) {
+  SiNO.statuses.filter(sock, req)
+  res.send()
+})
 
 app.listen(process.env.PORT)

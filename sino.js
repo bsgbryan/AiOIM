@@ -141,12 +141,12 @@ exports.statuses = {
       if (err) res.send(err, 500)
       else res.send(data)
     })
-  }// ,
+  },
 
-  // filter: function(sock, req) {
-  //   twitter(req).stream('statuses/filter', { track : [ 'AiOIM', 'aioim' ] }, function(stream) {
-  //     stream.on('data', sock.message)
-  //     stream.on('error', sock.error)
-  //   })
-  // }
+  filter: function(sock, req) {
+    twitter(req).stream('statuses/filter', { track : [ 'AiOIM', 'aioim' ] }, function(stream) {
+      stream.on('data', sock.message)
+      stream.on('error', sock.error)
+    })
+  }
 }
