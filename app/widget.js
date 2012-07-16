@@ -104,6 +104,7 @@
 
     $('#aioim').on('submit', '.new.message', function (event) {
       $.post($(event.currentTarget).attr('action'), { status: $('#aioim .new.message .status').val() })
+      $('#aioim .new.message .status').val('')
     })
 
     $('#aioim').append('<dl class="messages"></dl>')
