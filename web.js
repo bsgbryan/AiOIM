@@ -51,7 +51,7 @@ var sock = {
   },
 
   error: function(error, code) {
-    console.log('twitter stream error "%s", "%s"', error, code)
+    console.log('twitter stream error "%@", "%s"', error, code)
   }
 }
 
