@@ -56,7 +56,7 @@ exports.token = {
             else {
               var screen_name = JSON.parse(decodeURIComponent(data)).screen_name;
 
-              // res.cookie('AiOID', screen_name, { httpOnly: false, path: '/' })
+              res.cookie('AiOID', screen_name, { httpOnly: false, path: '/' })
 
               // These two values are what we use to interact with Twitter on our user's behalf
               req.session.accessToken  = token
