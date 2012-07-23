@@ -125,6 +125,7 @@ exports.statuses = {
 
         console.log('REQSESS', reqSess)
         console.log('SESSION', session)
+        console.log('URL', '/bsgbryan/aioim/' + referer + session + '.json')
 
         var options = {
               host: 'gamma.firebase.com',
