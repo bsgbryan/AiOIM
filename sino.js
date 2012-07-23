@@ -139,6 +139,9 @@ exports.statuses = {
               resp.on('error', function (e) { res.send(e, 500) })
             })
 
+        data.from = req.body.from
+        data.to   = req.body.to
+
         post.write(JSON.stringify(deleteIDs(data)))
         post.end()
       }

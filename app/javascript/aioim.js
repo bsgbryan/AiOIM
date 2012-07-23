@@ -75,8 +75,8 @@
   }
 
   function showMessage(event, person) {
-    var chat = $('ul.chatting.with li.user[data-screen_name=' + event.data.speaking + '] .messages'),
-        mess = event.val()
+    var mess = event.val(),
+        chat = $('ul.chatting.with li.user[data-screen_name=' + (person === 'self' ? mess.to : mess.from) + '] .messages')
 
     chat.append(
       '<li class="' + person + '" id="' + mess.id_str + '" data-uid="' + event.name() + '">' +
@@ -119,8 +119,8 @@
         myEnd    = new Firebase(base + $.cookie('AiOID') + '-' + screen_name),
         theirEnd = new Firebase(base + screen_name       + '-' + $.cookie('AiOID'))
 
-    myEnd.on('child_added',    { speaking : $.cookie('AiOID') }, showMyMessage) // This should be showMyMessage
-    theirEnd.on('child_added', { speaking : screen_name       }, showTheirMessage) // This shoul be showTheirMessage
+    myEnd.on('child_added',    showMyMessage) // This should be showMyMessage
+    theirEnd.on('child_added', showTheirMessage) // This shoul be showTheirMessage
   }
 
   function closeChat(event) { 
