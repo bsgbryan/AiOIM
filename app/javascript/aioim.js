@@ -48,10 +48,9 @@
     var target  = $(event.currentTarget),
         user    = target.parents('li').data('screen_name'), 
         message = target.find('input').val(),
-        tweet   = '@' + user + ' ' + message + ' #AiOIM',
         other   = target.prev('ol').find('li.other'),
         post    = { 
-          status : tweet,
+          status : message,
           from   : $.cookie('AiOID'),
           to     : user
         }
@@ -63,10 +62,7 @@
       console.log(data)
     })
 
-    $('[data-screen_name=' + user + '] .messages').
-      append('<li class="self">' + message + '</li>')
-
-    target.find('.message').val('')
+    target.find('input[name=message]').val('')
 
     if ($('#aioim .first.steps .enjoy.yourself.active').length === 0)
       $('#aioim .first.steps .say.something').
@@ -78,55 +74,28 @@
     return false
   }
 
-  function showMessage(data) {
-    console.log('data', data)
-    var message = data,
-        h       = message.entities.hashtags,
-        m       = message.entities.user_mentions,
-        tag, mention, to
+  function showMessage(event, person) {
+    var chat = $('ul.chatting.with li.user[data-screen_name=' + event.data.speaking + '] .messages'),
+        mess = event.val()
 
-    if (h[h.length - 1].text === 'AiOIM') {
-      tag     = h[h.length - 1].indices[0]
-      mention = m[0].screen_name === $.cookie('AiOID') ? message.user : m[0]
-      to      = m[0].screen_name
-    }
+    chat.append(
+      '<li class="' + person + '" id="' + mess.id_str + '" data-uid="' + event.name() + '">' +
+      '<p class="message">' + mess.text + '</p>' +
+      '</li>')
+  }
 
-    if (tag > 0) {
-      if ($('[data-screen_name=' + mention.screen_name + ']').length === 0)
-        addChatFor(mention.screen_name, mention.name)
+  function showMyMessage(event) {
+    showMessage(event, 'self')
+  }
 
-      var said     = message.text.substring(0, tag - 1).substring(to.length + 2),
-          person   = message.user.screen_name === $.cookie('AiOID') ? 'self' : 'other',
-          present  = false,
-          messages = $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages li')
+  function showTheirMessage(event) {
+    showMessage(event, 'other')
 
-      for (var j = 0; j < messages.length; j++)
-        if (said === $(messages[j]).find('.message').text())
-          present = true
+    var messages = chat.find('li.other')
 
-      $('#aioim .first.steps .find.someone').
-        removeClass('active').
-        addClass('completed').
-        next('.say.something').
-        addClass('')
-
-      if (present === false && said.indexOf('RT @' + $.cookie('AiOID')) < 0) {
-        var chat = $('ul.chatting.with li.user[data-screen_name=' + mention.screen_name + '] .messages')
-
-        chat.append(
-          '<li class="' + person + '" id="' + data.id_str + '">' +
-          '<p class="message">' + said + '</p>' +
-          '</li>')
-
-        if (person === 'other') {
-          var messages = chat.find('li.other')
-
-          $(messages[messages.length - 1]).append(
-            '<a class="favorite" href="#">&nbsp;</a>' +
-            '<a class="retweet" href="#">&nbsp;</a>')
-        }
-      }
-    }
+    $(messages[messages.length - 1]).append(
+      '<a class="favorite" href="#">&nbsp;</a>' +
+      '<a class="retweet" href="#">&nbsp;</a>')
   }
 
   function addChatFor(screen_name) {
@@ -150,8 +119,8 @@
         myEnd    = new Firebase(base + $.cookie('AiOID') + '-' + screen_name),
         theirEnd = new Firebase(base + screen_name       + '-' + $.cookie('AiOID'))
 
-    myEnd.on('child_added',    showMessage)
-    theirEnd.on('child_added', showMessage)
+    myEnd.on('child_added',    { speaking : $.cookie('AiOID') }, showMyMessage) // This should be showMyMessage
+    theirEnd.on('child_added', { speaking : screen_name       }, showTheirMessage) // This shoul be showTheirMessage
   }
 
   function closeChat(event) { 
