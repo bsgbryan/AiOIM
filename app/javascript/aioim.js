@@ -133,6 +133,8 @@
         '<ol class="messages"></ol>' +
         '<form class="new message">' +
           '<input type="text" name="message" placeholder="say yes">' +
+          '<input type="hidden" name="from" value="' + $.cookie('AiOID') + '">' +
+          '<input type="hidden" name="to"   value="' + screen_name + '">' +
           '<button type="submit">say</button>' +
         '</form>' +
       '</li>')
@@ -141,6 +143,13 @@
       $('[data-screen_name=' + screen_name + '] .messages').append('<li class="quote"><p>' + JSON.parse(data).quote + '</p></li>')
       $('[data-screen_name=' + screen_name + ']').parent().removeClass('hidden')
     }) 
+
+    var base     = 'http://gamma.firebase.com/bsgbryan/aioim/aioim-bryanmaynard-com/',
+        myEnd    = new Firebase(base + $.cookie('AiOID') + '-' + screen_name),
+        theirEnd = new Firebase(base + screen_name       + '-' + $.cookie('AiOID'))
+
+    myEnd.on('child_added',    showMessage)
+    theirEnd.on('child_added', showMessage)
   }
 
   function closeChat(event) { 
@@ -189,11 +198,6 @@
       $('#aioim .first.steps .authorize').addClass('active')
     }
     else {
-      io.connect('/aioim').
-        on('receive message', showMessage).
-        on('statuses filter', function() { 
-          $.get('/statuses.filter')
-        })
         
       $('#aioim form.user.hidden').removeClass('hidden')
       $('#aioim .first.steps .authorize').
