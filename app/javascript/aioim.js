@@ -50,7 +50,11 @@
         message = target.find('input').val(),
         tweet   = '@' + user + ' ' + message + ' #AiOIM',
         other   = target.prev('ol').find('li.other'),
-        post    = { status : tweet }
+        post    = { 
+          status : tweet,
+          from   : $.cookie('AiOID'),
+          to     : user
+        }
 
     if (other.length > 0)
       post.in_reply_to_status_id = $(other[other.length - 1]).attr('id')
@@ -62,7 +66,7 @@
     $('[data-screen_name=' + user + '] .messages').
       append('<li class="self">' + message + '</li>')
 
-    target.find('input').val('')
+    target.find('.message').val('')
 
     if ($('#aioim .first.steps .enjoy.yourself.active').length === 0)
       $('#aioim .first.steps .say.something').
@@ -133,8 +137,6 @@
         '<ol class="messages"></ol>' +
         '<form class="new message">' +
           '<input type="text" name="message" placeholder="say yes">' +
-          '<input type="hidden" name="from" value="' + $.cookie('AiOID') + '">' +
-          '<input type="hidden" name="to"   value="' + screen_name + '">' +
           '<button type="submit">say</button>' +
         '</form>' +
       '</li>')

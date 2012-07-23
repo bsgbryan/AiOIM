@@ -56,7 +56,7 @@ app.get('/users.search', function (req, res) {
 })
 
 app.post('/statuses.update', function (req, res) {
-  SiNO.statuses.update(req.body, req, res)
+  SiNO.statuses.update(req, res)
 })
 
 app.post('/statuses.retweet/:id', function (req, res) {

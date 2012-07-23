@@ -113,8 +113,8 @@ function sanitize(thing) {
 }
 
 exports.statuses = {
-  update: function(params, req, res) {
-    twitter(req).updateStatus(params.status, { in_reply_to_status_id: params.in_reply_to_status_id }, function (err, data) {
+  update: function(req, res) {
+    twitter(req).updateStatus(req.body.status, { in_reply_to_status_id: req.body.in_reply_to_status_id }, function (err, data) {
       if (err) res.send(err, 500)
       else  {
         var referer = sanitize(req.header('Referer').split('//')[1].split('?')[0]),
