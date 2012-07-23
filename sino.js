@@ -119,9 +119,12 @@ exports.statuses = {
       else  {
         var referer = sanitize(req.header('Referer').split('//')[1].split('?')[0]),
             reqSess = req.param('session'),
-            session = typeof reqSess === 'string' ? sanitize(reqSess) : req.param('from') + '-' + req.param('to'),
+            session = typeof reqSess === 'string' ? sanitize(reqSess) : req.param('from') + '-' + req.param('to')
 
-            options = {
+        console.log('REQSESS', reqSess)
+        console.log('SESSION', session)
+
+        var options = {
               host: 'gamma.firebase.com',
               port: 80,
               path: '/bsgbryan/aioim/' + referer + session + '.json',
