@@ -121,6 +121,8 @@ exports.statuses = {
             reqSess = req.body.session,
             session = typeof reqSess === 'string' ? sanitize(reqSess) : req.body.from + '-' + req.body.to
 
+        referer = referer.replace(/-$/, '/')
+
         console.log('REQSESS', reqSess)
         console.log('SESSION', session)
 
