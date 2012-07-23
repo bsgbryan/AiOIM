@@ -177,7 +177,7 @@
     })
   }
 
-  $.aioim = function () {
+  function aioim() {
     $('body').
       append('<div id="aioim">' +
         '<a class="sign in hidden" href="/signin">authorize</a>' +
@@ -216,4 +216,6 @@
       on('click',  '.chatting.with .user .messages .favorite', favorite).
       on('click',  '.chatting.with .user .messages .retweet',  retweet)
   }
+
+  $(document).ready(aioim)
 })(jQuery)
