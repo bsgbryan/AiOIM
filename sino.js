@@ -118,8 +118,8 @@ exports.statuses = {
       if (err) res.send(err, 500)
       else  {
         var referer = sanitize(req.header('Referer').split('//')[1].split('?')[0]),
-            reqSess = sanitize(req.param('session')),
-            session = typeof reqSess === 'string' ? '/' + reqSess : req.param('from') + '-' + req.param('to'),
+            reqSess = req.param('session'),
+            session = typeof reqSess === 'string' ? sanitize(reqSess) : req.param('from') + '-' + req.param('to'),
 
             options = {
               host: 'gamma.firebase.com',
