@@ -82,6 +82,8 @@
       '<li class="' + person + '" id="' + mess.id_str + '" data-uid="' + event.name() + '">' +
       '<p class="message">' + mess.text + '</p>' +
       '</li>')
+
+    return chat // I know this is hacky, but it's the easiest way to do this
   }
 
   function showMyMessage(event) {
@@ -89,9 +91,7 @@
   }
 
   function showTheirMessage(event) {
-    showMessage(event, 'other')
-
-    var messages = chat.find('li.other')
+    var messages = showMessage(event, 'other').find('li.other')
 
     $(messages[messages.length - 1]).append(
       '<a class="favorite" href="#">&nbsp;</a>' +
