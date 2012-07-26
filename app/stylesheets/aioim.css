@@ -112,6 +112,13 @@ h1 {
   background-color: transparent;
   text-shadow: 0 2px 3px rgba(255,255,255,0.70);
 }
+.no-websqldatabase #aioim .chatting.with > li .new.message {
+  width: 18.75em;
+}
+.no-websqldatabase #aioim .chatting.with > li .new.message input {
+  width: 22.9em;
+  padding: 3px 5px 4px 4px;
+}
 body > p {
   position: fixed;
   color: #000;
