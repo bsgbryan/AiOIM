@@ -314,7 +314,8 @@ body > p.capitalization.backstory a {
   color: #333;
   width: 18.85em;
   height: 80%;
-  overflow-x: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
   padding-bottom: 0.1em;
 }
 #aioim .chatting.with > li .messages .quote {
