@@ -107,6 +107,11 @@ h1 {
   -webkit-background-clip: text;
   text-shadow: 0 2px 2px rgba(255,255,255,0.50);
 }
+.no-websqldatabase h1 {
+  color: rgba(88,129,158,0.15);
+  background-color: transparent;
+  text-shadow: 0 2px 3px rgba(255,255,255,0.70);
+}
 body > p {
   position: fixed;
   color: #000;
