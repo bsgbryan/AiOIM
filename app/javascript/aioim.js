@@ -81,7 +81,7 @@
         add   = true,
         messages = chat.find('li')
 
-    for (var m = 0; m < chat.length; m++)
+    for (var m = 0; m < messages.length; m++)
       if ($(messages[m]).data('uid') > event.name()) {
         $(messages[m]).before(
           '<li class="' + person + '" id="' + mess.id_str + '" data-uid="' + event.name() + '">' +
