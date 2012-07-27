@@ -77,7 +77,7 @@
   function showMessage(event, person) {
     var mess  = event.val(),
         spkng = person === 'self' ? mess.to : mess.from,
-        chat  = $('ul.chatting.with li.user[data-screen_name=' + spkng + '] .messages'),
+        chat  = $('ul.chatting.with li.user[data-screen_name=' + spkng + '] .messages li'),
         add   = false
 
     for (var message = 0; message < chat.length; message++)
