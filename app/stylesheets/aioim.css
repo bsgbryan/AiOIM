@@ -422,14 +422,36 @@ body > p.capitalization.backstory a {
   padding-top: 0.2em;
   padding-left: 0.15em;
 }
-#aioim .chatting.with > li .new.message input {
-  width: 23.4em;
+#aioim .chatting.with > li .new.message .char.counter {
+  background-color: #82bee9;
+  font-family: 'Philosopher', sans-serif;
+  padding: 5px 0 2px 0;
+  border-top: 0px solid #82bee9;
+  margin-bottom: 2px;
+  display: inline-block;
+  line-height: 1.2em;
+  vertical-align: bottom;
+  border-top-left-radius: 0.25em;
+  border-bottom-left-radius: 0.25em;
+  letter-spacing: 1px;
+  width: 2.5em;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 0.75em;
+  text-align: center;
+  border-left: 2px solid #82bee9;
+  color: #fff;
+  text-shadow: 0 -1px 0 #569fd3;
+}
+#aioim .chatting.with > li .new.message .content {
+  width: 21.6em;
   margin-left: 0;
   font-family: 'Pontano Sans', sans-serif;
   letter-spacing: 1px;
   padding: 2px 5px 3px 4px;
   border-top: 1px solid #82bee9;
-  border-left: 1px solid #82bee9;
+  border-left: none;
   border-bottom: 1px solid #82bee9;
   border-right: none;
   border-bottom-left-radius: 0.25em;
@@ -438,14 +460,17 @@ body > p.capitalization.backstory a {
   -webkit-box-shadow: inset 0 1px 2px #569fd3;
   box-shadow: inset 0 1px 2px #569fd3;
   color: #1c5c89;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
-#aioim .chatting.with > li .new.message input::-webkit-input-placeholder {
+#aioim .chatting.with > li .new.message .content::-webkit-input-placeholder {
   color: #569fd3;
 }
-#aioim .chatting.with > li .new.message input:-moz-placeholder {
+#aioim .chatting.with > li .new.message .content:-moz-placeholder {
   color: #569fd3;
 }
-#aioim .chatting.with > li .new.message input:focus {
+#aioim .chatting.with > li .new.message .content:focus {
   outline: none;
 }
 #aioim .chatting.with > li .new.message button {

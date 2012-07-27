@@ -107,7 +107,7 @@
         '<a class="close" href="#close">[</a>' +
         '<ol class="messages"></ol>' +
         '<form class="new message">' +
-          '<span class="char counter" data-buffer"' + buffer + '">' + buffer + '</span>' +
+          '<span class="char counter" data-buffer="' + buffer + '">' + buffer + '</span>' +
           '<input type="text" class="content" name="message" placeholder="say yes">' +
           '<button type="submit">say</button>' +
         '</form>' +
@@ -158,7 +158,7 @@
           parent().
           find('.char.counter'),
         buffer    = counter.attr('data-buffer'),
-        remaining = chars - buffer
+        remaining = buffer - chars
 
     counter.text(remaining)
   }
