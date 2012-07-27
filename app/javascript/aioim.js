@@ -200,8 +200,8 @@
       on('click',  '.chattable .user.name .screen',     initializeChat).
       on('click',  '.chatting.with .user .close',       closeChat).
       on('click',  '.chatting.with .user .messages .favorite', favorite).
-      on('click',  '.chatting.with .user .messages .retweet',  retweet)
-      on('keyup', '.chatting.with .user .new.message .content', updateCharCount).
+      on('click',  '.chatting.with .user .messages .retweet',  retweet).
+      on('keyup', '.chatting.with .user .new.message .content', updateCharCount)
   }
 
   $(document).ready(aioim)
