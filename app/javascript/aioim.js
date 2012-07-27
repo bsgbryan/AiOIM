@@ -99,13 +99,16 @@
   }
 
   function addChatFor(screen_name) {
+    var buffer = 138 - screen_name.length
+
     $('#aioim .chatting.with').append(
       '<li class="user" data-screen_name="' + screen_name + '">' +
         '<h3 class="human name">' + screen_name + '</h3>' +
         '<a class="close" href="#close">[</a>' +
         '<ol class="messages"></ol>' +
         '<form class="new message">' +
-          '<input type="text" name="message" placeholder="say yes">' +
+          '<span class="char counter" data-buffer"' + buffer + '">' + buffer + '</span>' +
+          '<input type="text" class="content" name="message" placeholder="say yes">' +
           '<button type="submit">say</button>' +
         '</form>' +
       '</li>')
@@ -148,6 +151,18 @@
     })
   }
 
+  function updateCharCount(event) {
+    var message = $(event.currentTarget),
+        chars   = message.val().length,
+        counter = message.
+          parent().
+          find('.char.counter'),
+        buffer    = counter.attr('data-buffer'),
+        remaining = chars - buffer
+
+    counter.text(remaining)
+  }
+
   function aioim() {
     $('body').
       append('<div id="aioim">' +
@@ -186,6 +201,7 @@
       on('click',  '.chatting.with .user .close',       closeChat).
       on('click',  '.chatting.with .user .messages .favorite', favorite).
       on('click',  '.chatting.with .user .messages .retweet',  retweet)
+      on('keyup', '.chatting.with .user .new.message .content', updateCharCount).
   }
 
   $(document).ready(aioim)
