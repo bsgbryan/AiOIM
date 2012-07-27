@@ -83,11 +83,21 @@
     for (var message = 0; message < chat.length; message++)
       if ($(chat[message]).data('uid') < event.name())
         add = true
-      else
+      else {
         $(chat[message]).after(
           '<li class="' + person + '" id="' + mess.id_str + '" data-uid="' + event.name() + '">' +
-          '<p class="message">' + mess.text.substring(mess.to.length + 2) + '</p>' +
+            '<p class="message">' + mess.text.substring(mess.to.length + 2) + '</p>' +
           '</li>')
+
+        add = false
+        break
+      }
+
+    if (add)
+      chat.append(
+        '<li class="' + person + '" id="' + mess.id_str + '" data-uid="' + event.name() + '">' +
+          '<p class="message">' + mess.text.substring(mess.to.length + 2) + '</p>' +
+        '</li>')
 
     return chat // I know this is hacky, but it's the easiest way to do this
   }
