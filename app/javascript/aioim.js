@@ -77,12 +77,13 @@
   function showMessage(event, person) {
     var mess  = event.val(),
         spkng = person === 'self' ? mess.to : mess.from,
-        chat  = $('ul.chatting.with li.user[data-screen_name=' + spkng + '] .messages li'),
-        add   = true
+        chat  = $('ul.chatting.with li.user[data-screen_name=' + spkng + '] .messages'),
+        add   = true,
+        messages = chat.find('li')
 
-    for (var message = 0; message < chat.length; message++)
-      if ($(chat[message]).data('uid') > event.name()) {
-        $(chat[message]).before(
+    for (var m = 0; m < chat.length; m++)
+      if ($(messages[m]).data('uid') > event.name()) {
+        $(messages[m]).before(
           '<li class="' + person + '" id="' + mess.id_str + '" data-uid="' + event.name() + '">' +
             '<p class="message">' + mess.text.substring(mess.to.length + 2) + '</p>' +
           '</li>')
