@@ -77,11 +77,12 @@
   function showMessage(event, person) {
     var mess  = event.val(),
         spkng = person === 'self' ? mess.to : mess.from,
+        to    = person === 'self' ? mess.from : mess.to,
         chat  = $('ul.chatting.with li.user[data-screen_name=' + spkng + '] .messages')
 
     chat.append(
       '<li class="' + person + '" id="' + mess.id_str + '" data-uid="' + event.name() + '">' +
-      '<p class="message">' + mess.text.substring(spkng.length + 1) + '</p>' +
+      '<p class="message">' + mess.text.substring(to.length + 1) + '</p>' +
       '</li>')
 
     return chat // I know this is hacky, but it's the easiest way to do this
