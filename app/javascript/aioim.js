@@ -18,7 +18,9 @@
 
     addChatFor(screen_name)
 
-    $('#aioim .chattable.users').html('').addClass('hidden')
+    $('#aioim .chattable.users').
+      removeClass('active').
+      addClass('hidden')
   }
 
   function clearUserSearch(event) {
@@ -46,6 +48,7 @@
     else
       $('#aioim .chattable.users').
         removeClass('active').
+        removeClass('gone').
         addClass('hidden')
   }
 
@@ -192,7 +195,7 @@
           '<li class="find someone">Find someone</li>' +
           '<li class="say something">Say something</li>' +
         '</ol>' +
-        '<ol class="chattable users hidden"></ol>' +
+        '<ol class="chattable users gone"></ol>' +
         '<ul class="chatting with hidden"></ul>' +
         '<form class="user search hidden">' +
           '<input type="text" class="name" placeholder="Find a tweeter">' +

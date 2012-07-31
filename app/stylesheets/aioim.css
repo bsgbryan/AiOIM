@@ -160,6 +160,9 @@ body > p.capitalization.backstory a {
 #aioim .hidden {
   top: -100em !important;
 }
+#aioim .gone {
+  display: none;
+}
 #aioim .first.steps {
   position: absolute;
   top: 0;
