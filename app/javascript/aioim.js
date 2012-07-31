@@ -45,7 +45,6 @@
       })
     else
       $('#aioim .chattable.users').
-        html('').
         removeClass('active').
         addClass('hidden')
   }
