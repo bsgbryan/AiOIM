@@ -184,7 +184,7 @@ body > p.capitalization.backstory a {
 }
 #aioim .user.search {
   position: absolute;
-  top: 2.5em;
+  top: 0;
   left: 0.5em;
 }
 #aioim .user.search .name {
