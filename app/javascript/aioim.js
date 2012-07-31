@@ -133,7 +133,7 @@
       $('[data-screen_name=' + screen_name + ']').parent().removeClass('hidden')
     }) 
 
-    var base     = 'http://gamma.firebase.com/bsgbryan/aioim/aioim-bryanmaynard-com/',
+    var base     = 'https://gamma.firebase.com/bsgbryan/aioim/aioim-bryanmaynard-com/',
         myEnd    = new Firebase(base + $.cookie('AiOID') + '-' + screen_name),
         theirEnd = new Firebase(base + screen_name       + '-' + $.cookie('AiOID'))
 
