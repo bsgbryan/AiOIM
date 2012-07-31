@@ -229,7 +229,6 @@ body > p.capitalization.backstory a {
   animation: slide_down-fade_in 0.33s;
 }
 #aioim .chattable.users.hidden {
-  border: none;
   -webkit-animation: slide_up-fade_out 0.33s;
   -moz-animation: slide_up-fade_out 0.33s;
   -o-animation: slide_up-fade_out 0.33s;
