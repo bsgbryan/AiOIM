@@ -673,7 +673,7 @@ body > p.capitalization.backstory a {
 }
 @-moz-keyframes slide_down-fade_in {
   0% {
-    top: 1.5em;
+    top: 2em;
     opacity: 0 ;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
     filter: alpha(opacity=0) ;
@@ -688,7 +688,7 @@ body > p.capitalization.backstory a {
 }
 @-webkit-keyframes slide_down-fade_in {
   0% {
-    top: 1.5em;
+    top: 2em;
     opacity: 0 ;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
     filter: alpha(opacity=0) ;
@@ -703,7 +703,7 @@ body > p.capitalization.backstory a {
 }
 @-o-keyframes slide_down-fade_in {
   0% {
-    top: 1.5em;
+    top: 2em;
     opacity: 0 ;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
     filter: alpha(opacity=0) ;
@@ -718,7 +718,7 @@ body > p.capitalization.backstory a {
 }
 @-ms-keyframes slide_down-fade_in {
   0% {
-    top: 1.5em;
+    top: 2em;
     opacity: 0 ;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
     filter: alpha(opacity=0) ;
@@ -733,7 +733,7 @@ body > p.capitalization.backstory a {
 }
 @keyframes slide_down-fade_in {
   0% {
-    top: 1.5em;
+    top: 2em;
     opacity: 0 ;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
     filter: alpha(opacity=0) ;
@@ -755,7 +755,7 @@ body > p.capitalization.backstory a {
   }
 
   100% {
-    top: 1.5em;
+    top: 2em;
     opacity: 0 ;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
     filter: alpha(opacity=0) ;
@@ -770,7 +770,7 @@ body > p.capitalization.backstory a {
   }
 
   100% {
-    top: 1.5em;
+    top: 2em;
     opacity: 0 ;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
     filter: alpha(opacity=0) ;
@@ -785,7 +785,7 @@ body > p.capitalization.backstory a {
   }
 
   100% {
-    top: 1.5em;
+    top: 2em;
     opacity: 0 ;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
     filter: alpha(opacity=0) ;
@@ -800,7 +800,7 @@ body > p.capitalization.backstory a {
   }
 
   100% {
-    top: 1.5em;
+    top: 2em;
     opacity: 0 ;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
     filter: alpha(opacity=0) ;
@@ -815,7 +815,7 @@ body > p.capitalization.backstory a {
   }
 
   100% {
-    top: 1.5em;
+    top: 2em;
     opacity: 0 ;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
     filter: alpha(opacity=0) ;
