@@ -165,6 +165,10 @@ body > p
       margin-right 1em
       vertical-align top
       height 100%
+      &.active .messages
+        animation slide_down-fade_in .33s
+      &.hidden .messages
+        animation slide_up-fade_out .33s
       .human.name
         width  10.8em // hawt
         height 1.3em

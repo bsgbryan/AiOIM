@@ -283,6 +283,20 @@ body > p.capitalization.backstory a {
   vertical-align: top;
   height: 100%;
 }
+#aioim .chatting.with > li.active .messages {
+  -webkit-animation: slide_down-fade_in 0.33s;
+  -moz-animation: slide_down-fade_in 0.33s;
+  -o-animation: slide_down-fade_in 0.33s;
+  -ms-animation: slide_down-fade_in 0.33s;
+  animation: slide_down-fade_in 0.33s;
+}
+#aioim .chatting.with > li.hidden .messages {
+  -webkit-animation: slide_up-fade_out 0.33s;
+  -moz-animation: slide_up-fade_out 0.33s;
+  -o-animation: slide_up-fade_out 0.33s;
+  -ms-animation: slide_up-fade_out 0.33s;
+  animation: slide_up-fade_out 0.33s;
+}
 #aioim .chatting.with > li .human.name {
   width: 10.8em;
   height: 1.3em;

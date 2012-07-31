@@ -127,7 +127,7 @@
     var buffer = 138 - screen_name.length
 
     $('#aioim .chatting.with').append(
-      '<li class="user" data-screen_name="' + screen_name + '">' +
+      '<li class="user active" data-screen_name="' + screen_name + '">' +
         '<h3 class="human name">' + screen_name + '</h3>' +
         '<a class="close" href="#close">[</a>' +
         '<ol class="messages"></ol>' +
