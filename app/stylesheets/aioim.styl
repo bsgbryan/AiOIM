@@ -10,6 +10,14 @@ global-reset()
   100%
     top 2.5em
     opacity 1
+@keyframes slide_up-fade_out
+  0%
+    top 2.5em
+    opacity 1
+
+  100%
+    top 1.5em
+    opacity 0
 
 highlight = #999
 lowlight  = #555
@@ -115,6 +123,8 @@ body > p
     z-index 1000
     &.active
       animation slide_down-fade_in .33s
+    &.hidden
+      animation slide_up-fade_out .33s
     li.name
       border 1px solid transparent
       background-color transparent

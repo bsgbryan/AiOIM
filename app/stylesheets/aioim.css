@@ -228,6 +228,13 @@ body > p.capitalization.backstory a {
   -ms-animation: slide_down-fade_in 0.33s;
   animation: slide_down-fade_in 0.33s;
 }
+#aioim .chattable.users.hidden {
+  -webkit-animation: slide_up-fade_out 0.33s;
+  -moz-animation: slide_up-fade_out 0.33s;
+  -o-animation: slide_up-fade_out 0.33s;
+  -ms-animation: slide_up-fade_out 0.33s;
+  animation: slide_up-fade_out 0.33s;
+}
 #aioim .chattable.users li.name {
   border: 1px solid transparent;
   background-color: transparent;
@@ -737,5 +744,80 @@ body > p.capitalization.backstory a {
     opacity: 1 ;
     -ms-filter: none;
     filter: none;
+  }
+}
+@-moz-keyframes slide_up-fade_out {
+  0% {
+    top: 2.5em;
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
+  }
+
+  100% {
+    top: 1.5em;
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
+  }
+}
+@-webkit-keyframes slide_up-fade_out {
+  0% {
+    top: 2.5em;
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
+  }
+
+  100% {
+    top: 1.5em;
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
+  }
+}
+@-o-keyframes slide_up-fade_out {
+  0% {
+    top: 2.5em;
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
+  }
+
+  100% {
+    top: 1.5em;
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
+  }
+}
+@-ms-keyframes slide_up-fade_out {
+  0% {
+    top: 2.5em;
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
+  }
+
+  100% {
+    top: 1.5em;
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
+  }
+}
+@keyframes slide_up-fade_out {
+  0% {
+    top: 2.5em;
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
+  }
+
+  100% {
+    top: 1.5em;
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
   }
 }
