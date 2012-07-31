@@ -45,11 +45,12 @@
           removeClass('hidden').
           addClass('active')
       })
-    else
-      $('#aioim .chattable.users').
-        removeClass('active').
-        removeClass('gone').
-        addClass('hidden')
+    else {
+      if ($('#aioim .chattable.users').hasClass('gone') === false)
+        $('#aioim .chattable.users').
+          removeClass('active').
+          addClass('hidden')
+    }
   }
 
   function sendMessage(event) {
