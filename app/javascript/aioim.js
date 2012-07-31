@@ -38,10 +38,15 @@
             '</li>'
         })
 
-        $('#aioim .chattable.users').html(users).removeClass('hidden')
+        $('#aioim .chattable.users').
+          html(users).
+          removeClass('hidden').
+          addClass('active')
       })
     else
-      $('#aioim .chattable.users').html('').addClass('hidden')
+      $('#aioim .chattable.users').
+        html('').
+        addClass('hidden')
   }
 
   function sendMessage(event) {
