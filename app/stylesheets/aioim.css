@@ -206,7 +206,6 @@ body > p.capitalization.backstory a {
 }
 #aioim .chattable.users {
   position: absolute;
-  top: 2.5em;
   left: 1.1em;
   -webkit-border-radius: 0.25em;
   border-radius: 0.25em;
