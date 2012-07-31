@@ -220,4 +220,4 @@
   }
 
   $(document).ready(aioim)
-})(jQuery)
+})($)
