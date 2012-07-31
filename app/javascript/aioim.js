@@ -42,6 +42,7 @@
 
         $('#aioim .chattable.users').
           html(users).
+          removeClass('gone').
           removeClass('hidden').
           addClass('active')
       })
