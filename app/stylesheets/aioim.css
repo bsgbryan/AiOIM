@@ -222,7 +222,11 @@ body > p.capitalization.backstory a {
   z-index: 1000;
 }
 #aioim .chattable.users.active {
-  animate: slide_down-fade_in 0.33s;
+  -webkit-animation: slide_down-fade_in 0.33s;
+  -moz-animation: slide_down-fade_in 0.33s;
+  -o-animation: slide_down-fade_in 0.33s;
+  -ms-animation: slide_down-fade_in 0.33s;
+  animation: slide_down-fade_in 0.33s;
 }
 #aioim .chattable.users li.name {
   border: 1px solid transparent;
