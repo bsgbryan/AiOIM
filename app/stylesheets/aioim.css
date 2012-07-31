@@ -677,6 +677,8 @@ body > p.capitalization.backstory a {
     opacity: 0 ;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
     filter: alpha(opacity=0) ;
+    -webkit-box-shadow: 0 0 0 #000;
+    box-shadow: 0 0 0 #000;
   }
 
   100% {
@@ -684,6 +686,8 @@ body > p.capitalization.backstory a {
     opacity: 1 ;
     -ms-filter: none;
     filter: none;
+    -webkit-box-shadow: 0 3px 15px #000;
+    box-shadow: 0 3px 15px #000;
   }
 }
 @-webkit-keyframes slide_down-fade_in {
@@ -692,6 +696,8 @@ body > p.capitalization.backstory a {
     opacity: 0 ;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
     filter: alpha(opacity=0) ;
+    -webkit-box-shadow: 0 0 0 #000;
+    box-shadow: 0 0 0 #000;
   }
 
   100% {
@@ -699,6 +705,8 @@ body > p.capitalization.backstory a {
     opacity: 1 ;
     -ms-filter: none;
     filter: none;
+    -webkit-box-shadow: 0 3px 15px #000;
+    box-shadow: 0 3px 15px #000;
   }
 }
 @-o-keyframes slide_down-fade_in {
@@ -707,6 +715,8 @@ body > p.capitalization.backstory a {
     opacity: 0 ;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
     filter: alpha(opacity=0) ;
+    -webkit-box-shadow: 0 0 0 #000;
+    box-shadow: 0 0 0 #000;
   }
 
   100% {
@@ -714,6 +724,8 @@ body > p.capitalization.backstory a {
     opacity: 1 ;
     -ms-filter: none;
     filter: none;
+    -webkit-box-shadow: 0 3px 15px #000;
+    box-shadow: 0 3px 15px #000;
   }
 }
 @-ms-keyframes slide_down-fade_in {
@@ -722,6 +734,8 @@ body > p.capitalization.backstory a {
     opacity: 0 ;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
     filter: alpha(opacity=0) ;
+    -webkit-box-shadow: 0 0 0 #000;
+    box-shadow: 0 0 0 #000;
   }
 
   100% {
@@ -729,6 +743,8 @@ body > p.capitalization.backstory a {
     opacity: 1 ;
     -ms-filter: none;
     filter: none;
+    -webkit-box-shadow: 0 3px 15px #000;
+    box-shadow: 0 3px 15px #000;
   }
 }
 @keyframes slide_down-fade_in {
@@ -737,6 +753,8 @@ body > p.capitalization.backstory a {
     opacity: 0 ;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
     filter: alpha(opacity=0) ;
+    -webkit-box-shadow: 0 0 0 #000;
+    box-shadow: 0 0 0 #000;
   }
 
   100% {
@@ -744,6 +762,8 @@ body > p.capitalization.backstory a {
     opacity: 1 ;
     -ms-filter: none;
     filter: none;
+    -webkit-box-shadow: 0 3px 15px #000;
+    box-shadow: 0 3px 15px #000;
   }
 }
 @-moz-keyframes slide_up-fade_out {
@@ -752,6 +772,8 @@ body > p.capitalization.backstory a {
     opacity: 1 ;
     -ms-filter: none;
     filter: none;
+    -webkit-box-shadow: 0 3px 15px #000;
+    box-shadow: 0 3px 15px #000;
   }
 
   100% {
@@ -759,6 +781,8 @@ body > p.capitalization.backstory a {
     opacity: 0 ;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
     filter: alpha(opacity=0) ;
+    -webkit-box-shadow: 0 0 0 #000;
+    box-shadow: 0 0 0 #000;
   }
 }
 @-webkit-keyframes slide_up-fade_out {
@@ -767,6 +791,8 @@ body > p.capitalization.backstory a {
     opacity: 1 ;
     -ms-filter: none;
     filter: none;
+    -webkit-box-shadow: 0 3px 15px #000;
+    box-shadow: 0 3px 15px #000;
   }
 
   100% {
@@ -774,6 +800,8 @@ body > p.capitalization.backstory a {
     opacity: 0 ;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
     filter: alpha(opacity=0) ;
+    -webkit-box-shadow: 0 0 0 #000;
+    box-shadow: 0 0 0 #000;
   }
 }
 @-o-keyframes slide_up-fade_out {
@@ -782,6 +810,8 @@ body > p.capitalization.backstory a {
     opacity: 1 ;
     -ms-filter: none;
     filter: none;
+    -webkit-box-shadow: 0 3px 15px #000;
+    box-shadow: 0 3px 15px #000;
   }
 
   100% {
@@ -789,6 +819,8 @@ body > p.capitalization.backstory a {
     opacity: 0 ;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
     filter: alpha(opacity=0) ;
+    -webkit-box-shadow: 0 0 0 #000;
+    box-shadow: 0 0 0 #000;
   }
 }
 @-ms-keyframes slide_up-fade_out {
@@ -797,6 +829,8 @@ body > p.capitalization.backstory a {
     opacity: 1 ;
     -ms-filter: none;
     filter: none;
+    -webkit-box-shadow: 0 3px 15px #000;
+    box-shadow: 0 3px 15px #000;
   }
 
   100% {
@@ -804,6 +838,8 @@ body > p.capitalization.backstory a {
     opacity: 0 ;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
     filter: alpha(opacity=0) ;
+    -webkit-box-shadow: 0 0 0 #000;
+    box-shadow: 0 0 0 #000;
   }
 }
 @keyframes slide_up-fade_out {
@@ -812,6 +848,8 @@ body > p.capitalization.backstory a {
     opacity: 1 ;
     -ms-filter: none;
     filter: none;
+    -webkit-box-shadow: 0 3px 15px #000;
+    box-shadow: 0 3px 15px #000;
   }
 
   100% {
@@ -819,5 +857,7 @@ body > p.capitalization.backstory a {
     opacity: 0 ;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
     filter: alpha(opacity=0) ;
+    -webkit-box-shadow: 0 0 0 #000;
+    box-shadow: 0 0 0 #000;
   }
 }
