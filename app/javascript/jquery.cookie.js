@@ -12,10 +12,10 @@
       var decode = decodeURIComponent
       var pairs = document.cookie.split('; ')
 
-      for (var i = 0, pair; pair = pairs[i] && pairs[i].split('='); i++) {
+      for (var i = 0, pair; pair = pairs[i] && pairs[i].split('='); i++)
         if (decode(pair[0]) === key)
           return decode(pair[1] || '')
 
-      return null;
-    };
+      return null
+    }
 })($);
