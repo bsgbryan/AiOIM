@@ -325,6 +325,20 @@ body > p.capitalization.backstory a {
   -ms-animation: fade_out-new_message 0.66s;
   animation: fade_out-new_message 0.66s;
 }
+#aioim .chatting.with > li.active .messages .self {
+  -webkit-animation: slide_in-self-message 1.32s;
+  -moz-animation: slide_in-self-message 1.32s;
+  -o-animation: slide_in-self-message 1.32s;
+  -ms-animation: slide_in-self-message 1.32s;
+  animation: slide_in-self-message 1.32s;
+}
+#aioim .chatting.with > li.active .messages .other {
+  -webkit-animation: slide_in-other-message 1.32s;
+  -moz-animation: slide_in-other-message 1.32s;
+  -o-animation: slide_in-other-message 1.32s;
+  -ms-animation: slide_in-other-message 1.32s;
+  animation: slide_in-other-message 1.32s;
+}
 #aioim .chatting.with > li .human.name {
   width: 10.8em;
   height: 1.3em;
@@ -1544,5 +1558,135 @@ body > p.capitalization.backstory a {
     opacity: 0 ;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
     filter: alpha(opacity=0) ;
+  }
+}
+@-moz-keyframes slide_in-self-message {
+  0% {
+    right: -19em;
+  }
+
+  50% {
+    right: -19em;
+  }
+
+  100% {
+    right: 0em;
+  }
+}
+@-webkit-keyframes slide_in-self-message {
+  0% {
+    right: -19em;
+  }
+
+  50% {
+    right: -19em;
+  }
+
+  100% {
+    right: 0em;
+  }
+}
+@-o-keyframes slide_in-self-message {
+  0% {
+    right: -19em;
+  }
+
+  50% {
+    right: -19em;
+  }
+
+  100% {
+    right: 0em;
+  }
+}
+@-ms-keyframes slide_in-self-message {
+  0% {
+    right: -19em;
+  }
+
+  50% {
+    right: -19em;
+  }
+
+  100% {
+    right: 0em;
+  }
+}
+@keyframes slide_in-self-message {
+  0% {
+    right: -19em;
+  }
+
+  50% {
+    right: -19em;
+  }
+
+  100% {
+    right: 0em;
+  }
+}
+@-moz-keyframes slide_in-other-message {
+  0% {
+    left: -19em;
+  }
+
+  50% {
+    left: -19em;
+  }
+
+  100% {
+    left: 0em;
+  }
+}
+@-webkit-keyframes slide_in-other-message {
+  0% {
+    left: -19em;
+  }
+
+  50% {
+    left: -19em;
+  }
+
+  100% {
+    left: 0em;
+  }
+}
+@-o-keyframes slide_in-other-message {
+  0% {
+    left: -19em;
+  }
+
+  50% {
+    left: -19em;
+  }
+
+  100% {
+    left: 0em;
+  }
+}
+@-ms-keyframes slide_in-other-message {
+  0% {
+    left: -19em;
+  }
+
+  50% {
+    left: -19em;
+  }
+
+  100% {
+    left: 0em;
+  }
+}
+@keyframes slide_in-other-message {
+  0% {
+    left: -19em;
+  }
+
+  50% {
+    left: -19em;
+  }
+
+  100% {
+    left: 0em;
   }
 }

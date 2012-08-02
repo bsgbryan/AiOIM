@@ -78,6 +78,20 @@ global-reset()
     opacity 1
   100%
     opacity 0
+@keyframes slide_in-self-message
+  0%
+    right -19em
+  50%
+    right -19em
+  100%
+    right 0em
+@keyframes slide_in-other-message
+  0%
+    left -19em
+  50%
+    left -19em
+  100%
+    left 0em
 
 highlight = #999
 lowlight  = #555
@@ -235,6 +249,10 @@ body > p
         animation fade_in-new_message .66s
       &.hidden .new.message
         animation fade_out-new_message .66s
+      &.active .messages .self
+        animation slide_in-self-message 1.32s
+      &.active .messages .other
+        animation slide_in-other-message 1.32s
       .human.name
         width  10.8em // hawt
         height 1.3em
