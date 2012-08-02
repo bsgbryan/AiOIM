@@ -1562,131 +1562,221 @@ body > p.capitalization.backstory a {
 }
 @-moz-keyframes slide_in-self-message {
   0% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     right: -19em;
   }
 
   50% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     right: -19em;
   }
 
   100% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
     right: 0em;
   }
 }
 @-webkit-keyframes slide_in-self-message {
   0% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     right: -19em;
   }
 
   50% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     right: -19em;
   }
 
   100% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
     right: 0em;
   }
 }
 @-o-keyframes slide_in-self-message {
   0% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     right: -19em;
   }
 
   50% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     right: -19em;
   }
 
   100% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
     right: 0em;
   }
 }
 @-ms-keyframes slide_in-self-message {
   0% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     right: -19em;
   }
 
   50% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     right: -19em;
   }
 
   100% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
     right: 0em;
   }
 }
 @keyframes slide_in-self-message {
   0% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     right: -19em;
   }
 
   50% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     right: -19em;
   }
 
   100% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
     right: 0em;
   }
 }
 @-moz-keyframes slide_in-other-message {
   0% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     left: -19em;
   }
 
   50% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     left: -19em;
   }
 
   100% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
     left: 0em;
   }
 }
 @-webkit-keyframes slide_in-other-message {
   0% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     left: -19em;
   }
 
   50% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     left: -19em;
   }
 
   100% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
     left: 0em;
   }
 }
 @-o-keyframes slide_in-other-message {
   0% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     left: -19em;
   }
 
   50% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     left: -19em;
   }
 
   100% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
     left: 0em;
   }
 }
 @-ms-keyframes slide_in-other-message {
   0% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     left: -19em;
   }
 
   50% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     left: -19em;
   }
 
   100% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
     left: 0em;
   }
 }
 @keyframes slide_in-other-message {
   0% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     left: -19em;
   }
 
   50% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     left: -19em;
   }
 
   100% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
     left: 0em;
   }
 }
