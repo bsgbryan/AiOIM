@@ -118,7 +118,7 @@ exports.statuses = {
         options = { in_reply_to_status_id: req.body.in_reply_to_status_id }
 
     twitter(req).updateStatus(tweet, options, function (err, data) {
-    console.log('HI')
+    console.log(err, data)
       if (err) res.send(err, 500)
       else  {
         var referer = req.header('Referer').split('//')[1].split('?')[0],
