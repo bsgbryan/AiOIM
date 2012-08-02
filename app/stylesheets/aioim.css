@@ -311,6 +311,20 @@ body > p.capitalization.backstory a {
   -ms-animation: slide_out-user_name 0.33s;
   animation: slide_out-user_name 0.33s;
 }
+#aioim .chatting.with > li.active .new.message {
+  -webkit-animation: fade_in-new_message 0.66s;
+  -moz-animation: fade_in-new_message 0.66s;
+  -o-animation: fade_in-new_message 0.66s;
+  -ms-animation: fade_in-new_message 0.66s;
+  animation: fade_in-new_message 0.66s;
+}
+#aioim .chatting.with > li.hidden .new.message {
+  -webkit-animation: fade_out-new_message 0.66s;
+  -moz-animation: fade_out-new_message 0.66s;
+  -o-animation: fade_out-new_message 0.66s;
+  -ms-animation: fade_out-new_message 0.66s;
+  animation: fade_out-new_message 0.66s;
+}
 #aioim .chatting.with > li .human.name {
   width: 10.8em;
   height: 1.3em;
@@ -1340,5 +1354,195 @@ body > p.capitalization.backstory a {
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
     filter: alpha(opacity=0) ;
     text-shadow: 0 0 0 transparent, 0 0 0 transparent;
+  }
+}
+@-moz-keyframes fade_in-new_message {
+  0% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
+  }
+
+  50% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
+  }
+
+  100% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
+  }
+}
+@-webkit-keyframes fade_in-new_message {
+  0% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
+  }
+
+  50% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
+  }
+
+  100% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
+  }
+}
+@-o-keyframes fade_in-new_message {
+  0% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
+  }
+
+  50% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
+  }
+
+  100% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
+  }
+}
+@-ms-keyframes fade_in-new_message {
+  0% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
+  }
+
+  50% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
+  }
+
+  100% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
+  }
+}
+@keyframes fade_in-new_message {
+  0% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
+  }
+
+  50% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
+  }
+
+  100% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
+  }
+}
+@-moz-keyframes fade_out-new_message {
+  0% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
+  }
+
+  50% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
+  }
+
+  100% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
+  }
+}
+@-webkit-keyframes fade_out-new_message {
+  0% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
+  }
+
+  50% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
+  }
+
+  100% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
+  }
+}
+@-o-keyframes fade_out-new_message {
+  0% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
+  }
+
+  50% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
+  }
+
+  100% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
+  }
+}
+@-ms-keyframes fade_out-new_message {
+  0% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
+  }
+
+  50% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
+  }
+
+  100% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
+  }
+}
+@keyframes fade_out-new_message {
+  0% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
+  }
+
+  50% {
+    opacity: 1 ;
+    -ms-filter: none;
+    filter: none;
+  }
+
+  100% {
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
   }
 }

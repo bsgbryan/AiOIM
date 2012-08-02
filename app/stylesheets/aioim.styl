@@ -64,6 +64,20 @@ global-reset()
     margin-left -.1em
     opacity 0
     text-shadow 0 0 0 transparent, 0 0 0 transparent
+@keyframes fade_in-new_message
+  0%
+    opacity 0
+  50%
+    opacity 0
+  100%
+    opacity 1
+@keyframes fade_out-new_message
+  0%
+    opacity 1
+  50%
+    opacity 1
+  100%
+    opacity 0
 
 highlight = #999
 lowlight  = #555
@@ -217,6 +231,10 @@ body > p
         animation slide_in-user_name .33s
       &.hidden .human.name
         animation slide_out-user_name .33s
+      &.active .new.message
+        animation fade_in-new_message .66s
+      &.hidden .new.message
+        animation fade_out-new_message .66s
       .human.name
         width  10.8em // hawt
         height 1.3em
