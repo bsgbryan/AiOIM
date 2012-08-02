@@ -118,7 +118,6 @@ exports.statuses = {
         options = { in_reply_to_status_id: req.body.in_reply_to_status_id }
 
     twitter(req).updateStatus(tweet, options, function (err, data) {
-    console.log(err, data)
       if (err) res.send(err, 500)
       else  {
         var referer = req.header('Referer').split('//')[1].split('?')[0],
@@ -136,7 +135,7 @@ exports.statuses = {
               resp.on('end',   function()   { res.send()       })
               resp.on('error', function (e) { res.send(e, 500) })
             })
-
+console.log('URL', '/bsgbryan/aioim/' + client + session + '.json')
         data.from = req.body.from
         data.to   = req.body.to
 
