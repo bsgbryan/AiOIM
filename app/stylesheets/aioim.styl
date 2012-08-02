@@ -25,6 +25,10 @@ global-reset()
     margin-top 0
     opacity 0
     box-shadow inset 0 2px 5px rgba(black, .5), 0 0 0 rgba(black, .7)
+  50%
+    margin-top 0
+    opacity 0
+    box-shadow inset 0 2px 5px rgba(black, .5), 0 0 0 rgba(black, .7)
   100%
     top .5em
     opacity 1
@@ -34,10 +38,32 @@ global-reset()
     top 2.5em
     opacity 1
     box-shadow inset 0 2px 5px rgba(black, .5), 0 5px 10px rgba(black, .7)
+  50%
+    top 2.5em
+    opacity 1
+    box-shadow inset 0 2px 5px rgba(black, .5), 0 5px 10px rgba(black, .7)
   100%
     top 2em
     opacity 0
     box-shadow inset 0 2px 5px rgba(black, .5), 0 0 0 rgba(black, .7)
+@keyframes slide_in-user_name
+  0%
+    margin-left -.1em
+    opacity 0
+    text-shadow 0 0 0 transparent, 0 0 0 transparent
+  100%
+    margin-left .4em
+    opacity 1
+    text-shadow 0 -1px #FFD8A6, 0 1px 0 #A66B1F
+@keyframes slide_out-user_name
+  0%
+    margin-left .4em
+    opacity 1
+    text-shadow 0 -1px #FFD8A6, 0 1px 0 #A66B1F
+  100%
+    margin-left -.1em
+    opacity 0
+    text-shadow 0 0 0 transparent, 0 0 0 transparent
 
 highlight = #999
 lowlight  = #555
@@ -184,9 +210,13 @@ body > p
       vertical-align top
       height 100%
       &.active .messages
-        animation slide_down-fade_in_messages .33s
+        animation slide_down-fade_in_messages .66s
       &.hidden .messages
-        animation slide_up-fade_out_messages .33s
+        animation slide_up-fade_out_messages .66s
+      &.active .human.name
+        animation slide_in-user_name .33s
+      &.hidden .human.name
+        animation slide_out-user_name .33s
       .human.name
         width  10.8em // hawt
         height 1.3em
