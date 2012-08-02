@@ -326,18 +326,18 @@ body > p.capitalization.backstory a {
   animation: fade_out-new_message 0.66s;
 }
 #aioim .chatting.with > li.active .messages .self {
-  -webkit-animation: slide_in-self-message 0.66s;
-  -moz-animation: slide_in-self-message 0.66s;
-  -o-animation: slide_in-self-message 0.66s;
-  -ms-animation: slide_in-self-message 0.66s;
-  animation: slide_in-self-message 0.66s;
+  -webkit-animation: slide_in-self-message 1.32s;
+  -moz-animation: slide_in-self-message 1.32s;
+  -o-animation: slide_in-self-message 1.32s;
+  -ms-animation: slide_in-self-message 1.32s;
+  animation: slide_in-self-message 1.32s;
 }
 #aioim .chatting.with > li.active .messages .other {
-  -webkit-animation: slide_in-other-message 0.66s;
-  -moz-animation: slide_in-other-message 0.66s;
-  -o-animation: slide_in-other-message 0.66s;
-  -ms-animation: slide_in-other-message 0.66s;
-  animation: slide_in-other-message 0.66s;
+  -webkit-animation: slide_in-other-message 1.32s;
+  -moz-animation: slide_in-other-message 1.32s;
+  -o-animation: slide_in-other-message 1.32s;
+  -ms-animation: slide_in-other-message 1.32s;
+  animation: slide_in-other-message 1.32s;
 }
 #aioim .chatting.with > li .human.name {
   width: 10.8em;

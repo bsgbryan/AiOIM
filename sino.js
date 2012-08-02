@@ -114,6 +114,7 @@ function sanitize(thing) {
 
 exports.statuses = {
   update: function(req, res) {
+    conso,e.log('HI')
     var tweet   = '@' + req.body.to + ' ' + req.body.status,
         options = { in_reply_to_status_id: req.body.in_reply_to_status_id }
 
