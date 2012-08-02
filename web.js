@@ -56,7 +56,6 @@ app.get('/users.search', function (req, res) {
 })
 
 app.post('/statuses.update', function (req, res) {
-  console.log('YO')
   SiNO.statuses.update(req, res)
 })
 
