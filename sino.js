@@ -135,9 +135,11 @@ exports.statuses = {
               resp.on('end',   function()   { res.send()       })
               resp.on('error', function (e) { res.send(e, 500) })
             })
-console.log('URL', '/bsgbryan/aioim/' + client + session + '.json')
+
         data.from = req.body.from
         data.to   = req.body.to
+
+console.log('TWEET', data)
 
         post.write(JSON.stringify(deleteIDs(data)))
         post.end()
