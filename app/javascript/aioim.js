@@ -56,7 +56,7 @@
 
   function sendMessage(event) {
     var target  = $(event.currentTarget),
-        user    = target.parents('li').data('screen_name'), 
+        user    = target.parents('li').attr('data-screen_name'), 
         message = target.find('input').val(),
         other   = target.prev('ol').find('li.other'),
         post    = { 
@@ -92,7 +92,7 @@
         messages = chat.find('li')
 
     for (var m = 0; m < messages.length; m++)
-      if ($(messages[m]).data('uid') > event.name()) {
+      if ($(messages[m]).attr('data-uid') > event.name()) {
         $(messages[m]).before(
           '<li class="' + person + '" id="' + mess.id_str + '" data-uid="' + event.name() + '">' +
             '<p class="message">' + mess.text.substring(mess.to.length + 2) + '</p>' +
