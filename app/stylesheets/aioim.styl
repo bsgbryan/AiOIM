@@ -33,7 +33,7 @@ global-reset()
     top .5em
     opacity 1
     box-shadow inset 0 2px 5px rgba(black, .5), 0 5px 10px rgba(black, .7)
-@keyframes slide_up-fade_out_messages
+@keyframes slide_down-fade_out_messages
   0%
     top 2.5em
     opacity 1
@@ -43,7 +43,7 @@ global-reset()
     opacity 1
     box-shadow inset 0 2px 5px rgba(black, .5), 0 5px 10px rgba(black, .7)
   100%
-    top 2em
+    top 3em
     opacity 0
     box-shadow inset 0 2px 5px rgba(black, .5), 0 0 0 rgba(black, .7)
 @keyframes slide_in-user_name
@@ -98,6 +98,20 @@ global-reset()
   100%
     opacity 1
     left 0em
+@keyframes fade_in_chat_window
+  0%
+    display none
+  50%
+    display inline-block
+  100%
+    display inline-block
+@keyframes
+  0%
+    display inline-block
+  50%
+    display inline-block
+  100%
+    display none
 
 highlight = #999
 lowlight  = #555
@@ -243,22 +257,26 @@ body > p
       margin-right 1em
       vertical-align top
       height 100%
-      &.active .messages
-        animation slide_down-fade_in_messages .66s
-      &.hidden .messages
-        animation slide_up-fade_out_messages .66s
-      &.active .human.name
-        animation slide_in-user_name .33s
-      &.hidden .human.name
-        animation slide_out-user_name .33s
-      &.active .new.message
-        animation fade_in-new_message .66s
-      &.hidden .new.message
-        animation fade_out-new_message .66s
-      &.active .messages .self
-        animation slide_in-self-message .66s
-      &.active .messages .other
-        animation slide_in-other-message .66s
+      &.active
+        animation fade_in_chat_window .66s
+        .messages
+          animation slide_down-fade_in_messages .66s
+          .self
+            animation slide_in-self-message .66s
+          .other
+            animation slide_in-other-message .66s
+        .human.name
+          animation slide_in-user_name .33s
+        .new.message
+          animation fade_in-new_message .66s
+      &.hidden
+        animation fade_out-chat_window .66s
+        .messages
+          animation slide_down-fade_out_messages .66s
+        .human.name
+          animation slide_out-user_name .33s
+        .new.message
+          animation fade_out-new_message .66s
       .human.name
         width  10.8em // hawt
         height 1.3em
