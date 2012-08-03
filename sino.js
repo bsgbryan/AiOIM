@@ -139,8 +139,6 @@ exports.statuses = {
         data.from = req.body.from
         data.to   = req.body.to
 
-console.log('TWEET', JSON.stringify(deleteIDs(data)))
-
         post.write(JSON.stringify(deleteIDs(data)))
         post.end()
       }
