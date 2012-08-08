@@ -154,8 +154,7 @@
   function closeChat(event) { 
     $(event.currentTarget).
       parent().
-      removeClass('active').
-      addClass('hidden')
+      remove()
       
     return false
   }
