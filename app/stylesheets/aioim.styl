@@ -105,13 +105,13 @@ global-reset()
     display inline-block
   100%
     display inline-block
-@keyframes
+@keyframes depress_aio_header
   0%
-    display inline-block
-  50%
-    display inline-block
+    background-color #efefef
+    text-shadow 0 0 0 transparent
   100%
-    display none
+    background-color rgba(88, 129, 158, .25)
+    text-shadow 0 2px 2px rgba(white, .5)
 
 highlight = #999
 lowlight  = #555
@@ -121,6 +121,7 @@ body
   overflow hidden
 
 h1
+  animation depress_aio_header .33s
   font-family 'Lemon', cursive
   width 100%
   text-align center
