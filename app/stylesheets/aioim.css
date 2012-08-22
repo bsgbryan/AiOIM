@@ -139,6 +139,9 @@ body > p {
 }
 body > p.name.reason {
   bottom: 4em;
+  left: 7%;
+}
+body > p.name.reason.active {
   left: 5%;
 }
 body > p.name.reason .definition {
@@ -147,6 +150,9 @@ body > p.name.reason .definition {
 }
 body > p.capitalization.backstory {
   bottom: 2.625em;
+  right: 7%;
+}
+body > p.capitalization.backstory.active {
   right: 5%;
 }
 body > p.capitalization.backstory a {
