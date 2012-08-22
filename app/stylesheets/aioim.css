@@ -99,7 +99,7 @@ h1 {
   text-align: center;
   font-size: 35em;
   position: absolute;
-  top: 10%;
+  top: 11%;
   left: 0;
   color: #fff;
   color: transparent;
@@ -108,6 +108,9 @@ h1 {
   text-shadow: 0 0 0 transparent;
 }
 h1.active {
+  position: absolute;
+  top: 10%;
+  left: 0;
   -webkit-animation: depress_aio_header 2s;
   -moz-animation: depress_aio_header 2s;
   -o-animation: depress_aio_header 2s;
@@ -1872,79 +1875,94 @@ body > p.capitalization.backstory a {
   0% {
     background-color: #efefef;
     text-shadow: 0 0 0 transparent;
+    top: 11%;
   }
 
   33% {
     background-color: #efefef;
     text-shadow: 0 0 0 transparent;
+    top: 11%;
   }
 
   100% {
     background-color: rgba(88,129,158,0.25);
     text-shadow: 0 2px 2px rgba(255,255,255,0.50);
+    top: 10%;
   }
 }
 @-webkit-keyframes depress_aio_header {
   0% {
     background-color: #efefef;
     text-shadow: 0 0 0 transparent;
+    top: 11%;
   }
 
   33% {
     background-color: #efefef;
     text-shadow: 0 0 0 transparent;
+    top: 11%;
   }
 
   100% {
     background-color: rgba(88,129,158,0.25);
     text-shadow: 0 2px 2px rgba(255,255,255,0.50);
+    top: 10%;
   }
 }
 @-o-keyframes depress_aio_header {
   0% {
     background-color: #efefef;
     text-shadow: 0 0 0 transparent;
+    top: 11%;
   }
 
   33% {
     background-color: #efefef;
     text-shadow: 0 0 0 transparent;
+    top: 11%;
   }
 
   100% {
     background-color: rgba(88,129,158,0.25);
     text-shadow: 0 2px 2px rgba(255,255,255,0.50);
+    top: 10%;
   }
 }
 @-ms-keyframes depress_aio_header {
   0% {
     background-color: #efefef;
     text-shadow: 0 0 0 transparent;
+    top: 11%;
   }
 
   33% {
     background-color: #efefef;
     text-shadow: 0 0 0 transparent;
+    top: 11%;
   }
 
   100% {
     background-color: rgba(88,129,158,0.25);
     text-shadow: 0 2px 2px rgba(255,255,255,0.50);
+    top: 10%;
   }
 }
 @keyframes depress_aio_header {
   0% {
     background-color: #efefef;
     text-shadow: 0 0 0 transparent;
+    top: 11%;
   }
 
   33% {
     background-color: #efefef;
     text-shadow: 0 0 0 transparent;
+    top: 11%;
   }
 
   100% {
     background-color: rgba(88,129,158,0.25);
     text-shadow: 0 2px 2px rgba(255,255,255,0.50);
+    top: 10%;
   }
 }
