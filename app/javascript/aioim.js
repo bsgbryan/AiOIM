@@ -192,9 +192,8 @@
   }
 
   function aioim() {
-    $('body').
-      append('<div id="aioim">' +
-        '<a class="sign in hidden" href="/signin">authorize</a>' +
+    $('#aioim').
+      append('<a class="sign in hidden" href="/signin">authorize</a>' +
         '<ol class="first steps">' +
           '<li class="authorize">Click "authorize"</li>' +
           '<li class="find someone">Find someone</li>' +
@@ -204,8 +203,7 @@
         '<ul class="chatting with hidden"></ul>' +
         '<form class="user search hidden">' +
           '<input type="text" class="name" placeholder="Find a tweeter">' +
-        '</form>' +
-      '</div>')
+        '</form>')
 
     if ($.cookie('AiOID') === null) {
       $('#aioim .sign.in').removeClass('hidden')
