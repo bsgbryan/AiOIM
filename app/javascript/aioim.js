@@ -228,6 +228,8 @@
       on('click',  '.chatting.with .user .messages .favorite', favorite).
       on('click',  '.chatting.with .user .messages .retweet',  retweet).
       on('keyup', '.chatting.with .user .new.message .content', updateCharCount)
+
+    $('h1').addClass('active')
   }
 
   $(document).ready(aioim)

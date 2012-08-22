@@ -121,7 +121,6 @@ body
   overflow hidden
 
 h1
-  animation depress_aio_header .66s
   font-family 'Lemon', cursive
   width 100%
   text-align center
@@ -130,9 +129,13 @@ h1
   color white
   // I'll need to move these next three lines into a media query or something
   color transparent
-  background-color rgba(88, 129, 158, .25)
   -webkit-background-clip text
-  text-shadow 0 2px 2px rgba(white, .5)
+  background-color #efefef
+  text-shadow 0 0 0 transparent
+  .active
+    animation depress_aio_header .66s
+    background-color rgba(88, 129, 158, .25)
+    text-shadow 0 2px 2px rgba(white, .5)
 
 
 // For Firefox
