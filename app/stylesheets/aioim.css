@@ -107,7 +107,7 @@ h1 {
   background-color: #efefef;
   text-shadow: 0 0 0 transparent;
 }
-h1 .active {
+h1.active {
   -webkit-animation: depress_aio_header 0.66s;
   -moz-animation: depress_aio_header 0.66s;
   -o-animation: depress_aio_header 0.66s;
