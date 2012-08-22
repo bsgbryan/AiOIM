@@ -108,11 +108,11 @@ h1 {
   text-shadow: 0 0 0 transparent;
 }
 h1.active {
-  -webkit-animation: depress_aio_header 0.66s;
-  -moz-animation: depress_aio_header 0.66s;
-  -o-animation: depress_aio_header 0.66s;
-  -ms-animation: depress_aio_header 0.66s;
-  animation: depress_aio_header 0.66s;
+  -webkit-animation: depress_aio_header 1.32s;
+  -moz-animation: depress_aio_header 1.32s;
+  -o-animation: depress_aio_header 1.32s;
+  -ms-animation: depress_aio_header 1.32s;
+  animation: depress_aio_header 1.32s;
   background-color: rgba(88,129,158,0.25);
   text-shadow: 0 2px 2px rgba(255,255,255,0.50);
 }
