@@ -1,25 +1,22 @@
 {
-  "name"    : "aio",
-  "version" : "0.5.0",
-  "author"  : "Bryan Maynard <bsgbryan@gmail.com>",
+  "name": "aio",
+  "version": "0.5.0-2",
+  "author": "Bryan Maynard <bsgbryan@gmail.com>",
   "description": "A twitter-backed web based chat client",
-  "dependencies" : {
-    "express"    : "= 2.5",
-    "jade"       : "*",
-    "bs-oauth"   : "*",
-    "ntwitter"   : "*",
-    "socket.io"  : "*",
-    "connect-redis" : "*",
-    "redis-url"     : "*"
+  "dependencies": {
+    "express": "= 2.5",
+    "jade": "*",
+    "bs-oauth": "*",
+    "ntwitter": "*",
+    "socket.io": "*"
   },
-  "devDependencies" : {
-    "stylus" : "*",
-    "nib"    : "*",
-    "redis"  : "*"
+  "devDependencies": {
+    "stylus": "*",
+    "nib": "*"
   },
-  "engines" : {
-    "node" : "0.6.x",
-    "npm"  :  "1.0.x"
+  "engines": {
+    "node": "0.6.x",
+    "npm": "1.0.x"
   },
   "keywords": [
     "twitter",
@@ -28,5 +25,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/bsgbryan/aio.git"
+  },
+  "subdomain": "aioim",
+  "scripts": {
+    "start": "web.js"
   }
 }
