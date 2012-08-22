@@ -108,11 +108,11 @@ h1 {
   text-shadow: 0 0 0 transparent;
 }
 h1.active {
-  -webkit-animation: depress_aio_header 2.64s;
-  -moz-animation: depress_aio_header 2.64s;
-  -o-animation: depress_aio_header 2.64s;
-  -ms-animation: depress_aio_header 2.64s;
-  animation: depress_aio_header 2.64s;
+  -webkit-animation: depress_aio_header 2s;
+  -moz-animation: depress_aio_header 2s;
+  -o-animation: depress_aio_header 2s;
+  -ms-animation: depress_aio_header 2s;
+  animation: depress_aio_header 2s;
   background-color: rgba(88,129,158,0.25);
   text-shadow: 0 2px 2px rgba(255,255,255,0.50);
 }
@@ -1874,7 +1874,7 @@ body > p.capitalization.backstory a {
     text-shadow: 0 0 0 transparent;
   }
 
-  50% {
+  33% {
     background-color: #efefef;
     text-shadow: 0 0 0 transparent;
   }
@@ -1890,7 +1890,7 @@ body > p.capitalization.backstory a {
     text-shadow: 0 0 0 transparent;
   }
 
-  50% {
+  33% {
     background-color: #efefef;
     text-shadow: 0 0 0 transparent;
   }
@@ -1906,7 +1906,7 @@ body > p.capitalization.backstory a {
     text-shadow: 0 0 0 transparent;
   }
 
-  50% {
+  33% {
     background-color: #efefef;
     text-shadow: 0 0 0 transparent;
   }
@@ -1922,7 +1922,7 @@ body > p.capitalization.backstory a {
     text-shadow: 0 0 0 transparent;
   }
 
-  50% {
+  33% {
     background-color: #efefef;
     text-shadow: 0 0 0 transparent;
   }
@@ -1938,7 +1938,7 @@ body > p.capitalization.backstory a {
     text-shadow: 0 0 0 transparent;
   }
 
-  50% {
+  33% {
     background-color: #efefef;
     text-shadow: 0 0 0 transparent;
   }
