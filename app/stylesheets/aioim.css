@@ -139,9 +139,6 @@ body > p {
 }
 body > p.name.reason {
   bottom: 4em;
-  left: 7%;
-}
-body > p.name.reason.active {
   left: 5%;
 }
 body > p.name.reason .definition {
@@ -150,9 +147,6 @@ body > p.name.reason .definition {
 }
 body > p.capitalization.backstory {
   bottom: 2.625em;
-  right: 7%;
-}
-body > p.capitalization.backstory.active {
   right: 5%;
 }
 body > p.capitalization.backstory a {
@@ -595,7 +589,7 @@ body > p.capitalization.backstory a {
 }
 #aioim .sign.in {
   position: absolute;
-  top: 0.4em;
+  top: 0.3em;
   left: 1.5em;
   padding: 0.5em 1.5em;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #666), color-stop(1, #222));
@@ -616,6 +610,7 @@ body > p.capitalization.backstory a {
   font-size: 0.75em;
   -webkit-border-radius: 0.25em;
   border-radius: 0.25em;
+  z-index: 10000;
 }
 @media screen and (max-device-width: 640px) {
   html,
@@ -1875,100 +1870,5 @@ body > p.capitalization.backstory a {
 
   100% {
     display: inline-block;
-  }
-}
-@-moz-keyframes depress_aio_header {
-  0% {
-    background-color: #efefef;
-    text-shadow: 0 0 0 transparent;
-    top: 12%;
-  }
-
-  33% {
-    background-color: #efefef;
-    text-shadow: 0 0 0 transparent;
-    top: 12%;
-  }
-
-  100% {
-    background-color: rgba(88,129,158,0.25);
-    text-shadow: 0 2px 2px rgba(255,255,255,0.50);
-    top: 10%;
-  }
-}
-@-webkit-keyframes depress_aio_header {
-  0% {
-    background-color: #efefef;
-    text-shadow: 0 0 0 transparent;
-    top: 12%;
-  }
-
-  33% {
-    background-color: #efefef;
-    text-shadow: 0 0 0 transparent;
-    top: 12%;
-  }
-
-  100% {
-    background-color: rgba(88,129,158,0.25);
-    text-shadow: 0 2px 2px rgba(255,255,255,0.50);
-    top: 10%;
-  }
-}
-@-o-keyframes depress_aio_header {
-  0% {
-    background-color: #efefef;
-    text-shadow: 0 0 0 transparent;
-    top: 12%;
-  }
-
-  33% {
-    background-color: #efefef;
-    text-shadow: 0 0 0 transparent;
-    top: 12%;
-  }
-
-  100% {
-    background-color: rgba(88,129,158,0.25);
-    text-shadow: 0 2px 2px rgba(255,255,255,0.50);
-    top: 10%;
-  }
-}
-@-ms-keyframes depress_aio_header {
-  0% {
-    background-color: #efefef;
-    text-shadow: 0 0 0 transparent;
-    top: 12%;
-  }
-
-  33% {
-    background-color: #efefef;
-    text-shadow: 0 0 0 transparent;
-    top: 12%;
-  }
-
-  100% {
-    background-color: rgba(88,129,158,0.25);
-    text-shadow: 0 2px 2px rgba(255,255,255,0.50);
-    top: 10%;
-  }
-}
-@keyframes depress_aio_header {
-  0% {
-    background-color: #efefef;
-    text-shadow: 0 0 0 transparent;
-    top: 12%;
-  }
-
-  33% {
-    background-color: #efefef;
-    text-shadow: 0 0 0 transparent;
-    top: 12%;
-  }
-
-  100% {
-    background-color: rgba(88,129,158,0.25);
-    text-shadow: 0 2px 2px rgba(255,255,255,0.50);
-    top: 10%;
   }
 }
